@@ -1148,4 +1148,11 @@ bày repository trên main, không thay code hoặc mở lại kiểm thử Clau
 Tài liệu GitHub về licensing đặt file license ở gốc; nhận diện tên giấy phép
 dựa vào bộ mẫu có sẵn nên không giả định tên giấy phép tùy chỉnh sẽ hiện đúng.
 Nguồn: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository.
-Kết quả kiểm giao diện sau push sẽ ghi tại đây, chỉ sau khi quan sát thực tế.
+**Kết quả sau push commit `937b5a0`:** mở trang GitHub mới trên Chrome;
+ảnh chụp giao diện xác nhận logo TDTN hiển thị đúng trong README và tab License
+nằm cạnh README. Bấm tab License mở `?tab=License-1-ov-file`, hiển thị tiêu đề
+Tran Ngoc Thien's Skill — License, nội dung song ngữ và liên kết toàn văn/tuyên
+bố áp dụng. Sidebar Resources cũng có License. Kiểm liên kết cục bộ của hai
+file đều đạt; `git diff v1.0.0 -- skill dist` rỗng. Không nhận đây là GitHub
+chứng nhận hay phân loại giấy phép nguồn mở. Không thêm file QA/screenshot;
+bằng chứng quan sát được ghi ngay tại mục này.
