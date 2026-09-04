@@ -1165,5 +1165,9 @@ byte tiếng Việt và tiếng Anh. Bản ở gốc là bản sao phục vụ h
 vẫn là nguồn chuẩn duy nhất để sửa điều khoản và đóng gói; khi giấy phép thay
 đổi, phải đồng bộ bản hiển thị và đối chiếu byte/hash trước push. Đây là ngoại
 lệ nhân bản có mục đích theo chỉ dẫn mới, không duy trì hai bản soạn độc lập.
-Đã đối chiếu byte/hash khớp; source, ZIP và tag v1.0.0 giữ nguyên. Việc kiểm
-giao diện sau push được ghi bổ sung khi quan sát xong.
+Đã đối chiếu byte/hash khớp; source, ZIP và tag v1.0.0 giữ nguyên.
+Sau push commit `1271c4c`, mở trực tiếp tab License trên GitHub và xác nhận
+giao diện chứa toàn văn cả Phần I tiếng Việt và Part II tiếng Anh, đủ mục
+1–18 mỗi phần và liên hệ cuối văn bản; không còn trang dẫn nguồn trước đây.
+SHA-256 của bản hiển thị và LICENSE chuẩn cùng là
+`ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5`.
