@@ -1156,3 +1156,14 @@ bố áp dụng. Sidebar Resources cũng có License. Kiểm liên kết cục b
 file đều đạt; `git diff v1.0.0 -- skill dist` rỗng. Không nhận đây là GitHub
 chứng nhận hay phân loại giấy phép nguồn mở. Không thêm file QA/screenshot;
 bằng chứng quan sát được ghi ngay tại mục này.
+
+**Điều chỉnh theo yêu cầu trực tiếp tiếp theo:** người dùng yêu cầu toàn văn
+ngay trong tab License, không dùng trang dẫn nguồn. LICENSE.md ở gốc được
+thay bằng toàn bộ 901 dòng / 51.373 byte của LICENSE chuẩn, giữ nguyên từng
+byte tiếng Việt và tiếng Anh. Bản ở gốc là bản sao phục vụ hiển thị GitHub
+được người dùng yêu cầu; consumer là tab License. LICENSE trong canonical
+vẫn là nguồn chuẩn duy nhất để sửa điều khoản và đóng gói; khi giấy phép thay
+đổi, phải đồng bộ bản hiển thị và đối chiếu byte/hash trước push. Đây là ngoại
+lệ nhân bản có mục đích theo chỉ dẫn mới, không duy trì hai bản soạn độc lập.
+Đã đối chiếu byte/hash khớp; source, ZIP và tag v1.0.0 giữ nguyên. Việc kiểm
+giao diện sau push được ghi bổ sung khi quan sát xong.
