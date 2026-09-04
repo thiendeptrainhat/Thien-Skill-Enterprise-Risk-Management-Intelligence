@@ -6,10 +6,10 @@ Bất biến và hygiene gate: [Nguyên tắc](NGUYEN-TAC.md).
 
 ## 1. Trạng thái hiện tại
 
-- **GitHub — đã chốt đích:** người dùng cung cấp repository
-  `thiendeptrainhat/Thien-Skill-Enterprise-Risk-Management-Intelligence` để tiếp
-  tục commit/push bộ 1.0.0. Đã xác minh repository Private, rỗng và quyền ADMIN;
-  chuẩn bị push nhánh `main`, giữ baseline và toàn bộ bản thử. Chi tiết mục 23.
+- **GitHub — đã push:** bộ 1.0.0, README, QA và lịch sử bản thử đã được lưu trên
+  `thiendeptrainhat/Thien-Skill-Enterprise-Risk-Management-Intelligence`, nhánh
+  `main`, repository Private. Commit triển khai `04cf12e` nối baseline `d2741d4`;
+  remote ref đã xác minh khớp. Không tạo GitHub Release. Chi tiết mục 23.
 - **DOCUMENTATION_BASELINE:** baseline `d2741d4` đã được đọc và giữ làm mốc.
 - **IMPLEMENTATION:** G0–G8 đã triển khai trong working tree ngày 2026-09-04.
   Canonical source có 31 file, khoảng 1,36 MiB; không có `.agents/skills/`, mirror hoặc
@@ -1113,5 +1113,11 @@ quét; đây là kiểm tra mẫu hẹp trước commit, không phải kiểm to
 31/31 hash canonical và 3/3 checksum ZIP 1.0.0 khớp evidence bàn giao;
 `git diff --check` sạch. Không chạy thêm Claude, không rebuild hoặc đổi gói.
 
-Trạng thái tại bước chuẩn bị: chưa commit/push; kết quả thực tế sẽ ghi bổ sung
-ngay trong mục này sau khi GitHub xác nhận ref.
+**Kết quả thực tế:** commit `04cf12e63bcd5aee1e6d05e48894fe31741df251`
+(`feat: complete ERM Intelligence v1.0.0 with verified release packages`) đã
+push thành công bằng `git push -u origin main`. `git ls-remote origin
+refs/heads/main` trả đúng SHA trên; upstream là `origin/main`. Commit giữ
+baseline, gồm 82 file thêm/sửa; CLAUDE.md đã nằm trong baseline nên không đổi.
+Nguồn và các gói vẫn nguyên hash; không chạy lại kiểm thử hoặc thay evidence
+lịch sử. Mục này được cập nhật bằng commit tài liệu tiếp nối để lưu xác nhận
+push thực tế; hồ sơ QA/build trước đây giữ đúng trạng thái tại thời điểm tạo.
