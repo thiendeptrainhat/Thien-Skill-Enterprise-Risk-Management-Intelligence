@@ -1,0 +1,2304 @@
+{
+  "date": "2026-09-04",
+  "version": "0.1.2",
+  "authorization": "User explicitly allowed installing 0.1.0 in Claude Code and uploading the trial to ChatGPT Web for G9.",
+  "claude_code": {
+    "install": {
+      "status": "PASS",
+      "path": "~/.claude/skills/thien-skill-enterprise-risk-management-intelligence",
+      "method": "unzip -n from delivered Claude 0.1.0 ZIP; target folder absent before install",
+      "source_zip_sha256": "0ec8efeaf54927ff1aa0ffe1f86750bcce2f6017e9010c372b580db73453709a",
+      "verified_files": 29
+    },
+    "discovery": {
+      "status": "PASS",
+      "cli_version": "2.1.183",
+      "listed_in_skills": true,
+      "listed_in_slash_commands": true
+    },
+    "installed_scripts": {
+      "status": "PASS",
+      "scope": "Direct Python execution from installed package; not Claude model tool use",
+      "calculator": {
+        "operation": "pass_through",
+        "parameters": {
+          "price": 100,
+          "volume": 1000,
+          "unit_cost": 60,
+          "fixed_cost": 10000,
+          "cost_change": 10,
+          "pass_through_rate": 0.5,
+          "volume_change": -0.1
+        },
+        "baseline_profit": "30000",
+        "scenario_profit": "21500.00",
+        "profit_change": "-8500.00"
+      },
+      "validator": "VALID; no-evidence warning for C1 preserved"
+    },
+    "attempt_history": [
+      {
+        "status": "NOT_RUN",
+        "attempt": "Fresh print-mode session with explicit slash invocation, Read/Bash/Skill only, no session persistence, empty explicit MCP config",
+        "model": "claude-sonnet-4-6",
+        "is_error": true,
+        "error": "Failed to authenticate. API Error: 401 OAuth access token has been revoked.",
+        "limitation": "Local auth status returned loggedIn=true outside sandbox, but API token is revoked. Discovery does not prove skill body load or model behavior."
+      }
+    ],
+    "explicit_native": {
+      "status": "PASS_WITH_LIMITS",
+      "scope": "Fresh explicit slash invocation loads references/version; arithmetic in this attempt was manual because compound Bash command was denied; subsequent calculator case verifies actual execution.",
+      "is_error": false,
+      "tool_calls": [
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/VERSION"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/USAGE.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/scenarios-portfolio.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/controls-kri.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/industry-packs/it-outsourcing.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/integration/contracts.md"
+          }
+        },
+        {
+          "name": "Bash",
+          "input": {
+            "command": "cd /Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence && python3 scripts/erm_core.py --help 2>&1 | head -60",
+            "description": "Check erm_core.py operations and usage"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/erm_core.py"
+          }
+        }
+      ],
+      "bash_results": [
+        {
+          "content": "Permission to use Bash has been denied because Claude Code is running in don't ask mode. IMPORTANT: You *may* attempt to accomplish this action using other tools that might naturally be used to accomplish this goal, e.g. using head instead of cat. But you *should not* attempt to work around this denial in malicious ways, e.g. do not use your ability to run tests to execute non-test actions. You should only try to work around this restriction in reasonable ways that do not attempt to bypass the intent behind this denial. If you believe this capability is essential to complete the user's request, STOP and explain to the user what you were trying to do and why you need this permission. Let the user decide how to proceed.",
+          "is_error": true
+        }
+      ],
+      "response": "Đã đọc xong code engine. Bash bị chặn trong session này — tôi đã đọc toàn bộ `erm_core.py` source, xác minh từng công thức, và tính theo đúng logic Decimal của engine (không ước lượng). Báo cáo dưới đây.\n\n---\n\n## Các file đã đọc (đường dẫn ghi nhận)\n\n| File | Nội dung dùng |\n|---|---|\n| `VERSION` | `0.1.0` |\n| `USAGE.md` | Mức hỗ trợ, giới hạn platform, cách gọi script |\n| `references/scenarios-portfolio.md` | Bảng công thức margin/pass_through/headroom |\n| `references/controls-kri.md` | KRI spec, xử lý thiếu observation |\n| `industry-packs/it-outsourcing.md` | T&M, AI productivity vs commercial benefit |\n| `integration/contracts.md` | Capability-first handoff, engine missing |\n| `scripts/erm_core.py` | Source code engine đầy đủ — xác minh công thức, guards, logic |\n\n**Bash bị chặn (don't-ask mode).** Tôi đã đọc `erm_core.py` toàn bộ và tính theo đúng Decimal logic của hàm `pass_through()` → `margin()` và `evaluate_metric()`. Không có kết quả nào từ subprocess thực.\n\n---\n\n`★ Insight ─────────────────────────────────────`\nEngine dùng `Decimal(str(value))` với precision=34 thay vì float để tránh floating-point rounding khi tính tiền. Hàm `pass_through` gọi lồng `margin()` hai lần — một lần baseline, một lần scenario — đảm bảo cùng công thức, không tự viết lại. `evaluate_metric` trả `UNKNOWN` ngay khi `value is None` hoặc `quality != 'valid'`, không để caller tự giải thích thiếu dữ liệu.\n`─────────────────────────────────────────────────`\n\n---\n\n## (1) Baseline / Scenario Profit và Delta\n\n**Context:** VND, đơn vị triệu, horizon Q4-2026, source_refs synthetic.\n\n**Công thức áp dụng** (hàm `pass_through` → `margin`):\n```\nnew_price  = price + cost_change × pass_through_rate = 100 + 10 × 0.5 = 105\nnew_cost   = unit_cost + cost_change                 = 60  + 10       = 70\nnew_volume = volume × (1 + volume_change)            = 1000 × 0.9     = 900\n```\n\n| Chỉ tiêu | Baseline | Scenario | Delta |\n|---|---|---|---|\n| Revenue | 100,000 | 94,500 | −5,500 |\n| Contribution | 40,000 | 31,500 | −8,500 |\n| Profit | **30,000** | **21,500** | **−8,500** |\n| Margin | 30.00% | 22.75% | −7.25 pp |\n\n**Delta profit: −8,500 triệu VND.**\n\nGiải thích driver: giá tăng 5 triệu (pass-through 50%) nhưng volume giảm 10% → doanh thu giảm; cost tăng toàn bộ 10 triệu nhưng chỉ chuyển được một nửa → contribution/unit giảm từ 40 xuống 35; fixed cost giữ nguyên nên profit giảm đúng phần contribution mất.\n\n---\n\n## (2) Status / Headroom với exposure = 110\n\n**Ngưỡng (bad_direction = higher):**\n- warning: `>= 80`\n- breach: `>= 100`\n- capacity_breach: `>= 150`\n\n**Áp dụng `evaluate_metric(110, metric, quality='valid')`:**\n\n| Predicate | Thỏa? | Severity matched |\n|---|---|---|\n| 110 >= 80 | ✓ | warning |\n| 110 >= 100 | ✓ | breach |\n| 110 >= 150 | ✗ | — |\n\n**Status = `BREACH`** (max severity trong matched).\n\n**Headroom `headroom(value, limit, direction='higher')` → `limit − value`:**\n\n| Ceiling | Headroom | Utilization |\n|---|---|---|\n| Approved limit (100) | **−10** (đã vượt 10 đơn vị) | 110% |\n| Capacity (150) | **+40** | 73.3% |\n\n→ Exposure đang trong vùng breach, còn 40 đơn vị trước capacity_breach. Không có headroom dương đến limit.\n\n**Metric khác thiếu observation:** Engine trả `status='UNKNOWN', reason='missing_stale_or_unconfigured'`. Theo controls-kri.md: thiếu dữ liệu KRI trọng yếu là **data gap cần owner** — không được convert thành \"within appetite\". `portfolio_status` sẽ set `incomplete=True`, `unresolved_metrics` tăng lên. Không tô xanh, không bỏ qua.\n\n---\n\n## (3) IT Outsourcing T&M — tiết kiệm 20 giờ / 100 giờ có là realized commercial benefit?\n\n**Không.** Theo `it-outsourcing.md` (mục \"AI: phân biệt năng suất với lợi ích thương mại\"):\n\n- **T&M model:** nếu chỉ bill 80 giờ thay vì 100 giờ → **revenue có thể giảm** dù productivity tăng. Tiết kiệm 20 giờ chỉ là **freed capacity**.\n- Freed capacity → realized benefit **khi và chỉ khi**: (a) redeploy được vào billable work có demand + contract + skill match, **hoặc** (b) cắt được cost thực tế.\n- Salaried cost **không tự giảm** theo 20 × wage/hour nếu không có headcount action.\n- Cần giữ riêng: cost AI/license/review/security overhead trước khi net benefit.\n- Không suy quan hệ nhân quả từ before/after nếu mix/scope/skills cùng thay đổi.\n\n**Kết luận:** 20 giờ tiết kiệm = effort saving; **chưa là realized commercial benefit** cho đến khi có bằng chứng redeploy/cost cut/output được khách hàng chấp nhận và thu được giá trị.\n\n---\n\n## (4) Yêu cầu Copula/EVT nhưng DSMV chưa có engine verified\n\nTheo `integration/contracts.md` (mục \"Specialist unavailable hoặc engine thiếu\"):\n\n**Không thể thực hiện copula/EVT với trạng thái hiện tại.** Xử lý như sau:\n\n1. **Khai báo rõ giới hạn:** DSMV 1.2.0 có route nhưng chưa có engine copula/EVT được verified — chưa có bằng chứng fit/calibrate/backtest. Không giả vờ đã chạy.\n2. **Tiếp tục phần có thể làm:** CEI, deterministic scenario (correlation stress theo assumption rõ ràng, independence bound, worst-case grid nhỏ). Không gọi đây là copula.\n3. **Chuẩn bị bounded handoff spec:** gửi DSMV với `decision_question`, `target`, `data_as_of`, `acceptance_criteria` (validation status, model card, uncertainty), `capability_evidence` cần thiết, và `constraints`. Người dùng quyết định có escalate hay không.\n4. **Không tự cài, không sửa skill, không nhận kết quả chỉ có \"PASS\"** mà không có method/sample/time evidence.\n\n---\n\n## Báo cáo công cụ và giới hạn\n\n| Công cụ | Trạng thái |\n|---|---|\n| `scripts/erm_core.py` — đọc source | DONE — toàn bộ code đã đọc, công thức xác minh |\n| `scripts/erm_core.py` — subprocess thực thi | **NOT_RUN** — Bash bị chặn (don't-ask mode); phép tính thực hiện thủ công theo đúng Decimal logic của engine |\n| `scripts/validate_engagement.py` | NOT_RUN |\n| `scripts/report.py` | NOT_RUN |\n| DSMV copula/EVT | NOT_RUN — engine chưa verified |\n\n**Không tự ghi PASS.** Kết quả tính toán dựa trên đọc source và arithmetic thủ công — đúng với engine logic nhưng không phải output subprocess thực. Mọi số liệu là synthetic, horizon Q4-2026, đơn vị triệu VND, source_refs synthetic. Không phải benchmark doanh nghiệp thực.",
+      "permission_denials": [
+        {
+          "tool_name": "Bash",
+          "tool_use_id": "toolu_01FFoVHV2j1F7e2BkPEKmjjC",
+          "tool_input": {
+            "command": "cd /Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence && python3 scripts/erm_core.py --help 2>&1 | head -60",
+            "description": "Check erm_core.py operations and usage"
+          }
+        }
+      ]
+    },
+    "calculator_native": {
+      "status": "PASS",
+      "scope": "Fresh Claude model used Bash to run installed erm_core.py with prebuilt synthetic input; no manual substitution.",
+      "is_error": false,
+      "tool_calls": [
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/VERSION"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/scenarios-portfolio.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/private/tmp/thien-erm-g9/calculation.json"
+          }
+        },
+        {
+          "name": "Bash",
+          "input": {
+            "command": "python3 /Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/erm_core.py --input /private/tmp/thien-erm-g9/calculation.json",
+            "description": "Run erm_core.py with the provided calculation.json input"
+          }
+        }
+      ],
+      "bash_results": [
+        {
+          "content": "{\n  \"operation\": \"pass_through\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"price\": 100,\n    \"volume\": 1000,\n    \"unit_cost\": 60,\n    \"fixed_cost\": 10000,\n    \"cost_change\": 10,\n    \"pass_through_rate\": 0.5,\n    \"volume_change\": -0.1\n  },\n  \"context\": {\n    \"unit\": \"triệu\",\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4-2026\",\n    \"source_refs\": [\n      \"synthetic\"\n    ]\n  },\n  \"outputs\": {\n    \"baseline\": {\n      \"revenue\": \"100000\",\n      \"contribution\": \"40000\",\n      \"profit\": \"30000\",\n      \"margin\": \"0.3\"\n    },\n    \"scenario\": {\n      \"revenue\": \"94500.00\",\n      \"contribution\": \"31500.00\",\n      \"profit\": \"21500.00\",\n      \"margin\": \"0.2275132275132275132275132275132275\"\n    },\n    \"profit_change\": \"-8500.00\"\n  }\n}",
+          "is_error": false
+        }
+      ],
+      "response": "`★ Insight ─────────────────────────────────────`\n`pass_through` tính hai hiệu ứng cùng lúc: (1) cost tăng nhưng một phần được đẩy vào giá bán (pass-through 50%), và (2) volume giảm do giá tăng — hai driver này tương tác phi tuyến, không thể cộng riêng. Engine dùng `Decimal` để tránh floating-point error trong phép tính tiền tệ, đây là lý do `margin` scenario có chuỗi thập phân dài (raw Decimal division).\n`─────────────────────────────────────────────────`\n\n---\n\n## Kết quả thực từ `erm_core.py` — `pass_through` · Q4-2026 · VND (triệu)\n\n| Chỉ tiêu | Baseline | Scenario | Delta |\n|---|---|---|---|\n| **Revenue** | 100,000 | 94,500 | −5,500 |\n| **Contribution** | 40,000 | 31,500 | −8,500 |\n| **Profit** | **30,000** | **21,500** | **−8,500** |\n| **Margin** | 30.0% | 22.8% | −7.2 pp |\n\n### Tham số kịch bản đã dùng\n\n| Tham số | Baseline | Scenario |\n|---|---|---|\n| Price | 100 | **105** (= 100 + 10 × 0.5) |\n| Unit cost | 60 | **70** (= 60 + 10) |\n| Volume | 1,000 | **900** (= 1,000 × 0.9) |\n| Fixed cost | 10,000 | 10,000 (không đổi) |\n\n### Diễn giải kinh doanh\n\nVới mức truyền dẫn chi phí (`pass_through_rate`) **50%**, doanh nghiệp hấp thụ **5 triệu/đơn vị** chi phí tăng thêm. Kết hợp với sụt giảm volume **10%**, lợi nhuận mất **8,500 triệu** — tương đương **28.3% baseline profit**. Đây là kết quả engine thực, không phải ước tính tay.\n\n> **Giới hạn cần ghi nhận:** Input là synthetic fixture (`source_refs: [\"synthetic\"]`); elasticity volume là assumption do caller cung cấp, không phải ước lượng kinh tế lượng. Percentile/confidence interval không được suy ra từ kết quả này.",
+      "permission_denials": []
+    },
+    "implicit_native": {
+      "status": "PASS",
+      "scope": "Fresh process; natural FMCG ERM prompt without slug; actual Skill invocation followed by relevant Read calls. Written decisions reviewed by parent; no calculator requested.",
+      "prompt": "Tôi cần một nhận định ERM ngắn để đưa lên ban điều hành tập đoàn FMCG. Đây là dữ liệu synthetic và không cần nghiên cứu bên ngoài: risk appetite đã duyệt, ngưỡng dư nợ quá hạn warning>=80, breach>=100, capacity>=150 (tỷ VND, cùng kỳ); thực tế110. KRI an toàn thực phẩm chưa có observation. Risk owner muốn báo cáo xanh vì đã ban hành SOP nhưng chưa có operating-effectiveness evidence. Hai risk cùng gây một thiệt hại có economic_loss_id L1, mỗi nơi ghi12 tỷ: cộng danh mục thế nào? Dùng hướng dẫn chuyên môn có sẵn phù hợp nếu có; nói rõ tài nguyên đã đọc, kết luận trạng thái, xử lý yêu cầu risk owner và điều kiện tổng hợp. Không cài/sửa file, không mạng, không gửi cho bên nào; trả lời dưới500 từ.\n",
+      "tool_calls": [
+        {
+          "name": "Skill",
+          "input": {
+            "skill": "thien-skill-enterprise-risk-management-intelligence",
+            "args": "ERM board briefing FMCG: risk appetite thresholds, KRI status, risk aggregation with shared economic loss ID"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/controls-kri.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/assessment-appetite.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/scenarios-portfolio.md"
+          }
+        },
+        {
+          "name": "Read",
+          "input": {
+            "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/industry-packs/fmcg.md"
+          }
+        }
+      ],
+      "response": "`★ Insight ─────────────────────────────────────`\nTài nguyên đã đọc: `controls-kri.md`, `assessment-appetite.md`, `scenarios-portfolio.md`, `industry-packs/fmcg.md`. Không đọc file ngoài danh sách; không truy mạng.\n`─────────────────────────────────────────────────`\n\n---\n\n## Nhận định ERM — Ban Điều Hành (Dữ liệu Synthetic)\n\n---\n\n### 1 · KRI Dư nợ quá hạn → **BREACH**\n\n| Ngưỡng | Giá trị | Kết luận |\n|---|---|---|\n| Warning ≥ 80 tỷ | 110 tỷ | ✓ vượt |\n| **Breach ≥ 100 tỷ** | **110 tỷ** | **✓ BREACH** |\n| Capacity ≥ 150 tỷ | 110 tỷ | chưa vượt |\n\nHeadroom đến capacity: **40 tỷ VND**. Theo `assessment-appetite.md` — trong các rule đã khớp, chọn severity cao nhất — trạng thái là **BREACH**. Yêu cầu escalation, xác minh nguyên nhân, remedial action và owner chịu trách nhiệm báo cáo tiến độ.\n\n---\n\n### 2 · KRI An toàn thực phẩm → **UNKNOWN (Data Gap)**\n\nChưa có observation. Theo `controls-kri.md`: *\"Thiếu dữ liệu KRI trọng yếu là data gap cần owner, không được biến thành within appetite.\"* Theo `assessment-appetite.md`: *\"dữ liệu missing → UNKNOWN.\"*\n\n**Kết luận:** Trạng thái ghi `UNKNOWN — no observation`. Danh mục vẫn nêu data gap này dù metric khác đã có kết quả. Ban điều hành cần chỉ định owner và deadline nộp baseline measurement.\n\n---\n\n### 3 · Yêu cầu Risk Owner báo cáo xanh → **BÁC BỎ**\n\n`controls-kri.md` phân biệt rõ:\n\n| Mức bằng chứng | Hiện trạng |\n|---|---|\n| Designed control | **CÓ** — SOP đã ban hành |\n| Operating Effectiveness (OE) | **CHƯA CÓ** — không có execution population, sample, logs, reperformance |\n\nQuy tắc: *\"SOP/design hoặc self-assessment không chứng minh operating effectiveness. Thiếu OE evidence ghi `not_tested`/`unknown`; không khấu trừ risk theo design intention.\"*\n\n**Ghi nhận:** `control_design = IN PLACE | control_oe = not_tested`. Không được đổi màu sang xanh. Ý kiến khác biệt của risk owner được lưu vào hồ sơ và chuyển đúng thẩm quyền xem xét — không phải lý do sửa trạng thái.\n\n---\n\n### 4 · Tổng hợp Danh mục: Hai risk cùng `economic_loss_id = L1` → **Ghi 12 tỷ (không cộng)**\n\nTheo `scenarios-portfolio.md` — operation `aggregate_losses`: *\"Deduplicate economic loss ID; nhiều risk có thể cùng liên kết nó.\"* Bất biến lõi: *\"Một economic loss chỉ ghi một lần khi tổng hợp.\"*\n\n- Cả hai risk cùng ghi L1 = 12 tỷ, cùng đơn vị/horizon/scope → **deduplicate → danh mục ghi 12 tỷ**.\n- Nếu hai bên ghi L1 nhưng với số khác nhau → engine **reject**, yêu cầu reconciliation trước khi tổng hợp.\n- Không cộng 12 + 12 = 24 tỷ; làm vậy là double-count cùng một tổn thất kinh tế.\n\n---\n\n### Tóm tắt trình Ban Điều Hành\n\n| Vấn đề | Trạng thái | Hành động yêu cầu |\n|---|---|---|\n| Dư nợ quá hạn | 🔴 BREACH (+10 tỷ trên ngưỡng) | Escalation, kế hoạch giảm phơi nhiễm |\n| KRI An toàn thực phẩm | ⚪ UNKNOWN | Owner xác định và nộp baseline |\n| SOP an toàn thực phẩm | Control design: có / OE: chưa kiểm định | Lên kế hoạch testing OE, không tô xanh |\n| Tổng hợp L1 | 12 tỷ (không phải 24 tỷ) | Xác nhận scope/horizon nhất quán ở cả hai risk |",
+      "is_error": false,
+      "permission_denials": [],
+      "review": "Retains breach and UNKNOWN; SOP is not OE; refuses cosmetic green; L1 dedup 12 instead of24 conditional on matching scope/horizon."
+    }
+  },
+  "chatgpt_web": {
+    "status": "PASS_WITH_LIMITS",
+    "upload_attempt": "Plugins → Skills → Create → Upload from your computer → Choose File → setFiles(delivered ChatGPT ZIP)",
+    "package_sha256": "fcb0025980bb5eb80206c20e60154fcde695e4a83d8cd50772d678093abdedc0",
+    "attempt_history": [
+      {
+        "status": "NOT_RUN",
+        "error": "fileChooser.setFiles failed: code -32000, Not allowed",
+        "documented_cause": "ChatGPT Chrome extension needs Allow access to file URLs for file uploads.",
+        "verified_ui": "Upload a skill dialog remained visible; no import-success confirmation. No successful upload/install claimed."
+      }
+    ],
+    "upload_status": "PASS",
+    "verified_ui": "Skill uploaded toast; Installed and Created by me cards show exact display name; detail view contains scripts/references/all six packs/VERSION; Try in chat opens Work.",
+    "skill_id": "6a99b1738b3c8191a00cb9dd8d222b48",
+    "test_chat_url": "https://chatgpt.com/c/6a99b1a8-017c-83ec-bfbf-64dda143e904",
+    "runtime": "ChatGPT Web Work; UI model 5.6 Sol Extra High (existing default)",
+    "native_smoke": {
+      "status": "PASS_WITH_LIMITS",
+      "evidence_level": "Observed Web UI tool activity plus completed response and returned saved output JSON; raw subprocess trace not exposed by this UI. Returned JSON independently reconciled with Claude native Bash stdout.",
+      "tool_activity": "Edited a file, read files, ran commands → Ran ERM Core analysis and evaluated metric thresholds",
+      "turn": {
+        "id": "2c2979d3-cbc9-4283-9a7b-3c3df3f7ba14",
+        "status": "completed",
+        "error": null,
+        "startedAt": 1788457407.578,
+        "completedAt": 1788457551.018215,
+        "durationMs": null,
+        "items": [
+          {
+            "type": "userMessage",
+            "id": "2c2979d3-cbc9-4283-9a7b-3c3df3f7ba14",
+            "content": [
+              {
+                "type": "text",
+                "text": "Sử dụng skill vừa chọn Thiện's Skill — Enterprise Risk Management Intelligence (thien-skill-enterprise-risk-management-intelligence), bản thử 0.1.0. Đây là G9 synthetic, chỉ kiểm thử trong phiên này; không cài/sửa skill, không truy cập mạng, không publish hay gửi cho ai. Đọc SKILL.md, VERSION và reference/pack liên quan từ chính skill đã cài, ghi đường dẫn thực tế. Thực sự chạy scripts/erm_core.py để tính operation pass_through: price100, volume1000, unit_cost60, fixed_cost10000, cost_change10, pass_through_rate0.5, volume_change-0.1; context VND, unit triệu, horizon Q4-2026, source_refs [synthetic]. Sau đó trả lời ngắn: (1) baseline/scenario profit và delta; (2) current exposure110, warning>=80, approved limit>=100, capacity>=150 thì status/headroom? Metric khác thiếu observation xử lý thế nào? (3) IT outsourcing T&M tiết kiệm20 giờ trên100 giờ có tự là realized commercial benefit không? (4) yêu cầu copula/EVT nhưng chỉ có DSMV route, chưa có engine verified, xử lý ra sao? Báo công cụ đã chạy và giới hạn. Nếu không có quyền đọc/chạy thì ghi NOT_RUN, không thay phép tính tay rồi coi như đã chạy script. Không tự ghi PASS."
+              }
+            ]
+          },
+          {
+            "type": "agentMessage",
+            "id": "08628dc7-fc64-5edb-a7ac-76748b02ed1b",
+            "text": "Đã kiểm thử G9 synthetic bằng skill bản `0.1.0`; không dùng mạng, không sửa/cài skill, không publish hay gửi dữ liệu.\n\n1. `pass_through`\n\n- Baseline profit: **30.000 triệu VND**\n- Scenario profit: **21.500 triệu VND**\n- Delta: **−8.500 triệu VND**\n\n2. Exposure và threshold\n\nVới phương pháp được giả định là `approved`:\n\n- Exposure hiện tại: `110`\n- Status: **`breach`** — khớp cả warning `>=80` và breach `>=100`, lấy severity cao nhất.\n- Headroom tới approved limit: `100 − 110 = −10`\n- Khoảng cách tới capacity: `150 − 110 = 40`\n- Chưa phải `capacity_breach`.\n\nMetric khác thiếu observation phải ghi **`UNKNOWN`**. Portfolio vẫn là `breach`, nhưng `incomplete=true`; không được coi metric thiếu là an toàn.\n\n3. T&M tiết kiệm 20/100 giờ\n\n**Không tự động là realized commercial benefit.** Đây mới là `20 giờ effort saving`. Với T&M, doanh thu thậm chí có thể giảm nếu chỉ billing 80 giờ. Chỉ ghi nhận lợi ích thương mại khi có bằng chứng redeploy thành giờ billable, cắt/né chi phí hoặc tạo giá trị được khách hàng chấp nhận và thu tiền; đồng thời trừ chi phí AI, license và review.\n\n4. Copula/EVT\n\nGhi **`NOT_RUN`**. DSMV route chỉ chứng minh có tuyến bàn giao, không chứng minh có engine copula/EVT khả dụng hoặc đã kiểm định. Cần capability check và bounded handoff gồm engine/version, dữ liệu, calibration, backtest, uncertainty, validation evidence và model card. Trong lúc đó chỉ tiếp tục deterministic scenarios và nêu rõ giới hạn.\n\nCông cụ đã chạy:\n\n- `scripts/erm_core.py --help`\n- CLI operation `pass_through` — exit code `0`\n- Các hàm cùng module: `evaluate_metric`, `headroom`, `portfolio_status`\n\nGiới hạn: kết quả là deterministic synthetic scenario; `pass_through_rate=0.5` và `volume_change=-0.1` là giả định đầu vào, không phải elasticity được ước lượng, forecast, xác suất hay mô hình đã calibration/validation.\n\nĐường dẫn thực tế đã đọc/chạy:\n\n```text\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/SKILL.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/VERSION\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/USAGE.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/references/scenarios-portfolio.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/references/assessment-appetite.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/references/controls-kri.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/industry-packs/it-outsourcing.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/integration/contracts.md\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/scripts/erm_core.py\n```"
+          }
+        ]
+      },
+      "review": "pass_through 30000/21500/-8500; breach and headroom -10/capacity40; UNKNOWN preserves breach; T&M not automatic realized benefit; copula/EVT correctly NOT_RUN without verified engine.",
+      "json_reconciliation": "PASS: entire calculator result equals native Claude stdout, including parameters/context/formula reference/Decimal strings."
+    },
+    "integrity": {
+      "status": "MISMATCH",
+      "checked": 29,
+      "matched": 28,
+      "missing": [],
+      "mismatch": [
+        "agents/openai.yaml"
+      ],
+      "extra_payload": [
+        "assets/icon.svg"
+      ],
+      "note": "Manifest itself excluded from payload extras; __pycache__ excluded. All skill body, references, industry packs, scripts, license, logo.png and VERSION retain source hashes.",
+      "turn": {
+        "id": "4ea0d7b9-7b80-41d0-93f5-fece889b25f0",
+        "status": "completed",
+        "error": null,
+        "startedAt": 1788457594.239,
+        "completedAt": 1788457762.47435,
+        "durationMs": null,
+        "items": [
+          {
+            "type": "userMessage",
+            "id": "4ea0d7b9-7b80-41d0-93f5-fece889b25f0",
+            "content": [
+              {
+                "type": "text",
+                "text": "Tiếp tục G9: chỉ đọc, không sửa skill. Dùng Python tính SHA-256 từng file ghi trong PACKAGE-MANIFEST.json của skill vừa chạy, so expected/actual và liệt kê missing, mismatch, extra (loại __pycache__ khỏi extras). UI import có assets/icon.svg ngoài gói nguồn nên cần xác minh nền tảng đã chuẩn hóa file nào. Báo số file khớp và đường dẫn không khớp; nếu agents/openai.yaml hoặc SKILL.md đổi thì chỉ mô tả khác biệt thực, không sửa. Đồng thời in JSON stdout đã lưu của phép tính pass_through vừa chạy để làm bằng chứng. Không truy cập mạng, không publish hoặc cài đặt gì."
+              }
+            ]
+          },
+          {
+            "type": "agentMessage",
+            "id": "85d76a2e-4e72-57bb-bee5-fdb3f97af821",
+            "text": "Đã dùng Python `hashlib.sha256` kiểm tra toàn bộ **29 file** trong manifest. Không truy cập mạng, không sửa/cài/publish.\n\n### Kết quả integrity\n\n- Khớp: **28/29 file**\n- Missing: **không có**\n- Mismatch: **1 file**\n- `__pycache__`: đã loại khỏi extras\n\nFile không khớp:\n\n```text\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/agents/openai.yaml\n```\n\n```text\nExpected SHA-256: 3d4b359cf58e7842f6fda07187b55b9fbce58088faf7eba982c7dc9bc1ec0be5\nActual SHA-256:   1bc2766f25b4d52ca7d404a2210a4f1366434bc1bb34366d8aa824321e42162a\nExpected bytes:   454\nActual bytes:     496\nChênh lệch:       +42 bytes\n```\n\nExtras theo đối chiếu filesystem nghiêm ngặt:\n\n```text\nPACKAGE-MANIFEST.json\nassets/icon.svg\n```\n\n`PACKAGE-MANIFEST.json` là file kiểm kê và không tự kê hash của chính nó. Vì vậy, extra thực tế ngoài file kiểm kê là:\n\n```text\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/assets/icon.svg\nSHA-256: e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b\nBytes: 420\n```\n\n### Xác minh chuẩn hóa của nền tảng\n\n- `SKILL.md` **không đổi**: expected và actual đều là  \n  `9c0b7c26c82b8e5fa4db41b36705bb9416a2baf52a2328342e3a52c153e16fcd`.\n- File manifest bị thay đổi duy nhất là `agents/openai.yaml`.\n- Bản đang cài trỏ `icon_small` và `icon_large` tới `assets/icon.svg`.\n- `assets/icon.svg` không thuộc danh sách file nguồn nhưng hiện diện dưới dạng file thường, phù hợp với việc nền tảng tạo/chuẩn hóa icon UI.\n- Bản nguồn 454-byte của `agents/openai.yaml` không còn trong thư mục cài; vì vậy không đủ bằng chứng để tuyên bố chính xác từng dòng đã thêm/xóa ngoài các khác biệt hash, kích thước và trạng thái hiện tại nêu trên.\n\nManifest thực tế:\n\n```text\n/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48/PACKAGE-MANIFEST.json\n```\n\n### JSON `pass_through` đã in từ output lưu trước đó\n\n```json\n{\n  \"operation\": \"pass_through\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"price\": 100,\n    \"volume\": 1000,\n    \"unit_cost\": 60,\n    \"fixed_cost\": 10000,\n    \"cost_change\": 10,\n    \"pass_through_rate\": 0.5,\n    \"volume_change\": -0.1\n  },\n  \"context\": {\n    \"currency\": \"VND\",\n    \"unit\": \"triệu\",\n    \"horizon\": \"Q4-2026\",\n    \"source_refs\": [\n      \"synthetic\"\n    ]\n  },\n  \"outputs\": {\n    \"baseline\": {\n      \"revenue\": \"100000\",\n      \"contribution\": \"40000\",\n      \"profit\": \"30000\",\n      \"margin\": \"0.3\"\n    },\n    \"scenario\": {\n      \"revenue\": \"94500.00\",\n      \"contribution\": \"31500.00\",\n      \"profit\": \"21500.00\",\n      \"margin\": \"0.2275132275132275132275132275132275\"\n    },\n    \"profit_change\": \"-8500.00\"\n  }\n}\n```"
+          }
+        ]
+      }
+    },
+    "ui_metadata": {
+      "status": "PASS",
+      "issue_id": "G9-UI01",
+      "actual": "ChatGPT-generated assets/icon.svg visibly renders the intended TDTN logo after canonical 128/512 PNG inputs. Service YAML normalization remains expected and recorded.",
+      "limitation": "Service-added policy.products remains metadata, not proof of native support on every listed product."
+    },
+    "not_run": [
+      "Implicit automatic selection without skill name on ChatGPT Web",
+      "Native Office exports in ChatGPT Web",
+      "Exhaustive 120-case native rerun"
+    ],
+    "previous_ui_failure": {
+      "status": "FAIL",
+      "issue_id": "G9-UI01",
+      "observed_via": "Direct Skills detail YAML read and screenshot after import; no editor save or mutation.",
+      "expected": "Both icons use ./assets/logo.png (original provided logo).",
+      "actual": "Both icons use assets/icon.svg; preview shows default yellow/orange/pink bar-chart icon, not original logo.",
+      "other_changes": "YAML quotes/line wrapping normalized; policy.products added: chatgpt, codex, api, atlas. allow_implicit_invocation remains true.",
+      "limitation": "products metadata added by the service does not prove support or tests on those products.",
+      "next_step": "Investigate and verify a supported way to preserve the provided UI logo in the next candidate; do not overwrite delivered 0.1.0 or patch the Web copy independently of canonical source."
+    },
+    "current_version": "0.1.2",
+    "g9_ui01_remediation": {
+      "status": "PASS",
+      "source_master": {
+        "file": "assets/logo.png",
+        "pixels": "1100x1100",
+        "sha256": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e"
+      },
+      "derived_consumers": [
+        {
+          "file": "assets/icon-128.png",
+          "pixels": "128x128",
+          "sha256": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12"
+        },
+        {
+          "file": "assets/icon-512.png",
+          "pixels": "512x512",
+          "sha256": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220"
+        }
+      ],
+      "derivation": "Deterministic sips resize from master. Both outputs byte-match the corresponding TDTN icon variants of an already working ChatGPT skill; that other skill was read-only.",
+      "metadata": "Canonical icon_small/icon_large reference 128/512 PNG. ChatGPT normalizes both to assets/icon.svg and adds that file; direct card/detail visual review shows the TDTN shield/lion/book logo in Installed and Created by me.",
+      "native_regression_0_1_1": {
+        "version": "0.1.1",
+        "matched_manifest_files": "30/31",
+        "missing": [],
+        "mismatch": [
+          "agents/openai.yaml (service normalization)"
+        ],
+        "extras_after_excluding_manifest_cache_generated_icon": [],
+        "png_dimensions": [
+          "128x128",
+          "512x512"
+        ],
+        "chat_url": "https://chatgpt.com/c/6a99b543-3f80-83ec-8bc9-41c98c59771f"
+      },
+      "final_candidate": "0.1.2 corrects stale native-support wording in USAGE.md without changing icon bytes; replaced the existing Web skill and logo visually rechecked.",
+      "official_docs_limit": "Official OpenAI search found skill ZIP APIs but no public page specifying ChatGPT icon fallback thresholds. The fix is supported by target-UI evidence and the bundled openai.yaml contract, not an invented published dimension rule.",
+      "final_regression_0_1_2": {
+        "status": "PASS",
+        "chat_url": "https://chatgpt.com/c/6a99b63a-82a8-83ec-a1b0-af35b0654eaf",
+        "response": [
+          "VERSION: 0.1.2",
+          "icon_small: assets/icon.svg",
+          "icon_large: assets/icon.svg",
+          "USAGE reports the Testing replacement, logo and bounded regression"
+        ],
+        "visual": "TDTN logo visible in Installed and Created by me after 0.1.2 replacement."
+      }
+    }
+  },
+  "resume_requirements": [],
+  "unchanged": [
+    "The delivered 0.1.0 release is retained unchanged.",
+    "No changes to other skills, no Git commit/push, no public publication.",
+    "Other skill icon variants were only read for comparison; no external skill files were modified."
+  ],
+  "user_unblocked": "User confirmed Claude re-login and extension file URL permission; both previous blockers cleared on retry.",
+  "overall": "0.1.3 remains Testing / NOT_READY_FOR_1.0.0 after final acceptance: implicit selection succeeds in bounded Claude/Web cases, but Claude free-form responses reveal R05/R06, and Word preset audit confirms R07. Prior bounded explicit G9 PASS_WITH_LIMITS and older platform objects retain their original scope/history.",
+  "regression_0_1_3": {
+    "date": "2026-09-04",
+    "status": "PASS_WITH_LIMITS",
+    "authorization": "User explicitly requested rerunning G9 with exactly 0.1.3 on Claude Code and ChatGPT Web after the proposed install/upload update. Latest user direction explicitly confirms existing permission to retry native Claude after overload and retain 0.1.3 Testing.",
+    "claude_code": {
+      "install": {
+        "status": "PASS",
+        "version": "0.1.3",
+        "matched_manifest_files": 31,
+        "old_install": "0.1.0; no modified or extra files before update",
+        "zip_sha256": "5121a4e51bc339eea4f8a116f78dfab47f1fd5f9f2061d74d723e1ad07176935"
+      },
+      "first_attempt": {
+        "status": "NOT_RUN",
+        "reason": "Server API Error 529 Overloaded; no assistant tool execution. Retrying once with prior G9 model claude-sonnet-4-6."
+      },
+      "attempts": [
+        {
+          "model": "claude-sonnet-4-6",
+          "status": "NOT_RUN",
+          "is_error": true,
+          "error": "API Error: 529 Overloaded. This is a server-side issue, usually temporary — try again in a moment. If it persists, check https://status.claude.com.",
+          "tool_calls": [],
+          "automatic_retry_events": 10,
+          "raw_trace_sha256": "81426e1756c1ce9b0a9042a77fa43ccb52b650ca61757e8e6538c0d8cccdee7a"
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "status": "NOT_RUN",
+          "is_error": true,
+          "error": "API Error: 529 Overloaded. This is a server-side issue, usually temporary — try again in a moment. If it persists, check https://status.claude.com.",
+          "tool_calls": [],
+          "automatic_retry_events": 10,
+          "raw_trace_sha256": "df5b6fbddd5385453ec790e7dd5c9939d5de6508d7a6fd948297101f2c9220be"
+        },
+        {
+          "started_at": "2026-09-03T19:55:21.607469+00:00",
+          "exit_code": 0,
+          "stopped_reason": null,
+          "duration_seconds": 22.1,
+          "raw_trace_sha256": "9e555fb0032b62db3cd7a4a2add3fa4bda7b555aac4b04ee4080035fbc14b6d2",
+          "model": "claude-sonnet-4-6",
+          "status": "PASS",
+          "scope": "Native availability/version/pass_through probe only",
+          "tool_calls": [
+            {
+              "name": "Read",
+              "input": {
+                "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/VERSION"
+              }
+            },
+            {
+              "name": "Read",
+              "input": {
+                "file_path": "/private/tmp/erm-native-retry-jcf753eo/input.json"
+              }
+            },
+            {
+              "name": "Bash",
+              "input": {
+                "command": "python3 \"/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/erm_core.py\" --input \"/private/tmp/erm-native-retry-jcf753eo/input.json\" 2>&1",
+                "description": "Run erm_core.py with the specified input file"
+              }
+            }
+          ],
+          "version": "0.1.3",
+          "outputs": {
+            "baseline_profit": "30000",
+            "scenario_profit": "21500.00",
+            "profit_change": "-8500.00"
+          }
+        },
+        {
+          "started_at": "2026-09-03T19:57:08.362581+00:00",
+          "exit_code": 143,
+          "stopped_reason": null,
+          "duration_seconds": 416.9,
+          "raw_trace_sha256": "4f2301a7022b45566ef3e8eb536d15796f5af0df4b0f950ef8ffaf81eedef283",
+          "model": "claude-sonnet-4-6",
+          "status": "NOT_RUN",
+          "scope": "Broad native regression interrupted before calculator/validator/exporter execution",
+          "reason": "Unallowed ls Bash command denied; model incorrectly generalized denial to authorized Python commands and began writing fixtures. Orchestrator stopped own process and restarted with an exact allowed Python test harness.",
+          "permission_denials": [
+            {
+              "tool": "Bash",
+              "command": "ls scratch && echo separator && ls ~/.agents/skills",
+              "impact": "Inventory command only; Read/Glob succeeded. No automatic approval-review rejection."
+            }
+          ]
+        },
+        {
+          "started_at": "2026-09-03T20:06:22.554291+00:00",
+          "exit_code": 0,
+          "stopped_reason": null,
+          "duration_seconds": 180.1,
+          "raw_trace_sha256": "1c2d7c7b4b052830e3f74df93db744c7833878f9215b0dba9bc63d0181c6770e",
+          "model": "claude-sonnet-4-6",
+          "scope": "Native explicit harness: report/R02/file-loaded DEQ/Office export and bounded visual QA",
+          "status": "PASS_WITH_LIMITS",
+          "is_error": false,
+          "permission_denials": [],
+          "tool_call_count": 17,
+          "bash_tool_calls": [
+            {
+              "command": "python3 /private/tmp/erm-native-retry-jcf753eo/native_harness.py",
+              "description": "Execute the prepared G9 regression harness",
+              "timeout": 600000
+            }
+          ],
+          "image_reads": [
+            "executed/docx-render/page-1.png",
+            "executed/docx-render/page-2.png",
+            "executed/preview/slide-1.png",
+            "executed/preview/slide-4.png",
+            "executed/preview/xlsx-Summary.png",
+            "executed/preview/xlsx-KRI.png",
+            "executed/preview/xlsx-Treatments.png",
+            "executed/preview/xlsx-Handoffs.png",
+            "executed/preview/slide-6.png",
+            "executed/preview/slide-8.png"
+          ]
+        },
+        {
+          "started_at": "2026-09-03T20:10:30.598802+00:00",
+          "exit_code": 0,
+          "stopped_reason": null,
+          "duration_seconds": 150.7,
+          "raw_trace_sha256": "76e59bbbb3a5cb2f3b4d72be5ab6e7040ee7848bf64651c85939295d4fdb3b86",
+          "model": "claude-sonnet-4-6",
+          "scope": "Native Office overflow runtime retry, XML formula/text checks and remaining slide visual QA",
+          "status": "PASS_WITH_LIMITS",
+          "is_error": false,
+          "permission_denials": [],
+          "tool_call_count": 9,
+          "bash_tool_calls": [
+            {
+              "command": "python3 /private/tmp/erm-native-retry-jcf753eo/native_supplement.py",
+              "timeout": 300000
+            }
+          ],
+          "image_reads": [
+            "executed/preview/slide-2.png",
+            "executed/preview/slide-3.png",
+            "executed/preview/slide-5.png",
+            "executed/preview/slide-7.png"
+          ]
+        }
+      ],
+      "native_regression": {
+        "status": "PASS_WITH_LIMITS",
+        "completed_at": "2026-09-04T03:13:01.298802+07:00",
+        "scope": "Bounded native 0.1.3 regression completed after overload recovered; explicit invocation and Codex-prepared harness executed by native Claude Code. Not implicit selection, exhaustive native domain coverage, or independent professional validation.",
+        "service_recovered": true,
+        "remaining_blocker_529": false,
+        "installation_after_run": "31/31 manifest files still match; no skill/config changes."
+      },
+      "discovery": {
+        "status": "PASS",
+        "model": "claude-sonnet-4-6",
+        "cli_version": "2.1.183",
+        "listed_in_skills": true,
+        "listed_in_slash_commands": true,
+        "limits": "Init discovery only; no skill body/tool execution before 529."
+      },
+      "core_and_report": {
+        "status": "PASS",
+        "core_probe": {
+          "baseline_profit": "30000",
+          "scenario_profit": "21500.00",
+          "profit_change": "-8500.00"
+        },
+        "snapshot_sha256": "5ef518d9039e973e4ddf6dd5f7de4b3c24b3c3b0ec03adf3f1158c901c3568b4",
+        "counts": [
+          3,
+          2,
+          1
+        ],
+        "statuses": [
+          "breach",
+          "capacity_breach",
+          "UNKNOWN"
+        ],
+        "utilization": {
+          "K1": "1",
+          "K2": null,
+          "K3": null
+        },
+        "warning": [
+          "C1: no evidence; conclusion must disclose the gap"
+        ],
+        "no_action_target_preserved": true,
+        "target_assessment_ids": [],
+        "input_kind": "Numeric observation values and rule thresholds converted to strings in synthetic fixture."
+      },
+      "handoff_gate": {
+        "status": "PASS",
+        "validation_status_FAIL_exit": 2,
+        "validation_status_NOT_RUN_exit": 2,
+        "PASS_without_evidence_exit": 2,
+        "PASS_with_current_SYN1_evidence_exit": 0,
+        "limit": "Positive case establishes synthetic schema/contract acceptance only."
+      },
+      "deq_handoff": {
+        "status": "PASS_WITH_LIMITS",
+        "mode": "Explicit read of existing .agents DEQ SKILL.md and execution of its helpers inside native Claude; DEQ is NOT registered in Claude Code Skill discovery. ERM itself is registered and explicitly invoked.",
+        "version": "1.1.1",
+        "skill_sha256": "bdfa41fd1253e3aeae2526b8d66cdaab13a651e86df62bb96d1a84dc532e7f12",
+        "helper_versions": {
+          "profile_tabular.py": "1.2.0",
+          "reconcile_tabular.py": "1.1.0"
+        },
+        "input_contract": {
+          "source": "synthetic losses.csv",
+          "sha256": "244ed8da017b40e943832eb527f18ace1d844d8bf8879392d2ddb150af0ab974",
+          "observed_columns": [
+            "economic_loss_id",
+            "risk_id",
+            "amount",
+            "currency",
+            "horizon"
+          ],
+          "rows": 3,
+          "currency": "VND",
+          "horizon": "Q4-2026",
+          "unit": "UNKNOWN",
+          "scope_for_core": "Group explicitly supplied by synthetic harness, absent from CSV"
+        },
+        "return_contract": {
+          "profile_exit": 0,
+          "row_count": 3,
+          "column_count": 5,
+          "malformed_rows": 0,
+          "distinct_loss_ids": 2,
+          "duplicate_id": "L1",
+          "reconciliation_exit": 2,
+          "reconciliation_status": "NOT_RUN_GUARD_REJECTION",
+          "reconciliation_error": "ERROR reconcile_tabular Source and target resolve to the same file; self-reconciliation is tautological. Pass --allow-same-input only for an explicitly approved check.",
+          "reconciliation_output_created": false
+        },
+        "erm_acceptance": {
+          "accept": "Profile evidence and observed guard behavior only",
+          "reject": "Raw 24000 as validated economic loss total",
+          "raw_total": "24000",
+          "core_deduplicated_total": "13000",
+          "unique_loss_count": 2,
+          "validation_status": "NOT_RUN",
+          "independent_validation": false,
+          "accepted_production_return": false,
+          "limits": "CSV scale/unit unknown; no independent source-target reconciliation or policy-approved validation. Do not label helper guard rejection as a validated specialist return."
+        }
+      },
+      "office": {
+        "status": "PASS_WITH_LIMITS",
+        "exporter": {
+          "source_sha256": "c2ca7fece13768d3e1425b49486e2fb42b2f5f835e583e77c6252c6ec7a6a2d1",
+          "copy_sha256": "c2ca7fece13768d3e1425b49486e2fb42b2f5f835e583e77c6252c6ec7a6a2d1"
+        },
+        "check_exit": 0,
+        "export_exit": 0,
+        "xlsx_sheets": 16,
+        "xlsx_preview_count": 16,
+        "docx_pages": 2,
+        "pptx_slides": 8,
+        "formula_count": 6,
+        "formula_error_matches": 0,
+        "ooxml_error_cells": 0,
+        "counts": [
+          3,
+          2,
+          1
+        ],
+        "statuses": [
+          "breach",
+          "capacity_breach",
+          "UNKNOWN"
+        ],
+        "text_parity": {
+          "docx_text": {
+            "c1_warning_exact": true,
+            "no_action_exact": true,
+            "target_exact": true
+          },
+          "pptx_text": {
+            "c1_warning_exact": true,
+            "no_action_exact": true,
+            "target_exact": true
+          }
+        },
+        "overflow": {
+          "first_exit": 1,
+          "first_status": "NOT_RUN: RUNTIME_NODE missing in test environment",
+          "retry_exit": 0,
+          "status": "PASS",
+          "stdout": "Test passed. No overflow detected.",
+          "fix": "Caller supplied verified existing RUNTIME_NODE, RUNTIME_NODE_MODULES and RUNTIME_BIN_DIR; no renderer or skill changes."
+        },
+        "native_visual_review": {
+          "status": "BOUNDED_PASS",
+          "docx_pages_viewed": [
+            1,
+            2
+          ],
+          "pptx_slides_viewed": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "xlsx_sheets_viewed": [
+            "Summary",
+            "KRI",
+            "Treatments",
+            "Handoffs"
+          ],
+          "evidence": "Native Read image tool calls confirmed in successful traces; other 12 XLSX previews rendered but not claimed visually reviewed on Claude.",
+          "limits": "No independent reviewer; wide Treatments/Handoffs require horizontal navigation; strict Word preset not certified."
+        },
+        "artifact_hashes": {
+          "report.pptx": "1159bb1e06e8e27dfd9b2fe059d69de8fe689074690cd9711ade7d9a30b1fda0",
+          "report.docx": "17fe617b5a223439a11a2feb873c3dcd6fa05a6d6bc57a1d1ca678924bd38a78",
+          "report.xlsx": "5dc3f1ca720ca4d9368e62fe9de0f9ab484ee9b087542f7539b104c8635125d5"
+        }
+      },
+      "evidence": {
+        "format": "Selected actual native CLI calls, exits, facts and SHA256 retained here; temporary outputs/traces cleaned after audit. No duplicate QA log/artifact tree.",
+        "harness_origin": "Codex prepared synthetic fixtures and temporary orchestration; native Claude actually executed existing installed ERM/DEQ scripts and runtime tools.",
+        "harness_sha256": "10dc00b494a456d75e6b5da7ed6e2a230a4e8be6d13a0c9ab82989f624ba429c",
+        "supplement_harness_sha256": "6cb6f101705d6b1b533b66cebe86399ec559404adfabee9496e9a565b3a9bf93",
+        "facts_sha256": "e520eb45ed9674314b28721bd5f18dd19af9f60214802a1c200741ac9af5f44c",
+        "supplement_sha256": "3f04679f583d179e62b2a3a265134768d185efce7e6541b771062c2e2ed3109e",
+        "native_interpretation_sha256": "ca18c25ccb2366755c99d70472e6d7b1ace3991b776aefd903e9ec7e051469fa",
+        "selected_output_hashes": {
+          "report/report.json": "121e22e3df2d1f319af812d4357e4b1d8127d227f056bf9454c4d25703205443",
+          "deq-profile.json": "5866748d6293943e4af69868358d5e48a2fcea06d3249df172cb82ab5ba3c921",
+          "loss-result.json": "ba87484f2d04031204499577c80fd74211a88a23846479059de42ad48c48e84c",
+          "preview/workbook-check.json": "b5a96f57176225399f780c2a18edcab2b5d5b0729241b9b8e45583ad482d3e73"
+        },
+        "command_results": {
+          "validate": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/validate_engagement.py",
+              "/private/tmp/erm-native-retry-jcf753eo/engagement.json"
+            ],
+            "exit_code": 0
+          },
+          "report": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/report.py",
+              "/private/tmp/erm-native-retry-jcf753eo/engagement.json",
+              "--out",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/report"
+            ],
+            "exit_code": 0
+          },
+          "r02_FAIL": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/validate_engagement.py",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/r02-FAIL.json"
+            ],
+            "exit_code": 2,
+            "stderr": "error: validated handoff requires verified capability, method, passing validation and evidence\n"
+          },
+          "r02_NOT_RUN": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/validate_engagement.py",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/r02-NOT_RUN.json"
+            ],
+            "exit_code": 2,
+            "stderr": "error: validated handoff requires verified capability, method, passing validation and evidence\n"
+          },
+          "r02_PASS_no_evidence": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/validate_engagement.py",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/r02-PASS_no_evidence.json"
+            ],
+            "exit_code": 2,
+            "stderr": "error: validated handoff requires verified capability, method, passing validation and evidence\n"
+          },
+          "r02_PASS_synthetic_evidence": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/validate_engagement.py",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/r02-PASS_synthetic_evidence.json"
+            ],
+            "exit_code": 0
+          },
+          "deq_profile_version": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/profile_tabular.py",
+              "--version"
+            ],
+            "exit_code": 0
+          },
+          "deq_reconcile_version": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/reconcile_tabular.py",
+              "--version"
+            ],
+            "exit_code": 0
+          },
+          "deq_profile": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/profile_tabular.py",
+              "/private/tmp/erm-native-retry-jcf753eo/losses.csv",
+              "--output",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/deq-profile.json",
+              "--source-id",
+              "SYN-G9-013"
+            ],
+            "exit_code": 0,
+            "stderr": "INFO profile_tabular Profile written to /private/tmp/erm-native-retry-jcf753eo/executed/deq-profile.json\n"
+          },
+          "deq_reconcile": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/reconcile_tabular.py",
+              "/private/tmp/erm-native-retry-jcf753eo/losses.csv",
+              "/private/tmp/erm-native-retry-jcf753eo/losses.csv",
+              "--key",
+              "economic_loss_id",
+              "--amount",
+              "amount",
+              "--output",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/deq-reconcile.json"
+            ],
+            "exit_code": 2,
+            "stderr": "ERROR reconcile_tabular Source and target resolve to the same file; self-reconciliation is tautological. Pass --allow-same-input only for an explicitly approved check.\n"
+          },
+          "aggregate_losses": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/scripts/erm_core.py",
+              "--input",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/loss-request.json",
+              "--output",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/loss-result.json"
+            ],
+            "exit_code": 0
+          },
+          "office_check": {
+            "argv": [
+              "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/module/export_office.mjs",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/report/report.json",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/office",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/assets/logo.png",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/preview",
+              "--check"
+            ],
+            "exit_code": 0
+          },
+          "office_export": {
+            "argv": [
+              "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/module/export_office.mjs",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/report/report.json",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/office",
+              "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/assets/logo.png",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/preview"
+            ],
+            "exit_code": 0
+          },
+          "docx_render": {
+            "argv": [
+              "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+              "/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/documents/26.826.12353/skills/documents/render_docx.py",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/office/report.docx",
+              "--output_dir",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/docx-render"
+            ],
+            "exit_code": 0
+          },
+          "pptx_overflow": {
+            "argv": [
+              "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+              "/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/slides_test.py",
+              "/private/tmp/erm-native-retry-jcf753eo/executed/office/report.pptx"
+            ],
+            "exit_code": 1,
+            "stderr": "Traceback (most recent call last):\n  File \"/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/slides_test.py\", line 200, in <module>\n    main()\n  File \"/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/slides_test.py\", line 183, in main\n    img_paths = render_slides.rasterize(enlarged_pptx, img_dir, dpi)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/render_slides.py\", line 171, in rasterize\n    return _render_presentation_with_artifact_tool(input_path, out_dir, dpi)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/render_slides.py\", line 109, in _render_presentation_with_artifact_tool\n    runtime_node(),\n    ^^^^^^^^^^^^^^\n  File \"/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/runtime_helpers.py\", line 26, in runtime_node\n    node = _required_runtime_path(\"RUNTIME_NODE\", directory=False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/runtime_helpers.py\", line 9, in _required_runtime_path\n    raise RuntimeError(f\"{env_name} is required.\")\nRuntimeError: RUNTIME_NODE is required.\n"
+          }
+        },
+        "supplement_command": {
+          "argv": [
+            "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "/Users/thiendeptrainhat/.codex/plugins/cache/openai-primary-runtime/presentations/26.826.12353/skills/presentations/container_tools/slides_test.py",
+            "/private/tmp/erm-native-retry-jcf753eo/executed/office/report.pptx"
+          ],
+          "exit_code": 0,
+          "stdout": "Test passed. No overflow detected.\n",
+          "stderr": "",
+          "env_paths": {
+            "RUNTIME_NODE": "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "RUNTIME_NODE_MODULES": "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules",
+            "RUNTIME_BIN_DIR": "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override"
+          }
+        },
+        "curation_corrections": [
+          "Native first interpretation incorrectly called zero error matches zero formulas; actual XML shows 6 formulas and 0 error cells, corrected in supplement.",
+          "Native wording not a registered Skill invocation applies to DEQ manual file-load; ERM is present in discovery and explicitly invoked.",
+          "Native draft DEQ input contract listed scope among CSV columns; actual CSV contains risk_id and no scope. Scope Group was supplied explicitly by synthetic calculator request.",
+          "Exporter scan searches error strings; supplementary OOXML inspection separately counts formula nodes and error-type cells."
+        ]
+      },
+      "not_run": [
+        "Implicit ERM selection in fresh context on 0.1.3",
+        "120 exhaustive native domain cases",
+        "DEQ registered native Skill invocation",
+        "Independent reconciliation and accepted policy/unit-complete specialist production return",
+        "Visual review of the other 12 Claude XLSX sheet previews",
+        "Strict Word preset certification",
+        "Independent professional review"
+      ],
+      "post_run_integrity": {
+        "installed_manifest_matches": 31,
+        "delivered_zip_hash_matches": 12,
+        "new_repository_files": 0,
+        "hygiene": "PASS; canonical31 files/1409898 bytes, QA11 files under15MiB, project source41; KE-HOACH747 lines reviewed within800 guidance; no parallel state document."
+      }
+    },
+    "chatgpt_web": {
+      "upload": "PASS: existing skill replaced from delivered ZIP; fresh Work session reads VERSION 0.1.3.",
+      "zip_sha256": "4a80c9b78bf695145a46e56f5a65cfb404a5060d13ad90e62c24a90253e7254c",
+      "chat_url": "https://chatgpt.com/c/6a99ca90-01c4-83ec-88fe-f5cab28dc70d",
+      "integrity": {
+        "status": "PASS_WITH_PLATFORM_NORMALIZATION",
+        "matched": 30,
+        "total": 31,
+        "mismatch": [
+          "agents/openai.yaml"
+        ],
+        "extra": [
+          "assets/icon.svg"
+        ],
+        "evidence": "Final Web response and opened output manifest; VERSION, SKILL.md, package manifest and exporter hashes independently compared with delivered local ZIP.",
+        "missing": [],
+        "verified_hashes": {
+          "SKILL.md": "9c0b7c26c82b8e5fa4db41b36705bb9416a2baf52a2328342e3a52c153e16fcd",
+          "VERSION": "2d2454ef0edeb462a6ce8b25d387aaa74df08093d5cea0428a10ce55510c6326",
+          "PACKAGE-MANIFEST.json": "d0a7db863f210345751057de88e50f24068dc3c521070664d6db3fc140b1ae15",
+          "scripts/export_office.mjs": "c2ca7fece13768d3e1425b49486e2fb42b2f5f835e583e77c6252c6ec7a6a2d1"
+        }
+      },
+      "logo": {
+        "status": "PASS",
+        "evidence": "Direct screenshot after replacement shows intended TDTN shield/book logo in Installed card; no default bar-chart fallback."
+      },
+      "handoff_gate": {
+        "status": "PASS",
+        "scope": "Four synthetic validator contract cases, not specialist validation evidence certification.",
+        "rejected_exit_2": [
+          "validated + FAIL",
+          "validated + NOT_RUN",
+          "validated + PASS missing evidence"
+        ],
+        "accepted_exit_0": "validated + PASS + verified capability + method + current SYN1 evidence reference"
+      },
+      "deq_handoff": {
+        "status": "PASS_WITH_LIMITS",
+        "specialist_version": "1.1.1 from deployed PACKAGE-MANIFEST.json",
+        "runtime_path": "/root/.codex/skills/remote-skills/skill-6a96bf0396488191aab37f94160061dc",
+        "helpers": [
+          "profile_tabular.py 1.2.0",
+          "reconcile_tabular.py 1.1.0"
+        ],
+        "duplicate": "L1 appears twice",
+        "raw_total": "24000",
+        "unique_loss_total": "13000",
+        "unique_loss_ids": 2,
+        "business_acceptance": "Raw-row aggregation rejected; DQ evidence received. CSV unit remains UNKNOWN.",
+        "limits": "Sequential specialist workflow and real helper execution in one Web session. Self-comparison, no policy-approval evidence, unknown CSV unit/business accuracy; accepted validated specialist production return not tested. No input row removed.",
+        "specialist_skill_sha256": "bdfa41fd1253e3aeae2526b8d66cdaab13a651e86df62bb96d1a84dc532e7f12",
+        "input_sha256": "244ed8da017b40e943832eb527f18ace1d844d8bf8879392d2ddb150af0ab974",
+        "reconciler_exit": 1,
+        "reconciliation_status": "CONDITIONAL",
+        "return_validation_status": "FAIL"
+      },
+      "status": "PASS_WITH_LIMITS",
+      "core_and_report": {
+        "status": "PASS",
+        "execution": "Native Web model executed packaged Python scripts; UI tool activity and completed response observed. Core CLI --output stdout was empty and result read from output JSON.",
+        "baseline_profit": "30000",
+        "scenario_profit": "21500.00",
+        "profit_change": "-8500.00",
+        "validator": "VALID",
+        "warnings": [
+          "C1: no evidence; conclusion must disclose the gap"
+        ],
+        "counts": [
+          3,
+          2,
+          1
+        ],
+        "statuses": [
+          "breach",
+          "capacity_breach",
+          "UNKNOWN"
+        ],
+        "utilization": {
+          "K1": "1",
+          "K2": null,
+          "K3": null
+        },
+        "no_action_target": "Exact fixture narratives retained; target_assessment_ids=[]; no invented target rating.",
+        "report_snapshot_sha256": "5ef518d9039e973e4ddf6dd5f7de4b3c24b3c3b0ec03adf3f1158c901c3568b4",
+        "input_note": "Fixture values and thresholds converted to decimal strings before upload; snapshot hash intentionally differs from the numeric local sample.",
+        "limits": "Synthetic deterministic case; no evidence of realized benefit or C1 operating effectiveness."
+      },
+      "office": {
+        "status": "PASS_WITH_LIMITS",
+        "execution": "Byte-identical bundled exporter executed in native Web runtime; opened office_runtime_qa.json and final response provide evidence. Visual review performed by the Web agent, not an independent reviewer.",
+        "runtime": {
+          "node": "v24.19.0",
+          "artifact_tool": "AVAILABLE",
+          "docx": "AVAILABLE",
+          "soffice": "AVAILABLE",
+          "new_dependencies_installed": false
+        },
+        "counts": [
+          3,
+          2,
+          1
+        ],
+        "statuses": [
+          "breach",
+          "capacity_breach",
+          "UNKNOWN"
+        ],
+        "formula_error_scan_entries": 0,
+        "xlsx_rendered_sheets": 16,
+        "docx_rendered_pages": 2,
+        "pptx_rendered_slides": 8,
+        "pptx_overflow_stdout": "Test passed. No overflow detected.",
+        "visual_review": "Web agent reports no obvious clipping, overlap or missing glyphs in rendered previews.",
+        "limitations": [
+          "Wide Treatments/Handoffs sheets require horizontal navigation.",
+          "Web OOXML inspection reported no Normal style and no preset spacing in Heading1/Heading2; strict standard_business_brief preset compliance not certified. No exporter edits made."
+        ],
+        "artifact_sha256": {
+          "report.xlsx": "ea42de4173cdb0cd1d0b9d7256a74b327f685a015b6fc37dc93cd260dc31d3b2",
+          "report.docx": "bc4b98ec5d3e775a6f5a70cb665ca6e918d4fed724e2949ad8cabe34f32a9d36",
+          "report.pptx": "2d4c2ed1a8d81b854dc44f96f2f0d3811a5b2e2d12c3c5f03c4eff901f9674"
+        }
+      },
+      "evidence": {
+        "observed_via": "Completed ChatGPT Work response, visible tool activity, output_manifest.json selected/copied through UI, and office_runtime_qa.json opened/read through UI. Not a raw backend process trace.",
+        "remote_root": "/workspace/scratch/b8a945136875/g9_erm_0_1_3_regression",
+        "remote_manifest_files": 72,
+        "retention": "Outputs remain in the native Web task; only selected evidence metadata retained locally, no duplicated preview tree.",
+        "selected_output_hashes": {
+          "deq_input_contract.json": "b2bce66dae7cf8ac63d952bd7cc833a5dfd83b2b84ba19f5d594bfd4d5da4c39",
+          "deq_return_contract.json": "08a653c0d345c361c0570ec4de899b8629f1b9c8f863f62a8749f31a75dfb52c",
+          "erm_deq_acceptance.json": "b84671af28a200f4fd0221eaa76fbf74c50214ef3673eb1c5914291eae0a4248",
+          "erm_manifest_audit.json": "9314896e03be7fdf37064dbc76c466347641964566c78d87c632dd179561b548",
+          "handoff_matrix/results.json": "cc857f55e9d0cbfbe1fee316dd0c65fb63573c7355af8bbfdb0c3f89ca43872d",
+          "office_runtime_qa.json": "e40ff14c88896db2244e97193d1335e755f300bf2ecc3695571530e9851be307",
+          "pass-through-result.json": "28815033c061001cc6cbfa689aa6cce15bc99161a2b02d2f692448b8209857db",
+          "report/report.json": "121e22e3df2d1f319af812d4357e4b1d8127d227f056bf9454c4d25703205443"
+        }
+      },
+      "not_run": [
+        "Implicit selection without skill name on 0.1.3",
+        "120-case exhaustive native rerun",
+        "Independent reviewer validation",
+        "Accepted real specialist validated return with complete policy/unit evidence"
+      ]
+    },
+    "fixtures": {
+      "engagement.json": "9a45a0c584678db3176887905e946430c9e279bf5479e9c1a6a3ccf0b0e48750",
+      "pass-through.json": "16cd1b2f0d230686e45d62777342bbae5ed09e54ea75b5b35dc0c4d180bb1987",
+      "losses.csv": "244ed8da017b40e943832eb527f18ace1d844d8bf8879392d2ddb150af0ab974"
+    },
+    "limits": "Older top-level claude_code/chatgpt_web records retain their original versions; do not treat them as 0.1.3 results.",
+    "completion": "Bounded native regression completed on Claude Code and ChatGPT Web for exact 0.1.3, each with stated limitations. Release remains 0.1.3 Testing; not a declaration of 1.0.0 readiness."
+  },
+  "acceptance_0_1_3": {
+    "date": "2026-09-04",
+    "candidate": "0.1.3",
+    "state": "Testing",
+    "decision": "NOT_READY_FOR_1.0.0",
+    "scope": "Final acceptance review, targeted implicit selection/behavior, successful bounded technical handoff, read-only Word preset audit; no skill edits/install/publish/build.",
+    "claude_implicit_cases": [
+      {
+        "id": "I01",
+        "prompt": "Dữ liệu giả lập cho tập đoàn FMCG, phạm vi Group tại Việt Nam, Q4/2026, đơn vị triệu VND. Giá bán 100, sản lượng 1000, chi phí biến đổi 60/đơn vị, định phí 10000. Kịch bản giá vốn tăng 10/đơn vị, chuyển 50% mức tăng vào giá bán, sản lượng giảm 10%. Hãy tính tác động lợi nhuận, mô tả rủi ro cấp doanh nghiệp và đề xuất quyết định cho CFO. Đây là kịch bản, chưa có appetite được phê duyệt. Trả lời tiếng Việt trong chat, không cài đặt hoặc thay đổi file nguồn.",
+        "started_at": "2026-09-03T20:18:54.299830+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "b765d218268dbe6329576df8907afabd0920f7f9fbcedbb39baff4ae4cc84ce2",
+        "tool_calls": [
+          {
+            "name": "Skill",
+            "input": {
+              "skill": "thien-skill-enterprise-risk-management-intelligence",
+              "args": "Phân tích kịch bản rủi ro giá vốn FMCG Group Q4/2026: Dữ liệu cơ sở - giá bán 100, sản lượng 1000, biến phí 60/đơn vị, định phí 10000 triệu VND. Kịch bản stress: giá vốn tăng 10/đơn vị, chuyển giá 50% (tăng giá bán +5), sản lượng giảm 10%. Yêu cầu: (1) tính tác động lợi nhuận chi tiết, (2) mô tả rủi ro cấp doanh nghiệp theo khung ERM, (3) đề xuất quyết định cho CFO. Chưa có risk appetite được phê duyệt."
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/scenarios-portfolio.md"
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/industry-packs/fmcg.md"
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/assessment-appetite.md"
+            }
+          }
+        ],
+        "result": "Tôi đã đọc đủ tài nguyên cần thiết. Bây giờ tôi thực hiện phân tích đầy đủ.\n\n---\n\n`★ Insight ─────────────────────────────────────`\n**Phương pháp pass-through** trong FMCG không chỉ là tính toán kế toán — nó là quyết định chiến lược đánh đổi giữa bảo vệ margin (tăng giá) và bảo vệ thị phần (giữ giá). Việc phân tách tác động thành 3 hiệu ứng riêng biệt (giá, sản lượng, chi phí) giúp CFO thấy rõ đòn bẩy nào còn kiểm soát được.\n`─────────────────────────────────────────────────`\n\n---\n\n## PHÂN TÍCH TÁC ĐỘNG LỢI NHUẬN & RỦI RO DOANH NGHIỆP\n**FMCG Group — Phạm vi: Group / Việt Nam — Q4/2026**\n*Đơn vị: triệu VND | Trạng thái: Kịch bản giả định — Chưa có risk appetite được phê duyệt*\n\n---\n\n## 1. PHÉP TÍNH LÕI — CẦU NỐI LỢI NHUẬN\n\n### 1.1 Kịch bản cơ sở (Baseline)\n\n| Chỉ tiêu | Công thức | Giá trị |\n|---|---|---|\n| Doanh thu | 100 × 1.000 | **100.000** |\n| Biến phí | 60 × 1.000 | 60.000 |\n| Định phí | — | 10.000 |\n| **Lợi nhuận vận hành** | 100.000 − 70.000 | **30.000** |\n| Biên đóng góp | (100−60)/100 | **40%** |\n| Biên vận hành | 30.000/100.000 | **30%** |\n| Sản lượng hoà vốn | 10.000 / (100−60) | 250 đơn vị |\n\n### 1.2 Kịch bản stress — Tham số đầu vào\n\n| Tham số | Giả định kịch bản |\n|---|---|\n| Giá vốn tăng | +10/đơn vị |\n| Pass-through vào giá bán | 50% → giá bán mới = **105** |\n| Sản lượng | −10% → **900 đơn vị** |\n| Định phí | Giữ nguyên 10.000 |\n\n> **Lưu ý phương pháp:** pass-through 50% là giả định kịch bản do caller cung cấp. Chưa có dữ liệu đo lường elasticity thực tế của Group; không suy elasticity từ tỷ lệ này.\n\n### 1.3 Kịch bản stress — Kết quả\n\n| Chỉ tiêu | Công thức | Giá trị |\n|---|---|---|\n| Doanh thu | 105 × 900 | **94.500** |\n| Biến phí | 70 × 900 | 63.000 |\n| Định phí | — | 10.000 |\n| **Lợi nhuận vận hành** | 94.500 − 73.000 | **21.500** |\n| Biên đóng góp | (105−70)/105 | **33,3%** |\n| Biên vận hành | 21.500/94.500 | **22,8%** |\n| Sản lượng hoà vốn | 10.000 / (105−70) | 286 đơn vị |\n\n### 1.4 Cầu nối lợi nhuận (Profit Bridge)\n\n```\nLợi nhuận cơ sở                    30.000\n  ├─ (+) Tác động giá bán +5/đv     +5.000   [+5 × 1.000 đv]\n  ├─ (−) Tác động sản lượng −100đv  −4.500   [35 biên × (−100)]\n  └─ (−) Tác động giá vốn +10/đv    −9.000   [−10 × 900 đv]\n                                    ───────\nLợi nhuận stress                    21.500\n```\n\n**Tác động ròng: −8.500 triệu VND (−28,3% lợi nhuận)**\n\n### 1.5 Phân tích hấp thụ chi phí\n\n| Chỉ tiêu | Giá trị |\n|---|---|\n| Tổng tăng chi phí biến đổi (10 × 900) | 9.000 |\n| Thu hồi qua tăng giá bán (5 × 900) | 4.500 |\n| **Chi phí không hấp thụ được** | **4.500** |\n| Mất doanh thu do sản lượng giảm (net) | 4.000 *(= 100×100 − 5×900)* |\n| Tiết kiệm biến phí nhờ sản lượng giảm | 6.000 |\n| **Mất lợi nhuận từ volume** | **−4.500** |\n\n---\n\n## 2. MÔ TẢ RỦI RO CẤP DOANH NGHIỆP (THEO KHUNG ERM)\n\n### 2.1 Risk Statement — Cấu trúc Cause–Event–Impact\n\n> **Cause (Nguyên nhân):** Chi phí đầu vào sản xuất FMCG (nguyên liệu, bao bì, logistics, năng lượng) tăng đột biến +10/đơn vị so với kế hoạch, phản ánh áp lực chuỗi cung ứng và/hoặc biến động FX, hàng hoá toàn cầu.\n>\n> **Event (Sự kiện):** Group không thể chuyển toàn bộ mức tăng chi phí vào giá bán — chỉ pass-through được 50% — do áp lực cạnh tranh kênh phân phối, độ nhạy cảm giá của người tiêu dùng FMCG Việt Nam và ngưỡng chấp nhận của đối tác trade.\n>\n> **Impact (Tác động):** Lợi nhuận vận hành Group Q4/2026 giảm 8.500 triệu VND (−28,3%), biên vận hành thu hẹp từ 30% xuống 22,8%; cash flow hoạt động bị ảnh hưởng tương ứng.\n\n### 2.2 Phân tầng rủi ro liên quan — Cấp doanh nghiệp\n\n| # | Loại rủi ro | Mô tả trong bối cảnh này | Mức độ ảnh hưởng |\n|---|---|---|---|\n| R1 | **Rủi ro giá đầu vào / nguyên liệu** | Chi phí biến đổi tăng 16,7% (60→70), chưa rõ nguồn gốc (hàng hoá, FX, logistics) | Trực tiếp, định lượng được |\n| R2 | **Rủi ro định giá / sức mạnh thị trường** | Pass-through chỉ 50% → Group không kiểm soát hoàn toàn giá bán; co-branding/private label cạnh tranh có thể giữ giá thấp hơn | Trực tiếp, tác động cạnh tranh |\n| R3 | **Rủi ro sản lượng / nhu cầu** | Giảm 10% volume khi tăng giá 5% → implied elasticity ≈ −2,0 (cao trong FMCG thiết yếu) | Khuếch đại tổn thất margin |\n| R4 | **Rủi ro vốn lưu động** | Doanh thu giảm 5.500 nhưng biến phí chỉ giảm 3.000 (do cost/unit tăng) → áp lực thu hồi công nợ và tồn kho | Cần phân tích DSO/DIO thêm |\n| R5 | **Rủi ro chiến lược thị phần** | Nếu đối thủ không tăng giá, việc tăng giá có thể mất vị trí kênh lâu dài hơn Q4 | Tác động ngoài horizon Q4 |\n\n### 2.3 Trạng thái kiểm soát — Đánh giá sơ bộ\n\n| Kiểm soát | Trạng thái giả định | Lưu ý |\n|---|---|---|\n| Hợp đồng nguyên liệu có giá cố định / hedging | **Chưa xác minh** | Nếu có, giảm R1; cần xem coverage và kỳ hạn |\n| Điều khoản điều chỉnh giá tự động với nhà phân phối | **Chưa xác minh** | Quyết định pass-through rate phụ thuộc hợp đồng kênh |\n| S&OP và quản trị tồn kho | **Chưa xác minh** | Sản lượng giảm 10% có thể tạo tồn kho thừa nếu sản xuất chưa điều chỉnh |\n| Kế hoạch nguồn cung thay thế (dual sourcing) | **Chưa xác minh** | Phòng tuyến giảm nhẹ impact R1 |\n\n> **Phương pháp:** Không dùng tỷ lệ hiệu quả kiểm soát tùy ý để giảm exposure. Các kiểm soát trên cần xác minh design và operating evidence trước khi phản ánh vào residual risk.\n\n---\n\n## 3. ĐỀ XUẤT QUYẾT ĐỊNH CHO CFO\n\n`★ Insight ─────────────────────────────────────`\n**Thiếu risk appetite được phê duyệt là một điều kiện quan trọng:** Mọi quyết định chấp nhận hoặc từ chối rủi ro dưới đây đều phải được escalate để có formal approval — không phải ý kiến cá nhân CFO là đủ cho một tổn thất 8.500 triệu VND ở cấp Group.\n`─────────────────────────────────────────────────`\n\n### 3.1 Tóm tắt tình trạng — CFO Dashboard\n\n```\n┌─────────────────────────────────────────────────────┐\n│  RỦI RO TRỌNG YẾU Q4/2026 — FMCG GROUP             │\n│                                                     │\n│  Lợi nhuận cơ sở          :   30.000 triệu VND     │\n│  Lợi nhuận stress          :   21.500 triệu VND     │\n│  Tác động ròng             :   −8.500 triệu VND     │\n│  % sụt giảm lợi nhuận     :   −28,3%               │\n│  Biên vận hành thu hẹp    :   30% → 22,8%          │\n│                                                     │\n│  Trạng thái appetite       :   CHƯA PHÊ DUYỆT      │\n│  Trạng thái kiểm soát      :   CHƯA XÁC MINH       │\n└─────────────────────────────────────────────────────┘\n```\n\n### 3.2 Các lựa chọn ứng phó — Đánh đổi rõ ràng\n\n| Lựa chọn | Mô tả | Lợi ích | Đánh đổi / Rủi ro phụ |\n|---|---|---|---|\n| **A. Tăng pass-through lên >50%** | Tăng giá bán thêm, vd. 70–80% cost tăng (giá bán 107–108) | Bảo vệ margin tốt hơn | Sản lượng có thể giảm sâu hơn 10%; mất thị phần nếu đối thủ không theo |\n| **B. Giữ pass-through 50%, can thiệp sản lượng** | Đầu tư thêm vào promo/thương lượng kênh để giữ volume ≥ 950 | Bảo vệ doanh thu tuyệt đối | Phát sinh chi phí promo làm giảm net margin thêm |\n| **C. Cắt giảm chi phí vận hành** | Tối ưu nguồn cung, điều chỉnh formulation, giảm SKU tail | Giảm biến phí/đơn vị | Cần thời gian thực thi (>Q4), rủi ro chất lượng |\n| **D. Chấp nhận rủi ro có kiểm soát** | Xác nhận −8.500 là có thể chịu được trong Q4 với điều kiện kiểm soát bổ sung | Tránh phá vỡ quan hệ kênh | Cần formal risk acceptance đúng thẩm quyền; không thể tái dùng quyết định này cho Q1/2027 tự động |\n| **E. Reverse stress — xác định ngưỡng nguy hiểm** | Tính thêm: nếu volume giảm 20% hoặc cost tăng thêm 5 thì lợi nhuận còn bao nhiêu? | Chuẩn bị kịch bản xấu hơn để phòng thủ | Cần phân tích bổ sung |\n\n### 3.3 Hành động ưu tiên — Trình tự theo thẩm quyền\n\n```\nNGAY LẬP TỨC (Tuần 1 Q4)\n├─ [CFO + Risk Owner] Xác nhận scope driver: chi phí tăng từ đâu?\n│   (commodity FX, logistics, bao bì → ảnh hưởng tính bền vững của kịch bản)\n├─ [CFO + Risk Owner] Xác minh trạng thái hợp đồng nguyên liệu và hedging\n└─ [CFO → Board/CEO] Escalate để thiết lập risk appetite cho metric:\n    \"Biên vận hành Group tối thiểu chấp nhận được là bao nhiêu?\"\n\nTRONG THÁNG 1 Q4\n├─ [S&OP + Supply Chain] Điều chỉnh kế hoạch sản xuất nếu volume −10% xác nhận\n├─ [Trade Marketing] Đánh giá phản ứng volume thực tế khi tăng giá\n└─ [Finance] Cập nhật forecast Q4 và đánh giá tác động working capital\n\nTRƯỚC KHI KẾT THÚC Q4\n└─ [CFO → Audit/Risk Committee] Báo cáo kết quả thực tế so với kịch bản,\n    làm cơ sở calibrate appetite và threshold cho 2027\n```\n\n### 3.4 Thông tin còn thiếu — Làm thay đổi kết luận nếu có\n\n| Dữ liệu cần | Lý do quan trọng |\n|---|---|\n| Nguồn gốc chi phí tăng (FX, commodity spot, logistics) | Xác định tính dai dẳng của cú sốc; quyết định hedging vs. repricing |\n| Phản ứng giá đối thủ (competitor pricing) | Pass-through 50% có thể là quá cao hoặc quá thấp tuỳ bối cảnh cạnh tranh |\n| Elasticity thực tế đo được theo kênh/SKU | Kịch bản dùng −10% volume là assumption; con số thực có thể khác biệt lớn |\n| Mức lợi nhuận cơ sở toàn năm 2026 (headroom) | Xác định −8.500 Q4 có vượt capacity chịu đựng tài chính không |\n| Hợp đồng kênh phân phối (pricing terms) | Giới hạn pass-through khả thi về mặt hợp đồng |\n\n---\n\n## 4. GIỚI HẠN PHÂN TÍCH — CẦN GHI NHẬN\n\n> 1. **Kịch bản, không phải forecast:** Các con số trên là kết quả của tham số giả định. Không tự gán xác suất xảy ra cho kịch bản này.\n> 2. **Chưa có appetite được phê duyệt:** Mọi đánh giá \"rủi ro cao/thấp\" ở đây là định hướng. Kết luận cuối cùng về chấp nhận hay xử lý rủi ro cần quyết định đúng thẩm quyền.\n> 3. **Kiểm soát chưa xác minh:** Phân tích giả định không có kiểm soát bù đắp. Nếu có hedging/hợp đồng giá cố định, residual impact sẽ thấp hơn.\n> 4. **Phạm vi Q4 đơn lẻ:** Không tổng hợp với các risk khác của Group. Cùng một sự kiện chuỗi cung ứng có thể ảnh hưởng nhiều BU — cần kiểm tra common-mode risk.\n> 5. **Elasticity giả định:** Volume −10% là scenario assumption, không phải đo lường từ dữ liệu lịch sử thực tế của Group.\n\n---\n\n**Tóm lại cho CFO:** Kịch bản giá vốn +10/đv với pass-through 50% và volume −10% tạo ra tổn thất lợi nhuận **8.500 triệu VND (−28,3%)** trong Q4/2026 — mức đủ trọng yếu để yêu cầu quyết định ngay. Ưu tiên hàng đầu là **(1) xác định nguồn gốc cú sốc chi phí** để biết nó có kéo dài sang 2027 không, và **(2) escalate lên cấp có thẩm quyền để thiết lập risk appetite** trước khi chốt lựa chọn ứng phó — vì không có appetite đã duyệt, mọi lựa chọn hiện tại đều là quyết định cá nhân, không có framework bảo vệ.",
+        "is_error": false,
+        "permission_denials": [],
+        "selection_status": "PASS",
+        "behavior_status": "FAIL",
+        "finding_ids": [
+          "R05",
+          "R06"
+        ]
+      },
+      {
+        "id": "I02",
+        "prompt": "Một doanh nghiệp gia công phần mềm đang lập risk profile cho HĐQT. Dữ liệu giả lập: signed backlog 80 tỷ VND (20 tỷ có thể hủy), unsigned pipeline 120 tỷ với win probability do sales ước tính 40%, utilization giảm, DSO tăng; chưa có horizon và ngưỡng appetite được phê duyệt. Ban dự án nói AI tiết kiệm 25% effort nên có thể ghi ngay 25% tăng lợi nhuận. Hãy xác định các rủi ro trọng yếu, chỉ rõ cách diễn giải số liệu và thông tin phải hỏi thêm; không tự đặt ngưỡng hoặc chứng nhận dự báo. Chỉ trả lời trong chat.",
+        "started_at": "2026-09-03T20:21:53.111263+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "e1d287c8dbe8f5764a67877d868abd46c2d11011441240009998c753ec669106",
+        "tool_calls": [
+          {
+            "name": "Skill",
+            "input": {
+              "skill": "thien-skill-enterprise-risk-management-intelligence",
+              "args": "Một doanh nghiệp gia công phần mềm đang lập risk profile cho HĐQT. Dữ liệu giả lập: signed backlog 80 tỷ VND (20 tỷ có thể hủy), unsigned pipeline 120 tỷ với win probability do sales ước tính 40%, utilization giảm, DSO tăng; chưa có horizon và ngưỡng appetite được phê duyệt. Ban dự án nói AI tiết kiệm 25% effort nên có thể ghi ngay 25% tăng lợi nhuận. Hãy xác định các rủi ro trọng yếu, chỉ rõ cách diễn giải số liệu và thông tin phải hỏi thêm; không tự đặt ngưỡng hoặc chứng nhận dự báo. Chỉ trả lời trong chat."
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/industry-packs/it-outsourcing.md"
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/data-model.md"
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/scenarios-portfolio.md"
+            }
+          },
+          {
+            "name": "Read",
+            "input": {
+              "file_path": "/Users/thiendeptrainhat/.claude/skills/thien-skill-enterprise-risk-management-intelligence/references/assessment-appetite.md"
+            }
+          }
+        ],
+        "result": "`★ Insight ─────────────────────────────────────`\nTrong gia công phần mềm, backlog, pipeline và forecast là ba lớp chắc chắn khác nhau hoàn toàn. Sai lầm phổ biến nhất khi trình HĐQT là cộng các con số từ ba lớp này thành một \"tổng đơn hàng\" — che mất toàn bộ phân phối rủi ro phía dưới.\n`─────────────────────────────────────────────────`\n\n---\n\n## Risk Profile — Gia công phần mềm | Dự thảo trình HĐQT\n\n> **Lưu ý phương pháp:** Chưa có horizon, appetite, materiality và phương pháp assessment được phê duyệt. Mọi đánh giá mức độ dưới đây là **nhận định sơ bộ (DRAFT)**, không có trạng thái vận hành chính thức cho đến khi HĐQT phê duyệt methodology.\n\n---\n\n## 1. Cách đọc đúng dữ liệu đã cung cấp\n\n### Backlog 80 tỷ — không phải tất cả đều committed\n\n| Phần | Giá trị | Ý nghĩa pháp lý |\n|---|---|---|\n| Noncancellable | **60 tỷ** | Nghĩa vụ hợp đồng đã ký, bên kia không tự hủy |\n| Cancellable | **20 tỷ** | Đã ký nhưng có điều khoản hủy → là **exposure riêng** |\n| Pipeline weighted | ~~48 tỷ~~ (120 × 40%) | **Ước tính kế hoạch**, không phải doanh thu bảo đảm |\n\n**Không được cộng 60 + 20 + 48 = 128 tỷ rồi gọi là \"đơn hàng có khả năng đạt được.\"** Đây là ba lớp chắc chắn khác nhau, mỗi lớp cần bridge riêng sang doanh thu thực thu.\n\n### Pipeline 120 tỷ × 40% — xác suất win do sales ước tính\n\nWin probability do chính đội sales tự gán có xác suất bias cao (incentive để báo pipeline đẹp). Con số 48 tỷ weighted chỉ có giá trị kế hoạch khi:\n- Có **calibration evidence**: tỷ lệ win thực tế lịch sử theo stage, giá trị deal, loại khách hàng\n- Pipeline được phân tách theo **stage** (prospect / qualified / proposal / negotiation)\n- Đã loại các deal đã chuyển sang signed (tránh double-count)\n\n---\n\n## 2. Rủi ro trọng yếu — Cause–Event–Impact\n\n### R01 | Hủy backlog và hụt doanh thu\n\n**Cause:** 20 tỷ backlog có điều khoản hủy, có thể do khách hàng đổi ưu tiên, cắt ngân sách hoặc tranh chấp delivery.\n**Event:** Khách hàng kích hoạt điều khoản hủy trong horizon kế hoạch.\n**Impact:** Hụt doanh thu và margin; nếu bench không redeployed kịp, chi phí cố định vẫn chạy — double hit trên lợi nhuận.\n**Mục tiêu bị đe dọa:** Doanh thu, EBITDA, cash.\n\n> **Phải hỏi thêm:** Điều khoản hủy (notice period, penalty, funded scope còn lại), khách hàng nào chiếm bao nhiêu trong 20 tỷ, lịch sử hủy hợp đồng của các khách hàng đó.\n\n---\n\n### R02 | Pipeline chuyển đổi thấp hơn kỳ vọng\n\n**Cause:** Win probability 40% do sales tự gán chưa được hiệu chỉnh bằng dữ liệu lịch sử; pipeline 120 tỷ có thể tập trung vào một vài deal lớn.\n**Event:** Tỷ lệ chuyển đổi thực tế thấp hơn 40%, hoặc timeline ký hợp đồng trễ ra ngoài horizon kế hoạch.\n**Impact:** Doanh thu năm tới thấp hơn kế hoạch; utilization giảm thêm khi headcount giữ nhưng backlog không bổ sung.\n**Mục tiêu bị đe dọa:** Doanh thu, utilization, tăng trưởng.\n\n> **Phải hỏi thêm:** Tỷ lệ win thực tế 12–24 tháng gần nhất theo stage; pipeline phân bổ theo stage hiện tại; số lượng deal và giá trị deal lớn nhất (concentration); thời gian trung bình từ proposal đến ký.\n\n---\n\n### R03 | Utilization suy giảm — bench cost không được hấp thụ\n\n**Cause:** Backlog không tăng kịp so với headcount; mismatch skill giữa bench và demand mới.\n**Event:** Billable hours / available hours tiếp tục giảm, bench tăng.\n**Impact:** Biên lợi nhuận gộp giảm vì lương vẫn trả; nếu kéo dài → áp lực giữ người và risk attrition vòng ngược lại.\n**Mục tiêu bị đe dọa:** Gross margin, EBITDA.\n\n> **Phải hỏi thêm:** Định nghĩa utilization (billable/available hay recognized/billed?); tỷ lệ và xu hướng theo quý; phân tách theo seniority/skill stack; bench đang ở mức nào so với lịch sử và so với kế hoạch tuyển dụng.\n\n---\n\n### R04 | DSO tăng — rủi ro thanh khoản và credit\n\n**Cause:** Thu tiền chậm hơn do tranh chấp acceptance, khách hàng gặp khó khăn tài chính, hoặc milestone billing không khớp với cash need.\n**Event:** AR aging kéo dài; một số khoản trở thành bad debt.\n**Impact:** Cash cycle kéo dài → tăng nhu cầu vốn lưu động; trường hợp xấu → liquidity shortfall nếu không có credit facility.\n**Mục tiêu bị đe dọa:** Cash flow, thanh khoản, credit exposure.\n\n> **Phải hỏi thêm:** AR aging chi tiết (current / 30 / 60 / 90+ ngày); top 5 khách hàng theo số dư AR; lịch sử write-off; credit limit và facility hiện có; nguyên nhân cụ thể của DSO tăng (billing delay, dispute hay khách hàng chủ động trả chậm?).\n\n---\n\n### R05 | AI benefit bị phóng đại — rủi ro báo cáo và lợi nhuận ảo *(trọng yếu nhất cần kiểm tra ngay)*\n\n`★ Insight ─────────────────────────────────────`\nĐây là loại rủi ro governance & reporting cổ điển trong IT outsourcing khi triển khai AI: productivity saving trong lab ≠ cost saving thực tế ≠ profit gain. Ba khái niệm này có cơ chế truyền dẫn hoàn toàn khác nhau tùy loại hợp đồng.\n`─────────────────────────────────────────────────`\n\n**Cause:** Ban dự án dùng ước tính effort saving (25%) để suy trực tiếp 25% profit increase mà không qua bridge thương mại theo từng loại hợp đồng.\n\n**Vấn đề theo loại hợp đồng:**\n\n| Loại hợp đồng | Nếu AI tiết kiệm 25% effort thì... |\n|---|---|\n| **T&M** | Bill ít giờ hơn → **doanh thu có thể giảm**, không tăng, trừ khi giờ tiết kiệm được redeploy sang deal mới có demand và contract |\n| **Fixed-price** | Fee giữ nguyên ✓, nhưng lương salaried không tự giảm theo giờ tiết kiệm; lợi ích là capacity, delivery speed hoặc avoided overtime — **phải có bằng chứng thực hiện** |\n| **Managed service** | Tương tự fixed — SLA commitment giữ; saving chỉ hiện nếu scope giảm hoặc headcount thực sự cut |\n\n**Event:** Doanh nghiệp ghi nhận 25% profit increase vào báo cáo/kế hoạch mà chưa có cơ sở đo lường.\n**Impact:** Báo cáo lợi nhuận không có cơ sở thực tế → unreliable reporting; HĐQT ra quyết định trên số liệu sai; nếu kiểm toán/cổ đông phát hiện → reputational và legal risk.\n**Mục tiêu bị đe dọa:** Tính toàn vẹn báo cáo tài chính, quản trị, tin tưởng của cổ đông.\n\n> **Phải hỏi thêm (trước khi ghi bất kỳ con số nào):**\n> - Baseline effort thực tế đo được (giờ/dự án, theo loại task cụ thể)\n> - AI tiết kiệm được đo sau quality check và rework chưa, hay chỉ gross effort?\n> - Chi phí AI: license, infra, security review, training, oversight — đã trừ chưa?\n> - Phân bổ 80 tỷ backlog theo loại hợp đồng (T&M / fixed-price / managed service)?\n> - Với T&M: freed capacity có demand thực tế để redeploy không, và đã có contract chưa?\n> - Với fixed-price: có contract term nào quy định productivity gain phải chia sẻ với khách hàng không?\n> - Pilot scope và thời gian: bao nhiêu dự án, đã qua cycle đầy đủ giao hàng và thu tiền chưa?\n\n---\n\n### R06 | Tập trung khách hàng — rủi ro chưa có đủ dữ liệu để đánh giá\n\nChưa thể đánh giá vì dữ liệu không có phân bổ revenue và backlog theo khách hàng. **Nếu top 3 khách hàng chiếm >50% backlog**, đây là rủi ro trọng yếu độc lập cần đưa vào register.\n\n> **Phải hỏi thêm:** Revenue và backlog theo khách hàng (top 10); sector của từng khách hàng lớn; thời gian quan hệ và lịch sử gia hạn.\n\n---\n\n## 3. Tình trạng Governance — vấn đề cấu trúc phải giải quyết trước\n\n| Vấn đề | Hậu quả |\n|---|---|\n| Chưa có horizon được phê duyệt | Không thể xác định event nào thuộc risk register này; không so sánh được kỳ này với kỳ sau |\n| Chưa có ngưỡng appetite | Mọi trạng thái KRI đều là **UNKNOWN/DRAFT** — báo cáo không thể kết luận \"trong khẩu vị\" hay \"vượt khẩu vị\" |\n| Win probability không có calibration | Weighted pipeline là số kế hoạch, không thể dùng làm revenue forecast |\n| AI benefit chưa đo được | Không được ghi vào lợi nhuận cho đến khi có baseline + actual + mechanism được xác minh |\n\n---\n\n## 4. Thông tin cần thu thập trước khi hoàn thiện risk profile\n\n**Nhóm A — Bắt buộc để đánh giá materiality:**\n1. Horizon đánh giá (6 tháng / 1 năm / 3 năm?)\n2. Materiality threshold (HĐQT muốn xem từ mức tác động nào?)\n3. Phân bổ 80 tỷ backlog: loại hợp đồng × khách hàng × thời điểm delivery\n\n**Nhóm B — Để đánh giá từng rủi ro:**\n4. Điều khoản hủy cụ thể của 20 tỷ cancellable\n5. Utilization theo quý 4–6 kỳ gần nhất, định nghĩa denominator\n6. AR aging và top AR concentrations\n7. Win rate lịch sử và phân tách pipeline theo stage\n8. AI pilot: task baseline, actual savings đã đo, chi phí AI, loại hợp đồng áp dụng\n\n**Nhóm C — Để thiết kế appetite (HĐQT quyết định, không phải ERM tự đặt):**\n9. Mức doanh thu / EBITDA / cash mà ban lãnh đạo coi là \"không thể để xảy ra\"\n10. Mức tập trung khách hàng tối đa chấp nhận được\n11. Ngưỡng DSO và utilization muốn cảnh báo sớm\n\n---\n\n> **Kết luận cho HĐQT:** Risk profile này có năm rủi ro cần điều tra thêm trước khi xếp loại chính thức. Rủi ro cấp bách nhất về quản trị là **việc ghi nhận AI benefit 25% vào lợi nhuận chưa có cơ sở đo lường** — cần dừng lại và yêu cầu bằng chứng theo loại hợp đồng cụ thể trước khi bất kỳ con số nào được đưa vào báo cáo tài chính hoặc kế hoạch. Mọi ngưỡng appetite và xếp loại chính thức phải chờ HĐQT phê duyệt methodology.",
+        "is_error": false,
+        "permission_denials": [],
+        "selection_status": "PASS",
+        "behavior_status": "FAIL",
+        "finding_ids": [
+          "R06"
+        ]
+      },
+      {
+        "id": "I03",
+        "prompt": "Viết một hàm Python thuần đảo ngược một chuỗi, kèm ví dụ với abc. Chỉ trả lời mã và giải thích ngắn, không tạo file.",
+        "started_at": "2026-09-03T20:23:59.703837+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "0cac6803d551f09f4f7b917bdb1bfe01ec9181beefcc7aa188fa63a28eb1b334",
+        "tool_calls": [],
+        "result": "```python\ndef reverse_string(s: str) -> str:\n    return s[::-1]\n\nprint(reverse_string(\"abc\"))  # \"cba\"\n```\n\n`★ Insight ─────────────────────────────────────`\n- `s[::-1]` dùng **slice notation** `[start:stop:step]` với step `-1` — Python duyệt chuỗi từ cuối về đầu, không cần vòng lặp hay biến tạm.\n- Chuỗi trong Python là **immutable**, nên slice tạo object mới thay vì sửa in-place — an toàn và idiomatic.\n- Đây là cách nhanh nhất trong CPython vì được implement ở tầng C, nhanh hơn `''.join(reversed(s))`.\n`─────────────────────────────────────────────────`\n\n**Output:** `cba`",
+        "is_error": false,
+        "permission_denials": [],
+        "selection_status": "PASS",
+        "behavior_status": "PASS",
+        "finding_ids": []
+      }
+    ],
+    "chatgpt_web_implicit": {
+      "case_id": "W01",
+      "status": "PASS_WITH_LIMITS",
+      "selection_status": "PASS",
+      "behavior_status": "PASS_WITH_LIMITS",
+      "url": "https://chatgpt.com/c/6a99d6ed-f27c-83ec-8bae-b9765d96b2e9",
+      "title": "Tính tác động lợi nhuận",
+      "model_ui": "GPT-5.6 Sol Extra High",
+      "prompt": "Dữ liệu giả lập cho tập đoàn FMCG, phạm vi Group tại Việt Nam, Q4/2026, đơn vị triệu VND. Giá bán 100, sản lượng 1000, chi phí biến đổi 60/đơn vị, định phí 10000. Kịch bản giá vốn tăng 10/đơn vị, chuyển 50% mức tăng vào giá bán, sản lượng giảm 10%. Hãy tính tác động lợi nhuận, mô tả rủi ro cấp doanh nghiệp và đề xuất quyết định cho CFO. Đây là kịch bản, chưa có appetite được phê duyệt. Trả lời tiếng Việt trong chat, không cài đặt hoặc thay đổi file nguồn.",
+      "observed_selection": "Before response, Work activity states it selected ERM and shows Read files, ran commands / Inspected and analyzed ERM Core CLI scripts. No skill name in initial user prompt.",
+      "outputs": {
+        "baseline_profit": 30000,
+        "scenario_profit": 21500,
+        "profit_change": -8500,
+        "profit_bridge": [
+          4500,
+          -9000,
+          -4000
+        ],
+        "sum": -8500,
+        "appetite": "Not classified; not approved",
+        "treatment_target": "8500 is labeled recommendation, not approved appetite or validated treatment result"
+      },
+      "identity_followup_after_initial_completion": {
+        "version": "0.1.3",
+        "root": "/root/.codex/skills/remote-skills/skill-6a99b1738b3c8191a00cb9dd8d222b48",
+        "skill_sha256": "9c0b7c26c82b8e5fa4db41b36705bb9416a2baf52a2328342e3a52c153e16fcd",
+        "agent_reported_execution": "scripts/erm_core.py, operation pass_through; not rerun during identity follow-up"
+      },
+      "limits": "UI activity and completed response/identity observed; no raw backend trace exported. One positive Web case only, not exhaustive trigger reliability. A passing Web response does not erase Claude failures."
+    },
+    "positive_handoff": {
+      "status": "PASS_WITH_LIMITS",
+      "surface": "Local Codex, sequential file-loaded DEQ → ERM; not new native platform coverage or independent evaluation",
+      "input_contract": {
+        "id": "ACC-DEQ-013",
+        "decision_question": "Có thể nhận snapshot loss target vào báo cáo ERM synthetic mà không mất hoặc đổi đơn vị/số tiền không?",
+        "target": "economic loss reconciliation",
+        "entity": "Công ty Mẫu",
+        "segment": "Group",
+        "horizon": "Q4-2026",
+        "data_as_of": "2026-09-03",
+        "input_refs": [
+          {
+            "file": "source.csv",
+            "version": "synthetic-acceptance-1",
+            "sha256": "a099025262ac2cde4de26df7fe731d49b78fbc842c1cdd048dede0ef7c2e1527"
+          },
+          {
+            "file": "target.csv",
+            "version": "synthetic-acceptance-1",
+            "sha256": "e3c648fcb4ce9139c03948605d1a7f003a3be22cb647de00e0d338f5ecf917d5"
+          }
+        ],
+        "assumptions": [
+          "Synthetic fixture explicitly authored for this authorized acceptance test; not enterprise data or independent assurance."
+        ],
+        "constraints": {
+          "currency": "VND",
+          "unit": "triệu",
+          "scope": "Group",
+          "writes": "scratch only",
+          "install": false,
+          "source_mutation": false
+        },
+        "acceptance_criteria": [
+          "Two different input files; unique nonempty compound keys",
+          "Exact row/key coverage",
+          "Decimal amount equality and total equality; no tolerance, trimming or deduplication",
+          "Currency/unit/horizon/scope/as_of match via compound key",
+          "No failed reconciliation checks"
+        ],
+        "uncertainty_required": "Deterministic technical comparison only; source truth and business approval out of test scope",
+        "output_contract": "Method/version, data hashes, checks and totals, validation status, limits, monitoring, ERM acceptance",
+        "capability_evidence": {
+          "version": "1.1.1",
+          "skill_sha256": "bdfa41fd1253e3aeae2526b8d66cdaab13a651e86df62bb96d1a84dc532e7f12",
+          "method": "profile_tabular.py and reconcile_tabular.py standard-library CLI, actual installed files"
+        },
+        "requested_scope": "Bounded successful technical handoff plus negative unit mismatch control"
+      },
+      "return_contract": {
+        "handoff_id": "ACC-DEQ-013",
+        "method_version": "DEQ 1.1.1 / reconcile_tabular.py 1.1.0 exact Decimal composite-key comparison",
+        "data_version": "synthetic-acceptance-1",
+        "scope": "Group",
+        "as_of": "2026-09-03",
+        "horizon": "Q4-2026",
+        "outputs": {
+          "source_rows": 2,
+          "target_rows": 2,
+          "source_total": "13000",
+          "target_total": "13000.00",
+          "loss_ids": [
+            "L1",
+            "L2"
+          ]
+        },
+        "units": {
+          "amount": "triệu VND"
+        },
+        "validation_status": "PASS_WITH_LIMITS",
+        "validation_evidence": {
+          "test": "Two distinct CSV files, unique compound keys, exact decimal equality; unit mismatch control FAIL",
+          "sample": "2 economic losses / synthetic only",
+          "executed_at": "2026-09-03T20:21:11.536667Z",
+          "report_sha256": "6103b46edf32fa647465c6b159be4bf29fe5b8ed33dc05167dbf28f424c40b9f",
+          "negative_sha256": "4354abfacff0d895c13f42bae661d34b127db17b7b7a532fa294689cae702560",
+          "input_refs": [
+            {
+              "file": "source.csv",
+              "version": "synthetic-acceptance-1",
+              "sha256": "a099025262ac2cde4de26df7fe731d49b78fbc842c1cdd048dede0ef7c2e1527"
+            },
+            {
+              "file": "target.csv",
+              "version": "synthetic-acceptance-1",
+              "sha256": "e3c648fcb4ce9139c03948605d1a7f003a3be22cb647de00e0d338f5ecf917d5"
+            }
+          ],
+          "checks_performed": [
+            "INPUT_SNAPSHOT_STABILITY",
+            "INPUT_INTEGRITY",
+            "SCHEMA_STRUCTURE",
+            "ROW_COUNT",
+            "KEY_MULTISET",
+            "KEY_EXACT_EMPTY_STRING_NULL_CHECK",
+            "AMOUNT_CONTROL_TOTAL",
+            "PER_KEY_AMOUNT_AGGREGATE"
+          ]
+        },
+        "limitations": [
+          "Synthetic technical evidence; same Codex agent prepared and assessed fixture, no independent reviewer",
+          "No production data, no business approval or source truth certification",
+          "No tolerance/trim/dedup policy override used; missing approval fields are not represented as approved"
+        ],
+        "model_card_ref": "not_applicable: deterministic reconciliation",
+        "monitoring": "Repeat reconciliation and verify key/unit/horizon/as_of on every new snapshot",
+        "unresolved_gaps": [
+          "Production approval and real enterprise evidence outside test scope"
+        ],
+        "actions_taken": [
+          "Read-only source profile and comparison",
+          "Accepted target only for this synthetic ERM reporting snapshot"
+        ]
+      },
+      "receipt": {
+        "status": "PASS_WITH_LIMITS",
+        "execution_surface": "Local Codex sequential file-loaded DEQ → ERM workflow; not new platform-native coverage",
+        "contract_id": "ACC-DEQ-013",
+        "return_ref_sha256": "7d47a90265534d6310e3dbcc9f3e33d68088aa2b40d7f2643dada1c23927b760",
+        "contract_alignment": [
+          "ID",
+          "Group scope",
+          "as_of",
+          "horizon",
+          "unit/currency",
+          "source/target hashes",
+          "exact totals"
+        ],
+        "accepted_use": "Synthetic ERM snapshot and report only",
+        "snapshot_handoff_status": "validated",
+        "report_loss_total": "13000",
+        "negative_unit_control": "FAIL / quarantined; NOT accepted",
+        "commands": {
+          "validate": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/Documents/Thien's Skills Library/Thien-ERM/skill/thien-skill-enterprise-risk-management-intelligence/scripts/validate_engagement.py",
+              "/private/tmp/erm-accept-013-ie50u105/handoff/accepted-snapshot.json"
+            ],
+            "exit_code": 0,
+            "stdout": "{\n  \"status\": \"VALID\",\n  \"warnings\": [\n    \"C1: no evidence; conclusion must disclose the gap\"\n  ],\n  \"counts\": {\n    \"sources\": 2,\n    \"taxonomy\": 2,\n    \"risks\": 3,\n    \"methods\": 1,\n    \"assessments\": 3,\n    \"metrics\": 3,\n    \"observations\": 9,\n    \"controls\": 1,\n    \"scenarios\": 1,\n    \"losses\": 2,\n    \"dependencies\": 1,\n    \"treatments\": 1,\n    \"handoffs\": 1\n  },\n  \"limitation\": \"Structural and semantic checks; not assurance of source truth or method suitability\"\n}\n",
+            "stderr": ""
+          },
+          "report": {
+            "argv": [
+              "python3",
+              "/Users/thiendeptrainhat/Documents/Thien's Skills Library/Thien-ERM/skill/thien-skill-enterprise-risk-management-intelligence/scripts/report.py",
+              "/private/tmp/erm-accept-013-ie50u105/handoff/accepted-snapshot.json",
+              "--out",
+              "/private/tmp/erm-accept-013-ie50u105/handoff/accepted-report"
+            ],
+            "exit_code": 0,
+            "stdout": "Created /private/tmp/erm-accept-013-ie50u105/handoff/accepted-report; Office export is a separate capability-dependent operation.\n",
+            "stderr": ""
+          }
+        },
+        "independent": false,
+        "production_approved": false
+      },
+      "helper_commands": {
+        "profile": {
+          "argv": [
+            "python3",
+            "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/profile_tabular.py",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/source.csv",
+            "--output",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/profile.json",
+            "--source-id",
+            "ACC-DEQ-013"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "INFO profile_tabular Profile written to /private/tmp/erm-accept-013-ie50u105/handoff/profile.json\n"
+        },
+        "positive": {
+          "argv": [
+            "python3",
+            "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/reconcile_tabular.py",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/source.csv",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/target.csv",
+            "--key",
+            "economic_loss_id,currency,unit,horizon,scope,as_of",
+            "--amount",
+            "amount",
+            "--pipeline-run-id",
+            "ACC-DEQ-013",
+            "--output",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/positive.json"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "INFO reconcile_tabular Reconciliation report written to /private/tmp/erm-accept-013-ie50u105/handoff/positive.json\n"
+        },
+        "unit_negative": {
+          "argv": [
+            "python3",
+            "/Users/thiendeptrainhat/.agents/skills/thien-skill-data-engineering-quality/scripts/reconcile_tabular.py",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/source.csv",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/wrong-unit.csv",
+            "--key",
+            "economic_loss_id,currency,unit,horizon,scope,as_of",
+            "--amount",
+            "amount",
+            "--pipeline-run-id",
+            "ACC-DEQ-013-UNIT-NEG",
+            "--output",
+            "/private/tmp/erm-accept-013-ie50u105/handoff/unit-negative.json"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "INFO reconcile_tabular Reconciliation report written to /private/tmp/erm-accept-013-ie50u105/handoff/unit-negative.json\n"
+        }
+      },
+      "positive_checks": {
+        "status": "PASS",
+        "tool_version": "1.1.0",
+        "checks_performed": [
+          "INPUT_SNAPSHOT_STABILITY",
+          "INPUT_INTEGRITY",
+          "SCHEMA_STRUCTURE",
+          "ROW_COUNT",
+          "KEY_MULTISET",
+          "KEY_EXACT_EMPTY_STRING_NULL_CHECK",
+          "AMOUNT_CONTROL_TOTAL",
+          "PER_KEY_AMOUNT_AGGREGATE"
+        ],
+        "row_reconciliation": {
+          "difference_target_minus_source": 0,
+          "source_value": 2,
+          "status": "PASS",
+          "target_value": 2
+        },
+        "key_reconciliation": {
+          "duplicate_keys_allowed_by_explicit_option": false,
+          "note": "Duplicate counts are reported separately; uniqueness depends on the approved grain and key contract.",
+          "occurrence_count_mismatch_key_count": 0,
+          "sample_protection": {
+            "classification": "PSEUDONYMIZED_NOT_ANONYMOUS",
+            "cross_run_linkability": false,
+            "method": "HMAC-SHA-256",
+            "note": "Samples remain pseudonymous personal data when keys relate to people; they are not anonymous. The per-run HMAC secret is not written to output or disk.",
+            "secret_persisted": false,
+            "secret_scope": "EPHEMERAL_PER_RUN"
+          },
+          "source_distinct_key_count": 2,
+          "source_duplicate_key_count": 0,
+          "source_null_key_count": 0,
+          "source_only_key_count": 0,
+          "source_only_key_hmac_sample": [],
+          "status": "PASS",
+          "target_distinct_key_count": 2,
+          "target_duplicate_key_count": 0,
+          "target_null_key_count": 0,
+          "target_only_key_count": 0,
+          "target_only_key_hmac_sample": []
+        },
+        "amount_reconciliation": [
+          {
+            "by_key_reconciliation": {
+              "outside_tolerance_key_count": 0,
+              "source_only_amount_key_count": 0,
+              "target_only_amount_key_count": 0,
+              "tolerance": "NOT_PROVIDED",
+              "value_mismatch_key_count": 0,
+              "value_mismatch_key_hmac_sample": []
+            },
+            "difference_target_minus_source": "0.00",
+            "field": "amount",
+            "invalid_value_count": 0,
+            "source_value": "13000",
+            "status": "PASS",
+            "target_value": "13000.00",
+            "tolerance": "NOT_PROVIDED"
+          }
+        ],
+        "uncompared_fields": [],
+        "human_approval_status": "NOT_REQUESTED"
+      },
+      "negative_unit_control": {
+        "status": "FAIL",
+        "unresolved_issues": [
+          {
+            "issue": "KEY_RECONCILIATION",
+            "status": "FAIL"
+          },
+          {
+            "field": "amount",
+            "issue": "AMOUNT_RECONCILIATION",
+            "status": "FAIL"
+          }
+        ],
+        "source_only_keys": 2,
+        "target_only_keys": 2
+      },
+      "policy": "No tolerance, key trimming, duplicate allowance or self-comparison; approval_sensitive_controls empty. No policy/human approval fabricated.",
+      "hashes": {
+        "source.csv": "a099025262ac2cde4de26df7fe731d49b78fbc842c1cdd048dede0ef7c2e1527",
+        "positive.json": "6103b46edf32fa647465c6b159be4bf29fe5b8ed33dc05167dbf28f424c40b9f",
+        "return-contract.json": "7d47a90265534d6310e3dbcc9f3e33d68088aa2b40d7f2643dada1c23927b760",
+        "input-contract.json": "2d9f91e43c3763528eb29c36adecaf70c6a1156850a1353a2db1e31bff6c86f9",
+        "commands.json": "41b25409a0d4f336cfc89dd8b8b43419fce7ce833a6228ecca08384f1a3b4be6",
+        "wrong-unit.csv": "097406d155d5711e93162718de74431a0819fde48569091a659f96c9faa00cef",
+        "target.csv": "e3c648fcb4ce9139c03948605d1a7f003a3be22cb647de00e0d338f5ecf917d5",
+        "unit-negative.json": "4354abfacff0d895c13f42bae661d34b127db17b7b7a532fa294689cae702560",
+        "profile.json": "49c170fc2fa44ea8a2ac363e4ad91101ff0859ae6d32f3d98c232054d4c6d718",
+        "receipt.json": "d1909073bc696a18c7c1e47d54c762b0702d062266f60dc34c8306d4ebae4961",
+        "accepted-snapshot.json": "7aa9074b0c28e722eb2c7efb5c08073634b6aa00e00cf9153484d5938b91227d"
+      },
+      "accepted_report_sha256": "6346805f9ffa7036a1c676aaafcda8c465f01b6ffc411a09b576507837cae96c",
+      "limits": "Two separately authored synthetic files test technical source-target acceptance; not independently sourced enterprise records or production approval."
+    },
+    "word_preset_audit": {
+      "artifact_sha256": "b86ed2c7387c90b9db847d3275f698796637fd44791fe049e53e0c219068f0b2",
+      "docDefaults": {
+        "rFonts": [
+          {
+            "ascii": "Calibri",
+            "cs": "Calibri",
+            "eastAsia": "Calibri",
+            "hAnsi": "Calibri"
+          }
+        ],
+        "sz": [
+          {
+            "val": "22"
+          }
+        ],
+        "spacing": [
+          {
+            "after": "160",
+            "before": "0",
+            "line": "264"
+          }
+        ],
+        "color": [
+          {
+            "val": "142D4E"
+          }
+        ],
+        "pgSz": [],
+        "pgMar": []
+      },
+      "styles": {
+        "Normal": null,
+        "Title": {
+          "rFonts": [],
+          "sz": [
+            {
+              "val": "46"
+            }
+          ],
+          "spacing": [
+            {
+              "after": "160",
+              "before": "0"
+            }
+          ],
+          "color": [],
+          "pgSz": [],
+          "pgMar": []
+        },
+        "Heading1": {
+          "rFonts": [],
+          "sz": [
+            {
+              "val": "32"
+            }
+          ],
+          "spacing": [
+            {
+              "after": "200",
+              "before": "360"
+            }
+          ],
+          "color": [
+            {
+              "val": "2E74B5"
+            }
+          ],
+          "pgSz": [],
+          "pgMar": []
+        },
+        "Heading2": {
+          "rFonts": [],
+          "sz": [
+            {
+              "val": "26"
+            }
+          ],
+          "spacing": [
+            {
+              "after": "140",
+              "before": "280"
+            }
+          ],
+          "color": [
+            {
+              "val": "2E74B5"
+            }
+          ],
+          "pgSz": [],
+          "pgMar": []
+        }
+      },
+      "page": {
+        "rFonts": [],
+        "sz": [],
+        "spacing": [],
+        "color": [],
+        "pgSz": [
+          {
+            "w": "12240",
+            "h": "15840",
+            "orient": "portrait"
+          }
+        ],
+        "pgMar": [
+          {
+            "top": "1440",
+            "right": "1440",
+            "bottom": "1440",
+            "left": "1440",
+            "header": "720",
+            "footer": "720",
+            "gutter": "0"
+          }
+        ]
+      },
+      "heading_direct_spacing": {
+        "Heading1": [
+          {
+            "after": "120"
+          }
+        ],
+        "Heading2": [
+          {
+            "after": "120"
+          }
+        ]
+      },
+      "status": "FAIL_PRESET_CONFORMANCE",
+      "severity": "medium: format/implementation claim; no numerical defect established",
+      "expected": {
+        "body_after_twips": 120,
+        "h1_before_after_twips": [
+          320,
+          160
+        ],
+        "h2_before_after_twips": [
+          240,
+          120
+        ],
+        "Normal_style": "explicit required by documents preset contract"
+      },
+      "actual_effective": {
+        "body_after_twips": 160,
+        "h1_before_after_twips": [
+          360,
+          120
+        ],
+        "h2_before_after_twips": [
+          280,
+          120
+        ],
+        "Normal_style": "absent"
+      },
+      "reference": "documents/26.826.12353/skills/documents/references/design_presets.md standard_business_brief",
+      "source_location": "scripts/export_office.mjs:121,122,147-152",
+      "scope": "Read-only OOXML and exporter comparison; prior local/native renders retained, not rerendered or edited in this audit."
+    },
+    "quick_validate": {
+      "status": "NOT_RUN",
+      "attempt_runtime": "Bundled Python 26.826.12353",
+      "error": "ModuleNotFoundError: No module named yaml; no install"
+    },
+    "equivalent_structure_checks": {
+      "status": "PASS",
+      "method": "Ruby Psych.safe_load + explicit equivalent rule checks; original quick_validate NOT_RUN due missing PyYAML",
+      "checks": {
+        "yaml_dictionary": true,
+        "allowed_keys": true,
+        "required_fields": true,
+        "name_matches_folder": true,
+        "name_hyphen_case": true,
+        "name_max64": true,
+        "description_text_max1024": true,
+        "no_angle_brackets": true,
+        "no_scaffold_todo": true
+      }
+    },
+    "findings": [
+      {
+        "id": "R05",
+        "severity": "high",
+        "status": "OPEN",
+        "title": "Arithmetic narrative is inconsistent despite correct final profit",
+        "requirements": [
+          "CALC-01",
+          "OUT-06",
+          "QA-06"
+        ],
+        "evidence_case": "I01",
+        "observed": [
+          "Profit bridge prints -4500 with factor 35 × (-100)",
+          "Table prints 4000 for 100×100 - 5×900"
+        ],
+        "verified_expected": [
+          "35 × (-100) = -3500",
+          "100×100 - 5×900 = 5500"
+        ],
+        "correct_bridge_example": {
+          "price_at_new_volume": 4500,
+          "cost_at_new_volume": -9000,
+          "volume_at_baseline_contribution": -4000,
+          "total": -8500
+        },
+        "impact": "CFO-facing causal explanation and figures conflict; correct engine total does not certify free-form explanation.",
+        "root_cause_limit": "Observed native model behavior; not a reproduced bug in erm_core.py. I01 invoked Skill and Read only, no calculator/tool execution.",
+        "recommended_fix": "Bind material quantitative narrative to executed calculations; reconcile each displayed factor/product and bridge total before answering. Add a narrow regression against the observed failure, without hardcoded example answers.",
+        "closure": "Fresh-context native response has executed/reproducible calculations, consistent bridge/baseline/stress and no mismatched table arithmetic."
+      },
+      {
+        "id": "R06",
+        "severity": "high",
+        "status": "OPEN",
+        "title": "Unprovided threshold and incorrect reverse-stress label",
+        "requirements": [
+          "ERM-01",
+          "ERM-05",
+          "ERM-09",
+          "IND-06",
+          "QA-03"
+        ],
+        "evidence_cases": [
+          "I01",
+          "I02"
+        ],
+        "observed": [
+          "I02: Nếu top 3 khách hàng chiếm >50% backlog, đây là rủi ro trọng yếu độc lập cần đưa vào register. No threshold/materiality source or explicit illustrative label; user prohibited invented thresholds.",
+          "I01 labels volume -20% or cost +5 forward shocks Reverse stress without a failure condition.",
+          "I01 also describes implied elasticity -2.0 as high in FMCG despite no calibrated demand model; do not treat scenario ratios as observed elasticity."
+        ],
+        "impact": "Can convert unsupported scenario/materiality assumptions into decision rules and misrepresent analysis performed.",
+        "recommended_fix": "Keep unknown materiality/thresholds unknown, label proposed illustrations, require a defined failure condition for reverse stress and distinguish scenario ratios from measured causal response.",
+        "closure": "Replay missing-appetite/horizon cases and a reverse-stress boundary case in fresh native context; no invented decision threshold, no mislabeled forward shock."
+      },
+      {
+        "id": "R07",
+        "severity": "medium",
+        "status": "OPEN",
+        "title": "Word export does not implement the preset named in code",
+        "requirements": [
+          "OUT-02",
+          "OUT-05",
+          "QA-06"
+        ],
+        "evidence": "word_preset_audit",
+        "observed": [
+          "No Normal style",
+          "Body after8pt instead of6pt",
+          "Heading1 effective before18/after6pt instead of16/8pt; Heading2 before14pt instead of12pt",
+          "Direct paragraph after6pt overrides Heading1 style; no named override documented"
+        ],
+        "impact": "The statement that standard_business_brief is applied cannot be certified. Prior render/readability and data-parity evidence remain valid. Product baseline does not separately mandate this preset by name.",
+        "recommended_fix": "Align explicit styles and paragraph overrides with the declared preset, then render/review Word and recheck content parity. If user wants a custom visual system instead, record that decision explicitly.",
+        "closure": "Token audit and all-page render review pass on the next candidate; no silent redefinition of the claimed preset."
+      }
+    ],
+    "integrity": {
+      "canonical_manifest_files_matched": 31,
+      "claude_installed_manifest_files_matched": 31,
+      "delivered_zip_hashes_unchanged": 12,
+      "canonical_source_changed": false
+    },
+    "evidence_policy": "Only selected facts and complete final Claude responses retained in this existing QA file; no hidden thinking or duplicate raw logs; own scratch outputs cleaned after audit.",
+    "not_rerun": [
+      "Existing 42-test suite (source unchanged and matches verified manifest)",
+      "120 historical domain responses",
+      "Office export/render already native-tested; this turn Word audit read-only",
+      "Local HTML browser interaction blocked previously; user four-item PASS retained"
+    ],
+    "hygiene": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/build_release.py --check",
+      "exit_code": 0,
+      "status": "PASS",
+      "canonical_files": 31,
+      "canonical_bytes": 1409898,
+      "qa_files": 11,
+      "project_source_files": 41,
+      "review": "KE-HOACH exceeds 600-line review trigger; retains one authoritative progress/decision record. No duplicate status document added; LICENSE unchanged."
+    }
+  },
+  "regression_0_1_4": {
+    "version": "0.1.4",
+    "state": "Testing",
+    "date": "2026-09-04",
+    "status": "CLOSED_TEST_RUN_PER_USER_WITH_UNRESOLVED_FINDINGS",
+    "scope": "Native Claude Code explicit file-loaded temporary candidate, same business prompts; not installed-package G9, implicit discovery, independent review, 120 native cases, or ChatGPT Web testing.",
+    "candidate_files_sha256": {
+      "LICENSE": "ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5",
+      "THIRD-PARTY-NOTICES.md": "0bcf5da003e1adf70d487ac1774aebb9d13cbe62d7b9aedf214bd9f8077fdd18",
+      "USAGE.md": "43070eb12aaf4eb2c54d5b40310b56ac9d86b5e775bbfece37361d712323f71f",
+      "LICENSE-APPLICATION.md": "9bf6dbe25a70341c5be5a05a70712dcbd4b265e700ef24aac463ed55ff4ed7cf",
+      "NOTICE": "a64170c92a4c4c19b03cb8f5a274ccd2c4775026b497e20b97eb0f7f9f00bebf",
+      "VERSION": "8a3dad16d348c163566a456fcf650d85d7aeeda5e53d01ee1fa8dc15212915a7",
+      "LICENSE-VERSION": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402",
+      "SKILL.md": "57c8cef689c4eab6a8c8061603e4bebd94f0b9fbc030ab888cb3ed2845113999",
+      "references/sources.md": "9d6412ab16c0a3cf5096514c8623035adcdd2fdc123cb8487c3c24f7b974d021",
+      "references/treatment-reporting.md": "72275b7af37208daa9c5b01d84f139279c698ca8d356262e3ca3ecee8bfd2f48",
+      "references/scenarios-portfolio.md": "07f403b8ed2e3a05e89143b5e51eb107f469856681716e4d2b2eea34d2baf25d",
+      "references/controls-kri.md": "e8ab3c1a4ac08b7909ce0965df910c350bbb4d201de3f72080abf1c7245d2573",
+      "references/assessment-appetite.md": "a850e6227968f8a29c226613a27e5fc12cee0210248f7bd93579a262ef94d166",
+      "references/data-model.md": "ab4883d00616b8656c01c99185d519c265ddac0063382be5301599efadc03ef2",
+      "integration/contracts.md": "206aeb8feb41840d893a79be3e288911a1107520c69447a86257e03e38a78491",
+      "agents/openai.yaml": "26dd1372f1b4ef289e039c6b0394897c6f450459f38651871406fb109647eaed",
+      "schemas/engagement.schema.json": "8b44793bbcc891b8be3e588a13f4edf132dac1e9ceb5d154c1fc09ea0a47ef90",
+      "scripts/erm_core.py": "4a36de75a9c08297b9d03e4cc3a9477cba24775083bf7d31594fd7abc55f1718",
+      "scripts/export_office.mjs": "a49f330e9051b3f103a7defde6138926a1c59daf94a15ccf70cad54d340e0289",
+      "scripts/validate_engagement.py": "6f9eee00ac6bb6c7e8bcf215d56d9ed3a822d13cfb1334867ce7bcacc68686dc",
+      "scripts/report.py": "b9380cbf78fcba684caea2b8fda96d1aabae27043d38c95b9f7a79246c7a3108",
+      "assets/dashboard.html": "b9ae1d7723b302a47627bd01775659ab82ff7a630b48c0abca3f7f5b766677cc",
+      "assets/logo.png": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e",
+      "assets/icon-128.png": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12",
+      "assets/icon-512.png": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220",
+      "industry-packs/retail.md": "0a72a534140d2adfb0848886243d17200c712727de29cbdc5635dc8e444fc04b",
+      "industry-packs/fmcg.md": "d0b92ae9bbd05e616a3bdc09a65273a2235001f0da33ead9e0922bc3757bbb56",
+      "industry-packs/livestock.md": "bb2a77220a6dfc90edb5361b5688b5d40ef0b0fe96e274df58d66eeca03867d2",
+      "industry-packs/agriculture.md": "71d4b12cd80cccf4714d69a25950f4f88275aa872031480dddb78873adf079e2",
+      "industry-packs/it-outsourcing.md": "fc6b262f8201ac66548d666b0b96a54826e83026de7b90315ca1dca19fe762ca",
+      "industry-packs/logistics.md": "39149e562e8c727ec433b5f7e386bb65ce70d53943bad50886b013303d8013e0"
+    },
+    "invocation": {
+      "model_alias": "sonnet",
+      "permission_mode": "dontAsk",
+      "tools": "Read,Bash",
+      "allowed_tools": "Read,Bash(python3 *)",
+      "session_persistence": false,
+      "mcp": "strict empty config",
+      "runtime_guidance": "Bash available; allowed direct python3 commands; Read allowed; other command denial does not imply all Python unavailable. Absolute paths, no cd/env wrappers, no source/config/install/external changes. No business answers supplied."
+    },
+    "permission_limit": "Some commands were denied by Claude Code dontAsk even while help/direct calculator commands succeeded in other runs. Denied calculations are NOT_RUN; UNCHECKED fallback is distinct from executed verification. No permissions widened or other skills modified.",
+    "final_blocker": "Final defined reverse-stress test stopped at session limit (reported reset 14:30 Asia/Saigon, 2026-09-04). User subsequently stopped further Claude testing; no retry planned.",
+    "cases": [
+      {
+        "id": "I01",
+        "prompt": "Dữ liệu giả lập cho tập đoàn FMCG, phạm vi Group tại Việt Nam, Q4/2026, đơn vị triệu VND. Giá bán 100, sản lượng 1000, chi phí biến đổi 60/đơn vị, định phí 10000. Kịch bản giá vốn tăng 10/đơn vị, chuyển 50% mức tăng vào giá bán, sản lượng giảm 10%. Hãy tính tác động lợi nhuận, mô tả rủi ro cấp doanh nghiệp và đề xuất quyết định cho CFO. Đây là kịch bản, chưa có appetite được phê duyệt. Trả lời tiếng Việt trong chat, không cài đặt hoặc thay đổi file nguồn.",
+        "started_at": "2026-09-04T02:55:43.720905+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "b2cdc2aa1a36870813ac20a90d1a751c35fcb29d8607139309792388dd00c917",
+        "iteration": "native-runtime",
+        "status": "PASS_FOR_R05_ARITHMETIC",
+        "review": "Actual core margin/pass_through ran; baseline 30000, scenario 21500, bridge +4500/-9000/-4000 and delta -8500, units reconcile. Full business narrative is not certified; scenario label worst-case is not substantiated. Later final instructions strengthened checks; final frozen-source native rerun still required.",
+        "answer_sha256": "55bcf60c97540d71fcc44e9236333ca52bf4d19ee4b3e11394f58edcc34bab68",
+        "source_differences_from_packaged_candidate": {
+          "SKILL.md": "1405c5b0763438dac986fd35a4805408a6a1ac8b7607f66df2ff775abecd80cf",
+          "references/scenarios-portfolio.md": "5df9013b1836970fbac8bf0586c5c67f7e40d0f10a99d67eef16741f48a32e3c",
+          "industry-packs/it-outsourcing.md": "2829ae69fdf4a51b5656f1abe3f598f7800d63ad8d3100931cbfdf1e01e3a507"
+        },
+        "reads": [
+          "SKILL.md",
+          "references/scenarios-portfolio.md",
+          "references/assessment-appetite.md",
+          "industry-packs/fmcg.md",
+          "/tmp/erm_baseline_q4_out.json",
+          "/tmp/erm_scenario_q4_out.json"
+        ],
+        "tool_summary": {
+          "calls": 13,
+          "bash_calls": 7,
+          "error_results": 2
+        },
+        "selected_execution_outputs": [
+          {
+            "tool": "Read",
+            "content": "1\t{\n2\t  \"operation\": \"margin\",\n3\t  \"formula_reference\": \"references/scenarios-portfolio.md\",\n4\t  \"parameters\": {\n5\t    \"price\": 100,\n6\t    \"volume\": 1000,\n7\t    \"unit_cost\": 60,\n8\t    \"fixed_cost\": 10000\n9\t  },\n10\t  \"context\": {\n11\t    \"unit\": \"trieu VND\",\n12\t    \"currency\": \"VND\",\n13\t    \"horizon\": \"Q4/2026\",\n14\t    \"source_refs\": [\n15\t      \"user-input-scenario\"\n16\t    ]\n17\t  },\n18\t  \"outputs\": {\n19\t    \"revenue\": \"100000\",\n20\t    \"contribution\": \"40000\",\n21\t    \"profit\": \"30000\",\n22\t    \"margin\": \"0.3\"\n23\t  }\n24\t}\n25\t"
+          },
+          {
+            "tool": "Read",
+            "content": "1\t{\n2\t  \"operation\": \"pass_through\",\n3\t  \"formula_reference\": \"references/scenarios-portfolio.md\",\n4\t  \"parameters\": {\n5\t    \"price\": 100,\n6\t    \"volume\": 1000,\n7\t    \"unit_cost\": 60,\n8\t    \"fixed_cost\": 10000,\n9\t    \"cost_change\": 10,\n10\t    \"pass_through_rate\": 0.5,\n11\t    \"volume_change\": -0.1\n12\t  },\n13\t  \"context\": {\n14\t    \"unit\": \"trieu VND\",\n15\t    \"currency\": \"VND\",\n16\t    \"horizon\": \"Q4/2026\",\n17\t    \"source_refs\": [\n18\t      \"user-input-scenario\"\n19\t    ]\n20\t  },\n21\t  \"outputs\": {\n22\t    \"baseline\": {\n23\t      \"revenue\": \"100000\",\n24\t      \"contribution\": \"40000\",\n25\t      \"profit\": \"30000\",\n26\t      \"margin\": \"0.3\"\n27\t    },\n28\t    \"scenario\": {\n29\t      \"revenue\": \"94500.00\",\n30\t      \"contribution\": \"31500.00\",\n31\t      \"profit\": \"21500.00\",\n32\t      \"margin\": \"0.2275132275132275132275132275132275\"\n33\t    },\n34\t    \"profit_change\": \"-8500.00\",\n35\t    \"profit_bridge\": {\n36\t      \"components\": [\n37\t        {\n38\t          \"driver\": \"price\",\n39\t          \"factors\": [\n40\t            \"5.0\",\n41\t            \"900.0\"\n42\t          ],\n43\t          \"formula\": \"price_change × scenario_volume\",\n44\t          \"amount\": \"4500.00\"\n45\t        },\n46\t        {\n47\t          \"driver\": \"cost\",\n48\t          \"factors\": [\n49\t            \"-10\",\n50\t            \"900.0\"\n51\t          ],\n52\t          \"formula\": \"-cost_change × scenario_volume\",\n53\t          \"amount\": \"-9000.0\"\n54\t        },\n55\t        {\n56\t          \"driver\": \"volume\",\n57\t          \"factors\": [\n58\t            \"-100.0\",\n59\t            \"40\"\n60\t          ],\n61\t          \"formula\": \"volume_change_units × baseline_unit_contribution\",\n62\t          \"amount\": \"-4000.0\"\n63\t        }\n64\t      ],\n65\t      \"total\": \"-8500.00\",\n66\t      \"reconciliation_difference\": \"0.00\"\n67\t    }\n68\t  }\n69\t}\n70\t"
+          }
+        ],
+        "answer": "`★ Insight ─────────────────────────────────────`\n`pass_through` trong erm_core.py phân rã `profit_bridge` thành 3 driver độc lập (price, cost, volume) với cùng basis (volume kịch bản × thay đổi đơn vị), đảm bảo interaction effect chỉ được ghi một lần và tổng bridge reconcile đúng với delta profit. Đây là kiểm tra bắt buộc trong Scenarios & portfolio để tránh double-count.\n`─────────────────────────────────────────────────`\n\n---\n\n# Phân tích ERM — Kịch bản Giá Vốn Tăng · FMCG Group · Q4/2026\n\n> **Trạng thái:** Kịch bản giả lập · Chưa có appetite được phê duyệt  \n> **Đơn vị tiền tệ:** Triệu VND · **Phạm vi:** Group Vietnam · **Nguồn tham số:** Người dùng cung cấp\n\n---\n\n## 1. Kết quả tính toán (đã chạy qua `erm_core.py`)\n\n### Baseline — Q4/2026 trước kịch bản\n\n| Chỉ tiêu | Giá trị |\n|---|---|\n| Doanh thu | **100.000 triệu VND** |\n| Đóng góp (Contribution) | **40.000 triệu VND** |\n| Lợi nhuận (Profit) | **30.000 triệu VND** |\n| Biên lợi nhuận (Margin) | **30,0%** |\n\n*Công thức: Doanh thu = 100 × 1.000; Contribution = (100 − 60) × 1.000; Profit = 40.000 − 10.000.*\n\n### Kịch bản — Giá vốn tăng 10/đơn vị, chuyển 50%, sản lượng giảm 10%\n\n| Tham số kịch bản | Baseline | Kịch bản |\n|---|---|---|\n| Giá bán/đơn vị | 100 | **105** *(+10 × 50%)* |\n| Chi phí biến đổi/đơn vị | 60 | **70** *(+10)* |\n| Sản lượng | 1.000 | **900** *(× 0,9)* |\n| Định phí | 10.000 | 10.000 *(không đổi)* |\n\n| Chỉ tiêu P&L | Baseline | Kịch bản | Thay đổi |\n|---|---|---|---|\n| Doanh thu | 100.000 | **94.500** | −5.500 |\n| Contribution | 40.000 | **31.500** | −8.500 |\n| Lợi nhuận | 30.000 | **21.500** | **−8.500** |\n| Biên lợi nhuận | 30,0% | **22,75%** | −7,25 pp |\n\n### Profit Bridge — Phân rã nguyên nhân (cùng basis: volume kịch bản = 900)\n\n| Driver | Công thức | Tác động |\n|---|---|---|\n| (+) Giá bán tăng | +5 × 900 đvị | **+4.500** triệu VND |\n| (−) Chi phí tăng | −10 × 900 đvị | **−9.000** triệu VND |\n| (−) Mất sản lượng | −100 đvị × 40 (unit contribution baseline) | **−4.000** triệu VND |\n| **Tổng delta lợi nhuận** | | **−8.500** triệu VND *(reconciled, diff = 0,00)* |\n\n---\n\n## 2. Mô tả rủi ro cấp doanh nghiệp (CEI)\n\n> Taxonomy ERM — theo cấu trúc **Nguyên nhân → Sự kiện → Tác động mục tiêu**\n\n**Tên rủi ro:** Rủi ro Margin Bị Xói Mòn do Áp Lực Giá Đầu Vào Không Được Bù Đủ\n\n| Yếu tố CEI | Nội dung |\n|---|---|\n| **Nguyên nhân (Cause)** | Giá biến phí đầu vào tăng 16,7% (từ 60 → 70/đvị), nguồn có thể là nguyên liệu thô, bao bì, chi phí logistics hoặc FX — *chưa xác định nguồn gốc cụ thể trong kịch bản này* |\n| **Sự kiện (Event)** | Tập đoàn chỉ chuyển được 50% mức tăng vào giá bán; sức cầu phản ứng với giá tăng khiến sản lượng giảm 10% |\n| **Tác động (Impact)** | Lợi nhuận Q4/2026 giảm **8.500 triệu VND** (−28,3% so với baseline); biên lợi nhuận rút từ 30% xuống 22,75% — đe dọa mục tiêu lợi nhuận và khả năng phân phối cash trong kỳ |\n| **Mục tiêu bị đe dọa** | Earnings, cash generation, và — nếu kéo dài — market share / brand positioning |\n\n**Tính chất rủi ro theo FMCG pack:** Đây là chuỗi truyền dẫn điển hình *\"Input price tăng → pass-through chậm/không đủ → margin/cash giảm\"*. Trong FMCG, tốc độ pass-through còn phụ thuộc vào chu kỳ đàm phán kênh phân phối, promotion commitments, và phản ứng cạnh tranh — các yếu tố này chưa được giả lập trong kịch bản hiện tại.\n\n**Giới hạn kịch bản:** Tỷ lệ volume_change = −10% là giả định kịch bản, **không phải elasticity đã ước lượng**; không kết luận cao/thấp so với ngành khi chưa có nguồn và hiệu chỉnh phù hợp. Nếu đã có dữ liệu price-elasticity lịch sử theo SKU/channel, cần cập nhật tham số này.\n\n---\n\n## 3. Đề xuất quyết định cho CFO\n\n### A — Quyết định ngay trong kỳ (Q4/2026)\n\n| # | Quyết định | Rationale | Owner đề xuất |\n|---|---|---|---|\n| 1 | **Xác nhận hoặc điều chỉnh tỷ lệ pass-through 50%** | Đây là driver duy nhất có thể cải thiện margin mà không cần thay đổi cost structure. Nếu pass qua được 60%, delta lợi nhuận giảm xuống ~−7.600 thay vì −8.500. Cần đánh giá khả năng thương lượng với kênh và phản ứng cạnh tranh. | CFO + Commercial Director |\n| 2 | **Xác minh nguồn gốc chi phí tăng** | Kịch bản giả định cost_change = 10 nhưng chưa rõ là nguyên liệu, logistics, bao bì hay FX. Mỗi nguồn có instrument ứng phó khác nhau (hedging FX, contract renegotiation, alternative sourcing). Thiếu thông tin này thì chưa thể thiết kế treatment hiệu quả. | Procurement / Treasury |\n| 3 | **Đánh giá dư địa định phí** | Fixed cost = 10.000 không đổi trong kịch bản. Trong bối cảnh sản lượng giảm 10%, xem xét có thể tạm hoãn/cắt giảm chi tiêu không bắt buộc để thu hẹp tổn thất. | Finance / Operations |\n\n### B — Quyết định phương pháp ERM (ủy quyền phê duyệt)\n\n| # | Nội dung | Lý do |\n|---|---|---|\n| 4 | **Phê duyệt appetite / tolerance cho margin và profit** | Hiện chưa có appetite được phê duyệt → không thể kết luận kịch bản này có \"trong ngưỡng chấp nhận\" hay không. CFO/Board cần xác định ngưỡng (ví dụ: \"margin không dưới X%\" hoặc \"profit không giảm quá Y% so với plan\"). Sau đó mới có thể đánh giá kịch bản này là *within*, *warning*, hay *breach*. |\n| 5 | **Mở rộng kịch bản trước khi quyết định** | Kịch bản hiện tại là điểm đơn. Đề xuất chạy thêm: *(i)* pass-through thấp hơn (30%) — worst-case; *(ii)* volume giảm sâu hơn (20%) — stress; *(iii)* combined giá vốn + FX + sản lượng — nếu các driver có tương quan. Điều này giúp CFO thấy dải rủi ro, không chỉ một điểm. |\n\n---\n\n## 4. Kiểm tra bàn giao (Skill pre-delivery check)\n\n| Hạng mục | Kết quả |\n|---|---|\n| Formula/inputs/units đối soát | PASS — Engine reconciliation diff = 0,00; profit_bridge total = profit_change = −8.500 |\n| Currency/horizon nhất quán | PASS — VND / Q4/2026 xuyên suốt |\n| Double-count tổn thất | PASS — Volume effect dùng baseline contribution × lost units; cost effect dùng scenario volume; không cộng hai lần |\n| Appetite status | **DRAFT** — Chưa có appetite được phê duyệt; mọi kết luận \"trong/ngoài ngưỡng\" phải chờ phê duyệt đúng thẩm quyền |\n| Xác suất kịch bản | **Không gán** — Đây là scenario assumption, không phải forecast có xác suất |\n| Scope Group Vietnam | Ghi nhận — Chưa có intercompany elimination hay currency translation vì đây là single-entity simulation |\n\n---\n\n`★ Insight ─────────────────────────────────────`\n**3 điểm học từ phân tích này:**\n1. **Profit bridge phân rã driver** giúp CFO thấy rõ ai \"đang ăn\" margin nhiều nhất: cost tăng (−9.000) > volume mất (−4.000) > giá bù được (+ 4.500). Thứ tự ưu tiên can thiệp theo đó.\n2. **Pass-through rate là biến quyết định** quan trọng nhất trong tầm kiểm soát ngắn hạn — thay đổi từ 50% → 60% cứu được ~900 triệu VND lợi nhuận mà không cần thay đổi gì khác.\n3. **Appetite chưa phê duyệt = chưa thể kết luận breach/OK** — ERM framework yêu cầu tách biệt scenario output (tính toán) khỏi status (đánh giá theo appetite đã duyệt). Đây là ranh giới quan trọng tránh \"tô xanh\" rủi ro.\n`─────────────────────────────────────────────────`"
+      },
+      {
+        "id": "R06-DEFINED",
+        "prompt": "Dữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Làm reverse stress riêng cho suy giảm sản lượng, giá và chi phí giữ nguyên. Điều kiện thất bại của bài tập là lợi nhuận thấp hơn 20000; bằng 20000 chưa thất bại. Đây chỉ là điều kiện bài tập, chưa phải appetite đã duyệt. Tính ranh giới, kiểm tra hai phía và giải thích giới hạn. Chỉ trả lời trong chat, không sửa nguồn hoặc cài đặt.",
+        "started_at": "2026-09-04T02:55:43.720365+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "8fd2b7a076ed2b6f1bbe948ee6ee96d53b4f96d0c7e327d78bb75a08480140a1",
+        "iteration": "native-runtime",
+        "status": "PASS_ARITHMETIC_FAIL_INTERPRETATION",
+        "review": "Actual core calculated Q1000/750/749/751 and headroom. Boundary equality handled correctly. Added Insight incorrectly equated fixed price with elasticity=0; subsequent source correction explicitly rejects this.",
+        "answer_sha256": "ccd4a8d96f93d66e8159c6cac721b426e121a6f589b4ae0bdc23ecf1a5be72f5",
+        "source_differences_from_packaged_candidate": {
+          "SKILL.md": "1405c5b0763438dac986fd35a4805408a6a1ac8b7607f66df2ff775abecd80cf",
+          "references/scenarios-portfolio.md": "5df9013b1836970fbac8bf0586c5c67f7e40d0f10a99d67eef16741f48a32e3c",
+          "industry-packs/it-outsourcing.md": "2829ae69fdf4a51b5656f1abe3f598f7800d63ad8d3100931cbfdf1e01e3a507"
+        },
+        "reads": [
+          "SKILL.md",
+          "references/scenarios-portfolio.md",
+          "industry-packs/fmcg.md",
+          "/tmp/erm_headroom_out.json"
+        ],
+        "tool_summary": {
+          "calls": 13,
+          "bash_calls": 9,
+          "error_results": 2
+        },
+        "selected_execution_outputs": [
+          {
+            "tool": "Bash",
+            "content": "wrote /tmp/erm_baseline_Q1000_in.json\nwrote /tmp/erm_boundary_Q750_in.json\nwrote /tmp/erm_failure_Q749_in.json\nwrote /tmp/erm_safe_Q751_in.json"
+          },
+          {
+            "tool": "Bash",
+            "content": "=== baseline_Q1000 ===\n{\n  \"operation\": \"margin\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"price\": 100,\n    \"volume\": 1000,\n    \"unit_cost\": 60,\n    \"fixed_cost\": 10000\n  },\n  \"context\": {\n    \"unit\": \"trieu VND\",\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"simulated-FMCG-VN-Q4-2026\"\n    ]\n  },\n  \"outputs\": {\n    \"revenue\": \"100000\",\n    \"contribution\": \"40000\",\n    \"profit\": \"30000\",\n    \"margin\": \"0.3\"\n  }\n}\n=== boundary_Q750 ===\n{\n  \"operation\": \"margin\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"price\": 100,\n    \"volume\": 750,\n    \"unit_cost\": 60,\n    \"fixed_cost\": 10000\n  },\n  \"context\": {\n    \"unit\": \"trieu VND\",\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"simulated-FMCG-VN-Q4-2026\"\n    ]\n  },\n  \"outputs\": {\n    \"revenue\": \"75000\",\n    \"contribution\": \"30000\",\n    \"profit\": \"20000\",\n    \"margin\": \"0.2666666666666666666666666666666667\"\n  }\n}\n=== failure_Q749 ===\n{\n  \"operation\": \"margin\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"price\": 100,\n    \"volume\": 749,\n    \"unit_cost\": 60,\n    \"fixed_cost\": 10000\n  },\n  \"context\": {\n    \"unit\": \"trieu VND\",\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"simulated-FMCG-VN-Q4-2026\"\n    ]\n  },\n  \"outputs\": {\n    \"revenue\": \"74900\",\n    \"contribution\": \"29960\",\n    \"profit\": \"19960\",\n    \"margin\": \"0.2664886515353805073431241655540721\"\n  }\n}\n=== safe_Q751 ===\n{\n  \"operation\": \"margin\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"price\": 100,\n    \"volume\": 751,\n    \"unit_cost\": 60,\n    \"fixed_cost\": 10000\n  },\n  \"context\": {\n    \"unit\": \"trieu VND\",\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"simulated-FMCG-VN-Q4-2026\"\n    ]\n  },\n  \"outputs\": {\n    \"revenue\": \"75100\",\n    \"contribution\": \"30040\",\n    \"profit\": \"20040\",\n    \"margin\": \"0.2668442077230359520639147802929427\"\n  }\n}"
+          },
+          {
+            "tool": "Read",
+            "content": "1\t{\n2\t  \"operation\": \"headroom\",\n3\t  \"formula_reference\": \"references/scenarios-portfolio.md\",\n4\t  \"parameters\": {\n5\t    \"value\": 30000,\n6\t    \"limit\": 20000,\n7\t    \"direction\": \"lower\"\n8\t  },\n9\t  \"context\": {\n10\t    \"unit\": \"trieu VND\",\n11\t    \"currency\": \"VND\",\n12\t    \"horizon\": \"Q4/2026\",\n13\t    \"source_refs\": [\n14\t      \"simulated-FMCG-VN-Q4-2026\"\n15\t    ]\n16\t  },\n17\t  \"outputs\": {\n18\t    \"headroom\": \"10000\",\n19\t    \"utilization\": null\n20\t  }\n21\t}\n22\t"
+          }
+        ],
+        "answer_excerpts": [
+          "iến cần nhận biết rõ: (1) Khi chỉ stress volume trong khi giữ nguyên giá và cost, ta giả định price-elasticity = 0 và cost không có step-cost/tiered contract — cả hai giả định này khó đúng trong thực tế FMCG VN Q4 (mùa cao điểm, khuyến mãi); (2) Đây là ranh giới toán học của tham số giả định, không chứng minh doanh nghiệp an toàn ở mọi Q > 750 hay trong mức appetite đã duyệt.\n`─────────────────────────────────────────────────`\n\n| Hạn chế | Ý nghĩa thực tế |\n|---|---|\n| **Price và cost cố định** | Trong thực tế, suy giảm sản lượng thường đi kèm giảm giá hoặc tăng chi phí khuyến mãi; stress đơn biến có thể *đánh thấp* rủi ro khi các yếu tố tươn",
+          " − 10 000 = 40Q − 10 000\n\nRanh giới: 40Q − 10 000 = 20 000\n           40Q = 30 000\n            Q* = 750\n```\n\n| Tham số ranh giới | Giá trị |\n|---|---|\n| Sản lượng tại ranh giới Q\\* | **750 đơn vị** |\n| Mức suy giảm tuyệt đối | 1 000 − 750 = **250 đơn vị** |\n| Tỷ lệ suy giảm hàm ý | 250 / 1 000 = **25,0%** |\n| Headroom lợi nhuận hiện tại | 30 000 − 20 000 = **10 000 tr. VND** |\n\n---\n\n### 3. Kiểm tra hai phía (calculator xác nhận)\n\n| Kịch bản | Q | Lợi nhuận (tr. VND) | Biên | Kết quả so điều kiện |\n|---|---|---|---|---|\n| Baseline | 1 000 | **30 000** | 30,0% | Không thất bại |\n| **Ranh giới** | **750** | **20 000** | 26,67% | **Không thất bại",
+          "ào vùng thất bại | **749** | **19 960** | 26,65% | **THẤT BẠI** (< 20 000) |\n| Vừa trên ranh giới | 751 | 20 040 | 26,68% | Không thất bại |\n\n> Nhận xét kiểm tra biên: ranh giới Q=750 → profit=20 000 nằm đúng ngoài vùng thất bại (vì điều kiện **nghiêm ngặt** `<`). Giảm thêm 1 đơn vị xuống Q=749 → profit=19 960 < 20 000 → vi phạm. Hai phía đối xứng và nhất quán với công thức.\n\n---\n\n### 4. Giới hạn của phân tích này\n\n`★ Insight ─────────────────────────────────────`\nHai hạn chế cốt lõi của reverse stress đơn biến cần nhận biết rõ: (1) Khi chỉ stress volume trong khi giữ nguyên giá và cost, ta giả định price-elasticity = 0 và cost không có step-"
+        ]
+      },
+      {
+        "id": "R06-MISSING",
+        "prompt": "Dữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Hãy làm reverse stress cho suy giảm sản lượng, giá và chi phí giữ nguyên. Chưa xác định điều kiện thất bại, appetite hoặc mức lợi nhuận tối thiểu. Đừng tự đặt ngưỡng; nêu phần có thể tính và thông tin cần hỏi. Chỉ trả lời trong chat, không sửa nguồn hoặc cài đặt.",
+        "started_at": "2026-09-04T02:58:36.928146+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "c73b1c1faf3c27986ff63068ea8ff10db525224080a1edc866b1ae7035281347",
+        "iteration": "native-method",
+        "status": "PASS_MISSING_CONDITION_WITH_LIMITS",
+        "review": "Asked for failure condition without completing reverse stress or setting a numerical failure threshold. Calculator execution not completed after command denial; final numbers correctly labeled UNCHECKED. Generic sector commentary not independently verified.",
+        "answer_sha256": "4343b8f175d088568e4a5d17d97d7ddf6f2c6024dea3b733277f0eed141b766f",
+        "source_differences_from_packaged_candidate": {
+          "SKILL.md": "1405c5b0763438dac986fd35a4805408a6a1ac8b7607f66df2ff775abecd80cf",
+          "references/scenarios-portfolio.md": "5df9013b1836970fbac8bf0586c5c67f7e40d0f10a99d67eef16741f48a32e3c",
+          "industry-packs/it-outsourcing.md": "2829ae69fdf4a51b5656f1abe3f598f7800d63ad8d3100931cbfdf1e01e3a507"
+        },
+        "reads": [
+          "SKILL.md",
+          "references/scenarios-portfolio.md",
+          "industry-packs/fmcg.md"
+        ],
+        "tool_summary": {
+          "calls": 6,
+          "bash_calls": 3,
+          "error_results": 1
+        },
+        "selected_execution_outputs": [
+          {
+            "tool": "Bash",
+            "content": "erm_core.py\nexport_office.mjs\nreport.py\nvalidate_engagement.py"
+          }
+        ],
+        "answer": "Runtime bị từ chối trong phiên này. Theo SKILL.md, tôi sẽ trình bày công thức và gắn nhãn **UNCHECKED** cho tất cả số chưa thực thi — không dùng cho quyết định đã duyệt.\n\n---\n\n`★ Insight ─────────────────────────────────────`\n**Reverse stress ≠ sensitivity analysis**: Sensitivity đi từ baseline → tính tác động. Reverse stress đi từ kết quả xấu đã xác định → tìm ngược điều kiện kích hoạt. Thiếu điều kiện thất bại thì bài toán chưa được đặt ra, chỉ có thể tính break-even toán học (profit = 0), và đó chưa chắc là \"failure\" của doanh nghiệp.\n`─────────────────────────────────────────────────`\n\n---\n\n## 1. Phần có thể tính từ dữ liệu đã cho\n\n**Baseline — công thức `margin`:**\n\n```\nRevenue         = price × volume     = 100 × 1000 = 100,000 triệu VND   [UNCHECKED]\nVariable cost   = unit_cost × volume =  60 × 1000 =  60,000 triệu VND   [UNCHECKED]\nContribution    = (price − unit_cost) × volume\n                =  40 × 1000         =  40,000 triệu VND                 [UNCHECKED]\nProfit          = Contribution − fixed_cost\n                = 40,000 − 10,000    =  30,000 triệu VND                 [UNCHECKED]\nProfit margin   = 30,000 / 100,000  =  30%                               [UNCHECKED]\nContribution margin/đơn vị          =  40 triệu VND                      [UNCHECKED]\n```\n\n**Break-even volume** (điểm profit = 0 về mặt toán học):\n\n```\nGiải: (100 − 60) × V − 10,000 = 0\n     40 × V = 10,000\n     V_breakeven = 10,000 / 40 = 250 đơn vị                              [UNCHECKED]\n\nMức suy giảm hàm ý: 1000 − 250 = 750 đơn vị = −75% so với baseline      [UNCHECKED]\n```\n\nĐây là **ranh giới toán học của giả định** (profit chạm 0), không phải điểm thất bại của doanh nghiệp và không chứng minh an toàn hay trong appetite.\n\n---\n\n## 2. Phần CHƯA thể tính — thông tin cần hỏi\n\n### 2.1 Điều kiện thất bại là gì?\n\nReverse stress yêu cầu failure condition cụ thể để tìm ngược volume trigger. Các ứng viên cần bạn xác định:\n\n| Loại điều kiện | Ví dụ cụ thể cần cung cấp |\n|---|---|\n| Ngưỡng lợi nhuận tối thiểu | Profit < X triệu VND → không chấp nhận được |\n| Ngưỡng biên lợi nhuận | Profit margin < Y% → vi phạm mục tiêu |\n| Cash floor / dòng tiền | Dòng tiền hoạt động âm, hoặc < Z triệu VND |\n| Covenant / cam kết tài chính | Tỷ lệ nợ/EBITDA, interest coverage, v.v. |\n| Mục tiêu chiến lược | Đóng góp vào tập đoàn < W triệu VND |\n\nChỉ khi có ngưỡng cụ thể thì mới có thể giải ngược:  \n`Volume thất bại = (fixed_cost + ngưỡng_tối_thiểu) / (price − unit_cost)`\n\n### 2.2 Risk appetite\n\nDoanh nghiệp chấp nhận suy giảm sản lượng đến mức nào trước khi cần escalate/can thiệp? Appetite xác định khoảng **an toàn − cảnh báo − không chấp nhận**, khác với break-even thuần toán học.\n\n### 2.3 Phạm vi và horizon\n\n- \"Suy giảm sản lượng\" là suy giảm của toàn bộ danh mục, hay một SKU/channel cụ thể?\n- Q4/2026 là một quý đơn lẻ hay lũy kế?\n- Có fixed cost nào trở thành variable khi sản lượng giảm sâu (ví dụ: thuê kho, nhân công thời vụ) không? Nếu có, hàm chi phí không còn tuyến tính.\n\n### 2.4 Ngữ cảnh dòng tiền\n\nProfit = 30,000 triệu VND (UNCHECKED) là lợi nhuận kế toán. Dòng tiền thực phụ thuộc thêm capex, working capital cycle, trả nợ và các khoản phi tiền mặt — chưa có dữ liệu này.\n\n---\n\n## 3. Kết luận trạng thái phân tích\n\n| Hạng mục | Trạng thái |\n|---|---|\n| Baseline profit / margin | Có thể tính, đang UNCHECKED |\n| Break-even volume (profit = 0) | Có thể tính đại số, đang UNCHECKED |\n| Reverse stress volume trigger | **Chưa tính được** — thiếu failure condition |\n| Appetite / vùng an toàn | **Chưa xác định** |\n| Dòng tiền, covenant | **Thiếu dữ liệu** |\n\n`★ Insight ─────────────────────────────────────`\nTrong FMCG, fixed cost thường gồm khấu hao, lương cố định và thuê mặt bằng — các khoản này không tự động giảm khi sản lượng sụt. Với contribution margin 40% doanh thu và fixed cost 10,000 triệu VND chiếm 25% contribution baseline, doanh nghiệp có cushion khá rộng về mặt toán học; nhưng \"failure\" thực sự với ban lãnh đạo FMCG thường gắn với cash cycle và covenant — không phải chỉ điểm hòa vốn kế toán.\n`─────────────────────────────────────────────────`\n\n---\n\n**Câu hỏi ưu tiên để tôi hoàn thiện reverse stress:**\n\n> 1. Mức lợi nhuận (hoặc dòng tiền) nào được coi là **thất bại** với bạn — giá trị tuyệt đối hay tỷ lệ %?\n> 2. Đây là mục tiêu kế hoạch, cam kết với hội đồng, hay covenant tài chính?\n> 3. Fixed cost 10,000 triệu VND có phần nào co giãn theo sản lượng khi sụt mạnh không?"
+      },
+      {
+        "id": "I02",
+        "prompt": "Một doanh nghiệp gia công phần mềm đang lập risk profile cho HĐQT. Dữ liệu giả lập: signed backlog 80 tỷ VND (20 tỷ có thể hủy), unsigned pipeline 120 tỷ với win probability do sales ước tính 40%, utilization giảm, DSO tăng; chưa có horizon và ngưỡng appetite được phê duyệt. Ban dự án nói AI tiết kiệm 25% effort nên có thể ghi ngay 25% tăng lợi nhuận. Hãy xác định các rủi ro trọng yếu, chỉ rõ cách diễn giải số liệu và thông tin phải hỏi thêm; không tự đặt ngưỡng hoặc chứng nhận dự báo. Chỉ trả lời trong chat.",
+        "started_at": "2026-09-04T02:58:36.928630+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "2b36e3040dba484a3f822b0867d0a98bb4216ea26df56bbf0db2b7cde450175b",
+        "iteration": "native-method",
+        "status": "FAIL_BEFORE_FINAL_FIX",
+        "review": "Invented concentration question >30%; AI equations still treated effort×wage as generic savings and asserted zero benefit without adequate conditions. Final SKILL gate and IT profit bridge corrected after this result. Native numerical execution denied; numbers labeled UNCHECKED.",
+        "answer_sha256": "efae505200876512bf76d1f07d6746a94686bf84987cbbe100825504c1ed80ae",
+        "source_differences_from_packaged_candidate": {
+          "SKILL.md": "1405c5b0763438dac986fd35a4805408a6a1ac8b7607f66df2ff775abecd80cf",
+          "references/scenarios-portfolio.md": "5df9013b1836970fbac8bf0586c5c67f7e40d0f10a99d67eef16741f48a32e3c",
+          "industry-packs/it-outsourcing.md": "2829ae69fdf4a51b5656f1abe3f598f7800d63ad8d3100931cbfdf1e01e3a507"
+        },
+        "reads": [
+          "SKILL.md",
+          "industry-packs/it-outsourcing.md",
+          "references/assessment-appetite.md",
+          "references/scenarios-portfolio.md"
+        ],
+        "tool_summary": {
+          "calls": 7,
+          "bash_calls": 3,
+          "error_results": 2
+        },
+        "selected_execution_outputs": [],
+        "answer_excerpts": [
+          "*Phân bổ theo khách hàng:** 20 tỷ cancellable đến từ 1 hay nhiều khách hàng? Khách hàng nào chiếm > 30%?\n3. **Timeline:** Khi nào 60 tỷ non-cancellable sẽ được ghi nhận revenue và thu tiền? Milestone tiếp theo là khi nào?\n\n### 3.2 Về pipeline 120 tỷ (R1)\n\n4. **Win rate lịch sử theo stage là bao nhiêu?** (không phải cảm tính sales mà là actual closed/won trên closed/total)\n5. **Pipeline bao gồm những deal ở stage nào?** Có deal nào đã qua RFP/LOI chưa ký không?\n6. **Có deal nào trong pipeline cũng từ cùng khách hàng đang có backlog cancellable không?** (concentration cộng dồn)\n\n### 3.3 Về utilization (R2, R3)\n\n7. **Denominator là gì?** Total h",
+          "pacity, không phải tiền mặt ngay lập tức |\n\n**Điều kiện 2 — Freed capacity phải có đích đến:**\n\n```\nProfit benefit = (freed hours) × (billing rate − cost rate)\n             = 0 nếu không có demand mới và hợp đồng đã ký\n```\n\nGiải phóng 25% giờ của nhân viên salaried nhưng không có dự án mới → chi phí lương không giảm, không có doanh thu mới → *lợi ích thương mại = 0, trong khi chi phí AI license/infrastructure đã phát sinh.*\n\n**Điều kiện 3 — Phải trừ chi phí AI và rework:**\n\n```\nNet saving = effort_saved × wage_rate\n           − AI_license_cost\n           − AI_infrastructure_cost\n           − rework_from_quality_issues\n           − review/QA o",
+          "phí AI license/infrastructure đã phát sinh.*\n\n**Điều kiện 3 — Phải trừ chi phí AI và rework:**\n\n```\nNet saving = effort_saved × wage_rate\n           − AI_license_cost\n           − AI_infrastructure_cost\n           − rework_from_quality_issues\n           − review/QA overhead mới\n```\n\n**Kết luận:** Ban dự án đang trộn lẫn *năng suất kỹ thuật* với *lợi ích thương mại*. Ghi nhận 25% tăng lợi nhuận vào báo cáo HĐQT mà không có bằng chứng thực hiện là sai về phương pháp và có thể tạo kỳ vọng sai lệch cho cổ đông.\n\n---\n\n### R5 — Rủi ro quản trị: thiếu framework appetite và horizon\n\n**Nguyên nhân:** Chưa có horizon và ngưỡng appetite được HĐQT phê du",
+          " dự án mới).\n\n---\n\n### R4 — Rủi ro lợi ích AI bị phóng đại (trọng yếu về quản trị)\n\n**Đây là rủi ro nghiêm trọng nhất cần làm rõ ngay với HĐQT.**\n\n**Lỗi logic của ban dự án:** \"AI tiết kiệm 25% effort → ghi ngay 25% tăng lợi nhuận\" vi phạm ít nhất ba điều kiện cần phải thỏa mãn trước:\n\n**Điều kiện 1 — Loại hợp đồng:**\n\n| Loại HĐ | Nếu AI tiết kiệm 25% giờ thì… |\n|---|---|\n| T&M (thanh toán theo giờ) | Bill ít giờ hơn → **doanh thu giảm**, không tăng lợi nhuận |\n| Fixed-price | Fee không đổi; nhưng lương nhân viên cũng không tự giảm → lợi ích là freed capacity, không phải tiền mặt ngay lập tức |\n\n**Điều kiện 2 — Freed capacity phải có đích đến"
+        ]
+      },
+      {
+        "id": "R06-DEFINED",
+        "prompt": "Dữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Làm reverse stress riêng cho suy giảm sản lượng, giá và chi phí giữ nguyên. Điều kiện thất bại của bài tập là lợi nhuận thấp hơn 20000; bằng 20000 chưa thất bại. Đây chỉ là điều kiện bài tập, chưa phải appetite đã duyệt. Tính ranh giới, kiểm tra hai phía và giải thích giới hạn. Chỉ trả lời trong chat, không sửa nguồn hoặc cài đặt.",
+        "started_at": "2026-09-04T03:00:14.746132+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "0ca7b25b2cf08cb2b5ec47b9e858626571b41c8df7c5333f88e2f6c54b317a37",
+        "iteration": "native-meaning",
+        "status": "PARTIAL_FAIL_BEFORE_FINAL_FIX",
+        "review": "Correctly rejects elasticity=0 inference and labels unexecuted numbers UNCHECKED. Still appended unsolicited 15%/20% KRI thresholds. Final gate now removes unsupported numerical thresholds even in examples/questions; numeric execution NOT_RUN after command denial.",
+        "answer_sha256": "3c3ef2d6938c7f89c9825016fc3330e167c331a0b83cf8bfe1978ad2b871f55d",
+        "source_differences_from_packaged_candidate": {
+          "SKILL.md": "85b719b0a164ba3fe493c8e0829558aae15a1c9006c0ad422af4d6c6181b6de2",
+          "industry-packs/it-outsourcing.md": "2829ae69fdf4a51b5656f1abe3f598f7800d63ad8d3100931cbfdf1e01e3a507"
+        },
+        "reads": [
+          "SKILL.md",
+          "references/scenarios-portfolio.md",
+          "industry-packs/fmcg.md"
+        ],
+        "tool_summary": {
+          "calls": 6,
+          "bash_calls": 3,
+          "error_results": 2
+        },
+        "selected_execution_outputs": [],
+        "answer_excerpts": [
+          " xuất kém hơn hoặc tỷ lệ phế phẩm tăng.\n\n2. **Giá và chi phí cố định là ceteris paribus, không phải elasticity:** Giữ P = 100 và v = 60 khi Q giảm là giả định phân tích một chiều. Không có nghĩa doanh nghiệp có thể giữ giá nguyên khi lượng sụt 25%; không suy ra elasticity cầu–giá bằng 0.\n\n3. **Định phí thực sự cố định:** Mô hình giả định F = 10 000 không thay đổi theo lượng. Trong FMCG, khi lượng giảm đủ sâu, một số \"định phí\" có thể tái phân loại hoặc phát sinh chi phí tái cơ cấu — không nắm bắt được ở đây.\n\n4. **Đây là reverse stress đơn biến:** Chỉ Q thay đổi. Thực tế, volume suy giảm thường đồng thời kéo theo áp lực giá, change in mix và ",
+          "y cần bao nhiêu shock để vượt ngưỡng — đây là input để thiết kế KRI (ví dụ: cảnh báo sớm khi Q giảm 15%, escalation khi Q giảm 20%). Nhưng threshold KRI phải được phê duyệt riêng, không tự suy từ bài tập này.\n`─────────────────────────────────────────────────`",
+          "n này. Theo SKILL.md: khi không có runtime, tôi trình công thức, thực hiện phép tính, và gắn nhãn **UNCHECKED** — không dùng số này như kết quả đã xác nhận cho quyết định thực. Phân tích dưới đây cần đối soát lại bằng script khi có quyền chạy.\n\n---\n\n## Reverse Stress — Suy Giảm Sản Lượng, FMCG Group VN Q4/2026\n\n### 1. Dữ liệu đầu vào (scenario assumptions)\n\n| Tham số | Giá trị | Đơn vị |\n|---|---|---|\n| Giá bán (P) | 100 | triệu VND/đơn vị |\n| Lượng baseline (Q₀) | 1 000 | đơn vị |\n| Biến phí đơn vị (v) | 60 | triệu VND/đơn vị |\n| Định phí (F) | 10 000 | triệu VND |\n| **Điều kiện thất bại** | Profit **<** 20 000 | triệu VND |\n\n> Điều kiện thấ"
+        ]
+      },
+      {
+        "id": "I02",
+        "prompt": "Một doanh nghiệp gia công phần mềm đang lập risk profile cho HĐQT. Dữ liệu giả lập: signed backlog 80 tỷ VND (20 tỷ có thể hủy), unsigned pipeline 120 tỷ với win probability do sales ước tính 40%, utilization giảm, DSO tăng; chưa có horizon và ngưỡng appetite được phê duyệt. Ban dự án nói AI tiết kiệm 25% effort nên có thể ghi ngay 25% tăng lợi nhuận. Hãy xác định các rủi ro trọng yếu, chỉ rõ cách diễn giải số liệu và thông tin phải hỏi thêm; không tự đặt ngưỡng hoặc chứng nhận dự báo. Chỉ trả lời trong chat.",
+        "started_at": "2026-09-04T03:05:55.488186+00:00",
+        "exit_code": 0,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "171410c69ed4998a08c943a1bc8ed6e49b053f93215216f26f7ccdd7501e1e79",
+        "iteration": "native-finalcheck",
+        "status": "PASS_R06_TARGETS_FAIL_R05_EXECUTION",
+        "review": "Final I02 removes invented numerical materiality thresholds and uses the corrected AI incremental-profit mechanism. However, it says arithmetic was checked with only Read calls and no calculator execution/UNCHECKED label; R05 behavioral closure remains open. Also duplicates R5 in free-form candidate IDs; no full response PASS.",
+        "answer_sha256": "de143a3267d7074c5e03ea09b46dbf0c1836a2642c9c06527212063e1a826b1b",
+        "source_differences_from_packaged_candidate": {},
+        "reads": [
+          "SKILL.md",
+          "industry-packs/it-outsourcing.md",
+          "references/data-model.md",
+          "references/assessment-appetite.md",
+          "references/scenarios-portfolio.md",
+          "references/treatment-reporting.md"
+        ],
+        "tool_summary": {
+          "calls": 6,
+          "bash_calls": 0,
+          "error_results": 0
+        },
+        "selected_execution_outputs": [],
+        "answer": "Đã đọc đủ tài nguyên. Bắt đầu phân tích theo skill.\n\n---\n\n`★ Insight ─────────────────────────────────────`\nERM khác phân tích tài chính thuần túy ở hai điểm quan trọng: (1) phải tách **backlog có thể hủy** khỏi committed revenue trước bất kỳ tính toán nào; (2) lợi ích AI cần qua công thức Δprofit = Δrecognized revenue + chi phí thực sự tránh được − chi phí tăng thêm, chứ không phải E × 25% effort.\n`─────────────────────────────────────────────────`\n\n---\n\n## Phân tích Risk Profile — Doanh nghiệp Gia công Phần mềm\n\n**Trạng thái:** Chưa có horizon và phương pháp appetite được phê duyệt → toàn bộ nhận định dưới đây là **dự thảo, chưa xếp hạng**, cần xác nhận với người có thẩm quyền. Không có ngưỡng nào được tự chèn.\n\n---\n\n### 1. Cách đọc đúng số liệu đã cung cấp\n\n**Backlog ký kết (80 tỷ):**\n\n| Phân loại | Giá trị | Ý nghĩa |\n|---|---|---|\n| Non-cancellable committed | 60 tỷ VND | Cam kết cứng — điều kiện hủy không áp dụng |\n| Cancellable signed | 20 tỷ VND | Đã ký nhưng có downside riêng; không cộng vào committed |\n| Headline \"80 tỷ\" | Tổng hợp lệ trình bày | **Không bằng 80 tỷ đảm bảo thu được** nếu không rõ điều kiện hủy 20 tỷ |\n\nSố học đơn giản đã kiểm: 80 − 20 = **60 tỷ non-cancellable**.\n\n**Pipeline chưa ký (120 tỷ × 40%):**\n\n- Weighted pipeline = 120 × 0.40 = **48 tỷ VND** — đây là **ước tính lập kế hoạch**, không phải doanh thu cam kết.\n- Con số 40% do sales tự ước tính, **chưa có bằng chứng hiệu chỉnh** (win rate lịch sử, stage, sản phẩm, khách hàng).\n- **Không được cộng 48 tỷ vào 60 tỷ committed rồi gọi tổng là bảo đảm.**\n\n**Tuyên bố AI (25% effort → 25% lợi nhuận):**\n\nLập luận này **sai về mặt cơ chế truyền dẫn**. Effort saving (E) là phần giờ tiết kiệm sau khi trừ rework/quality của chính nhiệm vụ. Để đến được lợi nhuận, phải đi qua từng bước:\n\n```\nEffort saving (E)\n  → Freed capacity (chỉ có nếu đội dùng được E)\n    → Revenue hoặc cost change (phụ thuộc loại hợp đồng và demand)\n      → Δprofit = Δrevenue recognized + chi phí thực sự tránh được\n                  − chi phí tăng thêm (AI/license, review, rework)\n```\n\n- **T&M:** Nếu chỉ bill B−E thay vì B giờ, **revenue có thể giảm** dù productivity tăng; phải có demand và contract để redeploy E giờ.\n- **Fixed-price:** Fee giữ nguyên, nhưng lương nhân viên cố định không tự giảm theo E × wage/hour; lợi ích thực là freed capacity, delivery speed hoặc avoided overtime — phải có bằng chứng thực hiện.\n- **Chưa có baseline effort, dữ liệu rework, chi phí AI/license, output được khách hàng chấp nhận → benefit chưa xác định, không được ghi ngay vào lợi nhuận.**\n\n---\n\n### 2. Các rủi ro trọng yếu (Candidate — chưa xếp hạng theo appetite vì chưa có phương pháp được duyệt)\n\n**R1 — Cancellation & Revenue Gap (Market & commercial / Financial)**\n\n> Do 20 tỷ backlog đã ký có điều khoản hủy và pipeline chưa ký có win probability chưa hiệu chỉnh, có thể xảy ra hủy hợp đồng một phần và/hoặc win rate thực thấp hơn kỳ vọng trong horizon kế hoạch, dẫn đến doanh thu nhận được hụt so với kế hoạch — ảnh hưởng mục tiêu doanh thu và margin.\n\n*Thông tin còn thiếu làm mờ mức phơi nhiễm:* điều kiện hủy cụ thể (thông báo trước bao lâu, penalty), customer concentration, stage của 120 tỷ pipeline, win rate lịch sử theo sales stage.\n\n---\n\n**R2 — Utilization Decline → Margin & Cash Compression (Operations / Financial)**\n\n> Do utilization đang giảm (denominator và billable rate chưa rõ), bench tăng làm chi phí lao động cố định không billable được — dẫn đến margin giảm và cash flow xấu đi trong horizon hiện tại, ảnh hưởng mục tiêu lợi nhuận và thanh khoản.\n\n*Quan trọng:* Utilization phải có denominator rõ (billable hours / available hours). \"Giảm\" mà chưa biết mức hiện tại, tốc độ giảm và mix seniority thì không thể đánh giá mức phơi nhiễm.\n\n---\n\n**R3 — DSO Tăng → Liquidity Delay (Financial / Cash)**\n\n> Do DSO đang tăng (mức hiện tại và trend chưa rõ), AR tích lũy nhanh hơn collection — dẫn đến cash inflow trễ, tăng nhu cầu working capital và có thể vi phạm cash covenant nếu có, ảnh hưởng mục tiêu thanh khoản.\n\n*Cần phân biệt:* DSO tăng do milestone acceptance chậm, tranh chấp, hay thói quen thanh toán khách hàng — cơ chế điều trị khác nhau hoàn toàn.\n\n---\n\n**R4 — AI Benefit Overstatement → Báo cáo sai, Quyết định đầu tư sai (Governance & reputation / Financial)**\n\n> Do ban dự án ghi nhận 25% tăng lợi nhuận từ AI mà chưa có baseline effort, chưa tách T&M / fixed-price, chưa đo freed capacity hoặc avoided cost thực sự, có thể xảy ra overstated forecast được HĐQT duyệt — dẫn đến quyết định đầu tư / resource sai và kỳ vọng cổ đông không thực tế, ảnh hưởng mục tiêu lợi nhuận và tin cậy báo cáo.\n\n*Đây là rủi ro quản trị, không chỉ là rủi ro dự án:* nếu HĐQT phê duyệt kế hoạch dựa trên con số chưa kiểm, trách nhiệm và liability sẽ cao hơn sau này.\n\n---\n\n**R5 — Thiếu Approved Appetite & Horizon → Không thể Quản trị (Governance)**\n\n> Do chưa có phương pháp assessment, horizon và ngưỡng appetite được phê duyệt, không thể xác định liệu mức phơi nhiễm hiện tại có trong appetite hay không — HĐQT không có căn cứ ra quyết định escalation, exception hoặc treatment có thẩm quyền cho bất kỳ rủi ro nào.\n\n*Đây là gap quản trị cần giải quyết trước khi risk profile có thể được dùng để quyết định.*\n\n---\n\n**R5 — Key Person / Attrition trong bối cảnh AI Transition (People & organization)**\n\n> (Candidate cần điều tra thêm) Nếu AI thay đổi task mix và skill yêu cầu, attrition hoặc mismatch skill có thể xảy ra — ảnh hưởng delivery và SLA. Chưa đủ dữ liệu để đánh giá mức độ.\n\n---\n\n### 3. Thông tin bắt buộc phải hỏi thêm\n\nNhóm theo mức độ ảnh hưởng đến kết luận:\n\n**Nhóm A — Thay đổi được kết luận về phơi nhiễm doanh thu:**\n1. Điều kiện hủy của 20 tỷ: thông báo tối thiểu bao lâu, có penalty không, ai có quyền hủy?\n2. Win rate lịch sử theo sales stage/loại khách hàng để hiệu chỉnh con số 40% của sales.\n3. Phân bổ pipeline 120 tỷ theo stage (early, proposal, negotiation) và khách hàng.\n4. Customer concentration: Top 3–5 khách hàng chiếm bao nhiêu % backlog và pipeline?\n5. Có deal nào trong pipeline đã chuyển thành signed nhưng vẫn đang đếm trong cả hai không?\n\n**Nhóm B — Cần để đánh giá AI benefit:**\n6. Mix hợp đồng T&M / fixed-price / managed service của backlog 80 tỷ (theo giá trị).\n7. Baseline effort đã đo trên loại task nào? Phương pháp đo, period và ai xác nhận?\n8. Rework rate sau khi dùng AI, chi phí license/tool AI và chi phí review/QA bổ sung.\n9. Output được khách hàng chấp nhận chưa, hay mới ở proof-of-concept nội bộ?\n10. Freed capacity dự kiến dùng vào đâu — có demand và contract tương ứng không?\n\n**Nhóm C — Cần để thiết kế phương pháp assessment:**\n11. Horizon báo cáo HĐQT muốn dùng (1 năm? 3 năm?).\n12. Denominator materiality: doanh thu, EBITDA, hay cash headroom — và kỳ tính?\n13. Utilization hiện tại là bao nhiêu %, denominator là gì (available hours), và tốc độ giảm trong bao nhiêu tháng?\n14. DSO hiện tại so với lịch sử; AR aging; có khoản tranh chấp không?\n15. Cash headroom và covenant hiện có (nếu có vay).\n\n---\n\n### 4. Điều skill này không làm và lý do\n\n| Không làm | Lý do |\n|---|---|\n| Không đặt ngưỡng appetite (ví dụ \"utilization < X% là breach\") | Chưa có phương pháp được duyệt; ngưỡng phải do đúng thẩm quyền phê duyệt |\n| Không xếp hạng R1–R5 theo mức độ nghiêm trọng | Chưa có scale impact/likelihood được duyệt cho doanh nghiệp này |\n| Không xác nhận con số 48 tỷ weighted là kế hoạch an toàn | Chưa có hiệu chỉnh win rate |\n| Không chứng nhận 25% effort saving dẫn đến 25% lợi nhuận | Cơ chế truyền dẫn chưa được kiểm; benefit chưa xác định |\n| Không kết luận rủi ro nào là \"trọng yếu nhất\" | Chưa có materiality threshold được phê duyệt |\n\n---\n\n`★ Insight ─────────────────────────────────────`\nBa điểm dễ nhầm nhất trong case này: (1) cộng weighted pipeline vào committed backlog — đây là lỗi cấu trúc, không phải ước tính thận trọng; (2) dùng effort saving (%) trực tiếp làm profit impact (%) — bỏ qua toàn bộ bước freed capacity → commercial conversion; (3) không phân biệt DSO tăng do dispute (kiểm soát được) vs. khách hàng chậm trả cơ cấu (kiểm soát khó hơn) — cơ chế điều trị hoàn toàn khác nhau.\n`─────────────────────────────────────────────────`\n\n---\n\n**Hành động đề nghị cho HĐQT:** Trước khi phê duyệt risk profile, cần ra quyết định về (a) horizon và phương pháp assessment, (b) ai có thẩm quyền phê duyệt appetite, và (c) yêu cầu ban dự án cung cấp bằng chứng baseline và cơ chế truyền dẫn AI benefit trước khi ghi vào kế hoạch tài chính. Toàn bộ risk profile hiện tại là **DRAFT — chưa đủ căn cứ để kết luận trạng thái appetite**."
+      },
+      {
+        "id": "R06-DEFINED",
+        "prompt": "Dữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Làm reverse stress riêng cho suy giảm sản lượng, giá và chi phí giữ nguyên. Điều kiện thất bại của bài tập là lợi nhuận thấp hơn 20000; bằng 20000 chưa thất bại. Đây chỉ là điều kiện bài tập, chưa phải appetite đã duyệt. Tính ranh giới, kiểm tra hai phía và giải thích giới hạn. Chỉ trả lời trong chat, không sửa nguồn hoặc cài đặt.",
+        "started_at": "2026-09-04T03:05:55.487900+00:00",
+        "exit_code": 1,
+        "stop": null,
+        "invocation": "explicit file-loaded candidate; native behavior, not implicit discovery",
+        "trace_sha256": "27922e4bb62aaab2b523288cfdb6298d04db00d8d0fc16d126aa57df78edcc07",
+        "iteration": "native-finalcheck",
+        "status": "NOT_COMPLETED_SESSION_LIMIT",
+        "review": "Final frozen-source run. Service reset message is evidence of incomplete execution, not a product PASS.",
+        "answer_sha256": "41d90e72cf6b02f715e85f037f4d7acf62bb28f23d0431d6612b031cdb3c39d0",
+        "source_differences_from_packaged_candidate": {},
+        "reads": [
+          "SKILL.md",
+          "references/scenarios-portfolio.md",
+          "industry-packs/fmcg.md"
+        ],
+        "tool_summary": {
+          "calls": 4,
+          "bash_calls": 1,
+          "error_results": 0
+        },
+        "selected_execution_outputs": [],
+        "answer": "You've hit your session limit · resets 2:30pm (Asia/Saigon)"
+      }
+    ],
+    "iteration_history": [
+      {
+        "iteration": "native",
+        "case": "I01",
+        "exit_code": 1,
+        "stop": null,
+        "trace_sha256": "63d11656338f0554df39f81d6eda5e69dcced2b95e05b787fcf42f675bf7da5a",
+        "classification": "NOT_RUN_AUTH_CONTEXT: sandbox login unavailable; escalated auth subsequently verified"
+      },
+      {
+        "iteration": "native",
+        "case": "I02",
+        "exit_code": 1,
+        "stop": null,
+        "trace_sha256": "afa0a05ba8c9e671f1fd98b58bb30424a5c2b402c4db39ccf1b4044773860c41",
+        "classification": "NOT_RUN_AUTH_CONTEXT: sandbox login unavailable; escalated auth subsequently verified"
+      },
+      {
+        "iteration": "native",
+        "case": "R06-DEFINED",
+        "exit_code": 1,
+        "stop": null,
+        "trace_sha256": "b1b355d762760e418b891a7e49fa4763fabbd10bfba2f3511c04911f5590aec8",
+        "classification": "NOT_RUN_AUTH_CONTEXT: sandbox login unavailable; escalated auth subsequently verified"
+      },
+      {
+        "iteration": "native",
+        "case": "R06-MISSING",
+        "exit_code": 1,
+        "stop": null,
+        "trace_sha256": "fdbece958337cadd3ac81d95360bf2e1eaa46724977e40cfc58fa191e1b79826",
+        "classification": "NOT_RUN_AUTH_CONTEXT: sandbox login unavailable; escalated auth subsequently verified"
+      },
+      {
+        "iteration": "native-candidate",
+        "case": "I01",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "29cf6e1cc45765cfd615e2606798bf94c7473978eac2b1c8eff9046714e2ba5d",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-candidate",
+        "case": "I02",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "2dd2b6ccdf8efe1d659b988ab98f2d65397cfc3362d2469d42d1daf5f5641dfc",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-candidate",
+        "case": "R06-DEFINED",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "028de94b35f44811e7817b21db14df7f044803aea046127cdbc70a786dc8d6b0",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-candidate",
+        "case": "R06-MISSING",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "5cd5212447a668320e97e09b82c147974ffe29ac6d50c3d83f91de3065791f8b",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-closure",
+        "case": "I01",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "693317b26268461a89c4655d84cf2a95390dfe6557ce92ad8027b818452a5e3d",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-closure",
+        "case": "I02",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "8fdd9589382989e537db38ac966ba20501bb4a6d1f4321535153f42c967be53a",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-closure",
+        "case": "R06-DEFINED",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "425a07c9d66b74a9a952898f26f8423fa03542ae4eca6bf72353fcebe8af7c91",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-closure",
+        "case": "R06-MISSING",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "75ba0a94951d54dd95c5a2c96b604c8874685db4076c304f03442fa52f757739",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-final",
+        "case": "I01",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "5288d2cfc715312b09391c112e0f25ff86f2eae0a201e4cb7ce2df6b0d36fb7f",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-final",
+        "case": "I02",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "d92056d745d14fe008d5504ce01008bc841ef0a22daa52deb8fbc08372acf700",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-final",
+        "case": "R06-DEFINED",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "23e8e622fc9f3f0cafda3d2897aca94edf0466a264c68118d5d666c95c1ba646",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-final",
+        "case": "R06-MISSING",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "8c4e4324cd5e4204339a1f316eef90d2c12ca0b63d6f58b3b14084dc2e53e435",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-finalcheck",
+        "case": "I02",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "171410c69ed4998a08c943a1bc8ed6e49b053f93215216f26f7ccdd7501e1e79",
+        "classification": "See final cases; no PASS inferred from exit status"
+      },
+      {
+        "iteration": "native-finalcheck",
+        "case": "R06-DEFINED",
+        "exit_code": 1,
+        "stop": null,
+        "trace_sha256": "27922e4bb62aaab2b523288cfdb6298d04db00d8d0fc16d126aa57df78edcc07",
+        "classification": "See final cases; no PASS inferred from exit status"
+      },
+      {
+        "iteration": "native-meaning",
+        "case": "R06-DEFINED",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "0ca7b25b2cf08cb2b5ec47b9e858626571b41c8df7c5333f88e2f6c54b317a37",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-method",
+        "case": "I02",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "2b36e3040dba484a3f822b0867d0a98bb4216ea26df56bbf0db2b7cde450175b",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-method",
+        "case": "R06-MISSING",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "c73b1c1faf3c27986ff63068ea8ff10db525224080a1edc866b1ae7035281347",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-retry",
+        "case": "I02",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "b67cb85872f0f25d96cd77dc9401444b29b57188c85bbfa96dbf89cbcfacfc8a",
+        "classification": "EXCLUDED_WRONG_VERSION: global 0.1.3 selected instead of candidate"
+      },
+      {
+        "iteration": "native-runtime",
+        "case": "I01",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "b2cdc2aa1a36870813ac20a90d1a751c35fcb29d8607139309792388dd00c917",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      },
+      {
+        "iteration": "native-runtime",
+        "case": "R06-DEFINED",
+        "exit_code": 0,
+        "stop": null,
+        "trace_sha256": "8fd2b7a076ed2b6f1bbe948ee6ee96d53b4f96d0c7e327d78bb75a08480140a1",
+        "classification": "Development iteration; no blanket PASS. Selected failures and scoped results above."
+      }
+    ],
+    "evidence_retention": "Selected visible answers, tool outputs and hashes retained. Repeated Read reference text and internal reasoning omitted; temporary raw traces removed after evidence extraction. Excerpts do not establish correctness of omitted content.",
+    "other_platforms": {
+      "chatgpt_web_0_1_4": "NOT_RUN",
+      "claude_installed_0_1_4": "NOT_RUN; existing global 0.1.3 unchanged",
+      "claude_web": "NOT_RUN",
+      "chatgpt_desktop": "NOT_RUN"
+    },
+    "next_run": "No further Claude testing planned or scheduled, per user instruction. Preserve R05 failure and incomplete R06 reverse-stress case; do not infer acceptance or PASS.",
+    "user_instruction": "kiểm vậy trên claude là đủ rồi, không cần tiếp tục kiểm thêm"
+  }
+}

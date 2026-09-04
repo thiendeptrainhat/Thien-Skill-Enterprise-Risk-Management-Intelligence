@@ -1,0 +1,8 @@
+interface:
+  display_name: "Thiện's Skill — Enterprise Risk Management Intelligence"
+  short_description: "ERM, appetite, scenario và quyết định điều hành"
+  icon_small: "./assets/icon-128.png"
+  icon_large: "./assets/icon-512.png"
+  default_prompt: "Dùng $thien-skill-enterprise-risk-management-intelligence để đánh giá rủi ro doanh nghiệp và đề xuất quyết định có bằng chứng."
+policy:
+  allow_implicit_invocation: true

@@ -115,7 +115,7 @@ chuyển câu hỏi đa lĩnh vực vượt ERM cho Master Orchestrator khi phù
 - **OUT-02 — Word:** phương pháp, risk profile, báo cáo phân tích và báo cáo ERM.
 - **OUT-03 — PowerPoint:** báo cáo ban điều hành và HĐQT.
 - **OUT-04 — Dashboard:** risk profile, heatmap, appetite utilization, KRI breach,
-  trend, concentration, scenario và treatment progress; công nghệ mặc định chưa chốt.
+  trend, concentration, scenario và treatment progress; mặc định HTML tương tác độc lập, mở offline theo D03.
 - **OUT-05 — Thiết kế:** kết hợp UI/UX Ultra và Creative Diagram theo năng lực thực
   tế; dùng công cụ artifact chuyên dụng để tạo/kiểm tra file Office và chart.
 - **OUT-06 — Nhất quán:** đối soát Risk ID, rating, appetite, KRI, scenario,

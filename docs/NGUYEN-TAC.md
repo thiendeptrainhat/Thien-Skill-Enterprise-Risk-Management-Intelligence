@@ -95,8 +95,8 @@ Không tạo placeholder, thư mục rỗng, bản mẫu hay tài liệu phụ c
 
 ## 6. Kích thước, vòng đời và tài sản
 
-- Ngân sách số file theo thư mục/gói, dung lượng và số dòng theo loại file phải
-  được chốt trong thiết kế trước triển khai; không tự đặt con số chưa được duyệt.
+- Ngân sách đã chốt tại D04 trong Kế hoạch: số file linh hoạt khi mở rộng;
+  dùng mốc đếm/số dòng để rà soát, giữ trần dung lượng và trách nhiệm từng file.
 - Phân biệt mức cảnh báo và mức chặn. Ngoại lệ phải có lý do, người chịu trách
   nhiệm, consumer và thời điểm xem xét lại; không bỏ qua giới hạn một cách ngầm định.
 - Tách source, staging/build, file tạm và dist. Build output phải có thể tái tạo.

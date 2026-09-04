@@ -1,0 +1,560 @@
+{
+  "evaluator_scope": {
+    "case_range": "D001–D040",
+    "case_count": 40,
+    "mode": "Fresh subagent behavioral execution from prompts and locally supplied skill; no intended answers or rubric provided",
+    "inputs": "tests/domain-cases.jsonl, records D001–D040 only; all business data synthetic",
+    "source_basis": "Local prompt, SKILL.md, references and four matching industry packs; source register read as metadata only. No network, installation or external mutations. No current-law conclusions.",
+    "calculation_execution": "python3 -B; directly imported canonical scripts/erm_core.py for relevant arithmetic; Decimal for ratios; outputs inspected and interpreted per case",
+    "review_status": "Actual responses recorded; no PASS/FAIL self-grading. Parent/primary author must review responses against business criteria.",
+    "artifact_limit": "Only qa/domain-001-040.json written by this evaluator."
+  },
+  "independence": "fresh agent, no intended answers supplied; primary author will review",
+  "cases": [
+    {
+      "id": "D001",
+      "response": "Dự thảo universe synthetic cho hai pháp nhân VN/SG, doanh thu nhóm 900 tỷ VND/năm, horizon 12 tháng: L0 chiến lược → L1 danh mục/sản phẩm → L2 lệch công suất với nhu cầu; vận hành → nguồn cung/nhà máy → thiếu nguyên liệu, bottleneck, mất điện; thương mại → cầu/giá → giảm sản lượng hoặc pass-through chậm; tài chính → cash/credit/FX; sản phẩm–an toàn–môi trường → lỗi chất lượng/thu hồi/tai nạn; con người–công nghệ → key person/cyber; pháp lý–quản trị → giấy phép/hợp đồng/báo cáo. Đây là taxonomy ứng viên, chưa là RiskInstance hay rating. Manufacturing chưa đủ để mặc định FMCG. Cần biết sản phẩm, make/buy, site trọng yếu, value chain liên pháp nhân, mục tiêu tăng trưởng đo được, EBITDA/cash/covenants, currency chức năng, top suppliers/customers, incident/control evidence, as-of và thẩm quyền. ERM cùng COO/CFO đề xuất materiality tài chính lẫn an toàn/continuity; trình duyệt rồi mở register cho event trọng yếu đã xác minh. Nguồn: prompt synthetic và references/data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa biết phân ngành, materiality hoặc appetite; không xác nhận risk thực tế, không gán thresholds/rating hoặc nghĩa vụ pháp lý VN/SG.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Khởi tạo taxonomy Manufacturing có phân cấp, giữ VN/SG–900 tỷ–12 tháng, tách taxonomy khỏi RiskInstance; hỏi business model, site, cash/EBITDA, materiality và authority thay vì tự áp FMCG hoặc appetite."
+      }
+    },
+    {
+      "id": "D002",
+      "response": "Universe chăn nuôi DRAFT cho nhóm VN/SG, 900 tỷ VND/năm, 12 tháng: Operations → feed → giá/thiếu/chất lượng thức ăn; Product & welfare → biosecurity → dịch lây giữa site, mortality/culling; External → khí hậu/utility → nóng, mất nước/điện; Commercial → giá đầu ra/buyer concentration; Financial → cash/FX/credit; People/technology/governance → năng lực thú y, dữ liệu đàn và quyền quyết định. RiskInstance ứng viên: do trại chia sẻ vận chuyển hoặc nguồn con giống, tác nhân bệnh có thể truyền giữa đàn trong chu kỳ, làm giảm sản lượng và cash, ảnh hưởng tăng trưởng; đây là giả thuyết. Cần species, cohort/cycle, số đầu đàn, FCR convention, vet/lab records, sites và đường di chuyển, cold chain, doanh thu liên pháp nhân, mục tiêu và sức chịu đựng cash. Head of livestock/vet cùng ERM xác minh materiality theo đàn/site rồi trình methodology/appetite. Nguồn: prompt, industry-packs/livestock.md và data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không có dữ liệu dịch hoặc benchmark doanh nghiệp; không chẩn đoán, không khẳng định nghĩa vụ WOAH/VN/SG và chưa phê duyệt rating.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Universe có feed, biosecurity, welfare, climate/utilities và cash; CEI lây giữa trại được gắn hypothesis, hỏi species/cohort/FCR/vet/site dependency và không kết luận có dịch hay tự duyệt rating."
+      }
+    },
+    {
+      "id": "D003",
+      "response": "Universe food DRAFT, VN/SG, 900 tỷ VND/năm, 12 tháng: Product/safety → contamination/allergen/label/traceability → recall; Supply → nguyên liệu/bao bì/cold-chain → thiếu hoặc hỏng hàng; Commercial → demand/SKU/channel/promotion; Operations → công suất và shelf-life inventory; Financial → margin/working capital/FX/credit; People/technology → vận hành lab, dữ liệu batch/cyber; Governance/legal → accountability, giấy phép/claim/hợp đồng. Tách taxonomy khỏi các event sẽ đưa vào register. Cần biết producer/brand owner/distributor, nhóm thực phẩm, plant và thị trường bán, allergen/cold-chain requirements, lab/complaints/recall test, shelf life, margin/cash và tập trung kênh; xác định as-of, mục tiêu tăng trưởng và approver. QA/food-safety owner xác minh product harm cùng COO/CFO đánh giá materiality; ưu tiên event có thể ảnh hưởng người tiêu dùng dù chi phí nhỏ. Nguồn: prompt, fmcg.md, data-model.md; sources.md chỉ là điểm tìm nguồn, không phải bằng chứng tuân thủ.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa có dữ liệu an toàn hay luật áp dụng cụ thể; không đặt ngưỡng chung, không kết luận sản phẩm an toàn hoặc trong appetite.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Seed food-specific có contamination/allergen/recall, traceability/cold-chain và shelf-life; hỏi vai trò kinh doanh, lab/control evidence, mục tiêu và approver, không suy chất lượng an toàn hoặc appetite đã đạt."
+      }
+    },
+    {
+      "id": "D004",
+      "response": "Universe logistics DRAFT cho hai pháp nhân VN/SG, doanh thu nhóm 900 tỷ VND, horizon 12 tháng: Strategy/commercial → network/client concentration; Operations → fleet/warehouse/port/customs bottleneck và SLA outage; Financial → fuel surcharge lag, cash/credit/FX; Cargo/safety → loss, damage, cold-chain failure; Technology/people → dispatch/visibility outage, thiếu lái xe/nhân sự; External/legal → border disruption, contract/liability exposure. Cần phân biệt asset-heavy, forwarding, 3PL/4PL; loại vận tải, lanes/depots, gross billed revenue so với pass-through charges, capacity thực chứng, top khách/vendor cùng cảng, SLA và claims/insurance, mục tiêu/margin/cash/as-of. Không tạo risk riêng cho mọi chuyến trễ. COO cùng ERM chọn lanes/sites trọng yếu và CEI, CFO xác minh denominator/consolidation; đề xuất materiality/appetite cho cấp có thẩm quyền. Nguồn: prompt, logistics.md và data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "900 tỷ doanh thu chưa cho biết value added hoặc sức chịu đựng; không dùng số liệu UNCTAD chưa đọc và chưa xác định yêu cầu từng tuyến/quốc gia.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Phân biệt asset-heavy/forwarding/3PL, đưa fuel/SLA/network/cargo/common-port vào universe; hỏi gross billed versus pass-through và capacity, chọn lanes/sites theo materiality và chưa đặt ngưỡng."
+      }
+    },
+    {
+      "id": "D005",
+      "response": "Universe công nghệ DRAFT, VN/SG, 900 tỷ VND/năm, horizon 12 tháng: Strategy → product/AI/substitution; Commercial → khách hàng/bill rate/backlog; Delivery → capacity/skills, scope/rework/SLA; Finance → wage/FX, DSO/unbilled và cash; People → attrition/key person; Technology/information → availability, cyber/privacy/IP; Governance → chất lượng quyết định và model/data controls. Trước áp pack outsourcing phải xác định SaaS, product, services hay hybrid. Nếu outsourcing: tách T&M/fixed-price, signed noncancellable/cancellable backlog với unsigned pipeline, utilization denominator, EAC và commercial benefit AI. Cần mục tiêu tăng trưởng, contract/project/customer mix, currency flows, incidents/control evidence, as-of, EBITDA/cash và approver. CTO/COO/CFO cùng ERM sàng lọc event material rồi khởi tạo register; chưa gán rating hoặc appetite. Nguồn: prompt, data-model.md; it-outsourcing.md dùng có điều kiện theo business model.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Technology company không đồng nghĩa IT outsourcing; không coi weighted pipeline là cam kết hoặc effort saving AI là lợi ích đã hiện thực.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không đồng nhất technology với outsourcing; universe bao phủ chiến lược, delivery, people, cyber/IP/cash và chỉ dùng backlog/T&M/fixed-price/AI khi đúng business model. Các dữ kiện trọng yếu và authority được yêu cầu."
+      }
+    },
+    {
+      "id": "D006",
+      "response": "Universe dịch vụ tài chính DRAFT cho VN/SG, 900 tỷ VND/năm, 12 tháng: Strategy → sản phẩm/tăng trưởng; Financial → credit/counterparty, market/FX/rate, liquidity/funding và capital capacity; Operations → payment/settlement/custody hoặc claims tùy mô hình; Customer/legal → conduct, fraud, privacy và license scope; Technology → outage/cyber/model/data; Governance → concentration, delegation và reporting. Phải hỏi loại hình bank/lender/insurer/broker/fintech, giấy phép và regulator của mỗi entity, exposures/balance sheet, obligations/capital/cash, maturity mismatch, intercompany support và mục tiêu tăng trưởng. Doanh thu không thay được capital/liquidity denominator. CRO/CFO xây value chain và nguồn nội bộ, legal/regulatory expert xác minh nghĩa vụ cụ thể; chỉ sau đó đề xuất materiality, thang và appetite để đúng cấp duyệt. Nguồn: prompt và nhánh ngành khác trong SKILL.md/data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Đây là seed theo mô hình kinh doanh, chưa kiểm tra luật hoặc tiêu chuẩn tài chính hiện hành; không mượn thresholds sáu ngành và không tuyên bố regulatory compliance.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Thích ứng ngành ngoài sáu packs bằng value chain/capital/liquidity, hỏi loại financial service và giấy phép từng entity; không dùng doanh thu thay capacity hoặc tự khẳng định luật/threshold bắt buộc."
+      }
+    },
+    {
+      "id": "D007",
+      "response": "Universe tập đoàn DRAFT, hai entity VN/SG, doanh thu nhóm 900 tỷ VND/năm, 12 tháng: Group strategy → phân bổ vốn/M&A/portfolio concentration; Financial → liquidity/FX/credit/intercompany guarantees; Operations → shared supplier/site/port; Technology/people → shared platforms/key capability; Governance → delegation/consolidated reporting và conflicts; Product/safety/legal → các ràng buộc riêng từng BU. Các ngành chưa biết nên cần taxonomy core cộng pack theo BU thật sự, không một rating cho mọi node. Hỏi BU/value chains, pháp nhân sở hữu exposures, consolidation boundary, currency và internal transfers/guarantees, mục tiêu tăng trưởng từng đơn vị, cash capacity và dependencies. Group ERM/CFO lập entity–risk–dependency map, khử trùng economic loss và intercompany trước group view; đề xuất materiality nhóm lẫn entity để duyệt. Nguồn: prompt, data-model.md/scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa biết cấu trúc ngành hoặc lợi ích đa dạng hóa; không cộng rating ordinal, không giả định hai entity độc lập hay cộng loss nội bộ như loss nhóm.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Universe cấp tập đoàn bao gồm capital allocation, guarantees, shared platforms và consolidation; yêu cầu BU/entity/dependency và giữ rule khử trùng loss/intercompany, không cộng ordinal hoặc suy độc lập."
+      }
+    },
+    {
+      "id": "D008",
+      "response": "Universe startup DRAFT cho VN/SG, 900 tỷ VND/năm, 12 tháng: Strategy → product–market fit/scaling; Commercial → unit economics/customer concentration/churn; Financial → burn/runway/funding/collections; Operations → capacity khi tăng trưởng; People → founder/key person/hiring; Technology → reliability/cyber/AI/data; Legal/governance → ownership/contracts/delegation. Startup mô tả giai đoạn, không xác định ngành; cần hỏi business model, funding và restrictions cash, monthly burn, profitable cohorts, CAC/payback nếu phù hợp, committed versus hoped-for pipeline, mục tiêu tăng trưởng và ownership của quyết định. CFO/founder cùng ERM lập downside cash và capacity scenarios trước khi chọn growth exposure; trình materiality/appetite, chưa tự phê duyệt. Nguồn: prompt, data-model.md và assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "900 tỷ doanh thu không chứng minh runway dài hay startup rủi ro thấp; thiếu cash/industry/as-of nên chưa rating, không đặt burn/runway limits chung.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Startup được xem là giai đoạn chứ không tự gán ngành; yêu cầu cash/burn/funding/unit economics và decision ownership, đề xuất downside cash trước growth appetite và không suy sức chịu đựng từ doanh thu."
+      }
+    },
+    {
+      "id": "D009",
+      "response": "Universe DRAFT cho công ty đại chúng, VN/SG, 900 tỷ VND/năm, 12 tháng: taxonomy theo value chain của ngành thực tế; bổ sung Governance → board/delegation/disclosure/data integrity; Financial → funding, liquidity, concentration; Strategy/commercial → tăng trưởng/market; Technology/people → availability/key capability; Legal → listing/reporting obligations cần xác minh. 'Public company' không phải ngành và không chứng minh niêm yết cả hai nước. Cần nơi/cơ chế niêm yết, entity phát hành, business segments/sites, kỳ công bố/as-of, mục tiêu tăng trưởng, cash/covenants, materiality và authority, lịch sử restatement/incidents và evidence controls. Company secretary/CFO phối hợp ERM xác minh scope và exposure, đưa CEI material vào register rồi trình methodology/appetite. Nguồn: prompt và data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa biết sàn hay regulator; không kết luận nghĩa vụ disclosure, không đồng nhất kế toán materiality với mọi tiêu chí ERM.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Phân biệt public-company status với ngành và nơi niêm yết; seed governance/disclosure có điều kiện, hỏi issuer/venue/as-of/materiality và giữ legal duties chưa xác minh."
+      }
+    },
+    {
+      "id": "D010",
+      "response": "Universe DRAFT cho regulated company VN/SG, 900 tỷ VND/năm, horizon 12 tháng: Strategy/commercial → tăng trưởng trong phạm vi license; Legal/regulatory → license conditions, reporting, product/service restrictions; Operations/safety → service failure hoặc harm; Financial → cash/capital/credit nếu liên quan; Technology/data → availability/security; People/governance → chuyên môn được yêu cầu, accountabilities và reporting reliability. Phải hỏi ngành, sản phẩm, từng license/địa bàn hoạt động và cơ quan có thẩm quyền, event có thể đình chỉ hoạt động, khách hàng bị ảnh hưởng, financial/operating capacity, control evidence và as-of. ERM giữ CEI/materiality; legal/compliance xác minh obligation register theo từng entity, rồi decision owner duyệt appetite trong các ràng buộc được xác nhận. Nguồn: prompt, SKILL.md nhánh ngành khác và assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Regulated là thuộc tính, không là ngành; chưa có legal research nên không xác định mức phạt/ngưỡng hay suy appetite cho phép vi phạm nghĩa vụ bắt buộc.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Regulated được xử lý như thuộc tính cần xác định ngành/license/jurisdiction; universe gắn operational harm và financial capacity, yêu cầu obligation verification và authority, không tự cho phép vi phạm qua appetite."
+      }
+    },
+    {
+      "id": "D011",
+      "response": "Chưa nên tạo enterprise RiskInstance riêng chỉ từ PO này. 3 triệu/900 tỷ = khoảng 0,000333% doanh thu; tỷ lệ là thông tin quy mô, không phải ngưỡng materiality đã duyệt. PO thiếu chữ ký đã sửa trước thanh toán nên ghi process exception/near miss và evidence khắc phục; chưa có bằng chứng financial loss. Cần kiểm tra đây có phải mẫu lặp, bypass có chủ ý, vendor liên quan hoặc sự cố ở control trọng yếu. Nếu có pattern/systemic exposure, nối observation vào risk 'phê duyệt mua hàng bị vô hiệu hóa gây chi tiêu ngoài thẩm quyền' ở cấp phù hợp; process owner xác minh population và ERM sàng lọc materiality. Nguồn: prompt, data-model.md và controls-kri.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: Python Decimal(3000000)/Decimal(900000000000)*100 = 0.0003333333…%"
+      ],
+      "limitations": "Không suy việc sửa xong chứng minh toàn bộ control hiệu quả; thiếu pattern/fraud/context, không đồng nhất PO value với loss.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không nâng PO exception đã sửa thành enterprise risk riêng; tỷ lệ 3 triệu/900 tỷ = 0,000333333% được kiểm lại, giữ kiểm tra pattern/bypass/key-control trước materiality và không coi PO value là loss."
+      }
+    },
+    {
+      "id": "D012",
+      "response": "'Thiếu nhân sự bảo trì' hiện là cause/exposure, chưa đủ risk statement. Đề xuất giả thuyết: do năng lực bảo trì thấp hơn nhu cầu của thiết bị trọng yếu, preventive maintenance có thể trễ và thiết bị dừng ngoài kế hoạch trong horizon cần xác nhận, gây hụt sản lượng/contribution và trễ giao hàng, ảnh hưởng mục tiêu sản xuất. Cần asset/site, backlog bảo trì, failure/downtime records, spare/backup và công suất thay thế, horizon, exposure và COO/maintenance owner. Ghi cause tại đúng role, chỉ mở RiskInstance cho event material sau xác minh; không biến mọi vacancy thành enterprise risk. Nguồn: prompt, data-model.md, controls-kri.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa chứng minh thiếu người là nguyên nhân đủ hoặc đã có outage; không gán tổn thất/xác suất/rating.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận ra thiếu nhân sự là cause, viết CEI có event downtime và impact sản lượng/contribution, nêu hypothesis và yêu cầu asset/backlog/evidence/horizon trước tạo risk material."
+      }
+    },
+    {
+      "id": "D013",
+      "response": "'EBITDA giảm' là impact, chưa xác định risk event. Giữ làm objective/impact đang cần giải thích; không tự coi là cause. Các giả thuyết cần tách theo evidence: unit input cost tăng vượt pass-through; mất volume do khách rời; hoặc downtime làm giảm output. CFO/owner đối soát price–volume–mix–cost bridge và kỳ ngân sách/thực tế, nối đúng cause → event → EBITDA impact và cash implications. Hỏi số giảm, entity/horizon, baseline, one-off/method changes và controls. Sau đó tạo một hoặc nhiều RiskInstance theo event/owner/treatment thực, liên kết cùng impact có khử trùng. Nguồn: prompt, data-model.md và scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không có dữ liệu driver hay baseline; các CEI là hypotheses, chưa là finding hoặc forecast.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Xác định EBITDA giảm là impact, yêu cầu price–volume–mix–cost bridge và event/horizon để tìm cause; các cơ chế được giữ là giả thuyết và không tạo tổn thất/probability không có dữ liệu."
+      }
+    },
+    {
+      "id": "D014",
+      "response": "R1 và R2 cùng supplier/site/event cho thấy hai mô tả của một causal chain: thiếu chip → nhà máy dừng → loss L1. Đề xuất một RiskInstance canonical với cause thiếu chip, event thiếu supply vượt buffer/dừng sản xuất tùy event boundary đã chốt; giữ R1/R2 như alias/history hoặc quan hệ cause–consequence nếu owner/treatment cần theo dõi riêng. Dù cách trình bày nào, L1 chỉ cộng một lần: 12 tỷ VND, không 24 tỷ. ERM/owners xác nhận scope, horizon, amount/currency và loss ID, giữ links cho cả views rồi ghi quyết định merge có traceability. Nguồn: prompt, data-model.md/scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: Python Decimal deduplication [('L1',12),('L1',12)] => 12 tỷ VND"
+      ],
+      "limitations": "Phép tổng 12 tỷ giả định hai dòng thực sự cùng economic loss như prompt; thiếu horizon/period nên chưa tổng hợp với losses khác.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện một causal chain với loss L1 chung, đề xuất canonical risk hoặc links có traceability, tính L1 một lần 12 tỷ thay vì 24 tỷ và kiểm tra currency/horizon trước aggregation rộng hơn."
+      }
+    },
+    {
+      "id": "D015",
+      "response": "'Rủi ro thị trường' phù hợp làm taxonomy topic, chưa đủ RiskInstance. Cần segment/SKU/channel/customer/geography, driver cụ thể, event horizon và mục tiêu. Một CEI dự thảo có điều kiện: nếu nhu cầu phân khúc A giảm hoặc đối thủ hạ giá, net volume/price của sản phẩm B có thể thấp hơn kế hoạch trong 12 tháng, làm giảm contribution và cash phục vụ tăng trưởng. Chưa có A/B/horizon được cung cấp nên đây chỉ mẫu điền, không fact. Commercial owner cung cấp demand/price/market-share và margin evidence; ERM tách demand, pricing hoặc concentration khi event/treatment khác và sàng lọc materiality. Nguồn: prompt và data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không tự chọn thị trường hoặc định lượng loss/probability từ tên topic.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ thị trường là taxonomy topic, yêu cầu segment/driver/event/objective và chỉ dùng CEI minh họa có nhãn giả định; không biến chủ đề chung thành rating hoặc xác suất cụ thể."
+      }
+    },
+    {
+      "id": "D016",
+      "response": "Theo inputs synthetic và giả định cùng đơn vị tiền/kỳ: baseline profit = (100−60)×1.000−10.000 = 30.000. Cost tăng 10 đơn vị/unit, pass-through 50% làm price mới 105, cost 70; volume mới 900. Scenario profit = (105−70)×900−10.000 = 21.500; profit change = −8.500. CEI: input cost tăng nhưng chỉ chuyển nửa mức tăng vào giá cùng volume giảm → contribution bị ép → hụt mục tiêu lợi nhuận. Commercial/CFO nên so phương án giá, sourcing và mix với no-action baseline, kiểm tra demand response và lag trước quyết định. Nguồn: prompt, scenarios-portfolio.md và calculator pass_through.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: erm_core.pass_through(100,1000,60,10000,10,0.5,-0.1): baseline profit=30000, scenario=21500, change=-8500"
+      ],
+      "limitations": "Cost tăng 10 hiểu là absolute/unit, không 10%; currency/horizon chưa cho; đây là scenario với volume response do đề bài cung cấp, chưa forecast elasticity.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Phép tính độc lập xác nhận baseline profit 30.000, scenario price105/cost70/volume900, profit21.500 và change−8.500; response nối mechanism cost/pass-through/volume và nêu đơn vị/horizon/elasticity giả định."
+      }
+    },
+    {
+      "id": "D017",
+      "response": "Nếu contribution và costs dùng cùng đơn vị tiền/kỳ, shortage = max(1.000−800,0) = 200 units. Lost contribution = 200×40 = 8.000; cộng recovery cost 2.000 và penalty 1.000 cho incremental loss 11.000. CEI: thiếu nguyên liệu hạ capacity dưới demand → không phục vụ 200 units → mất contribution/phát sinh phục hồi và phạt, ảnh hưởng service và lợi nhuận. Supply/operations owner xác minh buffer, thời gian thiếu hàng, lượng có thể backorder/reroute và capacity thực chứng; CFO kiểm tra incremental buckets để so alternate sourcing hoặc recovery với no-action. Nguồn: prompt, scenarios-portfolio.md và disruption calculator.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: erm_core.disruption(1000,800,40,2000,1000): lost_units=200, incremental_loss=11000"
+      ],
+      "limitations": "Hiểu recovery 2.000 là chi phí phục hồi, không khoản thu hồi; chưa biết currency/horizon và đơn trễ có mất vĩnh viễn hay chỉ dời kỳ, không cộng lost revenue lần nữa.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Tính đúng shortage200, contribution loss8.000 và total11.000 khi recovery/penalty là incremental costs; không cộng lost revenue, đồng thời hỏi backorder/timing và capacity để giới hạn kết luận."
+      }
+    },
+    {
+      "id": "D018",
+      "response": "2 complaints/100.000 units = 2 trên 100.000, tương đương 0,002%; đây là complaint rate quan sát, không defect probability hoặc xác suất gây hại. Certificate supplier còn hiệu lực là evidence thiết kế/chứng nhận, chưa chứng minh chất lượng batch hiện tại hay OE. CEI giả thuyết: nguyên liệu không đạt yêu cầu có thể đi vào thành phẩm, gây rework/recall hoặc harm. QA cần trace complaints tới batch, kiểm tra severity, complaint capture và lab sampling; theo mức nguy hại, người có thẩm quyền cân nhắc containment trong khi xác minh, ưu tiên xử lý nhanh chứ không chờ đủ số complaint. Nguồn: prompt, fmcg.md và controls-kri.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: Python Decimal(2)/100000*100 = 0.002%"
+      ],
+      "limitations": "Lab chưa xác nhận; không kết luận contamination hoặc sản phẩm an toàn từ tỷ lệ thấp/chứng nhận, chưa đủ đánh giá rating.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Complaint rate 2/100.000=0,002% được kiểm lại; phân biệt complaint signal với defect/harm probability, certificate với OE/batch evidence, và đề xuất trace/lab/severity triage thay vì khẳng định an toàn."
+      }
+    },
+    {
+      "id": "D019",
+      "response": "Loss synthetic theo các buckets incremental không trùng đã cho: recall = 100×50 = 5.000; rework = 1.000×0,1×5 = 500; incident = 2.000. Tổng = 7.500 đơn vị tiền. CEI: lỗi thành phẩm dẫn tới rework/recall, tạo chi phí 7.500 trong scope đề bài và đe dọa quality/cash objectives. QA/operations xác định cause, batch boundary, traceability và kiểm chứng containment; CFO đối soát loss IDs/costs. Theo dõi riêng prospective reputation/service/harm nếu có evidence, không tự gán giá trị vào tổng. Nguồn: prompt, fmcg.md, quality calculator trong scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: erm_core.quality(1000,0.1,5,100,50,2000): recall=5000, rework=500, incremental_loss=7500"
+      ],
+      "limitations": "Currency/horizon và nguyên nhân chưa cho; không coi 7.500 là all-in enterprise impact vì chưa có downtime/harm/brand evidence.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Tính độc lập khớp recall5.000 + rework500 + incident2.000 =7.500; giữ buckets không trùng và không tự thêm reputation/harm/downtime vào tổng chưa có bằng chứng."
+      }
+    },
+    {
+      "id": "D020",
+      "response": "Closing cash = 20+8−30 = −2 tỷ VND: thiếu nguồn 2 tỷ ở cuối kỳ được mô hình hóa. Runway trên cash khả dụng sau waterfall = max(−2,0)/5 = 0 tháng; không dùng −0,4 tháng như thời gian tồn tại thực. Opening cash/burn = 20/5 = 4 tháng chỉ là phép nhìn tiền đầu kỳ độc lập, bỏ qua các cash flows đã cho nên không thể thay kết luận thiếu 2 tỷ. Treasury/CFO cần lịch inflow/outflow theo ngày, cash restrictions, committed facilities và payment priorities để xác định thời điểm hụt và đề xuất funding/collections/deferral cho người có thẩm quyền. Nguồn: prompt, scenarios-portfolio.md, cash_waterfall.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: erm_core.cash_waterfall(20,[8],[30],5): closing=-2, shortfall=2, runway=0; Decimal(20)/5=4"
+      ],
+      "limitations": "Kỳ waterfall chưa xác định; chưa có approved appetite/floor nên không gắn trạng thái breach appetite, dù shortfall số học đã rõ. Burn tương lai giả định ổn định và không đếm lặp outflows.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Tính closing−2 tỷ và shortfall2 đúng; runway khả dụng sau waterfall bằng0 thay vì thời gian âm, đồng thời tách opening-only4 tháng và yêu cầu cash timing/committed facilities. Không tự gán appetite breach khi chưa có floor."
+      }
+    },
+    {
+      "id": "D021",
+      "response": "Với eligible collateral 20 tỷ được trừ khỏi gross 100 tỷ: net exposure = max(100−20,0) = 80 tỷ VND; expected loss = 80×0,1×0,5 = 4 tỷ cùng horizon. CEI: đối tác không thực hiện nghĩa vụ có thể tạo loss trên exposure không được thu hồi, ảnh hưởng earnings/cash. Đây là model output conditional inputs, không phải realized loss hay worst case. Credit/CFO kiểm tra collateral eligibility/haircut/khả năng thu hồi, PD horizon và LGD basis: nếu LGD đã phản ánh đúng collateral 20 tỷ thì phải bỏ bước trừ trùng hoặc sửa basis trước sử dụng. Phân tích thêm concentration và collection delay rồi so approved limits khi có. Nguồn: prompt, scenarios-portfolio.md/credit.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: erm_core.credit(100,20,0.1,0.5): net_exposure=80, expected_loss=4.00 tỷ"
+      ],
+      "limitations": "PD/LGD calibration và collateral basis chưa có provenance; không suy breach hoặc net collateral recovery chắc chắn.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Net exposure80 tỷ và conditional EL4 tỷ khớp tính độc lập; phân biệt expected/realized/worst-case, kiểm tra PD horizon và LGD-collateral basis để tránh khấu trừ collateral hai lần."
+      }
+    },
+    {
+      "id": "D022",
+      "response": "Mất 2 điểm phần trăm thị phần không tự chứng minh doanh thu tuyệt đối hoặc lợi nhuận giảm. Nếu thị trường gốc là M, share gốc s và cùng basis giá trị/volume, sales gốc=sM; sales mới=(s−0,02)×1,2M; delta=M(0,2s−0,024). Delta bằng 0 khi s=12%; cao/thấp hơn 12% cho tăng/giảm tuyệt đối theo giả định đó. CEI cần kiểm tra: cạnh tranh làm share giảm, nhưng tác động mục tiêu phụ thuộc market growth, realized price/mix và margin. Commercial/CFO cung cấp share gốc, market measurement, currency/kỳ, net margin/cost và customer evidence trước rating hoặc response về giá. Nguồn: prompt và data-model.md/scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: Python Decimal('0.024')/Decimal('0.2') = 0.12 (share hòa vốn)"
+      ],
+      "limitations": "Không biết share ban đầu hoặc net margin; không tính profit loss, không coi tăng sales là tăng profit và không tự coi thị trường thống kê đồng nhất với exposure công ty.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không suy giảm doanh thu/lợi nhuận chỉ từ mất2pp share; delta=M(0,2s−0,024) và điểm hòa vốn s12% đúng khi cùng basis. Response giữ net margin/share gốc là gaps và không kết luận profit loss."
+      }
+    },
+    {
+      "id": "D023",
+      "response": "Khiếu nại nước thải là signal cần xác minh, chưa chứng minh vượt chuẩn hoặc vi phạm. CEI giả thuyết: kiểm soát xử lý nước thải không bảo đảm có thể dẫn tới xả thải gây hại, gián đoạn hoạt động và ảnh hưởng uy tín/mục tiêu; chưa có event hoặc impact được xác nhận. EHS owner cần địa điểm/quốc gia, loại nguồn thải/giấy phép, thời gian và mô tả complaint, dữ liệu vận hành và kết quả lấy mẫu hợp lệ; ưu tiên chuyên gia đánh giá khả năng harm và biện pháp containment phù hợp. Legal chỉ xác định obligation/notification sau jurisdiction và fact verification. Nguồn: prompt, data-model.md và controls-kri.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không có nước áp dụng hoặc kết quả đo; chưa research pháp luật, không kết luận compliance/noncompliance, mức phạt hay xác suất gây hại.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Xem khiếu nại là signal chưa xác minh, yêu cầu địa điểm/jurisdiction/đo đạc và EHS triage; CEI được gắn giả thuyết, không kết luận vi phạm/chuẩn/phạt khi thiếu pháp luật và evidence."
+      }
+    },
+    {
+      "id": "D024",
+      "response": "Uptime giảm là dấu hiệu suy giảm availability đã quan sát; alert là signal an ninh chưa xác nhận intrusion. Tách incident availability khỏi hypothesis cyber cause. CEI dự thảo: hỏng hạ tầng hoặc truy cập trái phép có thể gây outage/mất dữ liệu, ảnh hưởng delivery/SLA và cash; chọn cause sau investigation. IT/SOC xác minh timestamps, alert fidelity, affected assets/users, logs và thay đổi gần đây; incident owner quyết định containment theo runbook, đồng thời BCP kiểm tra service continuity và ERM lượng hóa lost capacity/penalty có evidence. Không tự đổi rating hay thông báo bên ngoài. Nguồn: prompt, data-model.md/controls-kri.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không đủ bằng chứng xâm nhập, exfiltration hoặc data breach; chưa biết baseline/horizon/SLA nên chưa tính loss hoặc status.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Tách availability giảm đã quan sát khỏi intrusion hypothesis; yêu cầu logs/timestamps/assets và incident triage, nối SLA/cash effects nhưng chưa tuyên bố xâm nhập/data breach hoặc tự thông báo bên ngoài."
+      }
+    },
+    {
+      "id": "D025",
+      "response": "Đây là single point of failure rõ ở quyền release: một người giữ duy nhất keys và backup chưa test. CEI: người này vắng mặt/mất quyền truy cập hoặc keys bị mất có thể làm release/recovery bị dừng, ảnh hưởng SLA/doanh thu; concentration quyền còn cần đánh giá misuse. Backup effectiveness = not_tested, không coi là control giảm residual risk. CTO/security owner nên đề xuất controlled key recovery/escrow, least privilege, dual authorization khi phù hợp, người dự phòng và rehearsal an toàn có logs; xác minh không tạo rủi ro chia sẻ keys rộng hơn. ERM hỏi critical services, outage tolerance/horizon và dependency rồi xác định materiality/escalation. Nguồn: prompt, IT pack và controls-kri.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa test backup không đồng nghĩa đã thất bại; chưa biết criticality nên chưa gán rating; không yêu cầu tiết lộ keys hoặc thao tác production.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện quyền release tập trung là SPOF, giữ backup effectiveness=not_tested; đề xuất controlled recovery/least privilege/rehearsal và xác định criticality trước rating, không yêu cầu lộ keys hay tự thao tác production."
+      }
+    },
+    {
+      "id": "D026",
+      "response": "Chuỗi đang đảo role. Cách sửa có điều kiện: cause/trigger = mất điện; event = hoạt động/nhà máy bị gián đoạn; impact = EBITDA giảm; objective = bảo đảm continuity và đạt kế hoạch earnings. Nếu đơn vị chọn mất điện là focal event, phải tìm causes ở trước nó và ghi downtime là intermediate consequence; vai trò cần nhất quán với event boundary. Owner xác minh thời gian mất điện, backup/OE, lost units và incremental costs để tính impact, không sao chain thành ba loss riêng. Nguồn: prompt và data-model.md/scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Phân vai đề xuất theo chain được cho; chưa có evidence xác nhận causal link hoặc số EBITDA giảm.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Sửa role phù hợp: mất điện→gián đoạn→EBITDA giảm, đồng thời giải thích event boundary có thể thay đổi. Yêu cầu causal/effect evidence và không đếm ba mắt xích thành ba losses."
+      }
+    },
+    {
+      "id": "D027",
+      "response": "'Có thể có vấn đề' không xác định event và chưa đủ dùng trong register/rating. Giữ như intake note, hỏi cụ thể chuyện gì có thể xảy ra, tại asset/site/customer nào, do nguyên nhân nào, trong horizon nào và ảnh hưởng mục tiêu nào. Mẫu điền: 'Do [driver/exposure có evidence], [event cụ thể] có thể xảy ra tại [scope] trong [horizon], dẫn tới [impact], ảnh hưởng [objective].' Owner cung cấp một ví dụ/near miss và control context; ERM xác định event boundary, materiality rồi hoàn thiện RiskInstance. Nguồn: prompt và data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không tự bịa event để điền chỗ trống và không cho rating chính thức khi event chưa định nghĩa.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không chấp nhận statement mơ hồ cho rating; trả mẫu CEI với event/scope/horizon/objective và câu hỏi near-miss/control/materiality cụ thể, không bịa event để điền."
+      }
+    },
+    {
+      "id": "D028",
+      "response": "Không nên gom chỉ vì cùng có impacts margin/cash. Feed price tăng thường dẫn tới cost squeeze; disease dẫn tới morbidity/mortality/culling/restrictions. Hai cơ chế, evidence, treatment và owner chuyên môn thường khác nên tạo hai RiskInstances có links dependency, rồi một combined scenario khi phù hợp. Nhiều impacts margin/cash/welfare có thể nằm trong cùng một risk nếu cùng focal event; welfare giữ dimension riêng không bù bằng profit. Xác minh species/cohort, event boundary, feed quality versus feed price, disease evidence và horizon; nếu một event thống nhất thực sự có hai causes thì mới gom với nhiều cause links. Nguồn: prompt, livestock.md, data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa có chứng cứ disease hoặc quan hệ nhân quả; không gán correlation và không đếm animal loss, lost revenue và EBITDA loss trùng nhau.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Phân biệt feed-price squeeze và disease theo event/mechanism/treatment, đề xuất RiskInstances liên kết hoặc combined scenario; chỉ gom nếu thật sự một focal event, giữ welfare riêng và không gán dependency số."
+      }
+    },
+    {
+      "id": "D029",
+      "response": "Mô hình hóa cascade port outage → feed shortage sau khi buffer cạn → growth delay → sale timing/cost/cash impacts. Port là common-mode/root disruption; feed và growth là các bước truyền dẫn, có thể giữ risk links để owners xử lý khác nhau. Tổng loss lấy mỗi economic loss ID duy nhất một lần, không cộng lại ở từng node; nếu cùng ID có amount/currency/horizon khác thì đối soát trước. Supply owner xác minh alternate port/transport và buffer days; livestock owner kiểm tra feed needs, biological delay và welfare; CFO ánh xạ timing sang contribution/cash. Chạy scenario cùng horizon và ghi assumptions, không gán xác suất cascade. Nguồn: prompt, livestock.md/logistics.md/scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không có amounts/durations nên chưa ra total; alternate supplier cùng port không loại bỏ root dependency.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Mô tả cascade qua buffer/feed/growth tới sale timing/cash, giữ root/common-mode và owners từng bước; yêu cầu unique economic loss ID một lần, đối soát ID conflict và không suy xác suất hoặc tổng khi thiếu inputs."
+      }
+    },
+    {
+      "id": "D030",
+      "response": "Chưa đủ cơ sở phát hành rating chính thức. Ghi owner judgment với nguồn, ngày, scope và confidence thấp; incident/exposure data = missing, không 0. Nếu có phương pháp đã duyệt, có thể lập draft assessment/range dựa vào anchored judgment và assumptions minh bạch; nếu chưa có phương pháp thì rating UNKNOWN/DRAFT. ERM cần event definition, horizon, exposure denominator, plausible impacts, incidents/near misses và design/OE evidence; owner cung cấp dữ liệu, decision authority duyệt phương pháp/assessment theo quyền. Phần quyết định khẩn có thể dựa precaution và consequences với rationale, không giả lập con số chính xác. Nguồn: prompt, assessment-appetite.md/data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không thể suy tần suất hoặc current control effectiveness từ ý kiến owner; chưa gọi đây là independent assurance.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không phát hành rating chính thức chỉ từ owner opinion; giữ missing khác0, dùng draft/range có assumptions khi phù hợp, yêu cầu horizon/exposure/incident/OE/methodology và authority trước sử dụng."
+      }
+    },
+    {
+      "id": "D031",
+      "response": "Phải chuẩn hóa cơ sở trước khi dùng cùng matrix. Trước hết hỏi impact là severity của một event kéo dài một quý, hay aggregate loss trong quý. Probability xảy ra trong năm có thể đi với per-event severity mô tả rõ duration; còn annual likelihood với quarterly aggregate impact không tự là cùng basis. Chọn horizon chung và mô hình event–duration; nếu chuyển tần suất quý sang xác suất năm cần assumption/calibration phù hợp, không nhân điểm Likelihood hoặc Impact 1–5 với 4. Giữ snapshot cũ và nêu conversion/assumptions trong assessment mới; owner/ERM xác nhận trước rating. Nguồn: prompt, assessment-appetite.md và scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Không có event/aggregation definition, nên chưa kết luận rating sai hoặc quy đổi số cụ thể.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không máy móc ép annual probability và quarterly severity là sai: phân biệt per-event duration với quarterly aggregate, yêu cầu consistent basis/horizon và không nhân ordinal với4. Đây là xử lý đúng sự mơ hồ của prompt."
+      }
+    },
+    {
+      "id": "D032",
+      "response": "Không dùng average 3 để che safety impact 5. Điểm 1–5 là ordinal và safety/financial là các dimensions khác nhau; giữ financial=1, safety=5 trong profile. Áp non-compensatory/override rule đã duyệt; nếu chưa có, trình phương pháp bảo vệ safety dimension và yêu cầu đúng cấp xác định overall category, không tự tuyên bố overall=5 là rule bắt buộc. Cần xác minh mô tả mức safety 5, likelihood/horizon và evidence, đồng thời chuyển chuyên gia an toàn đánh giá harm/biện pháp kiểm soát theo mức khẩn. Nguồn: prompt và assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa có matrix/override được duyệt; không cộng/trung bình ordinal hoặc suy loss tiền từ safety score.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối average3 che safety5, giữ dimensions riêng và đòi non-compensatory rule/approval; không tự biến max5 thành quy định mặc định và hướng safety urgency tới evidence/chuyên gia."
+      }
+    },
+    {
+      "id": "D033",
+      "response": "Inherent=3 và residual=5 là dấu hiệu cần challenge, không phải luôn sai số học. Cần hỏi inherent counterfactual đã bỏ controls nào, hai assessments có cùng event, horizon, exposure, method/version và as-of không. Residual có thể cao hơn do exposure mới, control-induced/secondary risk hoặc assumptions không đồng nhất; chưa được dùng những khả năng này làm giải thích thực tế. Nếu mọi yếu tố giữ nguyên và controls chỉ giảm risk, kết quả tăng cần rà lại evidence/mapping. Giữ cả assessments và rationale, không tự đảo 3/5 hoặc hạ residual; ERM/owner lập reconciliation bridge và đánh giá lại với đúng scope. Nguồn: prompt, assessment-appetite.md/data-model.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa rõ assumptions nên không xác định nguyên nhân; không coi residual/inherent là đại lượng cardinal có thể chia hoặc trừ.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không kết luận inherent3/residual5 luôn sai; kiểm tra counterfactual/event/horizon/method/exposure và nêu secondary-risk khả dĩ nhưng chưa gán thành fact. Không tự đảo số hoặc hạ residual."
+      }
+    },
+    {
+      "id": "D034",
+      "response": "Không giảm 30% hai lần cho cùng generator. Ghi một Control ID liên kết prevention/recovery roles; thực tế generator thường giảm xác suất hoặc duration của operational outage sau khi nguồn điện chính mất, chứ không ngăn grid outage. Phải định nghĩa focal event để đặt role đúng. OE cần load/transfer/recovery test, fuel autonomy, maintenance, coverage và failure dependencies; chưa có measured effect thì không khấu trừ tỷ lệ nào. ERM/engineering owner lập loss model baseline và có generator, chỉ ghi mỗi effect/benefit một lần và xét chung fuel/ATS/site dependency. Nguồn: prompt, controls-kri.md/assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "30% chưa có căn cứ; cùng một control không là hai lớp độc lập. Không tính residual=0,7×0,7×inherent.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối giảm30% hai lần cho cùng generator; giữ một Control ID với roles phụ thuộc event boundary, yêu cầu load/transfer/fuel/OE evidence và không coi hai vai trò là hai lớp độc lập."
+      }
+    },
+    {
+      "id": "D035",
+      "response": "Không dùng 3,7 như rating chính xác nội suy giữa các mức ordinal. Giữ nguyên observations/assumptions, áp tiêu chí phân mức đã duyệt; nếu evidence chỉ hỗ trợ mức 3–4 thì báo khoảng mức plausible và cần gì để phân định, không ép điểm thập phân. Nếu 3,7 vốn là giá trị của driver định lượng có đơn vị, giữ nó trong trường driver rồi ánh xạ sang rating theo thresholds, không gọi driver là ordinal rating. ERM/owner kiểm tra mapping và sửa heatmap label/snapshot cùng version. Nguồn: prompt và assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa biết matrix hoặc source của 3,7 nên chưa chọn mức 3 hay 4; heatmap là classification aid, không loss/probability model.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối ordinal interpolation3,7, dùng category theo anchors hoặc plausible range3–4; phân biệt số driver liên tục với rating, chưa tự chọn category khi thiếu method/evidence."
+      }
+    },
+    {
+      "id": "D036",
+      "response": "Hai incidents trong hai tháng cho observed count rate = 1 incident/tháng nếu thời gian và coverage tương đương; đó không phải probability của một enterprise event. Không xuất probability năm chữ số từ mẫu này. Cần event definition, exposure units, reporting completeness, clustering/seasonality, horizon và lịch sử dài hơn; frequency xảy ra lặp và probability ít nhất một event là hai đại lượng khác. ERM có thể trình scenario ranges với assumptions; việc ước lượng frequency/probability/interval cần model phù hợp và DSMV capability/validation trước sử dụng. Nguồn: prompt, assessment-appetite.md và scenarios-portfolio.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: Python Decimal(2)/2 = 1 incident/month observed"
+      ],
+      "limitations": "Không extrapolate thành 12 incidents chắc chắn/năm, không giả định Poisson/independence hoặc 5-digit calibration; hai observations không đủ kiểm chứng ổn định.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Observed rate2/2=1 incident/tháng khớp kiểm độc lập; response không đổi count rate thành probability5 chữ số, yêu cầu denominator/horizon/reporting/model evidence và không tự giả định Poisson hoặc annualization chắc chắn."
+      }
+    },
+    {
+      "id": "D037",
+      "response": "Không chấp nhận override high→low như rating có hiệu lực khi owner không có authority. Giữ kết quả phương pháp high cùng evidence/snapshot; lưu low là đề nghị của owner với lý do và bằng chứng mới, người đề nghị và thời điểm. ERM challenge exposure/control changes, kiểm tra quyền override và chuyển đúng approver; nếu có phê duyệt sau này lưu record/version và bridge. Việc disagree không được xóa incidents hoặc breaches, và chưa có approval thì báo high kèm pending challenge rõ ràng. Nguồn: prompt, assessment-appetite.md và SKILL.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Chưa có bằng chứng high được tính đúng nên vẫn cần kiểm tra methodology; không tự nâng/hạ rating hoặc giả định owner có quyền chỉ vì sở hữu risk.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không công nhận owner override high→low thiếu authority; giữ methodological result và proposed change/evidence/history riêng, đưa qua approver và còn yêu cầu kiểm tra high basis, không xóa breach."
+      }
+    },
+    {
+      "id": "D038",
+      "response": "Mục tiêu tăng trưởng 50% và cash runway 8 tháng chưa chứng minh strategy nằm trong appetite. Đề xuất appetite DRAFT: chấp nhận thử nghiệm tăng trưởng có giới hạn vốn/lead time và milestone, đồng thời bảo vệ khả năng trả nghĩa vụ và dịch vụ trọng yếu; ngưỡng cụ thể cần capacity/no-action/downside analysis và board/founder authority. CFO làm monthly cash bridge nối growth spend, margin, collection lag, hiring và funding committed; stress growth chậm/funding trễ, xác định thời điểm phải đổi kế hoạch trước cạn tiền. KRI candidate: unrestricted runway (lower-bad), burn variance, overdue cash collections; định nghĩa unit/horizon/source/cadence/rules/equality và escalation owner trước duyệt. Nguồn: prompt và assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "Runway 8 tháng là input chưa kiểm chứng burn basis; tăng trưởng 50% không là appetite hay capacity, không coi vốn dự kiến huy động là cash chắc chắn.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Không đồng nhất growth50% hoặc runway8 tháng với appetite/capacity; đưa draft statement, cash-downside/funding-lag analysis và KRI direction/rules/owner trước approval, không gán vốn chưa cam kết là chắc chắn."
+      }
+    },
+    {
+      "id": "D039",
+      "response": "Runway cơ học = 3 tỷ/(1 tỷ/tháng) = 3 tháng, nếu tiền không bị hạn chế và burn là net burn ổn định. Chưa có board-approved appetite nên status DRAFT/UNKNOWN về appetite, không tô xanh hoặc gọi breach một floor tự đặt. CFO cần cash forecast theo tuần/tháng, payment timing, committed funding và collection downside; xác định survival/cash capacity rồi trình lower floor, warning lead time, equality rule, source và escalation. Đề xuất action là theo dõi weekly cash và chuẩn bị phương án collections/chi phí/funding cho board lựa chọn trước điểm hụt; approvals/limits vẫn thuộc board. Nguồn: prompt, cash_waterfall và assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040",
+        "exec_command: erm_core.cash_waterfall(3,[],[],1): closing=3, runway=3 months"
+      ],
+      "limitations": "Ba tháng không là forecast đã validation; chưa xét seasonality, restricted cash hoặc near-term obligations; không áp floor ngành mặc định.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Runway3 tháng được tính lại đúng với cash không hạn chế và burn ổn định; không kết luận within/breach khi appetite chưa duyệt, yêu cầu cash timing/capacity và trình floor/warning/authority riêng."
+      }
+    },
+    {
+      "id": "D040",
+      "response": "Top supplier share 65% cho thấy concentration cần đánh giá; hai alternate cùng cảng tạo common-mode dependency, nên số vendor không chứng minh supply resilience. Chưa có approved threshold nên không kết luận appetite breach hoặc within. Cần share theo spend/volume/critical capacity, kỳ/scope, top supplier và alternates có chung port/sub-tier/utility, qualified capacity, lead time, buffer và switching evidence. Procurement/COO lập port-outage scenario tới capacity/service/cash; CFO/ERM đề xuất metric vendor concentration cùng port dependency và days-to-recover, rồi trình thresholds theo materiality/capacity. So alternate port/route, buffer và diversification với no-action, chi phí và khả thi. Nguồn: prompt, logistics.md/scenarios-portfolio.md/assessment-appetite.md.",
+      "tools_used": [
+        "exec_command: read CLAUDE.md, all four docs, SKILL.md and relevant local references/packs; inspect only D001–D040"
+      ],
+      "limitations": "65% không tự là xác suất outage hoặc supplier limit; không biết share còn lại nên chưa tính HHI toàn danh mục; effectiveness alternate chưa test.",
+      "review": {
+        "reviewer": "domain_c (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện concentration65% và alternate chung cảng là common-mode dependency, chưa suy breach hay diversification hiệu quả; yêu cầu denominator/qualified capacity/buffer và port scenario, không tính HHI từ thiếu shares."
+      }
+    }
+  ],
+  "review_scope": {
+    "reviewer": "domain_c (different actor and author)",
+    "case_range": "D001–D040",
+    "basis": "Manual comparison of each supplied prompt with recorded response, limits and current SKILL.md, data-model, assessment-appetite, controls-kri, scenarios-portfolio, and livestock/FMCG/logistics/IT packs. Verdicts concern concrete response behavior, not actor self-claims about successful tools or files.",
+    "independent_quantitative_check": "Executed Python Decimal formulas independently of erm_core for D011, D014, D016–D022, D036 and D039; checked 0.000333333% PO/revenue, unique loss12, profit change−8500, disruption11000, complaint0.002%, quality7500, closing−2/shortfall2/runway0 versus opening-only4, net credit80/EL4, market-share break-even12%, observed rate1/month and runway3 months.",
+    "status_scope": "PASS means the recorded synthetic behavioral response meets its prompt and ERM invariants. Native runtime, platform install, external specialist handoff, real-data source verification, production changes and artifact rendering are not established by these verdicts and were not run in this review.",
+    "counts": {
+      "PASS": 40,
+      "FAIL": 0,
+      "NOT_RUN": 0
+    },
+    "pre_review_cases_sha256": "fb0907b060f86c9f20a5f7ee793293997a4a0917a2dce7f72c83d77d0e0352e7",
+    "limitations": "This is review of one observed response per synthetic prompt, not evidence of stochastic repeatability, current legal/regulatory validation, independent audit assurance or operational deployment."
+  }
+}

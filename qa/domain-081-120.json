@@ -1,0 +1,686 @@
+{
+  "evaluator_scope": "Independent behavioral responses to D081–D120 only, using supplied synthetic prompts, CLAUDE.md, all four project docs, SKILL.md, assessment-appetite.md, scenarios-portfolio.md, treatment-reporting.md and integration/contracts.md. Selected quantitative responses executed locally with erm_core.py or Python Decimal. No other case range read; no specialist handoff, network, installation, external mutation or artifact publication performed. These are observed responses for primary-author review, not self-assigned test verdicts.",
+  "independence": "fresh agent, no intended answers supplied; primary author will review",
+  "cases": [
+    {
+      "id": "D081",
+      "response": "Chuỗi synthetic dao động 1→9→2→8; các thay đổi là +8, −7, +6, khoảng quan sát 1–9. Đây là biến động mạnh trong bốn kỳ, chưa chứng minh xu hướng tăng bền vững hoặc chu kỳ dự báo. Chưa rõ đây là driver nào, đơn vị, khoảng cách kỳ và các kỳ có cùng phương pháp hay không; không diễn giải chúng thành rating 1–5. ERM nên kiểm tra nguồn, nguyên nhân đỉnh/đáy và mức exposure tại từng kỳ, bổ sung chuỗi dài hơn, rồi dùng kịch bản driver và ngưỡng appetite đã duyệt để xác định phản ứng. Không suy xác suất sự cố từ bốn số này.",
+      "tools_used": [
+        "Read SKILL.md and references/scenarios-portfolio.md",
+        "python3 -B: observed range and first differences"
+      ],
+      "limitations": [
+        "Synthetic data; metric, units and comparable periods not supplied",
+        "No forecast model fitted or validated"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Mô tả dao động và giới hạn bốn kỳ; không suy trend/chu kỳ/xác suất. Reviewer tính độc lập differences +8,−7,+6 và range 1–9, khớp response; yêu cầu đơn vị, comparability và driver đúng phạm vi."
+      }
+    },
+    {
+      "id": "D082",
+      "response": "Hai tháng dữ liệu chưa đủ chứng minh forecast 12 tháng đáng tin, đặc biệt không nhận diện được mùa vụ năm. Tôi chưa đưa point forecast có nhãn validated. Trước mắt lập baseline/kịch bản có giả định rõ từ hợp đồng, kế hoạch và driver nếu có, dùng cho stress và nhu cầu thanh khoản; không gán xác suất tùy ý. Cần xác định target, tần suất, forecast origin, thu thập thêm lịch sử và biến ngoại sinh sẵn có tại thời điểm dự báo. Nếu cần model, giao DSMV sau capability check với yêu cầu baseline comparison, temporal backtest và uncertainty; ERM giữ kết luận về appetite và hành động.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "Only two months supplied; no values or target definition",
+        "No calibrated 12-month forecast produced"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không công bố forecast 12 tháng từ hai tháng dữ liệu; nêu mùa vụ không nhận diện, đề xuất baseline/scenario có nhãn và temporal validation sau capability-check. ERM vẫn giữ quyết định appetite."
+      }
+    },
+    {
+      "id": "D083",
+      "response": "Không bỏ khoảng dự báo rộng để chỉ trình một số như kết quả chắc chắn. Có thể đặt point estimate ở đầu báo cáo nếu nêu rõ loại estimate, nhưng phải kèm interval, mức tin cậy/coverage và điều kiện của model trong cùng phần quyết định. Cần kiểm tra interval là prediction interval hay khoảng tham số và coverage có được backtest không. ERM đánh giá lựa chọn dưới các mức trong khoảng, nhất là phần có thể vượt appetite/capacity, và đề xuất phương án vẫn khả thi khi kết quả xấu xảy ra. Bước tiếp theo là xác định nguồn bất định, bổ sung dữ liệu hoặc thu hẹp horizon; không tự thu hẹp interval để chiều stakeholder.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "Interval values, definition and validation evidence not provided",
+        "No numerical breach probability can be inferred"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ interval cùng point estimate, phân biệt prediction interval/khoảng tham số và yêu cầu coverage; dùng uncertainty trong quyết định, không thu hẹp interval hoặc tạo breach probability không có dữ liệu."
+      }
+    },
+    {
+      "id": "D084",
+      "response": "DSMV route và classification helper không chứng minh có engine EVT hoặc mô hình phụ thuộc đuôi. Thuật ngữ 'coplanar tail' chưa rõ; cần xác nhận có phải copula/tail-dependence hay phương pháp khác trước khi chọn mô hình. Chuẩn bị handoff gồm loss target, entity, horizon, severity/frequency data, as-of, dependency, ngưỡng tail, mục đích quyết định và yêu cầu uncertainty. Chỉ nhận model khi có method/version, calibration, tail diagnostics, validation và giới hạn sử dụng phù hợp. Hiện chưa thể tuyên bố đã fit hoặc validated tail model; ERM vẫn có thể làm stress scenario minh bạch không gán xác suất. Việc thiếu engine cần được báo và đề xuất chuyên gia/nâng cấp, không tự cài.",
+      "tools_used": [
+        "Read integration/contracts.md and references/scenarios-portfolio.md"
+      ],
+      "limitations": [
+        "Prompt establishes only route/classification helper availability",
+        "No fitted tail engine executed; model term ambiguous"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không suy engine EVT/tail từ route/classification helper; làm rõ thuật ngữ coplanar, đưa bounded handoff và validation requirements, đồng thời tiếp tục stress không xác suất; không tự cài hoặc claim model fit."
+      }
+    },
+    {
+      "id": "D085",
+      "response": "Không giảm forecast loss 50% chỉ vì action hoàn tất. Completion là bằng chứng triển khai, còn operating effectiveness và cơ chế giảm loss chưa được chứng minh. Giữ forecast hiện tại với caveat, ghi action 'implemented, effectiveness unverified'; nếu cần, trình riêng sensitivity giả định giảm 50% có nhãn scenario, không dùng như forecast đã đạt. Bước tiếp theo là test OE trên phạm vi/thời gian thích hợp, đo driver/outcome, kiểm tra các yếu tố khác và cập nhật model khi hiệu quả có căn cứ. Risk owner đề xuất nhưng không được tự biến benefit dự kiến thành realized benefit.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md, references/treatment-reporting.md and references/assessment-appetite.md"
+      ],
+      "limitations": [
+        "No OE evidence or validated reduction mechanism",
+        "50% is unsupported, not an estimated treatment effect"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không giảm forecast 50% từ completion; tách implementation/OE, chỉ giữ 50% như sensitivity có nhãn và yêu cầu test/đo outcome trước cập nhật. Không biến modeled benefit thành realized benefit."
+      }
+    },
+    {
+      "id": "D086",
+      "response": "Group loss là 15 tỷ = L1 10 tỷ + L2 5 tỷ, với điều kiện đây là hai economic losses riêng, cùng đồng tiền, kỳ và phạm vi hợp nhất. R1/R2 cùng liên kết L1 không làm L1 thành 20 tỷ; lưu risk–loss mapping nhiều-nhiều và chỉ ghi loss một lần. Core trả total=15, unique_loss_count=2 trên input synthetic đã chuẩn hóa. Trước dùng báo cáo tập đoàn, đối soát transaction/economic loss ID giữa hai BU, currency, horizon và intercompany; nếu cùng ID có giá trị khác nhau, phải giải quyết sai lệch trước cộng.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md",
+        "erm_core.aggregate_losses executed with L1=10 twice and L2=5"
+      ],
+      "limitations": [
+        "Common horizon/consolidation scope assumed explicitly for calculation",
+        "Economic identity and real source reconciliation not independently verified"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Khử trùng L1 được R1/R2 cùng liên kết; tổng 10+5=15 và hai economic losses khớp phép tính reviewer. Nêu currency/horizon/consolidation và xử lý cùng ID khác dữ liệu trước dùng group total."
+      }
+    },
+    {
+      "id": "D087",
+      "response": "Consolidated loss là 6 tỷ chi phí sửa chữa bên ngoài; khoản charge nội bộ 4 tỷ được loại trừ tại tập đoàn. Phép tính core trả total=6 và eliminated=4. Giữ khoản 4 tỷ trong góc nhìn pháp nhân/BU nếu cần, nhưng không cộng lại thành tổn thất tập đoàn 10 tỷ. Cần đối soát hai vế nội bộ, consolidation boundary và xác nhận repair 6 tỷ là chi phí tăng thêm chưa ghi ở loss khác. Nếu phát sinh thuế, phí hoặc chi phí bên ngoài khác do giao dịch nội bộ, đánh giá riêng thay vì mặc định cũng được loại.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md",
+        "erm_core.aggregate_losses executed with internal 4 eliminated and external 6 included"
+      ],
+      "limitations": [
+        "Synthetic scope assumes both intercompany parties inside consolidation boundary",
+        "No additional external costs provided"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Loại intercompany charge 4 khỏi loss tập đoàn, giữ external repair 6; reviewer tính độc lập 4+6−4=6. Response giữ góc nhìn BU và điều kiện consolidation, không loại nhầm external incremental costs."
+      }
+    },
+    {
+      "id": "D088",
+      "response": "Theo spend cùng kỳ, supplier lớn nhất chiếm 60%, hai supplier lớn nhất 90%; HHI=0,6²+0,3²+0,1²=0,46, tương đương 4.600 trên thang 10.000. Đây là đo tập trung chi tiêu, không phải xác suất supplier thất bại hay tự động là breach. ERM nên kiểm tra supplier 60% cung cấp đầu vào trọng yếu nào, khả năng thay thế, lead time và upstream chung; sau đó stress gián đoạn và đối chiếu appetite của doanh nghiệp. Không kết luận 'an toàn' hoặc áp một ngưỡng ngành chưa được cung cấp.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md",
+        "erm_core.concentration([60,30,10]) executed"
+      ],
+      "limitations": [
+        "Spend denominator only; criticality and substitutability unknown",
+        "No approved concentration limit supplied"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận top1=60%, top2=90%, HHI=0.46 (4,600 thang 10,000). Response dùng denominator spend, không biến HHI thành PD hay breach và chuyển sang criticality/substitution/upstream analysis."
+      }
+    },
+    {
+      "id": "D089",
+      "response": "Tổng exposure bằng 0 nên shares và HHI không xác định do mẫu số 0. Core trả total=0, shares=null, hhi=null, largest_share=null; không báo HHI=0 như bằng chứng đa dạng hóa. Cần xác nhận hai số 0 là exposure thực sự bằng 0 trong kỳ hay dữ liệu thiếu bị mã hóa thành 0. Nếu xác nhận thực sự không có exposure, ghi 'không áp dụng cho exposure hiện tại'; nếu dữ liệu thiếu, ghi UNKNOWN và khắc phục nguồn trước đánh giá tập trung.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md",
+        "erm_core.concentration([0,0]) executed"
+      ],
+      "limitations": [
+        "Cannot distinguish true zero from missing-source encoding from prompt alone",
+        "No concentration assessment available with zero denominator"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Tổng denominator bằng 0 nên HHI/shares undefined; response không tô HHI=0 là diversified. Phân biệt true zero với missing encoding và nêu NA/UNKNOWN phù hợp."
+      }
+    },
+    {
+      "id": "D090",
+      "response": "Ba sites có dependency chung ở cloud identity; khác nhà cung cấp chưa tạo độc lập vận hành. Lập scenario identity outage/compromise làm cả ba sites không đăng nhập hoặc quản trị được, xác định dịch vụ và cash/service loss bị ảnh hưởng cùng thời gian. Mapping nên nối một root event identity với ba sites, khử trùng economic loss thay vì cộng mọi biểu hiện hậu quả. Đề xuất kiểm tra phương án truy cập khẩn cấp, recovery identity và exercise mất identity trong phạm vi được cấp quyền. Chưa có dữ liệu để lượng hóa xác suất hay tổn thất, hoặc xác nhận các fallback thực sự hoạt động.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md"
+      ],
+      "limitations": [
+        "No architecture, failover evidence or critical-service targets provided",
+        "No technical test executed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện cloud identity là common-mode xuyên ba sites dù suppliers khác; yêu cầu root-event mapping, recovery/fallback evidence và exercise được phép, không nhận độc lập hoặc lượng hóa loss không có dữ liệu."
+      }
+    },
+    {
+      "id": "D091",
+      "response": "Không dùng tổng 11 làm mức rủi ro tập đoàn: các score 2,4,5 là ordinal nên phép cộng không tạo exposure hay expected loss. Trình phân bố một BU ở mỗi mức 2/4/5, giữ rationale, horizon và methodology; ưu tiên BU có breach/capacity pressure và mục tiêu trọng yếu theo bằng chứng. Muốn tổng hợp tiền cần loss/exposure cùng currency/horizon, dependency và khử trùng. Ngay cả mức cao nhất 5 chỉ có thể dùng làm nhãn tổng hợp nếu governance quy định rõ, không tự gọi là rủi ro tổng của cả tập đoàn.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md and references/assessment-appetite.md"
+      ],
+      "limitations": [
+        "Score definitions and comparable assessment methods absent",
+        "No economic loss inputs supplied"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối tổng ordinal 11; dùng phân bố score với methodology/horizon và ưu tiên theo appetite/materiality. Muốn aggregate tiền phải có loss/exposure và khử trùng; không tự dùng max như group risk."
+      }
+    },
+    {
+      "id": "D092",
+      "response": "Tạm dừng cộng hai IDs. Cash loss và revenue loss có thể là hai biểu diễn của cùng một economic loss; ID khác nhau không bảo đảm độc lập. Truy ngược transaction, event, accounting entries, cash timing và lost contribution để xác định phần overlap; tạo canonical economic loss ID và nối cả hai records vào đó. Giữ riêng góc nhìn P&L và cash nhưng không cộng chúng thành một tổng tổn thất. Chỉ cộng chi phí tăng thêm hoặc tổn thất khác khi chứng minh không trùng. Core khử trùng theo ID không tự phát hiện semantic duplicate khác ID, nên phải đối soát nghiệp vụ trước khi chạy aggregate.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md",
+        "Inspected erm_core.aggregate_losses implementation for ID-based deduplication scope"
+      ],
+      "limitations": [
+        "No amounts, transaction records or accounting treatment supplied",
+        "Semantic duplicates cannot be resolved by the core ID check alone"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không dựa khác ID để cộng cash/revenue loss của cùng transaction; yêu cầu semantic reconciliation, canonical economic loss và tách P&L/cash views. Nêu rõ core ID-dedup không phát hiện được semantic duplicates."
+      }
+    },
+    {
+      "id": "D093",
+      "response": "Các backup cùng floodplain có thể mất đồng thời vì một trận ngập; đây là common-mode exposure, chưa thể coi backup là giảm hậu quả hiệu quả. Đề xuất phương án recovery ngoài cùng vùng nguy hiểm và kiểm tra các dependency điện, mạng, nhân sự, quyền truy cập cùng dịch vụ critical. So sánh chi phí/lead time với mất dịch vụ trong scenario ngập cả vùng; thực hiện restore exercise theo phạm vi được duyệt trước khi công nhận khả năng phục hồi. Không gán xác suất lũ hay khẳng định recovery đạt mục tiêu khi chưa có hazard/exercise evidence.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md and references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "No hazard footprint, backup architecture or tested recovery evidence",
+        "No resilience test performed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện cùng floodplain làm backup có thể hỏng đồng thời; đề xuất geographic/dependency separation và restore exercise trước công nhận resilience, không gán flood probability hoặc RTO chưa test."
+      }
+    },
+    {
+      "id": "D094",
+      "response": "Avoid bằng cách dừng SKU có chi phí thoát cần xem xét: exit penalty 20 cộng lost contribution 10 thành 30 nếu cùng đơn vị/kỳ, đều incremental và không trùng nhau. Đây chưa phải tổng NPV, vì còn timing, nghĩa vụ tồn tại, tồn kho và khả năng sản phẩm thay thế. So sánh dừng, sửa compliance và các phương án hợp lệ với no-action để thấy cost/loss avoided; không dùng lợi ích kinh tế để chấp nhận vi phạm bắt buộc. Cần xác minh bản chất compliance issue và điều khoản exit với chuyên gia đúng jurisdiction, rồi trình người có thẩm quyền quyết định phương án/lead time.",
+      "tools_used": [
+        "Read references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "Amounts have no unit, currency or horizon",
+        "No legal conclusion or confirmed mandatory cessation requirement supplied"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận 20+10=30 dưới điều kiện cùng basis/không overlap. Response không gọi 30 là NPV, xét exit obligations/strategy và phương án hợp lệ so no-action; không dùng tiền để accept mandatory noncompliance."
+      }
+    },
+    {
+      "id": "D095",
+      "response": "Chưa thể kết luận đã chuyển được 100 loss hoặc giảm residual exposure 100. Limit 100 là giới hạn theo policy, deductible 10 là phần giữ lại theo điều kiện áp dụng, còn exclusions chưa đọc có thể khiến một event không được bảo hiểm. Cần đọc insured events, exclusions, per-occurrence/aggregate limits, cách áp deductible, waiting period, claims conditions và counterparty/recovery delay. Sau đó lập gross loss→eligible covered loss→deductible/limit→net retained loss theo đúng hợp đồng. ERM vẫn giữ rủi ro ngoài coverage và trách nhiệm quản trị; chưa đưa recovery chưa xác minh vào cash forecast như khoản chắc chắn.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and references/scenarios-portfolio.md"
+      ],
+      "limitations": [
+        "Policy text, event loss and unit not supplied",
+        "Coverage/enforceability not reviewed; no payout quantified"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không giả định transfer 100 hoặc payout từ limit/deductible khi exclusions chưa đọc; xác định coverage, aggregate/per-event, claims và recovery delay cần kiểm tra trước gross-to-net mapping."
+      }
+    },
+    {
+      "id": "D096",
+      "response": "Hai suppliers khác pháp nhân nhưng cùng upstream vẫn có tập trung ở nguồn cung gốc. Diversification theo tên nhà cung cấp có thể không giảm gián đoạn do upstream failure. Mapping tier-2/tier-3, địa điểm, logistics và lead time; thử scenario upstream ngừng cung cấp đồng thời cho cả hai. Đề xuất qualification nguồn upstream thực sự khác, hoặc buffer/substitution phù hợp, so sánh cost, lead time, quality và secondary risks với no-action. Chỉ ghi benefit kỳ vọng có điều kiện; chưa công nhận residual risk giảm trước khi alternative capacity và khả năng chuyển nguồn có bằng chứng.",
+      "tools_used": [
+        "Read references/scenarios-portfolio.md and references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "Upstream capacity, alternative qualification and exposure values unknown",
+        "No supplier engagement performed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Phân biệt đa dạng hóa pháp nhân với upstream dependency; stress simultaneous failure và yêu cầu alternative capacity/qualification evidence trước hạ residual, có cost/lead time/secondary risks."
+      }
+    },
+    {
+      "id": "D097",
+      "response": "Nếu forecast volume là V và hedge còn nguyên V, actual chỉ 0,6V nên hedge bằng 166,7% actual; phần vượt là 0,4V, tức 66,7% actual. Hedge đã tạo volume mismatch/overhedge, chưa thể tính lãi lỗ nếu thiếu giá, instrument, tenor và settlement. ERM đề xuất rà soát exposure ròng, cash/margin-call scenario, policy limits và phương án điều chỉnh/đóng từng phần với chi phí tương ứng; chuyển Treasury/người có quyền quyết định giao dịch. Cần cập nhật forecast, phân biệt volume cam kết và không chắc chắn, rồi theo dõi hedge ratio; không tự giao dịch hoặc gọi đây là hedge hiệu quả 100%.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and references/scenarios-portfolio.md",
+        "Python Decimal: 1/0.6 and 0.4/0.6 executed"
+      ],
+      "limitations": [
+        "Assumes hedge notional unchanged and directly comparable volume basis",
+        "No hedge P&L, accounting designation or trade recommendation calculated"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer tính độc lập V/(0.6V)=166.6667%, excess 0.4V/(0.6V)=66.6667%, khớp. Response phát hiện overhedge, không tính P&L thiếu instrument/prices và giữ Treasury authority cho giao dịch."
+      }
+    },
+    {
+      "id": "D098",
+      "response": "Analyst không có quyền tự accept risk vượt capacity. Ghi rõ capacity breach đã có bằng chứng, mức vượt, duration và mục tiêu bị đe dọa; không đổi trạng thái thành 'accepted/within'. Escalate khẩn theo governance đến người có thẩm quyền để chọn giảm exposure, bổ sung capacity hợp lệ, phương án dừng hoặc phục hồi trong khả năng thực thi. Nếu đề xuất exception, phải có scope, expiry, monitoring và controls bù trừ, nhưng exception không xóa breach hoặc biến giới hạn sức chịu đựng thành an toàn. Cần xác minh capacity methodology/source và biện pháp tức thời; không phê duyệt thay lãnh đạo.",
+      "tools_used": [
+        "Read references/assessment-appetite.md and references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "Capacity measurement and delegation-of-authority details not supplied",
+        "No acceptance or escalation message sent externally"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối analyst accept capacity breach; giữ breach, escalation/containment và lựa chọn capacity/exposure, không coi exception là within hoặc an toàn. Response không tự duyệt; authority và methodology được để cần xác minh."
+      }
+    },
+    {
+      "id": "D099",
+      "response": "BCP tồn tại dưới dạng plan chưa chứng minh resilience hoặc OE. Thiếu BIA nên chưa biết critical services, minimum service, MTPD/RTO/RPO và dependency nào phải bảo vệ; chưa exercise nên recovery chưa có bằng chứng. Đề xuất kiểm tra capability BCP, lập BIA và recovery strategy phù hợp mục tiêu, sau đó exercise tình huống trọng yếu, ghi recovery times, gaps, owner/deadline và retest. ERM giữ residual exposure ở trạng thái chưa được chứng minh giảm, so sánh chi phí/lead time với no-action và trình quyết định nguồn lực. Không tự xác nhận đạt RTO hay hạ risk rating chỉ từ tài liệu plan.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "No BIA, recovery objectives or exercise evidence",
+        "BCP specialist not invoked in this bounded response test"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không coi plan BCP là resilience/OE; yêu cầu BIA, critical services/objectives/dependencies, recovery strategy, exercise/gaps/retest trước giảm risk. Không claim đã chạy BCP hoặc đạt RTO."
+      }
+    },
+    {
+      "id": "D100",
+      "response": "Chưa đủ căn cứ khuyến nghị rời market chiến lược chỉ vì một rating cao thiếu rationale. Trước hết làm rõ objective, cause–event–impact, exposure, horizon, control evidence và appetite breach; kiểm tra rating có phương pháp nhất quán không. So sánh tiếp tục có kiểm soát, thu hẹp, hợp tác/chuyển một phần risk và exit với no-action, bao gồm lost contribution, exit obligations, option value, lead time và khả năng đảo ngược. Trình lãnh đạo trade-off chiến lược cùng uncertainty; nếu có nghĩa vụ bắt buộc hoặc capacity breach, nêu riêng để xử lý ngay. Không tự đảo chiến lược bằng một điểm ordinal.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and references/assessment-appetite.md"
+      ],
+      "limitations": [
+        "No assessment rationale or economic alternatives supplied",
+        "Strategic decision remains unapproved"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không dùng rating cao thiếu rationale để đảo strategy; cần CEI/exposure/method/appetite và so alternatives/no-action, exit obligations, reversibility. Capacity hoặc nghĩa vụ bắt buộc được tách để xử lý ngay."
+      }
+    },
+    {
+      "id": "D101",
+      "response": "Với initial cost 100 tại t0, net benefit incremental 40 cuối mỗi năm trong 3 năm và chiết khấu 10%, NPV=−100+40/1,1+40/1,1²+40/1,1³≈−0,526 cùng đơn vị tiền. Tổng danh nghĩa thuần +20 không làm NPV dương. Phương án còn thiếu budget 20 (100>80) và một đơn vị nguồn lực (3>2); core xác nhận cả hai feasibility checks=false. Chưa khuyến nghị triển khai theo cấu hình này. Cần rà benefit/cost so với no-action, timing, phương án giảm/phân kỳ chi phí và bố trí nguồn lực, rồi so sánh lại; nếu treatment bắt buộc, tìm phương án tuân thủ khả thi và escalation, không chỉ bác bỏ vì NPV âm.",
+      "tools_used": [
+        "Read references/treatment-reporting.md",
+        "erm_core.treatment(100,[40,40,40],Decimal('0.1'),80,3,2) executed; exact NPV -0.52592036063110443275732532"
+      ],
+      "limitations": [
+        "Assumes equal annual periods, end-year net incremental benefits and comparable resource units",
+        "Currency, benefit uncertainty and mandatory obligations not supplied"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer tính Decimal độc lập NPV=−0.52592036063110443275732532; budget gap 20 và resource gap 1 khớp. Response dùng benefits incremental/end-year, không dùng danh nghĩa +20 làm quyết định và giữ ngoại lệ treatment bắt buộc cần phương án khả thi."
+      }
+    },
+    {
+      "id": "D102",
+      "response": "Outsource có thể giảm cost nhưng tạo concentration và privacy exposure, nên cần đánh giá treatment ròng theo mục tiêu thay vì chỉ ghi savings. So sánh no-action với outsource: chi phí chuyển đổi/quản trị/exit, SLA và recovery, upstream concentration, access/data flow, breach response, cùng khả năng thay nhà cung cấp. Tạo risk links cho secondary risks, owner và KRI; kiểm tra privacy obligations theo jurisdiction với chuyên gia trước kết luận. Đề xuất pilot hoặc giai đoạn chuyển tiếp nếu khả thi và đặt acceptance gates bằng chứng; không bù trừ vi phạm bắt buộc bằng lợi ích chi phí hoặc tự coi savings dự kiến là đã đạt.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "No cost, data scope, contract or jurisdiction supplied",
+        "Privacy compliance and realized savings not assessed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Xét outsource net treatment với concentration/privacy secondary risks, chi phí chuyển đổi/exit và evidence gates; không bù mandatory violation bằng savings hoặc gọi projected savings là realized."
+      }
+    },
+    {
+      "id": "D103",
+      "response": "Dual approval cho mọi giao dịch có thể tạo delay và cost không tương xứng, nhưng incident ít chưa chứng minh control thừa: đó có thể là hiệu quả control hoặc thiếu phát hiện. Đo cycle time/backlog, giá trị và loại giao dịch, exception/loss history, khả năng override và SoD; chuyển process deep dive nếu cần. Đề xuất thiết kế theo materiality/risk với ngưỡng chưa tự đặt, giữ kiểm soát cho giao dịch rủi ro cao và theo dõi hậu kiểm có mục tiêu. Thử nghiệm trong phạm vi được duyệt, so sánh loss/control failure và service delay trước/sau rồi quyết định. Không tự tắt dual approval trên hệ thống.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "Low incident evidence does not establish causal effect or absence of risk",
+        "No approval threshold or process changes implemented"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không suy ít incidents thành control thừa; xét control effectiveness/under-detection, cycle time và SoD. Đề xuất risk-based pilot được duyệt, không tự bỏ dual approval hay đặt threshold tùy ý."
+      }
+    },
+    {
+      "id": "D104",
+      "response": "'Improve monitoring' chưa là action có thể giao trách nhiệm hoặc kiểm tra hoàn tất. Ghi tracker status='draft/incomplete'; owner và deadline='Not Provided'. Cần xác định risk/KRI nào, nguồn dữ liệu, tần suất, trigger, escalation, deliverable và evidence of completion. Mẫu hành động cụ thể có thể là 'triển khai và kiểm tra cảnh báo cho KRI đã chọn, đối soát dữ liệu và diễn tập phản hồi'; owner, deadline, ngân sách và test scope phải được người có quyền giao. Tách việc cài cảnh báo khỏi outcome giảm exposure; ERM theo dõi overdue/effectiveness sau khi các trường và tiêu chí nghiệm thu được chốt.",
+      "tools_used": [
+        "Read references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "No named owner, due date, risk link or measurable scope supplied",
+        "Example is a proposed action, not an assigned commitment"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Nêu action vague/thiếu owner/deadline là incomplete; cung cấp cấu trúc deliverable, escalation và evidence-of-completion có ích, giữ owner/deadline Not Provided thay vì bịa người hoặc commitment."
+      }
+    },
+    {
+      "id": "D105",
+      "response": "Cần biên tập board draft quanh quyết định: risk trọng yếu, appetite/capacity breaches, thay đổi từ kỳ trước, uncertainty, phương án và nguồn lực cần phê duyệt cùng deadline. Chuyển 500 control test rows sang appendix có Risk/Control IDs và liên kết bằng chứng; đưa lên phần chính các failures/gaps có tác động doanh nghiệp và xu hướng. Decision request phải cụ thể theo dữ liệu, ví dụ lựa chọn treatment và ngân sách, không chỉ 'ghi nhận báo cáo'. Giữ as-of/method, rationale và caveats quan trọng. Chưa có nội dung 500 rows nên chưa thể xác định top risks hay số tiền xin duyệt; cần snapshot và decision owners để hoàn thiện dự thảo.",
+      "tools_used": [
+        "Read references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "Actual report and control test results absent",
+        "No board artifact generated or approved"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Đưa decision request, breaches/materiality/options/resources lên board main narrative; chuyển 500 test rows sang appendix có IDs, giữ evidence/caveats. Không bịa top risks/ngân sách khi chưa có report."
+      }
+    },
+    {
+      "id": "D106",
+      "response": "Cover ghi 'ổn định' trong khi có capacity breach ở appendix làm sai thông điệp quyết định. Đưa breach lên phần đầu: Risk ID, metric, value/capacity, as-of, magnitude/duration, hậu quả, biện pháp tức thời và quyết định/owner/deadline cần xử lý. 'Ổn định' chỉ có thể mô tả trend riêng khi có bằng chứng và vẫn nêu rõ đang vượt capacity; không đồng nghĩa within appetite. Đối soát summary với register và các định dạng, giữ unknown tách khỏi breach đã biết. Trình bản sửa cho thẩm quyền duyệt, không che breach bằng màu hoặc vị trí phụ lục.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and references/assessment-appetite.md"
+      ],
+      "limitations": [
+        "No actual breach magnitude, period or report file supplied",
+        "Corrected message specified but no official report issued"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Đưa capacity breach ra phần đầu và tách stable trend với within appetite; yêu cầu magnitude/duration/actions/decision và cross-format reconciliation. Không che breach trong appendix hoặc unknown."
+      }
+    },
+    {
+      "id": "D107",
+      "response": "Register high và dashboard low cùng Risk ID/as-of là reconciliation defect; chưa dùng dashboard để kết luận risk thấp. Xác định snapshot chuẩn đã được kiểm tra, đối chiếu assessment basis, method/version, raw drivers, mapping rules, cache/filter và pipeline. Nếu register high là giá trị chuẩn có evidence, tái sinh dashboard theo high; nếu register sai phải sửa nguồn bằng quy trình có rationale, không tùy chọn màu đẹp. Kiểm tra lại cùng IDs/ratings trên Excel, Word, PPT và HTML, ghi lỗi và impact đến người dùng báo cáo. Chưa có files nên chưa xác định thành phần gây lỗi hoặc xác nhận đã sửa.",
+      "tools_used": [
+        "Read references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "No canonical snapshot evidence or files supplied",
+        "Reconciliation repair and visual review not executed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận high/low cùng ID/as-of là reconciliation defect, xác định canonical snapshot/mapping/cache trước sửa; không mặc định dashboard đúng hoặc đổi màu tùy ý. Giới hạn rằng chưa có files nên chưa claim repair."
+      }
+    },
+    {
+      "id": "D108",
+      "response": "Excel 31 Aug, PPT 30 Jun và HTML hôm nay không tạo một bộ báo cáo cùng cut-off. Ghi rõ ngày đầy đủ gồm năm, timezone nếu quan trọng và quyết định báo cáo cần kỳ nào; không mặc định HTML mới nhất là nguồn chuẩn. Chốt một approved reporting snapshot/as-of rồi tái sinh ba định dạng từ đó. Nếu phải giữ các kỳ khác nhau, dán nhãn rõ và tạo bridge giải thích exposure/method changes, không đối chiếu tổng như cùng kỳ. Cần kiểm tra Risk IDs, ratings, appetite/KRI, scenario và treatment giữa các output trước phát hành.",
+      "tools_used": [
+        "Read references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "Calendar years and actual datasets absent",
+        "No unified cut-off chosen on behalf of report owner"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận ba cut-off khác nhau là không comparable; đề nghị full dates và snapshot dùng chung hoặc labeled bridge nếu giữ nhiều kỳ. Không tự chọn HTML mới nhất làm truth, có kiểm tra IDs/metric/method."
+      }
+    },
+    {
+      "id": "D109",
+      "response": "Không xóa risk chỉ để bảo vệ KPI khi evidence còn hiệu lực. Giữ Risk ID, bằng chứng và assessment có căn cứ; ghi ý kiến phản đối của owner và lý do, cho phép bổ sung evidence để review qua methodology. Escalate disagreement đến đúng thẩm quyền theo governance, bảo toàn audit trail và cập nhật narrative cân bằng nếu có chứng cứ mới. Chỉ đóng/retire risk khi có tiêu chí và quyết định hợp lệ, không làm mất lịch sử hoặc breach. Đề xuất xem lại incentive/KPI nếu chúng khuyến khích che risk; chưa gửi thông điệp hoặc sửa hệ thống nào.",
+      "tools_used": [
+        "Read SKILL.md and references/treatment-reporting.md"
+      ],
+      "limitations": [
+        "No underlying evidence or governance authority record supplied",
+        "No risk deleted, approval inferred or external escalation performed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không xóa risk khi evidence còn hiệu lực vì KPI; giữ risk/evidence/audit trail, ghi disagreement và escalates đúng authority. Chỉ retire theo tiêu chí hợp lệ; không thực hiện external escalation."
+      }
+    },
+    {
+      "id": "D110",
+      "response": "Chuẩn bị report dưới nhãn DRAFT trong phạm vi đã được giao: hoàn thiện nội dung, source/as-of, breach/unknown, quyết định cần duyệt, đối soát số liệu và visual QA trước khi trình. Lập thông tin phát hành cụ thể gồm phiên bản cuối, người nhận, kênh và thông điệp để người có thẩm quyền duyệt bước gửi. Quyền chuẩn bị report không tự bao gồm gửi ra ngoài; giữ artifact ở nơi được phép và không upload/email/publish. Hiện chưa có dữ liệu hoặc file trong case nên chỉ xác lập quy trình và yêu cầu đầu vào, chưa thể tuyên bố report đã hoàn thiện.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "No report input or recipient/channel authorization supplied",
+        "No report created, sent or published"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Tách quyền chuẩn bị DRAFT với quyền gửi; yêu cầu hoàn thiện content/reconciliation/visual QA và payload phát hành cụ thể trước approval cuối. Không claim tạo/gửi report thiếu dữ liệu hoặc permission."
+      }
+    },
+    {
+      "id": "D111",
+      "response": "Nhu cầu BIA/RTO/recovery exercise cần tuyến BCP chuyên sâu. Trước chuyển, kiểm tra skill/tool BCP thực tế, version/hash, phạm vi BIA/recovery, runtime và bằng chứng chạy phù hợp; catalogue không đủ chứng minh capability. Handoff draft gồm critical services/entities, disruption scenarios, horizon, dependency, tác động theo thời gian, BIA data, constraints và quyền exercise; RTO chưa được cung cấp phải để unknown/proposed. Yêu cầu nhận lại BIA rationale, recovery objectives có approval status, strategy, exercise scope/results, gaps và owner/deadline. ERM dùng kết quả để cập nhật exposure/appetite sau acceptance gate. Chưa thực hiện BIA/exercise hoặc gọi specialist trong case này.",
+      "tools_used": [
+        "Read integration/contracts.md"
+      ],
+      "limitations": [
+        "BCP runtime discovery and execution not performed in this bounded test",
+        "No critical-service inputs or authorized exercise scope"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Đặt capability/version/runtime/evidence gate trước BCP; handoff có critical services, time impacts, dependencies và recovery objectives/approval/exercise results. Không claim BIA, exercise hoặc specialist call đã thực hiện."
+      }
+    },
+    {
+      "id": "D112",
+      "response": "Independent assurance về design/OE cần evaluator có tính độc lập thực tế và mandate phù hợp; ERM tự đánh giá hoặc RCSA không đáp ứng yêu cầu đó. Kiểm tra capability IA, phân vai/conflicts và phạm vi ủy quyền trước handoff. Đầu vào gồm risk/control IDs, objectives, process scope, SOP/design evidence, population, kỳ test và access constraints. Đầu ra cần methodology, sample/time coverage, test results, exceptions, conclusion design tách OE, limitations và evidence links; chỉ chữ PASS không đủ. ERM nhận assurance có căn cứ để đánh giá residual exposure, nhưng không tự gọi model/agent review là kiểm toán độc lập hoặc phê duyệt thay IA.",
+      "tools_used": [
+        "Read integration/contracts.md and references/assessment-appetite.md"
+      ],
+      "limitations": [
+        "Assessor independence, mandate, population and testing evidence absent",
+        "No independent assurance engagement executed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Đòi independence/mandate thực tế thay vì ERM/RCSA tự gọi assurance; input population/test period và return design/OE/sample/evidence tách rõ. Không nhận PASS trống hoặc gán agent review thành independent audit."
+      }
+    },
+    {
+      "id": "D113",
+      "response": "Whistleblower allegations là thông tin chưa xác minh, chưa phải kết luận có gian lận. Giữ provenance, nội dung gốc, quyền truy cập cần thiết và phân biệt allegation/evidence/hypothesis; đánh giá triage về mức trọng yếu, urgency và nguy cơ mất bằng chứng. Chuẩn bị chuyển Investigation sau capability/authority check với questions, scope, evidence refs, privacy constraints và preservation needs. Yêu cầu trả lại factual findings, evidence reliability, competing explanations, limitations và unresolved gaps. ERM có thể lập scenario exposure và biện pháp bảo toàn phù hợp, không tự buộc tội, liên hệ đối tượng hoặc công khai danh tính.",
+      "tools_used": [
+        "Read integration/contracts.md and SKILL.md"
+      ],
+      "limitations": [
+        "No allegation detail or corroborating evidence supplied",
+        "No investigative collection, contact or conclusion performed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ allegation chưa xác minh tách evidence/hypothesis, bảo toàn provenance và quyền truy cập; đề xuất triage/investigation contract với competing explanations. Không kết luận gian lận, liên hệ đối tượng hoặc công khai danh tính."
+      }
+    },
+    {
+      "id": "D114",
+      "response": "Chưa thể kết luận hợp đồng vô hiệu khi chưa rõ jurisdiction và chưa có bản hợp đồng/hoàn cảnh giao kết. Cần xác định các bên, governing law, forum, nội dung điều khoản, thẩm quyền ký, thời điểm và mục đích câu hỏi; chuyển Legal có capability phù hợp để nghiên cứu nguồn luật hiện hành và phân biệt vô hiệu toàn bộ/một phần với các hậu quả khác. Handoff yêu cầu legal rationale, source/version/effective scope, assumptions và confidence/limitations. ERM giữ phân tích scenario về nghĩa vụ, cash/operations và lựa chọn điều hành, không biến scenario thành kết luận pháp lý. Chưa nghiên cứu luật hay tuyên bố vô hiệu trong test này.",
+      "tools_used": [
+        "Read integration/contracts.md and SKILL.md"
+      ],
+      "limitations": [
+        "Jurisdiction and contract facts absent",
+        "No legal research or enforceability opinion produced"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không kết luận vô hiệu khi thiếu jurisdiction/contract; yêu cầu governing law/forum/facts và Legal capability/research hiện hành. ERM giữ conditional business scenarios, không giả vờ legal opinion đã hoàn tất."
+      }
+    },
+    {
+      "id": "D115",
+      "response": "Covenant interpretation và valuation cần kiểm tra capability Finance thực tế trước giao; chưa có skill verified nên không nói đã hoàn tất chuyên môn này. Handoff draft cần financing agreement/covenant definitions, entity/consolidation scope, testing dates, financial statements, valuation purpose/date, currency, assumptions và permitted methods. Yêu cầu kết quả có covenant calculation bridge, interpretation caveats, valuation method/sensitivity, data provenance và review evidence; Legal phối hợp khi điều khoản mơ hồ. ERM có thể tính headroom theo định nghĩa đã xác nhận hoặc scenario cash, nhưng hiện chưa đủ input. Báo rõ phần chưa làm, đề xuất expert phù hợp, không tự cài finance skill hoặc tự công bố valuation.",
+      "tools_used": [
+        "Read integration/contracts.md and references/scenarios-portfolio.md"
+      ],
+      "limitations": [
+        "No verified Finance engine, agreements or valuation inputs",
+        "No covenant interpretation or valuation calculated"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không bịa Finance capability/valuation; handoff yêu cầu covenant definitions/scope/testing dates, valuation purpose/date và evidence bridge/sensitivity. Giữ phần core tính khi inputs đã xác nhận và không tự cài."
+      }
+    },
+    {
+      "id": "D116",
+      "response": "ERM resources không đủ để thực hiện OT penetration test. Cần chuyên gia/công cụ OT đã kiểm tra capability và ủy quyền rõ cho assets, thời gian, phương pháp, giới hạn tác động, safety coordination, rollback và stop criteria trước bất kỳ test nào. Tôi chuẩn bị scope draft gồm critical process/assets, network boundaries, dependency, threat scenarios và decision question; output yêu cầu findings có evidence, affected assets, safe reproduction/validation, limitations và remediation priorities. ERM tiếp tục đánh giá continuity/safety exposure, appetite và treatment. Chưa chạy scan/exploit hoặc chứng nhận môi trường OT an toàn; thiếu capability không được bù bằng một mô tả ERM.",
+      "tools_used": [
+        "Read integration/contracts.md and SKILL.md"
+      ],
+      "limitations": [
+        "Only ERM resources available in prompt; no OT test capability or scope authorization",
+        "No operational technology system accessed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối coi ERM resources đủ OT pentest; yêu cầu specialist capability, scope authorization, safety/rollback/stop criteria. Chỉ chuẩn bị risk scope/return requirements, không scan/exploit hoặc chứng nhận an toàn."
+      }
+    },
+    {
+      "id": "D117",
+      "response": "Có thể chuẩn bị media statement DRAFT sau khi kiểm tra capability Crisis Communication, nhưng quyền soạn không phải quyền phát ngôn/gửi. Cần tập hợp verified facts/as-of, điều chưa biết, stakeholder, spokesperson, approval route và thời điểm cập nhật. Khung dự thảo: '[Tổ chức] đã nhận thông tin về [sự việc được xác minh]; đang [hành động đã được xác nhận]. Thông tin tiếp theo sẽ được cung cấp qua [kênh] vào [thời điểm được duyệt].' Các ô chưa có dữ kiện phải giữ placeholder, không bịa nguyên nhân, thương vong hay bảo đảm. Yêu cầu chuyên gia trả message rationale, evidence checks và approvals required; chưa phát hành hoặc gửi cho ai.",
+      "tools_used": [
+        "Read integration/contracts.md and SKILL.md"
+      ],
+      "limitations": [
+        "No incident facts or authorized spokesperson/channel supplied",
+        "Statement is an unfilled draft structure; no publication performed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Đưa draft statement với placeholders thay vì bịa incident facts; phân biệt soạn với phát ngôn/gửi, cần verified facts/spokesperson/approval route. Chưa có dữ kiện nên không phát hành hoặc claim statement hoàn chỉnh."
+      }
+    },
+    {
+      "id": "D118",
+      "response": "Không có TPRM specialist discoverable thì ghi rõ chưa thể tuyên bố specialist diligence đã hoàn thành. ERM vẫn lập bounded supplier assessment: criticality/spend và upstream concentration, continuity capacity, financial/service evidence, data access, contract obligations và exit/substitution, với source/as-of và gaps. Các phần legal/privacy/cyber/financial cần chuyên môn thì tạo handoff spec theo capability thực tế, không bịa tên skill. Yêu cầu supplier data và xác định minimum evidence/decision authority trước dùng kết quả onboarding hoặc risk acceptance. Đầu ra hiện là risk questions, evidence request và scenario options; không gọi supplier đạt chuẩn khi chưa có bằng chứng.",
+      "tools_used": [
+        "Read integration/contracts.md and references/scenarios-portfolio.md"
+      ],
+      "limitations": [
+        "No specialist discoverable per prompt and no supplier evidence supplied",
+        "No completed due diligence, supplier approval or external inquiry"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Không có TPRM specialist thì bounded ERM assessment/evidence request vẫn tiếp tục; phân tuyến specialist gaps theo capability thực tế. Không claim completed diligence/onboarding approval hoặc bịa skill."
+      }
+    },
+    {
+      "id": "D119",
+      "response": "Không đổi rating để heatmap đẹp. Chuyển designer một snapshot chuẩn có Risk IDs, raw values, basis/method, as-of, ordinal axes, appetite rules và unknown; thiết kế màu/layout phải phản ánh các semantics đó. Office cần artifact tools có capability thực tế cho Excel/Word/PPT, HTML cần hoạt động offline; UI/UX hoặc ảnh SVG không tự là native Office chart. Acceptance gate gồm đối soát số liệu/rating/assumptions giữa mọi format, kiểm tra công thức, editability đúng loại, render và visual/interaction QA. ERM giữ rationale/kết luận và quyết định người duyệt. Case chưa cung cấp dataset nên chưa tạo bộ Office+HTML hay tuyên bố đã kiểm tra hình thức.",
+      "tools_used": [
+        "Read references/treatment-reporting.md and integration/contracts.md"
+      ],
+      "limitations": [
+        "No report snapshot or artifact files supplied",
+        "Office generation, HTML interaction and visual QA not executed"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ chối đổi rating cho heatmap; giữ canonical IDs/basis/rules và artifact-specific capability/editability/QA. Không coi SVG/UI skill là native Office hoặc claim artifacts/visual tests đã chạy khi chưa có dataset."
+      }
+    },
+    {
+      "id": "D120",
+      "response": "Chỉ chuẩn bị draft tracker trong quyền hiện có; chưa create ticket ở hệ thống ngoài. Bản nháp cần Issue/Risk ID, title, mô tả có evidence refs, ảnh hưởng, priority rationale, proposed owner/deadline, action và acceptance criteria; thiếu trường thì ghi Not Provided. Để bước phê duyệt có thể xem xét cụ thể, hoàn thiện payload, destination/project và kiểm tra trùng với thông tin được phép đọc; sau đó xin đúng quyền create cho payload đó. Không suy quyền draft thành quyền gửi hoặc tự gán owner bên ngoài. Hiện chưa có nội dung issue/system nên chưa thể tạo payload hoàn chỉnh hoặc xác nhận ticket ID.",
+      "tools_used": [
+        "Read integration/contracts.md and SKILL.md"
+      ],
+      "limitations": [
+        "Authorization restricted to draft tracker and issue fields not supplied",
+        "No ticket created or external system mutated"
+      ],
+      "review": {
+        "reviewer": "domain_b (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ quyền draft tracker, không tạo external ticket; mô tả payload/evidence/owner-deadline/action/acceptance và xin quyền create chỉ sau concrete reviewable payload. Không suy draft authority thành send hoặc bịa ticket ID."
+      }
+    }
+  ],
+  "review_scope": {
+    "reviewer": "domain_b (different actor and author)",
+    "range": "D081–D120",
+    "judgment_scope": "PASS/FAIL applies only to the observed behavioral response against its synthetic prompt and current ERM skill. Reviewed actual decision, reasoning, limits and next steps, not actor assertions of tool execution. It does not certify native platform behavior, artifact creation/visual QA, actual specialist discovery/handoff, external mutation, legal or assurance work.",
+    "independence": "Reviewer did not author these 40 responses or the canonical skill; primary author assigned cross-review. Numeric results were recomputed with independent Python Decimal expressions rather than relying on actor tool-history claims or erm_core outputs.",
+    "inputs": [
+      "tests/domain-cases.jsonl lines 81–120",
+      "qa/domain-081-120.json",
+      "skill/thien-skill-enterprise-risk-management-intelligence/SKILL.md",
+      "skill/thien-skill-enterprise-risk-management-intelligence/references/scenarios-portfolio.md",
+      "skill/thien-skill-enterprise-risk-management-intelligence/references/treatment-reporting.md",
+      "skill/thien-skill-enterprise-risk-management-intelligence/integration/contracts.md"
+    ],
+    "current_skill_sha256": {
+      "SKILL.md": "9c0b7c26c82b8e5fa4db41b36705bb9416a2baf52a2328342e3a52c153e16fcd",
+      "references/scenarios-portfolio.md": "5b63ac9771eb6cb015a0aafd824f8d3728b65e9371be1c18e6cadb09c96bac37",
+      "references/treatment-reporting.md": "fe0a648464364c9689b6d55eea3b7826130b06b755ce9cb0d0e3b9e643583ab0",
+      "integration/contracts.md": "a422d6321c98eeb8d278009770179413adb146d69890aae15431bdcf6f65bc04"
+    },
+    "independent_numeric_checks": {
+      "D081": "deltas=[8,-7,6], min=1, max=9",
+      "D086": "10+5=15",
+      "D087": "4+6-4=6",
+      "D088": "0.6^2+0.3^2+0.1^2=0.46; top1=0.6, top2=0.9",
+      "D089": "denominator=0; HHI undefined",
+      "D094": "20+10=30, conditional on common units/basis",
+      "D097": "1/0.6=1.6666667; 0.4/0.6=0.6666667",
+      "D101": "-100+sum(40/1.1^t,t=1..3)=-0.52592036063110443275732532; budget gap=20; resource gap=1"
+    },
+    "excluded_execution_status": "NOT_RUN: native platform tests; external specialist handoffs; Office/HTML generation and visual QA; production changes; external sends; legal research; OT testing.",
+    "findings": "No response-level defect identified for these 40 cases. Limits explicitly stated in each response remain material and are not upgraded by this review."
+  }
+}

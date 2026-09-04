@@ -1,0 +1,1756 @@
+{
+  "date": "2026-09-04",
+  "version": "0.1.4",
+  "state": "Testing",
+  "scope": "Focused R05-R07 remediation on 0.1.4. Historical records retain their original version; final native method regression incomplete because of Claude session quota.",
+  "domain_behavior": {
+    "status": "PASS",
+    "cases": 120,
+    "execution": "Three fresh agents answered 40 synthetic cases each; different agents cross-reviewed responses against prompts and skill. PASS covers written response behavior only.",
+    "batches": {
+      "domain-001-040.json": {
+        "cases": 40,
+        "PASS": 40,
+        "FAIL": 0,
+        "NOT_RUN": 0,
+        "sha256": "7918c802e8f224a7d8f3b746145d2ab00358e9f023ec63d6aaf754b5988a71a3"
+      },
+      "domain-041-080.json": {
+        "cases": 40,
+        "PASS": 40,
+        "FAIL": 0,
+        "NOT_RUN": 0,
+        "sha256": "ba91f6b22dbc4aea3d5ae9ccd6b35c7aa84bf70417eb152019b8e23c1fd048e5"
+      },
+      "domain-081-120.json": {
+        "cases": 40,
+        "PASS": 40,
+        "FAIL": 0,
+        "NOT_RUN": 0,
+        "sha256": "07dbcef7523e8502d45be47d500ffa05b4d741f342ef44c6d0c588ad46dd4d5e"
+      }
+    },
+    "version_scope": "Historical 120 responses; not rerun for 0.1.3 or 0.1.4. Entrypoint/references and IT pack changed in 0.1.4; historical PASS is not final-candidate native behavior evidence."
+  },
+  "quantitative_semantic": {
+    "status": "PASS",
+    "tests": 45,
+    "skipped": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 ERM_NODE=<bundled Node> ERM_NODE_MODULES=<bundled modules> ERM_DOCX_SAMPLE=<generated 0.1.4 report.docx> <bundled Python> -m unittest discover -s tests -v",
+    "scope": "Final frozen source; 42 existing tests plus profit bridge cases, context object validation, and generated Word style/content regression. Sample-backed Word test; actual exporter run separately recorded.",
+    "test_output": "test_calculation_context_must_be_object (test_erm.Arithmetic.test_calculation_context_must_be_object) ... ok\ntest_cash_shortfall (test_erm.Arithmetic.test_cash_shortfall) ... ok\ntest_concentration (test_erm.Arithmetic.test_concentration) ... ok\ntest_credit (test_erm.Arithmetic.test_credit) ... ok\ntest_disruption (test_erm.Arithmetic.test_disruption) ... ok\ntest_headroom (test_erm.Arithmetic.test_headroom) ... ok\ntest_invalid_numbers (test_erm.Arithmetic.test_invalid_numbers) ... ok\ntest_inventory (test_erm.Arithmetic.test_inventory) ... ok\ntest_loss_id_dedup_and_currency (test_erm.Arithmetic.test_loss_id_dedup_and_currency) ... ok\ntest_margin (test_erm.Arithmetic.test_margin) ... ok\ntest_passthrough (test_erm.Arithmetic.test_passthrough) ... ok\ntest_profit_bridge_reconciles_components (test_erm.Arithmetic.test_profit_bridge_reconciles_components) ... ok\ntest_project (test_erm.Arithmetic.test_project) ... ok\ntest_quality (test_erm.Arithmetic.test_quality) ... ok\ntest_simulation (test_erm.Arithmetic.test_simulation) ... ok\ntest_treatment (test_erm.Arithmetic.test_treatment) ... ok\ntest_working_capital (test_erm.Arithmetic.test_working_capital) ... ok\ntest_handoff_acceptance_roundtrip (test_erm.Remediation.test_handoff_acceptance_roundtrip) ... ok\ntest_handoff_failure_can_be_recorded_without_acceptance (test_erm.Remediation.test_handoff_failure_can_be_recorded_without_acceptance) ... ok\ntest_handoff_rejects_failed_or_missing_evidence (test_erm.Remediation.test_handoff_rejects_failed_or_missing_evidence) ... ok\ntest_treatment_missing_comparison_is_not_silent (test_erm.Remediation.test_treatment_missing_comparison_is_not_silent) ... ok\ntest_treatment_target_roundtrip_and_reference (test_erm.Remediation.test_treatment_target_roundtrip_and_reference) ... ok\ntest_utilization_two_sided (test_erm.Remediation.test_utilization_two_sided) ... ok\ntest_utilization_upper_floor_signed_and_opt_out (test_erm.Remediation.test_utilization_upper_floor_signed_and_opt_out) ... ok\ntest_bad_snapshots (test_erm.Semantics.test_bad_snapshots) ... ok\ntest_boundary_and_precedence (test_erm.Semantics.test_boundary_and_precedence) ... ok\ntest_capacity_order (test_erm.Semantics.test_capacity_order) ... ok\ntest_direction (test_erm.Semantics.test_direction) ... ok\ntest_duplicate_json_key_and_no_overwrite (test_erm.Semantics.test_duplicate_json_key_and_no_overwrite) ... ok\ntest_injection_escaped (test_erm.Semantics.test_injection_escaped) ... ok\ntest_method_change_not_overwritten (test_erm.Semantics.test_method_change_not_overwritten) ... ok\ntest_snapshot_report (test_erm.Semantics.test_snapshot_report) ... ok\ntest_source_replacement_warning (test_erm.Semantics.test_source_replacement_warning) ... ok\ntest_stale_latest_is_not_green (test_erm.Semantics.test_stale_latest_is_not_green) ... ok\ntest_two_sided (test_erm.Semantics.test_two_sided) ... ok\ntest_valid_snapshot (test_erm.Semantics.test_valid_snapshot) ... ok\ntest_decimal_exponents_and_negative_values (test_release.OfficeRuntime.test_decimal_exponents_and_negative_values) ... ok\ntest_identifiers_remain_text (test_release.OfficeRuntime.test_identifiers_remain_text) ... ok\ntest_numeric_strings_match_engine (test_release.OfficeRuntime.test_numeric_strings_match_engine) ... ok\ntest_unsafe_string_and_number_precision_is_explicit (test_release.OfficeRuntime.test_unsafe_string_and_number_precision_is_explicit) ... ok\ntest_word_preset_and_content_parity (test_release.OfficeRuntime.test_word_preset_and_content_parity) ... ok\ntest_counts_and_lines_request_review_instead_of_block (test_release.ReleaseGates.test_counts_and_lines_request_review_instead_of_block) ... ok\ntest_html_specific_byte_budget (test_release.ReleaseGates.test_html_specific_byte_budget) ... ok\ntest_qa_and_zip_hard_limits (test_release.ReleaseGates.test_qa_and_zip_hard_limits) ... ok\ntest_release_state_reproducibility_and_no_overwrite (test_release.ReleaseGates.test_release_state_reproducibility_and_no_overwrite) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 2.017s\n\nOK\n",
+    "log_sha256": "6e45d72ef71503a6db2737fde39180d5024a86953f9d19dc116816c84e655981"
+  },
+  "skill_structure": {
+    "hygiene": "PASS for current payload with D04 review-only file/line thresholds; LICENSE and governance-document length reviewed; hard byte budgets enforced.",
+    "frontmatter": "PASS using Ruby Psych YAML parser",
+    "skill_creator_quick_validate": "NOT_RUN: its Python process lacks PyYAML; dependency was not installed. Equivalent YAML parse/naming/description checks and project hygiene ran separately.",
+    "python_compile": "Historical compile PASS; current Python imported/executed by 45-test regression.",
+    "equivalent_validation_0_1_4": {
+      "status": "PASS",
+      "method": "Ruby Psych safe_load and equivalent field/name/description/scaffold rules; quick_validate.py remains NOT_RUN: missing PyYAML",
+      "checks": {
+        "dictionary": true,
+        "keys": true,
+        "name": true,
+        "description": true,
+        "scaffold": true
+      },
+      "skill_sha256": "57c8cef689c4eab6a8c8061603e4bebd94f0b9fbc030ab888cb3ed2845113999"
+    }
+  },
+  "artifacts": {
+    "source_snapshot_sha256": "8ea35412e7940ab5f83839d7febaab665d84806d4dea36239686bb7b7952d99d",
+    "cross_format_ids": {
+      "status": "PASS",
+      "expected": [
+        "R1",
+        "R2",
+        "R3",
+        "K1",
+        "K2",
+        "K3",
+        "SC1",
+        "TR1"
+      ],
+      "missing": {
+        "xlsx": [],
+        "docx": [],
+        "pptx": [],
+        "html": []
+      },
+      "version_scope": "Historical cross-format check; 0.1.4 Word separately checked against same snapshot."
+    },
+    "xlsx": {
+      "status": "PASS",
+      "file": "sample/report.xlsx",
+      "formula_reconciliation": "3 risks / 2 breaches / 1 UNKNOWN; KRI formulas match engine",
+      "formula_error_scan": "0",
+      "rendered_sheets": 16,
+      "visual_review": "PASS; all 16 sheets rendered/contact sheet reviewed; Summary, KRI, Treatments target columns and Warnings inspected at readable detail. Formula counts/statuses reconciled; zero formula-error matches.",
+      "version_scope": "Retained 0.1.3 sample/evidence; not a new 0.1.4 visual/native PASS."
+    },
+    "docx": {
+      "status": "PASS",
+      "docx_sha256": "ce6f440ecc6c9ab611f4249a7f428b02e4bb5fe5de8bf7b69101949ca177256d",
+      "byte_identical_render_copy_sha256": "ce6f440ecc6c9ab611f4249a7f428b02e4bb5fe5de8bf7b69101949ca177256d",
+      "pages": 3,
+      "all_pages_visually_reviewed": true,
+      "visual_scope": "All three final pages: readable, correct headers/footers/margins, deliberate sections, no orphan source-only page, no clipping or overlap. Preserved blue heading direction from agreed preset.",
+      "renderer_limit": "Multi-image tool previews appeared to omit repeated page regions; individual original-detail inspection shows complete header/footer/margins on all pages. Byte-identical DOCX copy rendered again with pixel-identical pages; no renderer source defect established.",
+      "images": {
+        "page-1.png": "68dca1ce96d0a823db87d904e5ee99e90fb3538059158bbd8683d79c753b30d2",
+        "page-2.png": "ecc8bad1c71794d037e8d59b7d58234a13aeb1b548cb8672ae09633267e1160a",
+        "page-3.png": "dabb406b8091f9a3948b65eb58e8344c1102521b9780b9926f1059a819107d3c"
+      },
+      "test": "test_word_preset_and_content_parity: unique Normal/Heading1/Heading2, explicit default, correct font/spacing, no direct spacing overrides, warnings/no-action/target retained",
+      "baseline_reference": "Preset spacing expectations captured in qa/G9-NATIVE.json acceptance_0_1_3.word_preset_audit; prior documents reference bundle no longer present. New documents workflow used current bundled runtime; no claim of comprehensive old-preset recertification.",
+      "version": "0.1.4",
+      "file": "sample/report.docx"
+    },
+    "pptx": {
+      "status": "PASS",
+      "file": "sample/report.pptx",
+      "rendered_slides": 8,
+      "overflow_test": "PASS: bundled slides_test.py returned Test passed. No overflow detected.",
+      "visual_review": "PASS; all eight slides inspected via contact sheet, target/warning slides at full detail.",
+      "version_scope": "Retained 0.1.3 sample/evidence; not a new 0.1.4 visual/native PASS."
+    },
+    "html": {
+      "structure_and_javascript_syntax": "PASS",
+      "file": "sample/dashboard.html",
+      "offline_inline_assets": "PASS: no CDN/backend; CSP connect-src none",
+      "static_accessibility_and_interaction_contract": "Historical 0.1.2 static checks retained in readiness audit. 0.1.3: executable JavaScript syntax checked with node --check; embedded JSON equals regenerated report; utilization/null and no-action/target/warnings renderer paths inspected. No DOM execution.",
+      "interaction_and_visual": "USER_REPORTED_PASS for the four-item 0.1.3 smoke checklist; agent browser execution remains NOT_RUN because of the recorded URL policy restriction.",
+      "previous_version_0_1_2_user_reported_smoke": {
+        "status": "USER_REPORTED_OK",
+        "date": "2026-09-04",
+        "confirmation": "okie rồi đó",
+        "context": "User confirmation after opening dashboard and receiving the search/filter/reset/keyboard checklist.",
+        "limits": "General confirmation only; no per-case results, screenshots or viewport dimensions supplied. Does not establish complete interaction, keyboard or responsive coverage."
+      },
+      "user_reported_smoke": {
+        "status": "USER_REPORTED_PASS",
+        "version": "0.1.3",
+        "date": "2026-09-04",
+        "confirmation": "pass",
+        "context": "User replied pass after the assistant requested results for the four-item 0.1.3 dashboard checklist. Treated as aggregate confirmation of that checklist.",
+        "checklist": [
+          "K1 utilization displays 100%.",
+          "K2 utilization displays Không áp dụng.",
+          "Search, status filter and reset function correctly.",
+          "After narrowing the window, content remains readable and tables do not overlap text."
+        ],
+        "limits": "User-reported aggregate result; no screenshot, viewport dimensions or separate case logs supplied. No independent agent execution, keyboard coverage or exhaustive responsive testing claimed.",
+        "local_artifact_sha256": "e99672527f4febaac6ef3e44ef7328345a892cf2f7c0e8e44f385b22fbaaf84c",
+        "artifact_link_limit": "Hash identifies the current local sample associated with the checklist; no browser-side hash was supplied."
+      },
+      "version_scope": "Retained 0.1.3 sample/evidence; not a new 0.1.4 visual/native PASS."
+    },
+    "sha256": {
+      "report.json": "20e1024f43e57a420fdc02967806ab665baf08efbaf469b0173aa0fd9ebede46",
+      "dashboard.html": "e99672527f4febaac6ef3e44ef7328345a892cf2f7c0e8e44f385b22fbaaf84c",
+      "report.xlsx": "9d7bb015ed06eefaf9b9131af509df91595749e5de73f486cb7946ed4a92bef0",
+      "report.docx": "ce6f440ecc6c9ab611f4249a7f428b02e4bb5fe5de8bf7b69101949ca177256d",
+      "report.pptx": "406b24e574cf7390963e85b345e4bee2f19a626bd504587302ceb8aab44bc0c3"
+    },
+    "material_narrative_reconciliation": {
+      "status": "PASS_FOR_SELECTED_FIELDS",
+      "items": [
+        "C1: no evidence; conclusion must disclose the gap",
+        "Synthetic: giữ exposure gián đoạn và cash shortfall của SC1.",
+        "Synthetic: khôi phục khả năng giao hàng; residual exposure chưa định lượng, chờ thử alternate port."
+      ],
+      "method": "Exact full-text presence in XLSX, DOCX and PPTX OOXML; HTML embedded JSON equality plus renderer field references. Does not claim every field has identical narrative across formats.",
+      "version_scope": "Historical four-format checks; changed Word rechecked for IDs, C1 warning and target/no-action content."
+    },
+    "contact_sheet": "artifact-contact-sheet.png",
+    "sample_reproduction": "PASS: prepare(fixture) equals report.json; render_html(prepare(fixture)) byte-equals current dashboard.html; embedded JSON equals report.json.",
+    "contact_sheet_scope": "Replaced with three 0.1.4 Word pages only; earlier XLSX/PPTX/HTML visual evidence remains historical.",
+    "contact_sheet_sha256": "70a70ec2164f3fa7b4df301aa99ed28f5eab84b730210accd3d5e3d6681d455c",
+    "replaced_0_1_3_samples": {
+      "qa/sample/report.docx": "b86ed2c7387c90b9db847d3275f698796637fd44791fe049e53e0c219068f0b2",
+      "qa/artifact-contact-sheet.png": "1e0968c0cb09b952711167184b8ad154a3591c23fb4a826e6b8e69cbbd82cb5c"
+    }
+  },
+  "packaging": {
+    "status": "PASS",
+    "release_manifest": "../dist/0.1.4/RELEASE-MANIFEST.json",
+    "layout": "Each ZIP has direct skill folder; no .agents/skills layer; 31 source files plus generated PACKAGE-MANIFEST; internal hashes re-read; deterministic timestamps; original releases retained.",
+    "previous_release_0_1_0": {
+      "claude": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.0-claude.zip",
+        "sha256": "0ec8efeaf54927ff1aa0ffe1f86750bcce2f6017e9010c372b580db73453709a",
+        "bytes": 1026129,
+        "entries": 30
+      },
+      "chatgpt": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.0-chatgpt.zip",
+        "sha256": "dc8d6f3ea426d6c780c7162618fdba8b11770d5014e969a80d6064355a49ae0b",
+        "bytes": 1026131,
+        "entries": 30
+      },
+      "universal": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.0-universal.zip",
+        "sha256": "ddc5193c50572790037978129ee76c95181652b6668189be35ae57ad4cff4c08",
+        "bytes": 1026134,
+        "entries": 30
+      }
+    },
+    "previous_release_0_1_2": {
+      "claude": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.2-claude.zip",
+        "sha256": "8c9010bf4afe9a2ecbf9b5bbef9e68689927c3ff9a33d8e42aa36eaaed16dacc",
+        "bytes": 1290643,
+        "entries": 32
+      },
+      "chatgpt": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.2-chatgpt.zip",
+        "sha256": "fcb0025980bb5eb80206c20e60154fcde695e4a83d8cd50772d678093abdedc0",
+        "bytes": 1290645,
+        "entries": 32
+      },
+      "universal": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.2-universal.zip",
+        "sha256": "782fb31e04032df61108ec5ce9787161847f20744d2d891e36d0defddb600e24",
+        "bytes": 1290645,
+        "entries": 32
+      }
+    },
+    "targets": {
+      "claude": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.4-claude.zip",
+        "sha256": "e1c439f4b9d0933f593d1435e007cf4a5e49539915a35c44f33ddeef132a0301",
+        "bytes": 1296142,
+        "entries": 32
+      },
+      "chatgpt": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.4-chatgpt.zip",
+        "sha256": "77ce64f2e1fbd9523e204f952e65eab9489517891105819525ed5f4b430523e6",
+        "bytes": 1296144,
+        "entries": 32
+      },
+      "universal": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.4-universal.zip",
+        "sha256": "55e91b119a40b89464511e16a2453af514bce8d5e84aedacb53bcabd4e580992",
+        "bytes": 1296144,
+        "entries": 32
+      }
+    },
+    "reproducibility": "PASS: three 0.1.4 ZIPs rebuilt in a temporary directory with identical hashes; CRC, all 31 canonical files, manifest bytes/hash/state and folder-root layout verified. All 12 earlier ZIPs and installed Claude 0.1.3 files unchanged.",
+    "previous_release_0_1_3": {
+      "claude": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.3-claude.zip",
+        "sha256": "5121a4e51bc339eea4f8a116f78dfab47f1fd5f9f2061d74d723e1ad07176935",
+        "bytes": 1293431,
+        "entries": 32
+      },
+      "chatgpt": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.3-chatgpt.zip",
+        "sha256": "4a80c9b78bf695145a46e56f5a65cfb404a5060d13ad90e62c24a90253e7254c",
+        "bytes": 1293432,
+        "entries": 32
+      },
+      "universal": {
+        "file": "thien-skill-enterprise-risk-management-intelligence-0.1.3-universal.zip",
+        "sha256": "e01511e6251cff419ee0181f9de2522534a4d7acbf426f85770a4eb2c92270d5",
+        "bytes": 1293433,
+        "entries": 32
+      }
+    }
+  },
+  "capability_evidence": {
+    "related_skill_smokes": "PASS_WITH_LIMITS from G1: DEQ profiling/reconciliation and DSMV classification metrics/invalid-probability rejection ran. Does not prove all routed models.",
+    "native_platforms": {
+      "Claude Web": "NOT_RUN",
+      "Claude Code load/trigger": "PASS: installed 29/29 source files; explicit body/resource load, model Bash calculator execution and one natural-language implicit Skill invocation in fresh processes. No claim of exhaustive native coverage.",
+      "ChatGPT Web package upload/load/trigger": "PASS_WITH_LIMITS: 0.1.2 replaces prior trial and intended TDTN logo renders in both skill sections. 0.1.1 regression proved VERSION, 30/31 hashes (only service-normalized YAML differs), no missing/unexplained extras, 128/512 source icons; calculator/behavior smoke from 0.1.0 remains applicable because those files retain hashes. Final 0.1.2 regression reads VERSION and current USAGE successfully.",
+      "ChatGPT Desktop": "NOT_RUN"
+    },
+    "external_handoffs_and_actions": "NOT_RUN"
+  },
+  "known_limits": [
+    "Current package is 0.1.4 Testing, not completed 1.0.0.",
+    "R05 engine/bridge tests pass but final native I02 still claims checked arithmetic without execution; R05 remains open at narrative level. R07 observed style defects corrected and all three Word pages reviewed. R06 final I02 threshold/AI targets pass, while defined reverse-stress final run is incomplete due Claude session limit.",
+    "R01-R04 corrected in 0.1.3. Bounded native regressions on Claude Code and ChatGPT Web now PASS_WITH_LIMITS; prior Claude HTTP529 attempts retained as history. Native success does not establish full release readiness.",
+    "HTML four-item smoke is USER_REPORTED_PASS; independent agent visual/interaction and keyboard testing remain NOT_RUN. No screenshots or viewport dimensions supplied; no exhaustive responsive coverage claimed.",
+    "Artifact samples use synthetic data and do not validate a real enterprise method/source.",
+    "Loss dedup requires stable economic loss IDs; semantically duplicate records with different IDs need reconciliation before aggregation.",
+    "Authorized 0.1.3 update and bounded native testing completed on Claude Code and ChatGPT Web. Claude Web and ChatGPT Desktop remain NOT_RUN. Native DEQ registered invocation on Claude, independent reconciliation and accepted specialist production return remain untested.",
+    "G9-UI01 RESOLVED on ChatGPT Web with 128/512 PNG consumers; service still generates icon.svg and normalizes UI YAML. Added policy.products is not treated as platform-test evidence.",
+    "Office visual review is bounded: Claude viewed 2 DOCX pages, 8 PPT slides and 4 of 16 XLSX sheets; strict standard_business_brief preset not certified. Wide Excel Treatments/Handoffs require horizontal navigation. Native tests do not imply all methods or platforms verified.",
+    "0.1.4 candidate tested through explicit temporary Claude file loading only. No installed 0.1.4 or ChatGPT Web 0.1.4 native result; final frozen-source method retest pending. E01/E02/E04 acceptance scope decisions remain open; E03 disclose synthetic/non-independent scope.",
+    "User stopped further Claude testing on 2026-09-04. No further Claude test is scheduled or planned without a new user instruction; retain R05/R06 evidence and unresolved acceptance conditions."
+  ],
+  "g9_evidence": {
+    "file": "G9-NATIVE.json",
+    "current_run": "regression_0_1_4",
+    "status": "CLOSED_TEST_RUN_PER_USER_WITH_UNRESOLVED_FINDINGS",
+    "chatgpt_web": "0.1.4 NOT_RUN; historical 0.1.3 evidence retained.",
+    "claude_code": "0.1.4 scoped file-loaded candidate testing ended per user request; unresolved results retained. Installed 0.1.3 unchanged.",
+    "history": "Existing top-level platform records in G9-NATIVE.json retain earlier versions.",
+    "acceptance_followup": "acceptance_0_1_3: NOT_READY_FOR_1.0.0; R05/R06 native response failures and R07 Word preset mismatch do not invalidate the narrower prior explicit G9 results."
+  },
+  "release_readiness_audit": {
+    "date": "2026-09-04",
+    "candidate": "0.1.2",
+    "decision": "NOT_READY_FOR_1.0.0",
+    "source_tree_sha256": "c14ab9e31ba0febeb8d91aaf868a7ec59c3e92f5e32799ae6905e9f42b118714",
+    "source_tree_hash_method": "SHA-256 of newline-joined sorted relative_path:sha256(file) entries; no trailing newline",
+    "executed": {
+      "existing_unit_suite": {
+        "status": "PASS",
+        "tests": 27,
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v"
+      },
+      "package_integrity_and_rebuild": {
+        "status": "PASS",
+        "targets": 3,
+        "entries_per_zip": 32,
+        "source_files": 31,
+        "canonical_bytes": 1399413,
+        "checks": [
+          "ZIP CRC, duplicate/unexpected paths, exact source bytes and internal manifest sizes/hashes",
+          "Release manifest SHA-256/sizes and direct folder root",
+          "Temporary build byte-identical to all delivered 0.1.2 ZIPs"
+        ]
+      },
+      "sample_reproduction": {
+        "status": "PASS",
+        "files": [
+          "sample/report.json",
+          "sample/dashboard.html"
+        ],
+        "method": "prepare(tests.fixture.engagement()) JSON equality; render_html byte equality; embedded JSON parsed and equals report.json"
+      },
+      "domain_history_integrity": {
+        "status": "PASS",
+        "cases": 120,
+        "method": "Unique case IDs equal tests/domain-cases.jsonl; all have response and cross-review; batch hashes equal prior evidence. Behavior not rerun."
+      },
+      "frontmatter_ui_yaml": {
+        "status": "PASS",
+        "method": "Ruby Psych parse; folder/name match; description present; implicit invocation true"
+      },
+      "license_master_logo": {
+        "status": "PASS",
+        "method": "Byte equality to the user-designated original license template and Logo TDTN.png; no legal interpretation or new research"
+      },
+      "quick_validate": {
+        "status": "NOT_RUN",
+        "attempt": "Python exits before checks: ModuleNotFoundError: No module named yaml. No installation."
+      },
+      "hygiene_inventory": {
+        "status": "PASS_FOR_CURRENT_FILES",
+        "canonical_types": {
+          "md": 17,
+          "extensionless": 4,
+          "yaml": 1,
+          "json": 1,
+          "py": 3,
+          "mjs": 1,
+          "html": 1,
+          "png": 3
+        },
+        "largest_file": "assets/logo.png: 948765 bytes",
+        "longest_file": "LICENSE: 901 lines, required unchanged template exception",
+        "unexplained_orphans": 0,
+        "exact_duplicate_canonical_files": 0,
+        "empty_directories": 0,
+        "review": "Consumers traced from SKILL/USAGE, runtime imports, template/schema/UI references and legal packaging requirements; source/generated separation preserved."
+      }
+    },
+    "findings": [
+      {
+        "id": "R01",
+        "status": "FAIL",
+        "requirements": [
+          "OUT-01",
+          "OUT-06",
+          "QA-03",
+          "QA-06"
+        ],
+        "severity": "release_blocker",
+        "location": "scripts/export_office.mjs:22,55-87",
+        "reproduction": "Use tests.fixture.engagement(); change every non-null observations[].value and every metrics[].rules[].threshold to str(value). prepare() returns VALID and statuses breach/capacity_breach/UNKNOWN. Run byte-identical exporter copy with existing bundled Node 24.19.0 and dependencies in a temporary directory.",
+        "actual": "Exit 1: Excel KRI formula reconciliation failed at line 86; no Office output created.",
+        "expected": "Schema-valid decimal strings export consistently with engine, with an explicit safe precision policy rather than silent numeric coercion.",
+        "fix_acceptance": "Numeric and decimal-string inputs produce equal KRI statuses/counts. Test negative values and precision beyond safe Excel representation; disclose/reject unsafe precision clearly."
+      },
+      {
+        "id": "R02",
+        "status": "FAIL",
+        "requirements": [
+          "INT-03",
+          "INT-04",
+          "QA-03"
+        ],
+        "severity": "release_blocker",
+        "location": "scripts/validate_engagement.py:188-191; schemas/engagement.schema.json handoff",
+        "reproduction": "Use tests.fixture.engagement(); H1 capability_status=verified, version=audit-synthetic, result_status=validated, method=synthetic-method, validation_status=FAIL. Run validate().",
+        "actual": "Returns status VALID; only existing C1 warning. No validation-evidence field is required by the schema.",
+        "expected": "An explicitly failed validation cannot be accepted as validated; required return evidence must be represented and checked.",
+        "fix_acceptance": "Reject FAIL/NOT_RUN/unverified or missing validation evidence when result_status=validated; test accepted and rejected round-trips while keeping business authority separate."
+      },
+      {
+        "id": "R03",
+        "status": "FAIL",
+        "requirements": [
+          "OUT-04",
+          "OUT-06"
+        ],
+        "severity": "release_blocker",
+        "location": "assets/dashboard.html:51",
+        "reproduction": "prepare(tests.fixture.engagement()) gives K1 headroom.limit=200, headroom=0, utilization=1. Inspect executable render code separately from application/json payload.",
+        "actual": "Utilization exists only in JSON payload; KRI renderer displays limit/headroom/action, never utilization. Static finding; no browser execution claimed.",
+        "expected": "Show meaningful upper-limit utilization (K1=100%); show an explicit not-applicable state for lower floors/zero limits rather than a misleading percentage.",
+        "fix_acceptance": "Verify visible 100% upper-limit utilization, signed/zero/lower-floor handling and reconciliation with report.json; obtain rendered/user-run evidence."
+      },
+      {
+        "id": "R04",
+        "status": "FAIL",
+        "requirements": [
+          "QA-07",
+          "PKG-06",
+          "D04"
+        ],
+        "severity": "release_blocker",
+        "location": "tools/build_release.py:23,35-37,51",
+        "reproduction": "Copy current 31-file source to TemporaryDirectory; add 10 small synthetic Markdown files linked from SKILL.md; invoke hygiene() against that copy.",
+        "actual": "Rejects solely because count 41 > 40. Source inspection also finds hard line limit 800, HTML limit 200 KiB instead of D04 500 KiB, no explicit compressed-ZIP/QA budget gate, and build state hardcoded Testing.",
+        "expected": "File/line counts cause explained review, not automatic refusal; hard size budgets follow D04 by file type; build metadata must support a future completed release without overstating native evidence.",
+        "fix_acceptance": "Test review thresholds separately from hard size limits, HTML allowance, ZIP/QA budgets and release-state configuration; keep 0.1.2 immutable."
+      }
+    ],
+    "additional_contract_observations": [
+      {
+        "requirements": [
+          "ERM-12",
+          "OUT-06"
+        ],
+        "observation": "data-model.md describes target and no-action/with-action in treatments, but schema has no explicit fields/links for these and rejects a target property. Existing target-basis assessments and expected_benefit narrative may carry part of this, but the end-to-end contract needs a documented, tested mapping.",
+        "action": "During output correction, establish one canonical mapping and verify round-trip; do not silently drop supplied target/no-action information."
+      },
+      {
+        "requirements": [
+          "OUT-06",
+          "QA-06"
+        ],
+        "observation": "Existing cross-format evidence proves IDs and selected totals, not every narrative/caveat. The C1 missing-operating-evidence warning is in report.json/HTML but absent from sample DOCX/PPTX text.",
+        "action": "Add material-warning reconciliation or justify relevance-based selection before claiming complete narrative parity."
+      },
+      {
+        "requirements": [
+          "BRAND-02"
+        ],
+        "observation": "Dashboard template has zero img elements and uses text branding; this is separate from the resolved ChatGPT skill-card logo.",
+        "action": "Treat dashboard logo as a design observation, not evidence that G9-UI01 regressed."
+      }
+    ],
+    "scope_limits": [
+      "No native test repeated or installation/upload/publication performed.",
+      "No browser-policy workaround; HTML remains agent NOT_RUN with USER_REPORTED_OK preserved.",
+      "Canonical source, existing tests and all delivered releases unchanged by audit.",
+      "Local reproductions use synthetic fixture and existing runtime; temporary files cleaned."
+    ]
+  },
+  "remediation_0_1_3": {
+    "date": "2026-09-04",
+    "authorization": "User: sửa bốn lỗi đã xác minh và tạo bản thử 0.1.3. Local implementation/build only.",
+    "decision": "TESTING_READY_WITH_VERIFICATION_LIMITS; NOT_READY_FOR_1.0.0",
+    "findings": {
+      "R01": {
+        "status": "PASS",
+        "change": "Normalize only typed numeric Excel cells; allow safe decimal strings; reject over 15 significant decimal digits, nonfinite/unsafe round-trips explicitly before artifact writes.",
+        "evidence": "Actual OfficeRuntime tests: numeric strings match engine; decimal exponents/negatives; 0.1234567890123456, 9007199254740992 and 1e-400 rejected. Full local sample export and formula reconciliation PASS."
+      },
+      "R02": {
+        "status": "PASS",
+        "change": "Validated handoff requires verified capability, method, PASS/PASS_WITH_LIMITS and nonempty current validation_evidence_ids; FAIL/NOT_RUN/missing evidence rejected.",
+        "evidence": "Accepted/rejected semantic round-trips and noncurrent evidence tests PASS; does not verify specialist output or business approval."
+      },
+      "R03": {
+        "status": "CLOSED_WITH_USER_REPORTED_PASS",
+        "change": "KRI renderer now emits localized utilization and explicit not-applicable for null; lower/two-sided/zero/negative and explicit opt-out suppress ratio.",
+        "evidence": "Engine edge-case tests and HTML syntax/static contract PASS. User confirmed pass for the four-item 0.1.3 checklist on 2026-09-04, including visible K1=100% and K2=Không áp dụng. Agent visual/interaction execution remains NOT_RUN; user evidence has no screenshots or viewport dimensions."
+      },
+      "R04": {
+        "status": "PASS",
+        "change": "D04 count/line thresholds request review; correct text/HTML/binary/QA/payload/ZIP byte gates; configurable Testing/Release with 0.x safeguard and native NOT_RUN metadata.",
+        "evidence": "41-file and 850-line fixtures allowed with review; HTML 300 KiB allowed/over 500 KiB rejected; QA/ZIP size gates tested; Release state, no-overwrite and deterministic build tested."
+      }
+    },
+    "contract_mapping": "Optional no_action_case, target and target_assessment_ids round-trip without dropping content; linked assessments must exist, have target basis and belong to treatment risks. Missing comparison emits warning; no invented target rating.",
+    "unchanged_scope": "One canonical source; six industry packs, core calculator, brand assets and installed skills untouched. No install, upload, Git push or publication.",
+    "hygiene": {
+      "canonical_files": 31,
+      "canonical_bytes": 1409898,
+      "qa_files": 11,
+      "qa_bytes": 4136385,
+      "project_source_files": 41,
+      "reviews": [
+        "LICENSE: 901 lines; retained unchanged legal template",
+        "KE-HOACH.md: 673 lines; governance review thresholds 600/800, not a hard cap"
+      ]
+    }
+  },
+  "final_acceptance_0_1_3": {
+    "date": "2026-09-04",
+    "decision": "NOT_READY_FOR_1.0.0",
+    "evidence": "G9-NATIVE.json#acceptance_0_1_3",
+    "blocking_findings": [
+      "R05",
+      "R06"
+    ],
+    "format_finding_to_resolve": [
+      "R07"
+    ],
+    "requirements_mapping": [
+      {
+        "requirements": [
+          "ERM-01",
+          "ERM-02",
+          "ERM-03",
+          "ERM-04",
+          "ERM-05",
+          "ERM-06",
+          "ERM-07",
+          "ERM-08"
+        ],
+        "status": "PARTIAL: R06 OPEN",
+        "basis": "Core/reference/schema and prior tests cover workflow; new native missing-threshold response violates threshold/materiality discipline."
+      },
+      {
+        "requirements": [
+          "ERM-09",
+          "ERM-10",
+          "ERM-11",
+          "CALC-01",
+          "CALC-02"
+        ],
+        "status": "PARTIAL: R05/R06 OPEN",
+        "basis": "Prior engine tests/native explicit calculations retained; free-form numeric explanation and reverse-stress naming failed. No advanced model validation claimed."
+      },
+      {
+        "requirements": [
+          "ERM-12",
+          "ERM-13",
+          "OUT-01",
+          "OUT-03",
+          "OUT-04",
+          "OUT-06",
+          "OUT-07"
+        ],
+        "status": "PASS_WITH_LIMITS for artifacts; R05 OPEN for chat narrative",
+        "basis": "0.1.3 native Office parity/overflow and local user HTML smoke retained; no keyboard/exhaustive responsive coverage."
+      },
+      {
+        "requirements": [
+          "IND-01",
+          "IND-02",
+          "IND-03",
+          "IND-04",
+          "IND-05",
+          "IND-06",
+          "IND-07"
+        ],
+        "status": "PARTIAL: R05/R06 OPEN",
+        "basis": "Six packs intact,120 historical responses not rerun; two new FMCG/IT native cases reveal failures, not certification of all industries."
+      },
+      {
+        "requirements": [
+          "INT-01",
+          "INT-02",
+          "INT-03",
+          "INT-04",
+          "INT-05",
+          "INT-06"
+        ],
+        "status": "PASS_WITH_LIMITS",
+        "basis": "Real DEQ helper positive technical handoff accepted to ERM snapshot; wrong-unit control rejected. File-loaded capability only on Claude; no independent/production or all DSMV engines coverage."
+      },
+      {
+        "requirements": [
+          "OUT-02",
+          "OUT-05"
+        ],
+        "status": "R07 OPEN",
+        "basis": "Exact declared Word preset mismatch verified by OOXML/source; prior content/readability retained."
+      },
+      {
+        "requirements": [
+          "BRAND-01",
+          "BRAND-02",
+          "LEGAL-01",
+          "LEGAL-02",
+          "LEGAL-03"
+        ],
+        "status": "CARRIED_FORWARD_WITH_LIMITS",
+        "basis": "Unchanged canonical files match delivered manifest; prior master-logo/license byte audits retained; no new legal interpretation or licensing changes."
+      },
+      {
+        "requirements": [
+          "PKG-01",
+          "PKG-02",
+          "PKG-03",
+          "PKG-04",
+          "PKG-05",
+          "PKG-06"
+        ],
+        "status": "PASS_WITH_PLATFORM_LIMITS; release metadata update pending",
+        "basis": "31 canonical files,12 immutable ZIP hashes verified; two native surfaces tested, Claude Web/Desktop unverified; USAGE still accurately frozen at build time but must be revised in future release."
+      },
+      {
+        "requirements": [
+          "QA-01",
+          "QA-02",
+          "QA-03",
+          "QA-04",
+          "QA-05",
+          "QA-06",
+          "QA-07",
+          "QA-08"
+        ],
+        "status": "NOT_READY",
+        "basis": "Failure evidence retained, historical/fresh scopes separated, no independent claim; R05/R06/R07 and unresolved publication scope prevent closing 1.0.0."
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "E01",
+        "topic": "Claude Web / ChatGPT Desktop",
+        "recommendation": "Keep NOT_RUN and publish only the tested surface/scope claims unless user authorizes further native tests; do not silently drop the multi-platform target.",
+        "decision": "OPEN; current permission does not authorize Claude Web upload."
+      },
+      {
+        "id": "E02",
+        "topic": "HTML keyboard/responsive and native visual scope",
+        "recommendation": "Retain USER_REPORTED_PASS for 4 smoke items and exact bounded visual coverage; do not certify all viewport/keyboard combinations.",
+        "decision": "OPEN for release acceptance; no repeat request for already supplied user PASS."
+      },
+      {
+        "id": "E03",
+        "topic": "Independent/production validation",
+        "recommendation": "Accept successful technical synthetic handoff as integration evidence while explicitly excluding independent review, enterprise source truth and production approval.",
+        "decision": "DISCLOSE_SCOPE; independent production proof was not performed."
+      },
+      {
+        "id": "E04",
+        "topic": "skill-creator quick_validate",
+        "recommendation": "Accept Ruby Psych plus explicit equivalent field/name/description/scaffold checks and project hygiene as alternate structure evidence; leave original quick_validate NOT_RUN, no dependency installation.",
+        "decision": "OPEN for release acceptance."
+      }
+    ],
+    "release_preparation": "After fixes/retest and exception decisions, update VERSION/USAGE/support table and future build metadata. Never overwrite 0.1.3 ZIP; no 1.0.0 build authorized by this audit alone.",
+    "changes": "Only existing QA files and KE-HOACH updated; canonical/installed skill and ZIP unchanged."
+  },
+  "remediation_0_1_4": {
+    "date": "2026-09-04",
+    "status": "IMPLEMENTED_WITH_OPEN_NATIVE_VERIFICATION",
+    "readiness": "NOT_READY_FOR_1.0.0",
+    "R05": {
+      "status": "UNRESOLVED_NATIVE_NARRATIVE",
+      "change": "pass_through profit_bridge factors/formulas/components reconcile to profit delta; runtime-required numeric narrative/units and UNCHECKED fallback; context object error and CLI help clarified.",
+      "evidence": "45-test suite includes four independent bridge cases (original, decimal/mixed directions, zero volume, negative contribution). Claude native-runtime/I01 actual output arithmetic reconciled. Final-source I02 still says arithmetic checked with only Read calls, no execution or UNCHECKED; R05 not closed."
+    },
+    "R06": {
+      "status": "UNRESOLVED_WITH_PARTIAL_EVIDENCE",
+      "change": "Missing materiality remains unknown, including data questions and illustrative thresholds; reverse stress requires failure condition; scenario ratio/ceteris paribus does not estimate demand elasticity. IT uses task-specific effort and incremental-profit bridge; no arbitrary 365 or two-sided metric without method.",
+      "evidence": "Development runs exposed additional threshold/AI/Insight errors; final instructions corrected. Final I02 threshold/AI targets pass; its arithmetic execution fails R05. Final defined reverse-stress run stopped on session quota, so R06 as a whole is not closed."
+    },
+    "R07": {
+      "status": "RESOLVED_FOR_OBSERVED_DEFECTS",
+      "change": "Explicit default Normal; unique heading styles; body after 6pt, H1 16/8pt, H2 12/6pt; no direct spacing overrides. Three balanced pages with planned section breaks.",
+      "evidence": "Actual exporter exit0, OOXML/content regression, all 3 pages individually reviewed; byte-identical DOCX re-rendered pixel-identically. Original preset-library full certification not claimed."
+    },
+    "export": {
+      "command": [
+        "/Users/thiendeptrainhat/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/private/tmp/erm-fix-014-erslpgcc/export.mjs",
+        "/private/tmp/erm-fix-014-erslpgcc/report.json",
+        "/private/tmp/erm-fix-014-erslpgcc/office-ready",
+        "/Users/thiendeptrainhat/Documents/Thien's Skills Library/Thien-ERM/skill/thien-skill-enterprise-risk-management-intelligence/assets/logo.png",
+        "/private/tmp/erm-fix-014-erslpgcc/preview-ready"
+      ],
+      "exit_code": 0,
+      "stdout": "Inspect result written to file: /private/tmp/erm-fix-014-erslpgcc/office-ready/report.xlsx.inspect.ndjson\nInspect result written to file: /private/tmp/erm-fix-014-erslpgcc/office-ready/report.pptx.inspect.ndjson\n{\"xlsx\":\"created\",\"docx\":\"created_visual_review_required\",\"pptx\":\"created\",\"checks\":{\"counts\":[[3],[2],[1]],\"statuses\":[[\"breach\"],[\"capacity_breach\"],[\"UNKNOWN\"]]},\"slides\":8}\n",
+      "stderr": ""
+    },
+    "export_source_sha256_at_execution": "09b4f6a261b89b7665ed269a79fb6566dba1432ddfdae533a8efde36646862b3",
+    "export_source_difference_from_final": "Only explanatory comment changed after export; executable content identical.",
+    "canonical_files_sha256": {
+      "LICENSE": "ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5",
+      "THIRD-PARTY-NOTICES.md": "0bcf5da003e1adf70d487ac1774aebb9d13cbe62d7b9aedf214bd9f8077fdd18",
+      "USAGE.md": "43070eb12aaf4eb2c54d5b40310b56ac9d86b5e775bbfece37361d712323f71f",
+      "LICENSE-APPLICATION.md": "9bf6dbe25a70341c5be5a05a70712dcbd4b265e700ef24aac463ed55ff4ed7cf",
+      "NOTICE": "a64170c92a4c4c19b03cb8f5a274ccd2c4775026b497e20b97eb0f7f9f00bebf",
+      "VERSION": "8a3dad16d348c163566a456fcf650d85d7aeeda5e53d01ee1fa8dc15212915a7",
+      "LICENSE-VERSION": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402",
+      "SKILL.md": "57c8cef689c4eab6a8c8061603e4bebd94f0b9fbc030ab888cb3ed2845113999",
+      "references/sources.md": "9d6412ab16c0a3cf5096514c8623035adcdd2fdc123cb8487c3c24f7b974d021",
+      "references/treatment-reporting.md": "72275b7af37208daa9c5b01d84f139279c698ca8d356262e3ca3ecee8bfd2f48",
+      "references/scenarios-portfolio.md": "07f403b8ed2e3a05e89143b5e51eb107f469856681716e4d2b2eea34d2baf25d",
+      "references/controls-kri.md": "e8ab3c1a4ac08b7909ce0965df910c350bbb4d201de3f72080abf1c7245d2573",
+      "references/assessment-appetite.md": "a850e6227968f8a29c226613a27e5fc12cee0210248f7bd93579a262ef94d166",
+      "references/data-model.md": "ab4883d00616b8656c01c99185d519c265ddac0063382be5301599efadc03ef2",
+      "integration/contracts.md": "206aeb8feb41840d893a79be3e288911a1107520c69447a86257e03e38a78491",
+      "agents/openai.yaml": "26dd1372f1b4ef289e039c6b0394897c6f450459f38651871406fb109647eaed",
+      "schemas/engagement.schema.json": "8b44793bbcc891b8be3e588a13f4edf132dac1e9ceb5d154c1fc09ea0a47ef90",
+      "scripts/erm_core.py": "4a36de75a9c08297b9d03e4cc3a9477cba24775083bf7d31594fd7abc55f1718",
+      "scripts/export_office.mjs": "a49f330e9051b3f103a7defde6138926a1c59daf94a15ccf70cad54d340e0289",
+      "scripts/validate_engagement.py": "6f9eee00ac6bb6c7e8bcf215d56d9ed3a822d13cfb1334867ce7bcacc68686dc",
+      "scripts/report.py": "b9380cbf78fcba684caea2b8fda96d1aabae27043d38c95b9f7a79246c7a3108",
+      "assets/dashboard.html": "b9ae1d7723b302a47627bd01775659ab82ff7a630b48c0abca3f7f5b766677cc",
+      "assets/logo.png": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e",
+      "assets/icon-128.png": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12",
+      "assets/icon-512.png": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220",
+      "industry-packs/retail.md": "0a72a534140d2adfb0848886243d17200c712727de29cbdc5635dc8e444fc04b",
+      "industry-packs/fmcg.md": "d0b92ae9bbd05e616a3bdc09a65273a2235001f0da33ead9e0922bc3757bbb56",
+      "industry-packs/livestock.md": "bb2a77220a6dfc90edb5361b5688b5d40ef0b0fe96e274df58d66eeca03867d2",
+      "industry-packs/agriculture.md": "71d4b12cd80cccf4714d69a25950f4f88275aa872031480dddb78873adf079e2",
+      "industry-packs/it-outsourcing.md": "fc6b262f8201ac66548d666b0b96a54826e83026de7b90315ca1dca19fe762ca",
+      "industry-packs/logistics.md": "39149e562e8c727ec433b5f7e386bb65ce70d53943bad50886b013303d8013e0"
+    },
+    "scope_preserved": "31 canonical files, eight changed; six industry packs retained, specialist boundaries/capability checks unchanged. One source, Universal no .agents/skills. No other skills/config/install/push/publish changes.",
+    "native_evidence": "G9-NATIVE.json → regression_0_1_4",
+    "packaging": {
+      "status": "PASS",
+      "canonical_files": 31,
+      "canonical_bytes": 1416713,
+      "qa_files": 11,
+      "project_source_files": 41,
+      "old_zip_count_unchanged": 12,
+      "installed_claude_0_1_3_unchanged": true,
+      "manifest": "../dist/0.1.4/RELEASE-MANIFEST.json",
+      "package_native_status": "NOT_RUN_FOR_THIS_BUILD; candidate file-loaded tests separately scoped"
+    },
+    "user_instruction": "2026-09-04: user states Claude testing is sufficient and asks not to continue. Further Claude tests stopped; this scope decision does not change failed/incomplete cases to PASS.",
+    "hygiene_final": {
+      "status": "PASS",
+      "canonical_files": 31,
+      "canonical_bytes": 1416713,
+      "qa_files": 11,
+      "project_source_files": 41,
+      "review": "LICENSE retained; KE-HOACH.md 835 lines retained as sole status history. G9 selected evidence below 200 KiB; no new QA files. All hard byte budgets satisfied."
+    }
+  },
+  "acceptance_conditions_0_1_4": {
+    "date": "2026-09-04",
+    "scope": "Existing-evidence and source review only; no new Claude, business, unit, artifact or platform test. Canonical, packages, samples and native evidence unchanged.",
+    "decision": "NOT_READY_FOR_1.0.0",
+    "canonical_status_location": "../docs/KE-HOACH.md#18-chốt-điều-kiện-còn-thiếu-trước-100--dựa-trên-bằng-chứng-hiện-có",
+    "source_identity": {
+      "matches_retained_0_1_4_hashes": true,
+      "files": 31
+    },
+    "R05": "CONFIRMED_VERIFICATION_LABEL_DEFECT: final I02 arithmetic is numerically correct but claims checked without corresponding execution. Engine/bridge PASS does not close narrative provenance.",
+    "R06": "FINAL_BEHAVIOR_EVIDENCE_GAP: final I02 threshold/AI targets have scoped PASS; final defined reverse-stress session stopped before completion. Earlier iteration failures neither prove final failure nor justify final PASS.",
+    "R07": "Retain resolved observed Word defects from remediation_0_1_4; no repeat test.",
+    "E01_E04_disposition": "Disclosure/evidence treatment derived from existing PKG-05, QA-02/04/05/08 and G9; no new approval gate. Exact dispositions and closure conditions reside in KE-HOACH section 18. No broadened native/independent claim.",
+    "release_condition": "Resolve R05 and close R06 within stated evidence scope before final metadata and packaging. No further Claude run. No new product version or external release in this review."
+  },
+  "r05_checked_generation_0_1_5": {
+    "date": "2026-09-04",
+    "version": "0.1.5",
+    "state": "Testing working source; no new package",
+    "status": "PASS_FOR_GENERATED_CALCULATION_PATH",
+    "scope": "Deterministic CLI/function regression outside Claude. Does not verify arbitrary host prose, data truth, independent model validation, or platform-native behavior.",
+    "unit": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p test_erm.py -v",
+      "exit_code": 0,
+      "tests": 43,
+      "skipped": 0,
+      "log": "test_calculation_context_must_be_object (test_erm.Arithmetic.test_calculation_context_must_be_object) ... ok\ntest_cash_shortfall (test_erm.Arithmetic.test_cash_shortfall) ... ok\ntest_concentration (test_erm.Arithmetic.test_concentration) ... ok\ntest_credit (test_erm.Arithmetic.test_credit) ... ok\ntest_disruption (test_erm.Arithmetic.test_disruption) ... ok\ntest_headroom (test_erm.Arithmetic.test_headroom) ... ok\ntest_invalid_numbers (test_erm.Arithmetic.test_invalid_numbers) ... ok\ntest_inventory (test_erm.Arithmetic.test_inventory) ... ok\ntest_loss_id_dedup_and_currency (test_erm.Arithmetic.test_loss_id_dedup_and_currency) ... ok\ntest_margin (test_erm.Arithmetic.test_margin) ... ok\ntest_passthrough (test_erm.Arithmetic.test_passthrough) ... ok\ntest_profit_bridge_reconciles_components (test_erm.Arithmetic.test_profit_bridge_reconciles_components) ... ok\ntest_project (test_erm.Arithmetic.test_project) ... ok\ntest_quality (test_erm.Arithmetic.test_quality) ... ok\ntest_simulation (test_erm.Arithmetic.test_simulation) ... ok\ntest_treatment (test_erm.Arithmetic.test_treatment) ... ok\ntest_working_capital (test_erm.Arithmetic.test_working_capital) ... ok\ntest_arithmetic_business_cases_and_invalid_inputs (test_erm.CheckedResults.test_arithmetic_business_cases_and_invalid_inputs) ... ok\ntest_bridge_factors_and_total_checked_before_text (test_erm.CheckedResults.test_bridge_factors_and_total_checked_before_text) ... ok\ntest_cli_checked_json_text_and_legacy_compatibility (test_erm.CheckedResults.test_cli_checked_json_text_and_legacy_compatibility) ... ok\ntest_cli_failure_never_emits_checked_artifact (test_erm.CheckedResults.test_cli_failure_never_emits_checked_artifact) ... ok\ntest_context_and_status_cannot_be_self_attested (test_erm.CheckedResults.test_context_and_status_cannot_be_self_attested) ... ok\ntest_matching_result_is_reexecuted_not_trusted (test_erm.CheckedResults.test_matching_result_is_reexecuted_not_trusted) ... ok\ntest_missing_forged_or_mismatched_comparison_rejected (test_erm.CheckedResults.test_missing_forged_or_mismatched_comparison_rejected) ... ok\ntest_handoff_acceptance_roundtrip (test_erm.Remediation.test_handoff_acceptance_roundtrip) ... ok\ntest_handoff_failure_can_be_recorded_without_acceptance (test_erm.Remediation.test_handoff_failure_can_be_recorded_without_acceptance) ... ok\ntest_handoff_rejects_failed_or_missing_evidence (test_erm.Remediation.test_handoff_rejects_failed_or_missing_evidence) ... ok\ntest_treatment_missing_comparison_is_not_silent (test_erm.Remediation.test_treatment_missing_comparison_is_not_silent) ... ok\ntest_treatment_target_roundtrip_and_reference (test_erm.Remediation.test_treatment_target_roundtrip_and_reference) ... ok\ntest_utilization_two_sided (test_erm.Remediation.test_utilization_two_sided) ... ok\ntest_utilization_upper_floor_signed_and_opt_out (test_erm.Remediation.test_utilization_upper_floor_signed_and_opt_out) ... ok\ntest_bad_snapshots (test_erm.Semantics.test_bad_snapshots) ... ok\ntest_boundary_and_precedence (test_erm.Semantics.test_boundary_and_precedence) ... ok\ntest_capacity_order (test_erm.Semantics.test_capacity_order) ... ok\ntest_direction (test_erm.Semantics.test_direction) ... ok\ntest_duplicate_json_key_and_no_overwrite (test_erm.Semantics.test_duplicate_json_key_and_no_overwrite) ... ok\ntest_injection_escaped (test_erm.Semantics.test_injection_escaped) ... ok\ntest_method_change_not_overwritten (test_erm.Semantics.test_method_change_not_overwritten) ... ok\ntest_snapshot_report (test_erm.Semantics.test_snapshot_report) ... ok\ntest_source_replacement_warning (test_erm.Semantics.test_source_replacement_warning) ... ok\ntest_stale_latest_is_not_green (test_erm.Semantics.test_stale_latest_is_not_green) ... ok\ntest_two_sided (test_erm.Semantics.test_two_sided) ... ok\ntest_valid_snapshot (test_erm.Semantics.test_valid_snapshot) ... ok\n\n----------------------------------------------------------------------\nRan 43 tests in 0.496s\n\nOK\n",
+      "log_sha256": "5337666b433aa593dd33e6ce35759201b2c938c601daa211f34c3fbb44e5054b"
+    },
+    "cli_cases": [
+      {
+        "id": "backlog",
+        "request": {
+          "operation": "arithmetic",
+          "parameters": {
+            "left": 80,
+            "operator": "-",
+            "right": 20
+          },
+          "context": {
+            "unit": "tỷ VND",
+            "currency": "VND",
+            "horizon": "Q4/2026",
+            "source_refs": [
+              "SYN1"
+            ]
+          }
+        },
+        "exit_code": 0,
+        "output": {
+          "calculation": {
+            "operation": "arithmetic",
+            "formula_reference": "references/scenarios-portfolio.md",
+            "parameters": {
+              "left": 80,
+              "operator": "-",
+              "right": 20
+            },
+            "context": {
+              "currency": "VND",
+              "horizon": "Q4/2026",
+              "source_refs": [
+                "SYN1"
+              ],
+              "unit": "tỷ VND"
+            },
+            "outputs": {
+              "left": "80",
+              "operator": "-",
+              "right": "20",
+              "result": "60"
+            }
+          },
+          "verification": {
+            "status": "EXECUTED",
+            "comparison": "NOT_REQUESTED",
+            "input_sha256": "9b580c5dec2813b734c83648135568903adb08f95b441168a301f768958f7454",
+            "calculation_sha256": "caa01eb0a9dd2eb51ac44048f59aeb09acdf38949a2f80ffd53f74dd9d89db98",
+            "engine_sha256": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+            "skill_version": "0.1.5"
+          },
+          "text": "Đã thực thi phép tính: arithmetic.\nPhạm vi kiểm chứng: phép tính dưới đây theo input được cung cấp.\nKhông xác minh nguồn dữ liệu, giả định, mô hình hay phê duyệt kinh doanh.\n(80) - (20) = 60\nInput và kết quả (đơn vị/kỳ trong context; tỷ lệ margin/utilization là tỷ số):\n```json\n{\n  \"operation\": \"arithmetic\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"left\": 80,\n    \"operator\": \"-\",\n    \"right\": 20\n  },\n  \"context\": {\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"SYN1\"\n    ],\n    \"unit\": \"tỷ VND\"\n  },\n  \"outputs\": {\n    \"left\": \"80\",\n    \"operator\": \"-\",\n    \"right\": \"20\",\n    \"result\": \"60\"\n  }\n}\n```\nDấu vết nội dung, không phải chữ ký xác thực hay bằng chứng lịch sử:\n{\"calculation_sha256\":\"caa01eb0a9dd2eb51ac44048f59aeb09acdf38949a2f80ffd53f74dd9d89db98\",\"comparison\":\"NOT_REQUESTED\",\"engine_sha256\":\"356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b\",\"input_sha256\":\"9b580c5dec2813b734c83648135568903adb08f95b441168a301f768958f7454\",\"skill_version\":\"0.1.5\",\"status\":\"EXECUTED\"}\n"
+        }
+      },
+      {
+        "id": "weighted_pipeline",
+        "request": {
+          "operation": "arithmetic",
+          "parameters": {
+            "left": 120,
+            "operator": "*",
+            "right": ".4"
+          },
+          "context": {
+            "unit": "tỷ VND",
+            "currency": "VND",
+            "horizon": "Q4/2026",
+            "source_refs": [
+              "SYN1"
+            ]
+          }
+        },
+        "exit_code": 0,
+        "output": {
+          "calculation": {
+            "operation": "arithmetic",
+            "formula_reference": "references/scenarios-portfolio.md",
+            "parameters": {
+              "left": 120,
+              "operator": "*",
+              "right": ".4"
+            },
+            "context": {
+              "currency": "VND",
+              "horizon": "Q4/2026",
+              "source_refs": [
+                "SYN1"
+              ],
+              "unit": "tỷ VND"
+            },
+            "outputs": {
+              "left": "120",
+              "operator": "*",
+              "right": "0.4",
+              "result": "48.0"
+            }
+          },
+          "verification": {
+            "status": "EXECUTED",
+            "comparison": "NOT_REQUESTED",
+            "input_sha256": "67ee5ea4c90146ef6a1adb2084488d63b827f97e6124da640f4280ca3edb6a0a",
+            "calculation_sha256": "48f2b37159fea584a46134a900613660f9b70aeb728e38dd421d4f0929a14cee",
+            "engine_sha256": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+            "skill_version": "0.1.5"
+          },
+          "text": "Đã thực thi phép tính: arithmetic.\nPhạm vi kiểm chứng: phép tính dưới đây theo input được cung cấp.\nKhông xác minh nguồn dữ liệu, giả định, mô hình hay phê duyệt kinh doanh.\n(120) * (0.4) = 48.0\nInput và kết quả (đơn vị/kỳ trong context; tỷ lệ margin/utilization là tỷ số):\n```json\n{\n  \"operation\": \"arithmetic\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"left\": 120,\n    \"operator\": \"*\",\n    \"right\": \".4\"\n  },\n  \"context\": {\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"SYN1\"\n    ],\n    \"unit\": \"tỷ VND\"\n  },\n  \"outputs\": {\n    \"left\": \"120\",\n    \"operator\": \"*\",\n    \"right\": \"0.4\",\n    \"result\": \"48.0\"\n  }\n}\n```\nDấu vết nội dung, không phải chữ ký xác thực hay bằng chứng lịch sử:\n{\"calculation_sha256\":\"48f2b37159fea584a46134a900613660f9b70aeb728e38dd421d4f0929a14cee\",\"comparison\":\"NOT_REQUESTED\",\"engine_sha256\":\"356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b\",\"input_sha256\":\"67ee5ea4c90146ef6a1adb2084488d63b827f97e6124da640f4280ca3edb6a0a\",\"skill_version\":\"0.1.5\",\"status\":\"EXECUTED\"}\n"
+        }
+      },
+      {
+        "id": "profit_bridge",
+        "request": {
+          "operation": "pass_through",
+          "parameters": {
+            "price": 100,
+            "volume": 1000,
+            "unit_cost": 60,
+            "fixed_cost": 10000,
+            "cost_change": 10,
+            "pass_through_rate": ".5",
+            "volume_change": "-.1"
+          },
+          "context": {
+            "unit": "triệu VND",
+            "currency": "VND",
+            "horizon": "Q4/2026",
+            "source_refs": [
+              "SYN1"
+            ]
+          }
+        },
+        "exit_code": 0,
+        "output": {
+          "calculation": {
+            "operation": "pass_through",
+            "formula_reference": "references/scenarios-portfolio.md",
+            "parameters": {
+              "cost_change": 10,
+              "fixed_cost": 10000,
+              "pass_through_rate": ".5",
+              "price": 100,
+              "unit_cost": 60,
+              "volume": 1000,
+              "volume_change": "-.1"
+            },
+            "context": {
+              "currency": "VND",
+              "horizon": "Q4/2026",
+              "source_refs": [
+                "SYN1"
+              ],
+              "unit": "triệu VND"
+            },
+            "outputs": {
+              "baseline": {
+                "revenue": "100000",
+                "contribution": "40000",
+                "profit": "30000",
+                "margin": "0.3"
+              },
+              "scenario": {
+                "revenue": "94500.00",
+                "contribution": "31500.00",
+                "profit": "21500.00",
+                "margin": "0.2275132275132275132275132275132275"
+              },
+              "profit_change": "-8500.00",
+              "profit_bridge": {
+                "components": [
+                  {
+                    "driver": "price",
+                    "factors": [
+                      "5.0",
+                      "900.0"
+                    ],
+                    "formula": "price_change × scenario_volume",
+                    "amount": "4500.00"
+                  },
+                  {
+                    "driver": "cost",
+                    "factors": [
+                      "-10",
+                      "900.0"
+                    ],
+                    "formula": "-cost_change × scenario_volume",
+                    "amount": "-9000.0"
+                  },
+                  {
+                    "driver": "volume",
+                    "factors": [
+                      "-100.0",
+                      "40"
+                    ],
+                    "formula": "volume_change_units × baseline_unit_contribution",
+                    "amount": "-4000.0"
+                  }
+                ],
+                "total": "-8500.00",
+                "reconciliation_difference": "0.00"
+              }
+            }
+          },
+          "verification": {
+            "status": "EXECUTED",
+            "comparison": "NOT_REQUESTED",
+            "input_sha256": "b05425d972580473620f7ce2d5be45bffcc2708d5e7d226ab421a6f2766e20e2",
+            "calculation_sha256": "d07c9e6704064b885e2a16c46c7c2450928ca812136188e959e4092945ab671e",
+            "engine_sha256": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+            "skill_version": "0.1.5"
+          },
+          "text": "Đã thực thi phép tính: pass_through.\nPhạm vi kiểm chứng: phép tính dưới đây theo input được cung cấp.\nKhông xác minh nguồn dữ liệu, giả định, mô hình hay phê duyệt kinh doanh.\nprice: (5.0) × (900.0) = 4500.00\ncost: (-10) × (900.0) = -9000.0\nvolume: (-100.0) × (40) = -4000.0\nTổng bridge = -8500.00; thay đổi lợi nhuận = -8500.00\nInput và kết quả (đơn vị/kỳ trong context; tỷ lệ margin/utilization là tỷ số):\n```json\n{\n  \"operation\": \"pass_through\",\n  \"formula_reference\": \"references/scenarios-portfolio.md\",\n  \"parameters\": {\n    \"cost_change\": 10,\n    \"fixed_cost\": 10000,\n    \"pass_through_rate\": \".5\",\n    \"price\": 100,\n    \"unit_cost\": 60,\n    \"volume\": 1000,\n    \"volume_change\": \"-.1\"\n  },\n  \"context\": {\n    \"currency\": \"VND\",\n    \"horizon\": \"Q4/2026\",\n    \"source_refs\": [\n      \"SYN1\"\n    ],\n    \"unit\": \"triệu VND\"\n  },\n  \"outputs\": {\n    \"baseline\": {\n      \"revenue\": \"100000\",\n      \"contribution\": \"40000\",\n      \"profit\": \"30000\",\n      \"margin\": \"0.3\"\n    },\n    \"scenario\": {\n      \"revenue\": \"94500.00\",\n      \"contribution\": \"31500.00\",\n      \"profit\": \"21500.00\",\n      \"margin\": \"0.2275132275132275132275132275132275\"\n    },\n    \"profit_change\": \"-8500.00\",\n    \"profit_bridge\": {\n      \"components\": [\n        {\n          \"driver\": \"price\",\n          \"factors\": [\n            \"5.0\",\n            \"900.0\"\n          ],\n          \"formula\": \"price_change × scenario_volume\",\n          \"amount\": \"4500.00\"\n        },\n        {\n          \"driver\": \"cost\",\n          \"factors\": [\n            \"-10\",\n            \"900.0\"\n          ],\n          \"formula\": \"-cost_change × scenario_volume\",\n          \"amount\": \"-9000.0\"\n        },\n        {\n          \"driver\": \"volume\",\n          \"factors\": [\n            \"-100.0\",\n            \"40\"\n          ],\n          \"formula\": \"volume_change_units × baseline_unit_contribution\",\n          \"amount\": \"-4000.0\"\n        }\n      ],\n      \"total\": \"-8500.00\",\n      \"reconciliation_difference\": \"0.00\"\n    }\n  }\n}\n```\nDấu vết nội dung, không phải chữ ký xác thực hay bằng chứng lịch sử:\n{\"calculation_sha256\":\"d07c9e6704064b885e2a16c46c7c2450928ca812136188e959e4092945ab671e\",\"comparison\":\"NOT_REQUESTED\",\"engine_sha256\":\"356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b\",\"input_sha256\":\"b05425d972580473620f7ce2d5be45bffcc2708d5e7d226ab421a6f2766e20e2\",\"skill_version\":\"0.1.5\",\"status\":\"EXECUTED\"}\n"
+        }
+      },
+      {
+        "id": "matching_raw_result",
+        "exit_code": 0,
+        "comparison": "MATCH",
+        "calculation_sha256": "d07c9e6704064b885e2a16c46c7c2450928ca812136188e959e4092945ab671e"
+      },
+      {
+        "id": "wrong_bridge_component",
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "UNCHECKED: comparison differs from executed calculation (input/context/output); no checked result emitted\n"
+      },
+      {
+        "id": "self_attested_pass_only",
+        "exit_code": 2,
+        "stdout": "",
+        "stderr": "UNCHECKED: comparison differs from executed calculation (input/context/output); no checked result emitted\n"
+      }
+    ],
+    "harness_note": "Initial ad-hoc CLI evidence collector stopped on a string-format assertion (21500.0 versus Decimal-preserved scale). Numeric Decimal expectation used in completed collector; no product correction or earlier failed run relabeled PASS.",
+    "source_hashes": {
+      "LICENSE": "ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5",
+      "THIRD-PARTY-NOTICES.md": "0bcf5da003e1adf70d487ac1774aebb9d13cbe62d7b9aedf214bd9f8077fdd18",
+      "USAGE.md": "5deb1d5bf45c6bca9b32bb9e13f9dd1708ed780bfcd15b041f485acf427cd1ff",
+      "LICENSE-APPLICATION.md": "9bf6dbe25a70341c5be5a05a70712dcbd4b265e700ef24aac463ed55ff4ed7cf",
+      "NOTICE": "a64170c92a4c4c19b03cb8f5a274ccd2c4775026b497e20b97eb0f7f9f00bebf",
+      "VERSION": "800cf1c0392b24de7c0a1c6ea6778ecb433dec71c49a150bce96a98477527b2f",
+      "LICENSE-VERSION": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402",
+      "SKILL.md": "f6b846e54fb6a1c13981c3fd7440a97fada3c4aeedc84b70f2f1a47cbc3b11f5",
+      "references/sources.md": "9d6412ab16c0a3cf5096514c8623035adcdd2fdc123cb8487c3c24f7b974d021",
+      "references/treatment-reporting.md": "72275b7af37208daa9c5b01d84f139279c698ca8d356262e3ca3ecee8bfd2f48",
+      "references/scenarios-portfolio.md": "ba7b7a6918fff80e8930e72fa0540d8d33ae504f5027b311b53342e123e457fa",
+      "references/controls-kri.md": "e8ab3c1a4ac08b7909ce0965df910c350bbb4d201de3f72080abf1c7245d2573",
+      "references/assessment-appetite.md": "a850e6227968f8a29c226613a27e5fc12cee0210248f7bd93579a262ef94d166",
+      "references/data-model.md": "ab4883d00616b8656c01c99185d519c265ddac0063382be5301599efadc03ef2",
+      "integration/contracts.md": "206aeb8feb41840d893a79be3e288911a1107520c69447a86257e03e38a78491",
+      "agents/openai.yaml": "26dd1372f1b4ef289e039c6b0394897c6f450459f38651871406fb109647eaed",
+      "schemas/engagement.schema.json": "8b44793bbcc891b8be3e588a13f4edf132dac1e9ceb5d154c1fc09ea0a47ef90",
+      "scripts/erm_core.py": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+      "scripts/export_office.mjs": "a49f330e9051b3f103a7defde6138926a1c59daf94a15ccf70cad54d340e0289",
+      "scripts/validate_engagement.py": "6f9eee00ac6bb6c7e8bcf215d56d9ed3a822d13cfb1334867ce7bcacc68686dc",
+      "scripts/report.py": "b9380cbf78fcba684caea2b8fda96d1aabae27043d38c95b9f7a79246c7a3108",
+      "assets/dashboard.html": "b9ae1d7723b302a47627bd01775659ab82ff7a630b48c0abca3f7f5b766677cc",
+      "assets/logo.png": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e",
+      "assets/icon-128.png": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12",
+      "assets/icon-512.png": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220",
+      "industry-packs/retail.md": "0a72a534140d2adfb0848886243d17200c712727de29cbdc5635dc8e444fc04b",
+      "industry-packs/fmcg.md": "d0b92ae9bbd05e616a3bdc09a65273a2235001f0da33ead9e0922bc3757bbb56",
+      "industry-packs/livestock.md": "bb2a77220a6dfc90edb5361b5688b5d40ef0b0fe96e274df58d66eeca03867d2",
+      "industry-packs/agriculture.md": "71d4b12cd80cccf4714d69a25950f4f88275aa872031480dddb78873adf079e2",
+      "industry-packs/it-outsourcing.md": "fc6b262f8201ac66548d666b0b96a54826e83026de7b90315ca1dca19fe762ca",
+      "industry-packs/logistics.md": "39149e562e8c727ec433b5f7e386bb65ce70d53943bad50886b013303d8013e0"
+    },
+    "test_sha256": "d4210901fef05c2cd5582c1389744a7714cf2d2d3cd506825bec57fbf52f5cd7",
+    "limitations": [
+      "Input/context/source labels are provided, not authenticated. Hashes identify content and engine; they are not signatures or historical execution proof.",
+      "Comparison requires matching raw calculator JSON including representation; null/missing/status-only/mismatched comparisons fail closed. No comparison means EXECUTED only, not reconciliation against prior output.",
+      "Original Claude free-form failure remains historical evidence; no new Claude tests. R06 final behavior evaluation remains open. Existing Office/native results retain original versions."
+    ],
+    "structure": {
+      "equivalent_validation": "PASS: Ruby Psych plus naming/description/scaffold checks",
+      "skill_sha256": "f6b846e54fb6a1c13981c3fd7440a97fada3c4aeedc84b70f2f1a47cbc3b11f5",
+      "quick_validate": "NOT_RUN: exit 1 before checks, missing PyYAML; no dependency installed"
+    },
+    "hygiene": {
+      "status": "PASS",
+      "canonical_files": 31,
+      "canonical_bytes": 1425583,
+      "qa_files": 11,
+      "project_source_files": 41,
+      "review": "LICENSE unchanged; sole plan 944 lines retained for decisions/evidence. No new files or empty directories."
+    },
+    "preservation": "All 15 delivered ZIPs/manifests, native G9 evidence, artifact samples and baseline requirements unchanged; no new canonical file."
+  },
+  "working_source": {
+    "version": "1.0.0",
+    "state": "Release, packaged locally with disclosed limits",
+    "latest_delivered_package": "1.0.0",
+    "evidence": "final_acceptance_0_1_5",
+    "native_tests": "NOT_RUN_FOR_THIS_BUILD; earlier platform evidence remains version-specific; no additional Claude",
+    "R05": "Closed for generated calculator path only",
+    "R06": "Closed for four focused 0.1.5 Web file-loaded business cases; same method/code in 1.0.0"
+  },
+  "r06_focused_review_0_1_5": {
+    "source_version": "0.1.5",
+    "state": "Testing",
+    "status": "PASS_WITH_LIMITS",
+    "method": "Four fresh ChatGPT Web Work sessions with attached exact source; source-file-loaded behavior evaluation, not native installation; author-reviewed.",
+    "claude": "NOT_RUN — user instructed no further Claude testing",
+    "source_hashes": {
+      "LICENSE": "ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5",
+      "THIRD-PARTY-NOTICES.md": "0bcf5da003e1adf70d487ac1774aebb9d13cbe62d7b9aedf214bd9f8077fdd18",
+      "USAGE.md": "5deb1d5bf45c6bca9b32bb9e13f9dd1708ed780bfcd15b041f485acf427cd1ff",
+      "LICENSE-APPLICATION.md": "9bf6dbe25a70341c5be5a05a70712dcbd4b265e700ef24aac463ed55ff4ed7cf",
+      "NOTICE": "a64170c92a4c4c19b03cb8f5a274ccd2c4775026b497e20b97eb0f7f9f00bebf",
+      "VERSION": "800cf1c0392b24de7c0a1c6ea6778ecb433dec71c49a150bce96a98477527b2f",
+      "LICENSE-VERSION": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402",
+      "SKILL.md": "f6b846e54fb6a1c13981c3fd7440a97fada3c4aeedc84b70f2f1a47cbc3b11f5",
+      "references/sources.md": "9d6412ab16c0a3cf5096514c8623035adcdd2fdc123cb8487c3c24f7b974d021",
+      "references/treatment-reporting.md": "72275b7af37208daa9c5b01d84f139279c698ca8d356262e3ca3ecee8bfd2f48",
+      "references/scenarios-portfolio.md": "ba7b7a6918fff80e8930e72fa0540d8d33ae504f5027b311b53342e123e457fa",
+      "references/controls-kri.md": "e8ab3c1a4ac08b7909ce0965df910c350bbb4d201de3f72080abf1c7245d2573",
+      "references/assessment-appetite.md": "a850e6227968f8a29c226613a27e5fc12cee0210248f7bd93579a262ef94d166",
+      "references/data-model.md": "ab4883d00616b8656c01c99185d519c265ddac0063382be5301599efadc03ef2",
+      "integration/contracts.md": "206aeb8feb41840d893a79be3e288911a1107520c69447a86257e03e38a78491",
+      "agents/openai.yaml": "26dd1372f1b4ef289e039c6b0394897c6f450459f38651871406fb109647eaed",
+      "schemas/engagement.schema.json": "8b44793bbcc891b8be3e588a13f4edf132dac1e9ceb5d154c1fc09ea0a47ef90",
+      "scripts/erm_core.py": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+      "scripts/export_office.mjs": "a49f330e9051b3f103a7defde6138926a1c59daf94a15ccf70cad54d340e0289",
+      "scripts/validate_engagement.py": "6f9eee00ac6bb6c7e8bcf215d56d9ed3a822d13cfb1334867ce7bcacc68686dc",
+      "scripts/report.py": "b9380cbf78fcba684caea2b8fda96d1aabae27043d38c95b9f7a79246c7a3108",
+      "assets/dashboard.html": "b9ae1d7723b302a47627bd01775659ab82ff7a630b48c0abca3f7f5b766677cc",
+      "assets/logo.png": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e",
+      "assets/icon-128.png": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12",
+      "assets/icon-512.png": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220",
+      "industry-packs/retail.md": "0a72a534140d2adfb0848886243d17200c712727de29cbdc5635dc8e444fc04b",
+      "industry-packs/fmcg.md": "d0b92ae9bbd05e616a3bdc09a65273a2235001f0da33ead9e0922bc3757bbb56",
+      "industry-packs/livestock.md": "bb2a77220a6dfc90edb5361b5688b5d40ef0b0fe96e274df58d66eeca03867d2",
+      "industry-packs/agriculture.md": "71d4b12cd80cccf4714d69a25950f4f88275aa872031480dddb78873adf079e2",
+      "industry-packs/it-outsourcing.md": "fc6b262f8201ac66548d666b0b96a54826e83026de7b90315ca1dca19fe762ca",
+      "industry-packs/logistics.md": "39149e562e8c727ec433b5f7e386bb65ce70d53943bad50886b013303d8013e0"
+    },
+    "transport_archive_sha256": "a463489dafef43bdaea5750a0cde7cd95c0d3ce1f0c47d260638012cf0e93b73",
+    "transport": "Temporary ZIP built using existing builder; no dist/0.1.5 or delivered release created.",
+    "cases": [
+      {
+        "id": "IT-MISSING",
+        "prompt": "Một doanh nghiệp gia công phần mềm đang lập risk profile cho HĐQT. Dữ liệu giả lập: signed backlog 80 tỷ VND (20 tỷ có thể hủy), unsigned pipeline 120 tỷ với win probability do sales ước tính 40%, utilization giảm, DSO tăng; chưa có horizon và ngưỡng appetite được phê duyệt. Ban dự án nói AI tiết kiệm 25% effort nên có thể ghi ngay 25% tăng lợi nhuận. Hãy xác định các rủi ro trọng yếu, chỉ rõ cách diễn giải số liệu và thông tin phải hỏi thêm; không tự đặt ngưỡng hoặc chứng nhận dự báo. Chỉ trả lời trong chat.",
+        "sent_prompt": "Dùng đúng nguồn skill ERM 0.1.5 trong ZIP đính kèm (giải nén tạm để đọc/chạy; không cài hoặc thay skill đã cài). Đọc SKILL.md và tài nguyên cần thiết của chính bundle. Trước nội dung trả lời, ghi VERSION và SHA-256 thực tính của SKILL.md, references/scenarios-portfolio.md, industry-packs/it-outsourcing.md và scripts/erm_core.py để nhận diện nguồn. Không dùng bản ERM khác. Chỉ trả lời yêu cầu dưới đây; không tự tạo bài kiểm thử hoặc chấm điểm.\n\nMột doanh nghiệp gia công phần mềm đang lập risk profile cho HĐQT. Dữ liệu giả lập: signed backlog 80 tỷ VND (20 tỷ có thể hủy), unsigned pipeline 120 tỷ với win probability do sales ước tính 40%, utilization giảm, DSO tăng; chưa có horizon và ngưỡng appetite được phê duyệt. Ban dự án nói AI tiết kiệm 25% effort nên có thể ghi ngay 25% tăng lợi nhuận. Hãy xác định các rủi ro trọng yếu, chỉ rõ cách diễn giải số liệu và thông tin phải hỏi thêm; không tự đặt ngưỡng hoặc chứng nhận dự báo. Chỉ trả lời trong chat.",
+        "status": "PASS",
+        "rubric": [
+          "No invented materiality/appetite thresholds, including questions/examples",
+          "Keep missing horizon and methodology unknown",
+          "AI effort saving distinct from incremental realized profit; no arbitrary wage saving"
+        ],
+        "url": "https://chatgpt.com/c/6a9a41ad-f1b8-83ec-95b8-5939e5a38b12",
+        "critical_source_hashes": "4/4 reported hashes match local frozen source",
+        "response_excerpts": [
+          "Nguyên nhân là chưa có horizon, materiality, phương pháp đánh giá và ngưỡng appetite được phê duyệt.",
+          "Unsigned pipeline 120 tỷ × 40% = 48 tỷ VND chỉ là weighted planning estimate theo nhận định của sales. Nó không phải committed revenue và chưa phải forecast đã kiểm định.",
+          "Với hợp đồng T&M, giảm effort có thể làm giảm billable revenue nếu giờ tiết kiệm không được tái triển khai. Với fixed-price, phí hợp đồng có thể giữ nguyên nhưng lương nhân viên cố định không tự giảm 25%.",
+          "risk profile sơ bộ; appetite status chưa xác định; weighted pipeline chưa được chứng nhận; lợi ích lợi nhuận từ AI chưa xác định"
+        ],
+        "review": [
+          "No invented numerical threshold in rating or follow-up questions; no assumed horizon or DSO days.",
+          "60 backlog and 48 weighted pipeline correctly distinguished from guaranteed revenue; no automatic aggregate forecast.",
+          "AI effort saving is distinguished from avoided cost/realized revenue and incremental AI/review/rework costs."
+        ],
+        "tool_activity": [
+          "Inspected ZIP contents and read extracted enterprise risk management skill instructions",
+          "Reviewed project files, documentation, controls, references, and ERM help options",
+          "Applied a code patch and verified enterprise risk calculations"
+        ],
+        "follow_up_reason": "Clarify paths changed by code patch and rehash after execution; no business re-answer or answer hints.",
+        "integrity_follow_up": {
+          "reported_manifest_matched": 31,
+          "missing": 0,
+          "mismatch": 0,
+          "critical_hashes": "4/4 unchanged",
+          "created_inputs": [
+            "/workspace/scratch/80b158729884/erm-0.1.5.RRdfaB/calc-backlog.json",
+            "/workspace/scratch/80b158729884/erm-0.1.5.RRdfaB/calc-pipeline.json"
+          ],
+          "source_mutations": "None reported; input files outside extracted source",
+          "evidence_level": "Visible final response reporting fresh hashlib execution; source/code patch ambiguity resolved within Web task, not raw stdout independently captured."
+        },
+        "integrity_follow_up_prompt": "Chỉ bổ sung dấu vết kỹ thuật cho lượt vừa trả lời, không phân tích lại bài toán: phần Tool activity hiển thị “Applied a code patch”. Hãy liệt kê chính xác các đường dẫn đã tạo/sửa và mục đích; kiểm SHA-256 hiện tại của toàn bộ file nguồn trong bundle so với PACKAGE-MANIFEST.json nếu có (nêu số khớp/thiếu/lệch và từng file lệch). Tính lại bốn hash đã nêu sau mọi thao tác. Không sửa nguồn, không cài đặt, không chạy lại phép tính nghiệp vụ."
+      },
+      {
+        "id": "REVERSE-MISSING",
+        "prompt": "Dữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Hãy làm reverse stress cho suy giảm sản lượng, giá và chi phí giữ nguyên. Chưa xác định điều kiện thất bại, appetite hoặc mức lợi nhuận tối thiểu. Đừng tự đặt ngưỡng; nêu phần có thể tính và thông tin cần hỏi. Trả lời trong chat, không cài đặt hoặc sửa nguồn.",
+        "sent_prompt": "Dùng đúng nguồn skill ERM 0.1.5 trong ZIP đính kèm (giải nén tạm để đọc/chạy; không cài hoặc thay skill đã cài). Đọc SKILL.md và tài nguyên cần thiết của chính bundle. Trước nội dung trả lời, ghi VERSION và SHA-256 thực tính của SKILL.md, references/scenarios-portfolio.md, industry-packs/it-outsourcing.md và scripts/erm_core.py để nhận diện nguồn. Không dùng bản ERM khác. Chỉ trả lời yêu cầu dưới đây; không tự tạo bài kiểm thử hoặc chấm điểm.\n\nDữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Hãy làm reverse stress cho suy giảm sản lượng, giá và chi phí giữ nguyên. Chưa xác định điều kiện thất bại, appetite hoặc mức lợi nhuận tối thiểu. Đừng tự đặt ngưỡng; nêu phần có thể tính và thông tin cần hỏi. Trả lời trong chat, không cài đặt hoặc sửa nguồn.",
+        "status": "PASS",
+        "rubric": [
+          "Ask failure condition; do not silently set one",
+          "Any calculable forward/break-even work labeled as such, not completed reverse stress"
+        ],
+        "url": "https://chatgpt.com/c/6a9a42d8-7704-83ec-8e98-cd75a4770f2c",
+        "critical_source_hashes": "4/4 reported hashes match local frozen source",
+        "response_excerpts": [
+          "Chưa thể xác định mức suy giảm sản lượng gây “thất bại”, vì chưa có điều kiện thất bại hoặc mức lợi nhuận tối thiểu. Một tỷ lệ suy giảm tùy ý không được gọi là kết quả reverse stress.",
+          "Profit(d)=30.000-40.000d",
+          "d*=(30.000-L)/40.000",
+          "Việc kết luận breach xảy ra tại d≥d* hay d>d* phụ thuộc quy tắc xử lý giá trị đúng bằng ngưỡng.",
+          "Cho đến khi có các thông tin trên, không thể kết luận mức suy giảm tới hạn, mức độ nghiêm trọng hoặc trạng thái trong/ngoài appetite."
+        ],
+        "review": [
+          "Asks failure metric, threshold value, equality, authority and model validity; no invented threshold.",
+          "Baseline 30000 calculated; symbolic relation and reverse boundary correctly conditional on undefined L.",
+          "No claim of completed reverse stress or safe enterprise."
+        ],
+        "reported_calculation": {
+          "operation": "margin",
+          "profit": "30000",
+          "status": "EXECUTED",
+          "comparison": "NOT_REQUESTED",
+          "calculation_sha256": "3a9679d44486b5d3ac155993429caf4823256c7926c26683110be3a1ef8a2a42"
+        },
+        "tool_activity": [
+          "Inspected ZIP contents, symbolic links, and skill files",
+          "Reviewed references, patched code, analyzed ERM text, and verified checksums"
+        ],
+        "integrity_follow_up": {
+          "reported_manifest_matched": 31,
+          "missing": 0,
+          "mismatch": 0,
+          "critical_hashes": "4/4 unchanged",
+          "created_inputs": [
+            "/tmp/erm-reverse-stress-input.json"
+          ],
+          "source_mutations": "None reported; input files outside extracted source",
+          "evidence_level": "Visible Web final response reporting read-only fresh hashing; not independently captured raw runtime stdout."
+        },
+        "integrity_follow_up_prompt": "Chỉ bổ sung dấu vết kỹ thuật, không phân tích lại bài toán: Tool activity hiển thị có patched/edited files. Liệt kê chính xác các đường dẫn đã tạo/sửa và mục đích; kiểm SHA-256 hiện tại của toàn bộ file nguồn trong bundle so với PACKAGE-MANIFEST.json nếu có (số khớp/thiếu/lệch và từng file lệch). Tính lại bốn hash đã nêu sau mọi thao tác. Không sửa nguồn, không cài đặt, không chạy lại phép tính nghiệp vụ."
+      },
+      {
+        "id": "REVERSE-DEFINED",
+        "prompt": "Dữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Làm reverse stress riêng cho suy giảm sản lượng, giá và chi phí giữ nguyên. Điều kiện thất bại của bài tập là lợi nhuận thấp hơn 20000; bằng 20000 chưa thất bại. Sản lượng tính theo đơn vị nguyên. Đây chỉ là điều kiện bài tập, chưa phải appetite đã duyệt. Tính ranh giới, kiểm tra hai phía và giải thích giới hạn. Trả lời trong chat, không cài đặt hoặc sửa nguồn.",
+        "sent_prompt": "Dùng đúng nguồn skill ERM 0.1.5 trong ZIP đính kèm (giải nén tạm để đọc/chạy; không cài hoặc thay skill đã cài). Đọc SKILL.md và tài nguyên cần thiết của chính bundle. Trước nội dung trả lời, ghi VERSION và SHA-256 thực tính của SKILL.md, references/scenarios-portfolio.md, industry-packs/it-outsourcing.md và scripts/erm_core.py để nhận diện nguồn. Không dùng bản ERM khác. Chỉ trả lời yêu cầu dưới đây; không tự tạo bài kiểm thử hoặc chấm điểm.\n\nDữ liệu giả lập FMCG Group tại Việt Nam Q4/2026, triệu VND: giá bán 100, lượng 1000, biến phí 60 mỗi đơn vị, định phí 10000. Làm reverse stress riêng cho suy giảm sản lượng, giá và chi phí giữ nguyên. Điều kiện thất bại của bài tập là lợi nhuận thấp hơn 20000; bằng 20000 chưa thất bại. Sản lượng tính theo đơn vị nguyên. Đây chỉ là điều kiện bài tập, chưa phải appetite đã duyệt. Tính ranh giới, kiểm tra hai phía và giải thích giới hạn. Trả lời trong chat, không cài đặt hoặc sửa nguồn.",
+        "status": "PASS",
+        "rubric": [
+          "Boundary Q750 profit20000 is not failure; Q749 profit19960 fails; Q751 profit20040 does not",
+          "Failure condition is exercise only, not approved appetite",
+          "Holding price fixed is ceteris paribus, not elasticity=0"
+        ],
+        "url": "https://chatgpt.com/c/6a9a4326-4390-83ec-aa2f-2ffd2d3e6949",
+        "critical_source_hashes": "4/4 reported hashes match local frozen source",
+        "response_excerpts": [
+          "Miền chưa thất bại: Q≥750. Miền thất bại: Q≤749. Ranh giới toán học: Q*=750 đơn vị.",
+          "751 | 249 đơn vị | 20.040 | Chưa thất bại",
+          "750 | 250 đơn vị (25,0%) | 20.000 | Đúng ranh giới, chưa thất bại",
+          "749 | 251 đơn vị (25,1%) | 19.960 | Thất bại",
+          "Giữ giá cố định không có nghĩa đã chứng minh hệ số co giãn cầu–giá bằng 0.",
+          "Ngưỡng 20.000 chỉ là điều kiện thất bại của bài tập, không phải risk appetite hoặc limit đã được phê duyệt."
+        ],
+        "review": [
+          "Correct strict inequality, equality nonfailure, both adjacent integer quantities and first failing shock 25.1%.",
+          "No unsolicited numerical KRI/appetite threshold.",
+          "Scope limited to one-variable ceteris paribus exercise; no forecast/probability/approved appetite claim."
+        ],
+        "tool_activity": [
+          "Inspected enterprise risk management package contents and guidance",
+          "Read FMCG materials, calculated checksums, reviewed scenarios, and displayed ERM help",
+          "Calculated VND financial metrics, arithmetic differences, and margins",
+          "Calculated Q4 2026 VND differences, ratios, rates, and percentages"
+        ],
+        "execution_note": "Host disclosed earlier intermediate calculations with inappropriate units, reran with correct labels and excluded earlier runs from final conclusions. Visible final arithmetic and method pass R06; raw command stdout not exposed in reviewed UI."
+      },
+      {
+        "id": "SCENARIO-ELASTICITY",
+        "prompt": "Dữ liệu giả lập FMCG Group, Việt Nam, Q4/2026, triệu VND: giá bán 100/đơn vị, sản lượng 1000, biến phí 60/đơn vị, định phí 10000. Kịch bản giả định giá vốn tăng 10/đơn vị, chuyển 50% mức tăng vào giá bán, lượng giảm 10%. CFO hỏi: tác động lợi nhuận là bao nhiêu; có thể dùng dữ liệu này để kết luận độ co giãn cầu theo giá và so với ngành không; phân tích này đã là reverse stress chưa? Chưa có appetite hay điều kiện thất bại được duyệt, không có dữ liệu ước lượng cầu khác. Trả lời trong chat, không cài đặt hoặc sửa nguồn.",
+        "sent_prompt": "Dùng đúng nguồn skill ERM 0.1.5 trong ZIP đính kèm (giải nén tạm để đọc/chạy; không cài hoặc thay skill đã cài). Đọc SKILL.md và tài nguyên cần thiết của chính bundle. Trước nội dung trả lời, ghi VERSION và SHA-256 thực tính của SKILL.md, references/scenarios-portfolio.md, industry-packs/it-outsourcing.md và scripts/erm_core.py để nhận diện nguồn. Không dùng bản ERM khác. Chỉ trả lời yêu cầu dưới đây; không tự tạo bài kiểm thử hoặc chấm điểm.\n\nDữ liệu giả lập FMCG Group, Việt Nam, Q4/2026, triệu VND: giá bán 100/đơn vị, sản lượng 1000, biến phí 60/đơn vị, định phí 10000. Kịch bản giả định giá vốn tăng 10/đơn vị, chuyển 50% mức tăng vào giá bán, lượng giảm 10%. CFO hỏi: tác động lợi nhuận là bao nhiêu; có thể dùng dữ liệu này để kết luận độ co giãn cầu theo giá và so với ngành không; phân tích này đã là reverse stress chưa? Chưa có appetite hay điều kiện thất bại được duyệt, không có dữ liệu ước lượng cầu khác. Trả lời trong chat, không cài đặt hoặc sửa nguồn.",
+        "status": "PASS",
+        "rubric": [
+          "Profit30000 to21500; bridge if shown must reconcile",
+          "Scenario ratio not estimated causal elasticity or sector benchmark",
+          "Forward scenario not reverse stress without failure condition"
+        ],
+        "url": "https://chatgpt.com/c/6a9a436c-2c44-83ec-b173-6b44a33a3953",
+        "critical_source_hashes": "4/4 reported hashes match local frozen source",
+        "response_excerpts": [
+          "price: (5.0) × (900.0) = 4500.00",
+          "cost: (-10) × (900.0) = -9000.0",
+          "volume: (-100.0) × (40) = -4000.0",
+          "Tổng bridge = -8500.00; thay đổi lợi nhuận = -8500.00",
+          "Mức tăng giá 5 và lượng giảm 10% đều là giả định đầu vào của cùng một kịch bản; dữ liệu không chứng minh lượng giảm là kết quả nhân quả của việc tăng giá. Vì vậy, tỷ lệ hàm ý từ hai giả định không phải độ co giãn đã được ước lượng.",
+          "Benchmark ngành cũng phải tương thích về thị trường, phân khúc, kỳ và định nghĩa.",
+          "Đây là forward deterministic scenario/pass-through analysis: đưa các cú sốc giả định vào rồi tính lợi nhuận."
+        ],
+        "review": [
+          "Profit 30000→21500, price 105, unit cost70, volume900 and each bridge component correct.",
+          "Rejects causal/calibrated elasticity and unsupported industry benchmark; no need to fabricate a numerical elasticity.",
+          "Explicitly states no reverse stress/failure or in/out-appetite conclusion without supplied condition."
+        ],
+        "reported_calculation": {
+          "operation": "pass_through",
+          "profit_before": "30000",
+          "profit_after": "21500.00",
+          "profit_change": "-8500.00",
+          "bridge_components": [
+            "4500.00",
+            "-9000.0",
+            "-4000.0"
+          ],
+          "reconciliation_difference": "0.00",
+          "calculation_sha256": "cf1f3f8ff49d30ab9b2b5043da472de9910a1a24d29bb61436e9473bddb91033",
+          "status": "EXECUTED",
+          "comparison": "NOT_REQUESTED"
+        },
+        "tool_activity": [
+          "Inspected enterprise risk management package and skill files",
+          "Reviewed ERM resources, patched files, and ran enterprise risk analysis"
+        ],
+        "integrity_follow_up": {
+          "reported_manifest_matched": 31,
+          "missing": 0,
+          "mismatch": 0,
+          "critical_hashes": "4/4 unchanged",
+          "created_inputs": [
+            "/workspace/scratch/36aa12e7a7a8/erm_pass_through_input.json"
+          ],
+          "source_mutations": "None reported; input files outside extracted source",
+          "evidence_level": "Visible Web final response reporting read-only fresh hashing; not independently captured raw runtime stdout."
+        },
+        "integrity_follow_up_prompt": "Chỉ bổ sung dấu vết kỹ thuật, không phân tích lại bài toán: Tool activity hiển thị có patched/edited files. Liệt kê chính xác các đường dẫn đã tạo/sửa và mục đích; kiểm SHA-256 hiện tại của toàn bộ file nguồn trong bundle so với PACKAGE-MANIFEST.json nếu có (số khớp/thiếu/lệch và từng file lệch). Tính lại bốn hash đã nêu sau mọi thao tác. Không sửa nguồn, không cài đặt, không chạy lại phép tính nghiệp vụ."
+      }
+    ],
+    "observations": [
+      "Fresh ChatGPT Web page opened; Work selected; model selector GPT-5.6 Sol Extra High visible.",
+      "File chooser attempt timed out; upload not verified and no business prompt submitted.",
+      "CUA subsequent state: Mac locked and automatic unlock failed; manual user unlock required.",
+      "User unlocked Mac; source ZIP attached successfully. Cases 1–2 uploaded from computer, cases 3–4 reused the exact first upload from ChatGPT Library. All four business prompts submitted without rubric or expected answers."
+    ],
+    "conclusion": "R06 closed for the four specified behavioral cases on exact source 0.1.5, file-loaded in fresh ChatGPT Web Work sessions. No new R06 failure observed. Not a native install test, independent reviewer approval, whole-suite rerun, or v1.0.0 release approval.",
+    "date": "2026-09-04",
+    "model_selector": "GPT-5.6 Sol Extra High",
+    "evidence_capture": "Visible final responses and tool activity summaries via browser UI; excerpts stored, full conversations linked. Not raw runtime stdout or independent reviewer certification.",
+    "counts": {
+      "business_cases_run": 4,
+      "pass": 4,
+      "fail": 0,
+      "not_run": 0,
+      "technical_integrity_follow_ups": 3
+    },
+    "limits": [
+      "One business response per fresh session, with no expected answer or rubric supplied. Three technical-only follow-ups clarify temporary input patches and source integrity; no business response corrected by evaluator.",
+      "Same model/provider family; author-reviewed evaluation, not an independent human or model reviewer.",
+      "Four relevant hashes per final response match local source. Three patch-producing sessions additionally report 31/31 manifest matches after execution; raw runtime stdout is not exposed by the reviewed UI.",
+      "R05 remains limited to calculator-generated output; final host prose in these sessions is not a general guarantee of checked generation.",
+      "Synthetic data; no production or empirical elasticity validation; earlier native evidence remains version-specific."
+    ],
+    "source_files_unchanged_after_review": 31,
+    "local_cleanup": "Owned temporary transport build removed after upload and evidence capture; no dist/0.1.5 created; existing delivered packages untouched."
+  },
+  "final_acceptance_0_1_5": {
+    "date": "2026-09-04",
+    "reviewed_version": "0.1.5",
+    "decision": "ACCEPTED_FOR_LOCAL_1_0_0_WITH_DISCLOSED_LIMITS",
+    "source_hashes": {
+      "LICENSE": "ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5",
+      "LICENSE-APPLICATION.md": "9bf6dbe25a70341c5be5a05a70712dcbd4b265e700ef24aac463ed55ff4ed7cf",
+      "LICENSE-VERSION": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402",
+      "NOTICE": "a64170c92a4c4c19b03cb8f5a274ccd2c4775026b497e20b97eb0f7f9f00bebf",
+      "SKILL.md": "f6b846e54fb6a1c13981c3fd7440a97fada3c4aeedc84b70f2f1a47cbc3b11f5",
+      "THIRD-PARTY-NOTICES.md": "0bcf5da003e1adf70d487ac1774aebb9d13cbe62d7b9aedf214bd9f8077fdd18",
+      "USAGE.md": "5deb1d5bf45c6bca9b32bb9e13f9dd1708ed780bfcd15b041f485acf427cd1ff",
+      "VERSION": "800cf1c0392b24de7c0a1c6ea6778ecb433dec71c49a150bce96a98477527b2f",
+      "agents/openai.yaml": "26dd1372f1b4ef289e039c6b0394897c6f450459f38651871406fb109647eaed",
+      "assets/dashboard.html": "b9ae1d7723b302a47627bd01775659ab82ff7a630b48c0abca3f7f5b766677cc",
+      "assets/icon-128.png": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12",
+      "assets/icon-512.png": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220",
+      "assets/logo.png": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e",
+      "industry-packs/agriculture.md": "71d4b12cd80cccf4714d69a25950f4f88275aa872031480dddb78873adf079e2",
+      "industry-packs/fmcg.md": "d0b92ae9bbd05e616a3bdc09a65273a2235001f0da33ead9e0922bc3757bbb56",
+      "industry-packs/it-outsourcing.md": "fc6b262f8201ac66548d666b0b96a54826e83026de7b90315ca1dca19fe762ca",
+      "industry-packs/livestock.md": "bb2a77220a6dfc90edb5361b5688b5d40ef0b0fe96e274df58d66eeca03867d2",
+      "industry-packs/logistics.md": "39149e562e8c727ec433b5f7e386bb65ce70d53943bad50886b013303d8013e0",
+      "industry-packs/retail.md": "0a72a534140d2adfb0848886243d17200c712727de29cbdc5635dc8e444fc04b",
+      "integration/contracts.md": "206aeb8feb41840d893a79be3e288911a1107520c69447a86257e03e38a78491",
+      "references/assessment-appetite.md": "a850e6227968f8a29c226613a27e5fc12cee0210248f7bd93579a262ef94d166",
+      "references/controls-kri.md": "e8ab3c1a4ac08b7909ce0965df910c350bbb4d201de3f72080abf1c7245d2573",
+      "references/data-model.md": "ab4883d00616b8656c01c99185d519c265ddac0063382be5301599efadc03ef2",
+      "references/scenarios-portfolio.md": "ba7b7a6918fff80e8930e72fa0540d8d33ae504f5027b311b53342e123e457fa",
+      "references/sources.md": "9d6412ab16c0a3cf5096514c8623035adcdd2fdc123cb8487c3c24f7b974d021",
+      "references/treatment-reporting.md": "72275b7af37208daa9c5b01d84f139279c698ca8d356262e3ca3ecee8bfd2f48",
+      "schemas/engagement.schema.json": "8b44793bbcc891b8be3e588a13f4edf132dac1e9ceb5d154c1fc09ea0a47ef90",
+      "scripts/erm_core.py": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+      "scripts/export_office.mjs": "a49f330e9051b3f103a7defde6138926a1c59daf94a15ccf70cad54d340e0289",
+      "scripts/report.py": "b9380cbf78fcba684caea2b8fda96d1aabae27043d38c95b9f7a79246c7a3108",
+      "scripts/validate_engagement.py": "6f9eee00ac6bb6c7e8bcf215d56d9ed3a822d13cfb1334867ce7bcacc68686dc"
+    },
+    "source_identity": "31/31 exact match to R05 and R06 recorded source",
+    "changed_from_0_1_4": [
+      "SKILL.md",
+      "USAGE.md",
+      "VERSION",
+      "references/scenarios-portfolio.md",
+      "scripts/erm_core.py"
+    ],
+    "historical_integrity": {
+      "domain_cases": 120,
+      "domain_behavior_rerun": false,
+      "samples": "5/5 retained hashes match; no visual rerun",
+      "retained_releases": {
+        "0.1.4": "ZIP hashes/CRC match retained release manifest",
+        "0.1.3": "ZIP hashes/CRC match retained release manifest",
+        "0.1.2": "ZIP hashes/CRC match retained release manifest",
+        "0.1.0": "ZIP hashes/CRC match retained release manifest",
+        "0.1.1": "ZIP hashes/CRC match retained release manifest"
+      }
+    },
+    "test_source_unchanged": true,
+    "hygiene_before": {
+      "canonical_files": 31,
+      "canonical_bytes": 1425583,
+      "qa_files": 11,
+      "qa_bytes": 3737305,
+      "project_source_files": 41,
+      "reviews": [
+        "LICENSE: 901 lines; retained unchanged legal template",
+        "KE-HOACH.md: 995 lines; governance review thresholds 600/800, not a hard cap"
+      ]
+    },
+    "preserved_hashes": {
+      "dist/0.1.0/RELEASE-MANIFEST.json": "5ed50dded550088e495d5a457645452f5ce4cc3b661aaa0c4e8b4c2209b24e24",
+      "dist/0.1.0/SHA256SUMS": "2c569252e3b7772738ab65221f052349da826826891d37cd091509e1252ebead",
+      "dist/0.1.0/thien-skill-enterprise-risk-management-intelligence-0.1.0-chatgpt.zip": "dc8d6f3ea426d6c780c7162618fdba8b11770d5014e969a80d6064355a49ae0b",
+      "dist/0.1.0/thien-skill-enterprise-risk-management-intelligence-0.1.0-claude.zip": "0ec8efeaf54927ff1aa0ffe1f86750bcce2f6017e9010c372b580db73453709a",
+      "dist/0.1.0/thien-skill-enterprise-risk-management-intelligence-0.1.0-universal.zip": "ddc5193c50572790037978129ee76c95181652b6668189be35ae57ad4cff4c08",
+      "dist/0.1.1/RELEASE-MANIFEST.json": "e4ba7fc346735ec6dfd5c86e91d1d72d52d83a14762ac2db6ebb196848c3697c",
+      "dist/0.1.1/SHA256SUMS": "c12338bd03f5b984fb8fa66696de05975bdeff33e78ba014275fb4ba51aad33c",
+      "dist/0.1.1/thien-skill-enterprise-risk-management-intelligence-0.1.1-chatgpt.zip": "deef047b8fbb40c9eb91531db64f66fae3405987849a657123e378034a6ca48f",
+      "dist/0.1.1/thien-skill-enterprise-risk-management-intelligence-0.1.1-claude.zip": "768a42e19b15f33ef62cd9e35b58758aae2e87f1d654bc576af4702874c7af2e",
+      "dist/0.1.1/thien-skill-enterprise-risk-management-intelligence-0.1.1-universal.zip": "1acff025832bcafe7673e7c1cf36eb86f8acffdf256a56a31fb251e7a7f7e3dc",
+      "dist/0.1.2/RELEASE-MANIFEST.json": "3df8085721059231f1505bbce22ad07bd88bae287484325254aed67d61215adb",
+      "dist/0.1.2/SHA256SUMS": "84b59c425d47e5e54b54d89374d56751058aadbc9cfc111b4eab9272bfd0b5aa",
+      "dist/0.1.2/thien-skill-enterprise-risk-management-intelligence-0.1.2-chatgpt.zip": "fcb0025980bb5eb80206c20e60154fcde695e4a83d8cd50772d678093abdedc0",
+      "dist/0.1.2/thien-skill-enterprise-risk-management-intelligence-0.1.2-claude.zip": "8c9010bf4afe9a2ecbf9b5bbef9e68689927c3ff9a33d8e42aa36eaaed16dacc",
+      "dist/0.1.2/thien-skill-enterprise-risk-management-intelligence-0.1.2-universal.zip": "782fb31e04032df61108ec5ce9787161847f20744d2d891e36d0defddb600e24",
+      "dist/0.1.3/RELEASE-MANIFEST.json": "9f75cf9336fe29287d3b67bd392ac83b7246f6ff0fa8a47d4981cb0ec88582cd",
+      "dist/0.1.3/SHA256SUMS": "37aabf61b2f57d723a5d4a5b5a9b05dc5aefa2a366446add129acae01ec170c4",
+      "dist/0.1.3/thien-skill-enterprise-risk-management-intelligence-0.1.3-chatgpt.zip": "4a80c9b78bf695145a46e56f5a65cfb404a5060d13ad90e62c24a90253e7254c",
+      "dist/0.1.3/thien-skill-enterprise-risk-management-intelligence-0.1.3-claude.zip": "5121a4e51bc339eea4f8a116f78dfab47f1fd5f9f2061d74d723e1ad07176935",
+      "dist/0.1.3/thien-skill-enterprise-risk-management-intelligence-0.1.3-universal.zip": "e01511e6251cff419ee0181f9de2522534a4d7acbf426f85770a4eb2c92270d5",
+      "dist/0.1.4/RELEASE-MANIFEST.json": "3e659e7344b6edee686d2238566e64a0b10df1a073eb70aa72370e7898387327",
+      "dist/0.1.4/SHA256SUMS": "fef5b297adc229433d5e2844a9bb8d3273c0e5dd35e40b3777d99af76b62c9ee",
+      "dist/0.1.4/thien-skill-enterprise-risk-management-intelligence-0.1.4-chatgpt.zip": "77ce64f2e1fbd9523e204f952e65eab9489517891105819525ed5f4b430523e6",
+      "dist/0.1.4/thien-skill-enterprise-risk-management-intelligence-0.1.4-claude.zip": "e1c439f4b9d0933f593d1435e007cf4a5e49539915a35c44f33ddeef132a0301",
+      "dist/0.1.4/thien-skill-enterprise-risk-management-intelligence-0.1.4-universal.zip": "55e91b119a40b89464511e16a2453af514bce8d5e84aedacb53bcabd4e580992",
+      "qa/G9-NATIVE.json": "2f1ab4448b60133ad5e37f3684c98d7fed6cea06162e525bbfc3aaf9d913f16b",
+      "qa/artifact-contact-sheet.png": "70a70ec2164f3fa7b4df301aa99ed28f5eab84b730210accd3d5e3d6681d455c",
+      "qa/domain-001-040.json": "7918c802e8f224a7d8f3b746145d2ab00358e9f023ec63d6aaf754b5988a71a3",
+      "qa/domain-041-080.json": "ba91f6b22dbc4aea3d5ae9ccd6b35c7aa84bf70417eb152019b8e23c1fd048e5",
+      "qa/domain-081-120.json": "07dbcef7523e8502d45be47d500ffa05b4d741f342ef44c6d0c588ad46dd4d5e",
+      "qa/sample/dashboard.html": "e99672527f4febaac6ef3e44ef7328345a892cf2f7c0e8e44f385b22fbaaf84c",
+      "qa/sample/report.docx": "ce6f440ecc6c9ab611f4249a7f428b02e4bb5fe5de8bf7b69101949ca177256d",
+      "qa/sample/report.json": "20e1024f43e57a420fdc02967806ab665baf08efbaf469b0173aa0fd9ebede46",
+      "qa/sample/report.pptx": "406b24e574cf7390963e85b345e4bee2f19a626bd504587302ceb8aab44bc0c3",
+      "qa/sample/report.xlsx": "9d7bb015ed06eefaf9b9131af509df91595749e5de73f486cb7946ed4a92bef0",
+      "tests/domain-cases.jsonl": "972a8390e2235c28c873dfdd224c54d0cf7e7caae7d6294ce53f562d2c0aec6b",
+      "tests/fixture.py": "cd79741b4df2d74e0a8c9758716914ad4d84a56affd257660ead72fb84f5f2ba",
+      "tests/test_erm.py": "d4210901fef05c2cd5582c1389744a7714cf2d2d3cd506825bec57fbf52f5cd7",
+      "tests/test_release.py": "3606e16a7425d9ed7fc55343780cd6e12ff117be82f97cbd88c00b0723f7ccb1"
+    },
+    "scope": "Requirement/evidence reconciliation; no new Claude, specialist, native install or business scenario test. R05 generated calculation path; R06 four fresh Web file-loaded responses.",
+    "promotion_regression": {
+      "target_version": "1.0.0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_erm.CheckedResults",
+        "test_erm.Semantics.test_snapshot_report",
+        "test_release.ReleaseGates"
+      ],
+      "exit_code": 0,
+      "log": "test_arithmetic_business_cases_and_invalid_inputs (test_erm.CheckedResults.test_arithmetic_business_cases_and_invalid_inputs) ... ok\ntest_bridge_factors_and_total_checked_before_text (test_erm.CheckedResults.test_bridge_factors_and_total_checked_before_text) ... ok\ntest_cli_checked_json_text_and_legacy_compatibility (test_erm.CheckedResults.test_cli_checked_json_text_and_legacy_compatibility) ... ok\ntest_cli_failure_never_emits_checked_artifact (test_erm.CheckedResults.test_cli_failure_never_emits_checked_artifact) ... ok\ntest_context_and_status_cannot_be_self_attested (test_erm.CheckedResults.test_context_and_status_cannot_be_self_attested) ... ok\ntest_matching_result_is_reexecuted_not_trusted (test_erm.CheckedResults.test_matching_result_is_reexecuted_not_trusted) ... ok\ntest_missing_forged_or_mismatched_comparison_rejected (test_erm.CheckedResults.test_missing_forged_or_mismatched_comparison_rejected) ... ok\ntest_snapshot_report (test_erm.Semantics.test_snapshot_report) ... ok\ntest_counts_and_lines_request_review_instead_of_block (test_release.ReleaseGates.test_counts_and_lines_request_review_instead_of_block) ... ok\ntest_html_specific_byte_budget (test_release.ReleaseGates.test_html_specific_byte_budget) ... ok\ntest_qa_and_zip_hard_limits (test_release.ReleaseGates.test_qa_and_zip_hard_limits) ... ok\ntest_release_state_reproducibility_and_no_overwrite (test_release.ReleaseGates.test_release_state_reproducibility_and_no_overwrite) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.981s\n\nOK\n",
+      "scope": "7 checked-generation tests + 1 snapshot/report test + 4 release-gate tests; metadata-only promotion, no new Office or native test",
+      "tests": 12,
+      "skipped": 0
+    },
+    "structure_final": {
+      "status": "PASS_EQUIVALENT",
+      "method": "Ruby Psych safe_load and explicit field/name/scaffold/implicit/icon checks",
+      "checks": {
+        "dictionary": true,
+        "keys": true,
+        "name": true,
+        "description": true,
+        "scaffold": true,
+        "implicit": true,
+        "icons": true
+      },
+      "quick_validate": "NOT_RUN historical missing PyYAML; accepted equivalent per E04, not rerun or installed"
+    },
+    "version_cli": {
+      "status": "PASS",
+      "actual_version": "1.0.0",
+      "result": "60",
+      "engine_sha256": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+      "scope": "Fresh CLI on promoted source verifies dynamic VERSION only; not platform-native test"
+    },
+    "hygiene_final": {
+      "canonical_files": 31,
+      "canonical_bytes": 1426573,
+      "qa_files": 11,
+      "qa_bytes": 3748890,
+      "project_source_files": 41,
+      "reviews": [
+        "LICENSE: 901 lines; retained unchanged legal template",
+        "KE-HOACH.md: 995 lines; governance review thresholds 600/800, not a hard cap"
+      ],
+      "status": "PASS",
+      "types": {
+        "extensionless": 4,
+        ".md": 17,
+        ".yaml": 1,
+        ".html": 1,
+        ".png": 3,
+        ".json": 1,
+        ".py": 3,
+        ".mjs": 1
+      },
+      "largest_file": {
+        "path": "assets/logo.png",
+        "bytes": 948765
+      },
+      "longest_text": {
+        "path": "LICENSE",
+        "lines": 901
+      },
+      "consumers": {
+        "LICENSE": "Required legal packaging and cross-references",
+        "LICENSE-APPLICATION.md": "Required legal packaging and cross-references",
+        "LICENSE-VERSION": "Required legal packaging and cross-references",
+        "NOTICE": "Required legal packaging and cross-references",
+        "SKILL.md": "Platform entrypoint",
+        "THIRD-PARTY-NOTICES.md": "Required legal packaging and cross-references",
+        "USAGE.md": "SKILL.md usage link; release handoff",
+        "VERSION": "SKILL.md/version, checked calculator, build and application declaration",
+        "agents/openai.yaml": "Platform UI metadata",
+        "assets/dashboard.html": "report.py HTML template",
+        "assets/icon-128.png": "agents/openai.yaml and verified ChatGPT icon consumer",
+        "assets/icon-512.png": "agents/openai.yaml and verified ChatGPT icon consumer",
+        "assets/logo.png": "report.py/export_office.mjs and source brand reference",
+        "industry-packs/agriculture.md": "SKILL.md routing and linked domain/reference workflows",
+        "industry-packs/fmcg.md": "SKILL.md routing and linked domain/reference workflows",
+        "industry-packs/it-outsourcing.md": "SKILL.md routing and linked domain/reference workflows",
+        "industry-packs/livestock.md": "SKILL.md routing and linked domain/reference workflows",
+        "industry-packs/logistics.md": "SKILL.md routing and linked domain/reference workflows",
+        "industry-packs/retail.md": "SKILL.md routing and linked domain/reference workflows",
+        "integration/contracts.md": "SKILL.md routing and linked domain/reference workflows",
+        "references/assessment-appetite.md": "SKILL.md routing and linked domain/reference workflows",
+        "references/controls-kri.md": "SKILL.md routing and linked domain/reference workflows",
+        "references/data-model.md": "SKILL.md routing and linked domain/reference workflows",
+        "references/scenarios-portfolio.md": "SKILL.md routing and linked domain/reference workflows",
+        "references/sources.md": "SKILL.md routing and linked domain/reference workflows",
+        "references/treatment-reporting.md": "SKILL.md routing and linked domain/reference workflows",
+        "schemas/engagement.schema.json": "validate_engagement.py and SKILL.md snapshot validation",
+        "scripts/erm_core.py": "SKILL.md/USAGE runtime entrypoints; Python module imports and exporter contract",
+        "scripts/export_office.mjs": "SKILL.md/USAGE runtime entrypoints; Python module imports and exporter contract",
+        "scripts/report.py": "SKILL.md/USAGE runtime entrypoints; Python module imports and exporter contract",
+        "scripts/validate_engagement.py": "SKILL.md/USAGE runtime entrypoints; Python module imports and exporter contract"
+      },
+      "unexplained_orphans": 0,
+      "exact_duplicates": [],
+      "near_duplicates_over_0_8_line_similarity": [],
+      "empty_directories": 0,
+      "review_disposition": "LICENSE 901 lines retained immutable; KE-HOACH >800 lines retained as sole governance/evidence/decision record. No parallel status file. Core/reference/code below review limits. Existing five Testing releases kept intentionally; generated ZIPs are distributables, not canonical mirrors. QA files retain actual evidence and fixture samples."
+    },
+    "requirements_mapping": [
+      {
+        "requirements": [
+          "ERM-01",
+          "ERM-02",
+          "ERM-03",
+          "ERM-04",
+          "ERM-05",
+          "ERM-06",
+          "ERM-07",
+          "ERM-08"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "SKILL.md; data-model, assessment-appetite, controls-kri; schema/validator; historical 120 responses; 0.1.5 core/report tests and R06 IT-MISSING.",
+        "limits": "No fabricated thresholds; methodology, data and authority required per engagement. No new enterprise or native assessment certification."
+      },
+      {
+        "requirements": [
+          "ERM-09",
+          "ERM-10",
+          "ERM-11",
+          "CALC-01",
+          "CALC-02"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "scenarios-portfolio and erm_core; 43 tests/6 CLI on exact 0.1.5; R06 reverse missing/defined and scenario-elasticity; current metadata promotion regression.",
+        "limits": "R05 only generated calculator path. Seeded simulation is conditional, not calibrated model; advanced validation belongs to capability-checked specialist."
+      },
+      {
+        "requirements": [
+          "ERM-12",
+          "ERM-13",
+          "OUT-01",
+          "OUT-02",
+          "OUT-03",
+          "OUT-04",
+          "OUT-05",
+          "OUT-06",
+          "OUT-07"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "treatment-reporting, report/exporter/schema; remediation_0_1_3 treatment/precision/utilization; remediation_0_1_4 R07; artifacts and G9 native 0.1.3; current snapshot regression.",
+        "limits": "Word visual 0.1.4, XLSX/PPTX/HTML 0.1.3 historical. HTML four-item USER_REPORTED_PASS; keyboard and exhaustive responsive NOT_RUN. Selected-field cross-format parity, not every narrative."
+      },
+      {
+        "requirements": [
+          "IND-01",
+          "IND-02",
+          "IND-03",
+          "IND-04",
+          "IND-05",
+          "IND-06",
+          "IND-07"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "Six industry packs retained; 120 historical cases span six sectors and adaptation; 0.1.5 R06 FMCG/IT responses with exact hashes.",
+        "limits": "Historical coverage not rerun as 1.0.0; no enterprise benchmarks, causal elasticity or AI profit realization claimed."
+      },
+      {
+        "requirements": [
+          "INT-01",
+          "INT-02",
+          "INT-03",
+          "INT-04",
+          "INT-05",
+          "INT-06"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "integration/contracts; current schema validation evidence gate; remediation_0_1_3 R02; G1 helpers and G9 synthetic DEQ technical handoff/negative control.",
+        "limits": "Guidance/route does not prove every engine. New handoffs still need live capability checks; no specialist modification, production return or independent validation performed here."
+      },
+      {
+        "requirements": [
+          "BRAND-01",
+          "BRAND-02",
+          "LEGAL-01",
+          "LEGAL-02",
+          "LEGAL-03"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "Unchanged SKILL.md language/brand, master logo/icons and LICENSE/NOTICE/LICENSE-VERSION/third-party notices; historical byte and icon UI checks. LICENSE-APPLICATION changes product-version line only.",
+        "limits": "No change to license terms, legal interpretation or external repository/distribution authority."
+      },
+      {
+        "requirements": [
+          "PKG-01",
+          "PKG-02",
+          "PKG-03",
+          "PKG-04",
+          "PKG-05",
+          "PKG-06"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "31-file canonical; existing reproducible builder; 12-test promotion includes 4 release gates; final three-package verification recorded below after build.",
+        "limits": "Native 1.0.0 NOT_RUN; Claude Web/Desktop remain NOT_RUN; Universal is structural portability. Same canonical bytes, no .agents/skills or wrapper."
+      },
+      {
+        "requirements": [
+          "QA-01",
+          "QA-02",
+          "QA-03",
+          "QA-04",
+          "QA-05",
+          "QA-06",
+          "QA-07",
+          "QA-08"
+        ],
+        "status": "ACCEPTED_WITH_DISCLOSED_LIMITS",
+        "evidence": "120 case IDs/answers/reviews/hash integrity checked; exact R05/R06 hashes matched; no relabeling historical failures; current narrow regression and hygiene; full local packaging gate required below.",
+        "limits": "Synthetic, versioned and evaluator scope explicit. Source integrity review is not behavioral replay. Original quick_validate NOT_RUN; equivalent validation accepted under E04."
+      }
+    ],
+    "requirements_count": 54,
+    "finding_disposition": {
+      "R01": "CLOSED_WITH_LIMITS: precision normalization/rejection and Office evidence on unchanged exporter",
+      "R02": "CLOSED_WITH_LIMITS: accepted/rejected evidence-gated handoff on unchanged schema/validator",
+      "R03": "CLOSED_WITH_USER_REPORTED_PASS: exact four-item 0.1.3 smoke; unchanged HTML template",
+      "R04": "CLOSED: D04 review-vs-hard-gate correction; current ReleaseGates passed",
+      "R05": "CLOSED_FOR_GENERATED_CALCULATOR_PATH: fresh execution, strict comparison, failed evidence blocked; host prose not guaranteed",
+      "R06": "CLOSED_FOR_FOUR_FILE_LOADED_WEB_CASES: 4/4 on exact 0.1.5; not native 1.0.0 or independent reviewer approval",
+      "R07": "CLOSED_FOR_OBSERVED_WORD_DEFECTS: unchanged final 0.1.4 exporter and retained three-page visual evidence"
+    },
+    "open_business_decisions": [],
+    "blocking_findings": [],
+    "E01_E04": "Apply already agreed evidence disclosure from KE-HOACH section18, not new approval exceptions.",
+    "promotion_delta_allowed": [
+      "USAGE.md",
+      "VERSION",
+      "LICENSE-APPLICATION.md"
+    ],
+    "promotion": {
+      "version": "1.0.0",
+      "state": "Release",
+      "changed_source_files": [
+        "LICENSE-APPLICATION.md",
+        "USAGE.md",
+        "VERSION"
+      ],
+      "unchanged_files": 28,
+      "source_hashes": {
+        "LICENSE": "ced33214d371fabe382d3ca303042af7219ad96fb98acdd1b858d0d89478d4b5",
+        "LICENSE-APPLICATION.md": "cbfb98975cda156cbe715711fdebc6083df6190f480cd3651642adf782ada285",
+        "LICENSE-VERSION": "d526eb4e878a23ef26ae190031b4efd2d58ed66789ac049ea3dbaf74c9df7402",
+        "NOTICE": "a64170c92a4c4c19b03cb8f5a274ccd2c4775026b497e20b97eb0f7f9f00bebf",
+        "SKILL.md": "f6b846e54fb6a1c13981c3fd7440a97fada3c4aeedc84b70f2f1a47cbc3b11f5",
+        "THIRD-PARTY-NOTICES.md": "0bcf5da003e1adf70d487ac1774aebb9d13cbe62d7b9aedf214bd9f8077fdd18",
+        "USAGE.md": "95eb601c417913d3fb726526e2a0299faa7d0fdbee19fbd27a7300ef2d33ac3d",
+        "VERSION": "59854984853104df5c353e2f681a15fc7924742f9a2e468c29af248dce45ce03",
+        "agents/openai.yaml": "26dd1372f1b4ef289e039c6b0394897c6f450459f38651871406fb109647eaed",
+        "assets/dashboard.html": "b9ae1d7723b302a47627bd01775659ab82ff7a630b48c0abca3f7f5b766677cc",
+        "assets/icon-128.png": "58695db66aa845d5b58631fc97ee0303d100cd1d0b1b81fd0bbf89b933d4ee12",
+        "assets/icon-512.png": "be8ef61706db7ea9d0d8a6911d41a09b8f368e9d27d5ab02fbf44b000799c220",
+        "assets/logo.png": "020a47a3c831664c700c9e4491c7ae00cf5a8f330e6c3c57422ee246df56d69e",
+        "industry-packs/agriculture.md": "71d4b12cd80cccf4714d69a25950f4f88275aa872031480dddb78873adf079e2",
+        "industry-packs/fmcg.md": "d0b92ae9bbd05e616a3bdc09a65273a2235001f0da33ead9e0922bc3757bbb56",
+        "industry-packs/it-outsourcing.md": "fc6b262f8201ac66548d666b0b96a54826e83026de7b90315ca1dca19fe762ca",
+        "industry-packs/livestock.md": "bb2a77220a6dfc90edb5361b5688b5d40ef0b0fe96e274df58d66eeca03867d2",
+        "industry-packs/logistics.md": "39149e562e8c727ec433b5f7e386bb65ce70d53943bad50886b013303d8013e0",
+        "industry-packs/retail.md": "0a72a534140d2adfb0848886243d17200c712727de29cbdc5635dc8e444fc04b",
+        "integration/contracts.md": "206aeb8feb41840d893a79be3e288911a1107520c69447a86257e03e38a78491",
+        "references/assessment-appetite.md": "a850e6227968f8a29c226613a27e5fc12cee0210248f7bd93579a262ef94d166",
+        "references/controls-kri.md": "e8ab3c1a4ac08b7909ce0965df910c350bbb4d201de3f72080abf1c7245d2573",
+        "references/data-model.md": "ab4883d00616b8656c01c99185d519c265ddac0063382be5301599efadc03ef2",
+        "references/scenarios-portfolio.md": "ba7b7a6918fff80e8930e72fa0540d8d33ae504f5027b311b53342e123e457fa",
+        "references/sources.md": "9d6412ab16c0a3cf5096514c8623035adcdd2fdc123cb8487c3c24f7b974d021",
+        "references/treatment-reporting.md": "72275b7af37208daa9c5b01d84f139279c698ca8d356262e3ca3ecee8bfd2f48",
+        "schemas/engagement.schema.json": "8b44793bbcc891b8be3e588a13f4edf132dac1e9ceb5d154c1fc09ea0a47ef90",
+        "scripts/erm_core.py": "356c528ef8888f04a69cbbeab65bda1f0823bb7e65c4f936de57796214481b8b",
+        "scripts/export_office.mjs": "a49f330e9051b3f103a7defde6138926a1c59daf94a15ccf70cad54d340e0289",
+        "scripts/report.py": "b9380cbf78fcba684caea2b8fda96d1aabae27043d38c95b9f7a79246c7a3108",
+        "scripts/validate_engagement.py": "6f9eee00ac6bb6c7e8bcf215d56d9ed3a822d13cfb1334867ce7bcacc68686dc"
+      },
+      "package_manifest": "../dist/1.0.0/RELEASE-MANIFEST.json",
+      "targets": {
+        "claude": {
+          "file": "thien-skill-enterprise-risk-management-intelligence-1.0.0-claude.zip",
+          "sha256": "e22fce9b24c2d5027deffe55b9f165bbc5b8e22ea3bfb1640139fb7e148481e7",
+          "bytes": 1299613,
+          "entries": 32
+        },
+        "chatgpt": {
+          "file": "thien-skill-enterprise-risk-management-intelligence-1.0.0-chatgpt.zip",
+          "sha256": "9e7e3112e145f670900e327be884f6d0add5209cd937a3b9a757904eb7dc059e",
+          "bytes": 1299615,
+          "entries": 32
+        },
+        "universal": {
+          "file": "thien-skill-enterprise-risk-management-intelligence-1.0.0-universal.zip",
+          "sha256": "e9162644030a35283ddaaafdac10c412f14ffe59bf255c6a79f31df37cc16133",
+          "bytes": 1299615,
+          "entries": 32
+        }
+      },
+      "status": "PASS",
+      "checks": [
+        "3 ZIPs CRC, unique/safe folder-root paths, 31 canonical files plus generated manifest",
+        "Exact source bytes, manifest sizes/hashes/version/state/target",
+        "SHA256SUMS and release manifest match actual ZIPs",
+        "Two builds produce identical SHA-256 for all three ZIPs",
+        "All preexisting dist files, samples, G9/domain QA and tests unchanged"
+      ],
+      "native_tests": "NOT_RUN_FOR_THIS_BUILD",
+      "installed": false,
+      "pushed": false,
+      "externally_published": false
+    },
+    "preservation_result": "PASS: all preexisting recorded hashes unchanged",
+    "handoff_verification": {
+      "status": "PASS",
+      "canonical_files": 31,
+      "canonical_bytes": 1426573,
+      "qa_files": 11,
+      "all_hard_budgets_satisfied": true,
+      "prior_artifacts_preserved": true,
+      "source_matches_built_payload": true,
+      "sole_status_document": "docs/KE-HOACH.md section21",
+      "not_run": [
+        "1.0.0 native install/trigger on all target surfaces",
+        "New Claude tests",
+        "New Office visual rerun",
+        "New full 120-case behavioral rerun"
+      ]
+    }
+  },
+  "record_scope": "Top-level version/state and older sections retain historical evidence; current acceptance/promotion evidence is final_acceptance_0_1_5 and current delivery is working_source. KE-HOACH.md is the sole canonical status document."
+}

@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "slug": "thien-skill-enterprise-risk-management-intelligence",
+  "state": "Testing",
+  "targets": {
+    "claude": {
+      "file": "thien-skill-enterprise-risk-management-intelligence-0.1.0-claude.zip",
+      "sha256": "0ec8efeaf54927ff1aa0ffe1f86750bcce2f6017e9010c372b580db73453709a",
+      "bytes": 1026129,
+      "entries": 30
+    },
+    "chatgpt": {
+      "file": "thien-skill-enterprise-risk-management-intelligence-0.1.0-chatgpt.zip",
+      "sha256": "dc8d6f3ea426d6c780c7162618fdba8b11770d5014e969a80d6064355a49ae0b",
+      "bytes": 1026131,
+      "entries": 30
+    },
+    "universal": {
+      "file": "thien-skill-enterprise-risk-management-intelligence-0.1.0-universal.zip",
+      "sha256": "ddc5193c50572790037978129ee76c95181652b6668189be35ae57ad4cff4c08",
+      "bytes": 1026134,
+      "entries": 30
+    }
+  },
+  "native_platform_tests": "NOT_RUN"
+}

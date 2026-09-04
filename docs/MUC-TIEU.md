@@ -6,7 +6,7 @@ Cập nhật: 2026-09-03. Tài liệu chuẩn về mục đích và phạm vi s�
 ## Sản phẩm cần xây dựng
 
 Xây dựng một skill duy nhất: **Thiện's Skill — Enterprise Risk Management Intelligence**.
-Mã kỹ thuật dự kiến là `thien-skill-enterprise-risk-management-intelligence`;
+Mã kỹ thuật đã chốt là `thien-skill-enterprise-risk-management-intelligence`;
 metadata phát hành được chốt theo [Kế hoạch](KE-HOACH.md).
 
 Skill điều phối và thực hiện nghiệp vụ Enterprise Risk Management (ERM) như một

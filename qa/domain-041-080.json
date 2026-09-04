@@ -1,0 +1,687 @@
+{
+  "evaluator_scope": {
+    "range": "D041–D080",
+    "task": "Independent behavioral responses using canonical ERM skill; synthetic cases only; no outcome scoring",
+    "source": "tests/domain-cases.jsonl lines 41–80",
+    "method": "Read CLAUDE.md and all four orientation docs; read SKILL.md plus assessment-appetite, controls-kri, scenarios-portfolio, treatment-reporting, sources, integration contracts and FMCG pack. Ran numeric examples with local erm_core pure functions and Decimal. No network, installation, external mutation, specialist handoff or native-platform testing. Primary author reviews responses separately."
+  },
+  "independence": "fresh agent, no intended answers supplied; primary author will review",
+  "cases": [
+    {
+      "id": "D041",
+      "response": "Chưa thể xác nhận 8% là mức vốn tối thiểu bắt buộc hoặc kết luận đủ vốn. Đây mới là phát biểu của CFO, chưa phải rule đã xác minh; cũng thiếu công thức vốn, denominator, cấp hợp nhất/pháp nhân và ngày áp dụng. Ghi trạng thái nghĩa vụ pháp lý chưa xác minh; đề nghị CFO cùng Legal/Compliance cung cấp jurisdiction, regulator, văn bản hiệu lực và phép tính capital ratio. Sau đối chiếu mới xác định floor pháp lý, capacity và management buffer/appetite do đúng thẩm quyền duyệt; không dùng ngưỡng 8% làm chuẩn chung.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không truy cập mạng; chưa xác minh luật hoặc source chính thức.",
+        "Không có số vốn và denominator để tính ratio/headroom."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Không chấp nhận 8% chưa xác minh là legal floor; yêu cầu jurisdiction/regulator/văn bản hiệu lực, denominator và capital scope trước capacity/appetite. Không giả vờ đã research luật."
+      }
+    },
+    {
+      "id": "D042",
+      "response": "Không chấp nhận cách bù fatality risk bằng lợi nhuận trong đánh giá appetite. Safety là chiều cần guardrail riêng, không bị triệt tiêu bởi điểm profit; cần đánh giá nguyên nhân–sự kiện gây tử vong, exposure người, controls trọng yếu và bằng chứng vận hành. Đề nghị Safety owner lập phương án loại bỏ/giảm nguy cơ, cơ chế dừng/escalation và kiểm tra nghĩa vụ áp dụng. Ban điều hành/HĐQT xem xét appetite với safety guardrail rõ; ERM không tự chấp nhận breach vượt capacity hoặc miễn trừ nghĩa vụ bắt buộc.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa có hazard assessment, jurisdiction, hiện trạng control hoặc mức phơi nhiễm để xếp rating."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Bác cách bù fatality bằng profit, giữ safety guardrail riêng, yêu cầu hazard/exposure/OE và đưa quyết định cho đúng authority; không gán rating thiếu dữ liệu."
+      }
+    },
+    {
+      "id": "D043",
+      "response": "Chưa đặt ngưỡng môi trường theo một con số ngành. Permit và luật địa phương có thể đặt ràng buộc khác nhau theo site, chất phát thải, điểm đo, đơn vị và kỳ bình quân. Đề nghị environmental owner cung cấp permit, jurisdiction, emission/discharge inventory, kết quả quan trắc và measurement method; Legal xác minh điều kiện áp dụng. Sau đó lập limit bắt buộc và warning có thời gian phản ứng, kiểm tra capacity xử lý và trình appetite draft. Trong lúc thiếu nguồn, trạng thái tuân thủ là chưa xác minh; benchmark chỉ hỗ trợ tham khảo.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có permit và không xác minh nguồn pháp luật trong bài kiểm thử này."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Không đặt threshold môi trường theo ngành khi thiếu permit; xác định site/chất/điểm đo/đơn vị/kỳ và nguồn pháp lý cần kiểm tra, giữ compliance chưa xác minh."
+      }
+    },
+    {
+      "id": "D044",
+      "response": "Đề xuất appetite phân tầng: cho phép thất bại thử nghiệm R&D trong phạm vi ngân sách, thời gian và mục tiêu học hỏi được duyệt, đồng thời giữ guardrail độc lập cho safety và data privacy. Mỗi thử nghiệm có exposure cap, stage gate, tiêu chí dừng, owner và đánh giá trước khi mở rộng; failed experiment cần ghi bài học thay vì tự coi là sự cố ERM. Safety/Privacy owners xác nhận controls và nghĩa vụ áp dụng; ban điều hành duyệt giới hạn pilot. Không dùng thành công thương mại để hợp thức hóa vi phạm guardrail.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa có budget, dữ liệu sử dụng, hazard và jurisdiction để đề xuất số ngưỡng cụ thể."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Tách chấp nhận thất bại R&D trong budget/time đã duyệt với safety/privacy guardrail độc lập; có stage gates, stop criteria và owner, không tự gán số ngưỡng."
+      }
+    },
+    {
+      "id": "D045",
+      "response": "“Chấp nhận rủi ro vừa phải” chưa đủ để vận hành appetite hoặc kết luận within/breach. Cần xác định mục tiêu và risk cụ thể, rồi gắn metric đo exposure/outcome: công thức, đơn vị, direction, entity, horizon, source, owner, warning/limit/capacity và quy tắc đúng tại ngưỡng. Thêm escalation/action, người phê duyệt và version. ERM cùng owner chuyển statement thành dự thảo có ví dụ đo kiểm và trình duyệt; trong thời gian thiếu metric/method, status là UNKNOWN hoặc DRAFT, không tô xanh.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có doanh nghiệp/risk context để chọn metric hay số ngưỡng hợp lệ."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện moderate-risk statement không đủ vận hành; yêu cầu metric/formula/direction/horizon/rules/equality/authority/action và giữ UNKNOWN/DRAFT thay vì within."
+      }
+    },
+    {
+      "id": "D046",
+      "response": "Bộ ngưỡng không hợp lệ: với upper-bad, limit 120 nằm ngoài capacity 100, nên cho phép exposure vượt sức chịu đựng trước khi chạm limit. Không áp dụng bộ này; calculator từ chối với “capacity/limit/warning order is inverted”. Đề nghị owner xác minh lại đơn vị, horizon, nguồn capacity và cách dùng dấu bằng, rồi thiết kế warning ≤ limit ≤ capacity cùng thời gian phản ứng. Không tự sửa limit thành một số khác. Trình phương pháp sửa đổi cho đúng thẩm quyền; thiếu observation nên chưa kết luận breach thực tế.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.evaluate_metric trên bộ rules synthetic đảo thứ tự; bắt InputError"
+      ],
+      "limitations": [
+        "Dấu bằng và value thực tế chưa có; dấu >= được dùng chỉ để thử cơ chế kiểm tra thứ tự."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện limit120 vượt capacity100 là cấu hình sai với upper-bad; không tự sửa threshold hay kết luận breach thiếu value. Reviewer chạy canonical validate_rules và nhận đúng lỗi capacity/limit/warning order is inverted."
+      }
+    },
+    {
+      "id": "D047",
+      "response": "Theo phương pháp đã duyệt, value 110 khớp warning ≥80 và breach ≥100, chưa khớp capacity ≥150: status là BREACH. Limit headroom =100−110=−10; limit utilization=110%; capacity headroom=40, nếu metric phù hợp phép chia. Xác minh observation/as-of, duration và nguyên nhân; owner lập phương án đưa exposure xuống dưới ngưỡng breach cùng thời hạn và monitoring. Escalate theo authority đã duyệt để quyết định treatment hoặc exception hợp lệ; không vì còn capacity mà gọi within appetite.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.evaluate_metric(110), headroom(110,100,higher), Decimal capacity headroom"
+      ],
+      "limitations": [
+        "Đơn vị, scope/horizon, chất lượng observation và escalation authority chưa được cung cấp."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Áp đúng predicates: 110 khớp >=80 và >=100, chưa >=150, nên BREACH. Reviewer tính độc lập headroom−10, utilization110%, capacity headroom40; response yêu cầu treatment/escalation và không đồng nhất còn capacity với within."
+      }
+    },
+    {
+      "id": "D048",
+      "response": "Nếu đây là upper limit cùng đơn vị/kỳ, exposure vẫn vượt 10 và sử dụng 110% limit; exception 30 ngày không xóa breach hoặc đổi limit 100. Ghi đồng thời “breach” và hồ sơ exception đã được CFO ký, ngày bắt đầu/hết hạn, scope, monitoring và compensating controls. Cần kiểm tra CFO có quyền duyệt loại exception này, phương pháp gốc đã duyệt và capacity 150 có cùng basis. Owner phải có kế hoạch trở về trong limit trước expiry; escalate nếu vượt capacity, exception hết hạn hoặc authority không đủ.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.headroom(110,100,higher)"
+      ],
+      "limitations": [
+        "Chưa biết direction, thời điểm hiệu lực, approval methodology hoặc thẩm quyền CFO; breach diễn giải có điều kiện upper-bad."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ vượt limit dù có exception30 ngày, kiểm tra CFO authority/scope/expiry/compensating controls; 10 và110% đúng theo upper-limit assumption đã công bố. Không coi chữ ký CFO tự đủ authorization."
+      }
+    },
+    {
+      "id": "D049",
+      "response": "Nếu 100 là upper limit, target exposure 120 vẫn ngoài appetite: target headroom −20, utilization 120%. Treatment hiện tại chưa đạt mục tiêu về appetite và target không phải mức rủi ro hiện tại đã quan sát. Yêu cầu owner bổ sung phương án giảm exposure, điều chỉnh thiết kế/timeline hoặc đề xuất acceptance đúng thẩm quyền với rationale, expiry, monitoring và kiểm tra capacity. Trình so sánh chi phí/khả thi với no-action; không tự nâng limit để làm target đạt.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.headroom(120,100,higher)"
+      ],
+      "limitations": [
+        "Chưa có direction, current exposure, deadline, capacity hoặc treatment economics; phép tính giả định upper limit."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện target120 vẫn vượt upper limit100, headroom−20/utilization120% đúng; tách target khỏi current, đòi treatment/acceptance có authority và không tự nâng limit. Missing direction được nêu rõ."
+      }
+    },
+    {
+      "id": "D050",
+      "response": "Ngưỡng 5% từ blog chưa đủ căn cứ dùng trong appetite. Không biết denominator thì tỷ lệ chưa có ý nghĩa so sánh, chưa kể entity, horizon, event definition và direction. Đề nghị owner xác định numerator/denominator, đơn vị, nguồn và quy tắc đo; dùng loss/exposure history, mục tiêu kinh doanh, capacity và nghĩa vụ đã xác minh để lập threshold draft. Kiểm tra trên dữ liệu quá khứ và scenario trước trình duyệt. Giữ nguồn blog là tham khảo chưa thẩm định, không suy thành chuẩn ngành hay within/breach.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có blog cụ thể hoặc dữ liệu nội bộ để xác minh/calibrate threshold."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Không hợp thức hóa 5% từ blog khi thiếu denominator; yêu cầu numerator/period/entity/driver/capacity/evidence và review/approval, chưa kết luận appetite status."
+      }
+    },
+    {
+      "id": "D051",
+      "response": "SOP ký duyệt là bằng chứng thiết kế; chưa chứng minh control đã được triển khai đầy đủ hoặc vận hành hiệu quả. Ghi OE=not_tested/unknown, đánh giá design adequacy riêng và không giảm residual risk chỉ vì có SOP. Yêu cầu owner cung cấp execution population, logs, exceptions và phạm vi/kỳ vận hành; thiết kế sample/reperformance phù hợp với key control và risk mechanism. Nếu cần kiểm tra từng bước quy trình, chuẩn bị handoff Risk Control Process/IA có scope và bằng chứng yêu cầu, kiểm tra capability trước khi giao.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có test records hoặc current implementation evidence; chưa thực hiện specialist handoff/testing."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "SOP ký chỉ là design evidence; OE not_tested/unknown và chưa đủ implementation evidence. Có population/logs/exceptions/test plan và không trừ residual bằng sự tồn tại SOP."
+      }
+    },
+    {
+      "id": "D052",
+      "response": "“Hiệu quả 90%” chỉ là self-assessment chưa được chứng minh; không dùng để lấy inherent risk nhân 10% thành residual. Ghi owner assertion và OE=unknown riêng, yêu cầu định nghĩa 90% đo cái gì, population/period, test method, exceptions và records. ERM đánh giá exposure, incidents và cơ chế controls hiện có trong phạm vi bằng chứng, nêu uncertainty. Owner bổ sung hồ sơ hoặc tổ chức test có phạm vi rõ; residual rating chỉ cập nhật theo methodology và kết quả kiểm tra phù hợp.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có records, effectiveness definition hay phép đo để xác nhận tỷ lệ hoặc residual rating."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Tách owner assertion90% khỏi measured effectiveness; bác phép inherent×10%, yêu cầu measurement/population/period/records và giữ OE unknown/residual có uncertainty."
+      }
+    },
+    {
+      "id": "D053",
+      "response": "Chưa chấp nhận low chỉ dựa self-rating: ba incident lặp lại là evidence cần challenge, nhưng chưa đủ để tự gán high. Giữ self-rating và ý kiến ERM riêng; yêu cầu owner giải thích repeat mechanism, severity, exposure denominator, thời gian và controls đã thất bại. Đánh giá lại current exposure/OE theo phương pháp đã duyệt, nối incident với remedial actions và thời hạn. Nếu bất đồng hoặc vượt appetite, chuyển authority giải quyết với đầy đủ evidence; không xóa incidents để đồng bộ báo cáo.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Thiếu severity, denominator, horizon, methodology và kết quả điều tra nguyên nhân."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Challenge low bằng ba repeat incidents nhưng không tự chuyển high; yêu cầu severity/denominator/horizon/OE, giữ self-rating/challenge/evidence và chuyển authority khi bất đồng."
+      }
+    },
+    {
+      "id": "D054",
+      "response": "Incident count tăng 4 lần từ 2 lên 8, exposure cũng tăng 4 lần nên incident rate tương đối không đổi: (8/4E)/(2/E)=1. Vì vậy chưa có căn cứ nói tần suất trên mỗi đơn vị xấu đi; đồng thời tổng sự cố và tổng exposure đã tăng, có thể làm hậu quả tổng tăng dù rate ổn định. Kiểm tra severity, tính nhất quán ghi nhận và capacity controls trước đánh giá residual. Owner phải giải thích cả rate lẫn count, so sánh với appetite metric phù hợp; không tự giữ hay nâng rating chỉ từ count.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B Decimal: incident multiplier 4, exposure multiplier 4, normalized rate ratio 1"
+      ],
+      "limitations": [
+        "Không có E tuyệt đối, severity và horizon; chỉ tính được rate ratio, không tính absolute rate/loss."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer tính rate ratio (8/4E)/(2/E)=1. Response phân biệt rate ổn định với total incidents/exposure tăng, yêu cầu severity/coverage/capacity và không tự giữ/nâng residual từ count."
+      }
+    },
+    {
+      "id": "D055",
+      "response": "Ba controls cùng phụ thuộc một admin là dependency chung và single point of failure; không thể cộng ba lớp bảo vệ như độc lập. Khi admin vắng mặt, mắc lỗi hoặc tài khoản bị chiếm, nhiều controls có thể cùng mất hiệu lực. Đề nghị owner lập dependency map, đánh giá quyền truy cập/SoD, cơ chế backup được đào tạo, reviewer độc lập và khả năng khôi phục. Test tình huống admin không khả dụng và kiểm tra logs; đánh giá lại residual trên kịch bản common-mode. Phân tích từng bước SoD chuyển Risk Control Process khi capability sẵn sàng.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa có mô tả từng control, quyền admin hoặc evidence để lượng hóa hiệu quả/impact."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện common-admin SPOF và common-mode failure, không cộng ba control như độc lập; đề xuất dependency/SoD/backup/reviewer/tests, chưa bịa benefit hoặc OE."
+      }
+    },
+    {
+      "id": "D056",
+      "response": "Action đang in_progress nhưng deadline đã qua phải được thể hiện thêm overdue; thiếu nguồn lực là blocker, không phải lý do giữ tiến độ xanh. Owner cập nhật phần đã làm có evidence, exposure còn tồn tại, nguyên nhân thiếu resource và forecast finish. Trình sponsor quyết định bổ sung/điều chuyển nguồn lực, thu hẹp phương án hoặc chấp thuận lịch sửa đổi cùng interim controls. Giữ deadline gốc và lịch sử thay đổi; escalation theo mức breach và urgency. Không coi treatment hoàn thành hay giảm residual trước khi có kết quả.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa có ngày cụ thể, resource requirement, materiality và appetite status để xác định cấp escalation."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Thể hiện overdue dù in_progress, ghi resource blocker, giữ original deadline/history và yêu cầu sponsor xử lý resource/schedule/interim controls; không nhận completion hoặc risk reduction thiếu outcome."
+      }
+    },
+    {
+      "id": "D057",
+      "response": "Cần handoff phần test PO/payment và SoD chi tiết cho Risk Control Process hoặc IA theo mục đích assurance; ERM giữ câu hỏi “lỗ hổng phê duyệt/thanh toán có làm exposure vượt appetite không?”. Input contract cần entity/process/period, population PO–invoice–payment đã đối soát, role/access matrix, key controls, evidence và tiêu chí sampling. Return phải có design/OE riêng, sample coverage, exceptions/reperformance, limitation và cơ chế ảnh hưởng residual. Kiểm tra version/entrypoint/capability trước khi giao; chưa có dữ liệu nên chỉ lập phạm vi, không tuyên bố đã test hay đã có assurance độc lập.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa thực hiện discovery/handoff hoặc testing; không có population, policy và access matrix."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Route đúng detailed PO/payment/SoD testing sang RCP/IA, giữ câu hỏi ERM; contract gồm population reconciliation, roles, sample coverage, design/OE và residual mechanism. Nói rõ discovery/handoff/testing chưa chạy."
+      }
+    },
+    {
+      "id": "D058",
+      "response": "Revenue hiện là KPI; chưa đủ logic để coi đó là leading KRI. Giữ nhãn KPI và xác định risk/objective cần cảnh báo, ví dụ khả năng hụt cash do co hẹp đơn hàng. Cần chỉ rõ revenue change truyền sang exposure nào, lag/lead time, seasonality, mix/FX và response action; có thể cần driver gần hơn như booking coverage hoặc aged receivables. Chỉ đưa vào KRI khi metric có định nghĩa, bằng chứng liên hệ và giá trị quyết định; nếu cần kiểm định khả năng dự báo thì capability-check DSMV, chưa gọi revenue là predictor đã validated.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có risk mechanism hoặc chuỗi lịch sử để kiểm định predictive value."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ revenue là KPI khi chưa có risk mechanism, chỉ đề xuất KRI sau transmission/leadtime/context/action evidence; không tuyên bố revenue đã là validated predictor."
+      }
+    },
+    {
+      "id": "D059",
+      "response": "KRI thiếu owner là thiếu trách nhiệm quản trị dù formula đã có; chưa coi specification là sẵn sàng vận hành. Đề nghị risk sponsor chỉ định data owner chịu độ đầy đủ/đúng hạn, risk owner chịu diễn giải và action, cùng người thay thế và escalation recipient. Bổ sung cadence, cut-off và SLA xử lý vào specification; xác minh các trường source, threshold, horizon và approval còn lại. Vẫn báo observation/breach đã biết nếu có, không xóa evidence vì thiếu owner; nêu rõ ownership gap cho cấp quản lý xử lý.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có công thức cụ thể, observation hoặc danh sách vai trò để xác nhận KRI hoàn chỉnh hay chỉ định cá nhân."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Nhận diện missing ownership là governance gap; phân data owner/risk owner/escalation recipient và không xóa known observation/breach để chờ bổ nhiệm."
+      }
+    },
+    {
+      "id": "D060",
+      "response": "Breach vẫn cần báo rõ; KRI không có escalation/action chưa tạo thành cơ chế kiểm soát hữu hiệu. Đề nghị risk owner và sponsor thiết lập ai nhận cảnh báo, thời gian xác minh, hành động ngăn exposure tăng, người duyệt treatment/exception và trigger chuyển cấp/capacity breach. Đối chiếu response lead time với tốc độ rủi ro; ghi action, owner, due date và monitoring trong breach record. Chưa có action protocol thì báo governance gap cùng confirmed breach, không đổi màu để chờ hoàn thiện quy trình.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Thiếu loại KRI, mức vượt và thời hạn response được duyệt; chưa thực hiện escalation ngoài hệ thống."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ confirmed breach và nêu action/escalation gap, yêu cầu người nhận/time-to-verify/containment/treatment/expiry monitoring theo urgency; không đổi status để che thiếu protocol."
+      }
+    },
+    {
+      "id": "D061",
+      "response": "Đỏ >5% vì dễ nhớ là threshold tùy ý, chưa đủ để vận hành hoặc kết luận breach theo appetite đã duyệt. Cần numerator/denominator, period/entity, direction và treatment lead time; hiệu chỉnh từ exposure/loss history, capacity, cost của missed/false alerts và nghĩa vụ áp dụng. Kiểm tra đúng tại 5%: rule >5% sẽ không đỏ khi bằng 5%, nên phải được quyết định minh thị. Đề nghị owner lập threshold draft và kiểm tra out-of-time nếu cần calibration, sau đó trình duyệt; không tự thay 5% bằng benchmark khác.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có dữ liệu, risk context và approval để lựa chọn threshold tối ưu."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Bác threshold >5% vì dễ nhớ; xác định denominator/direction/context/capacity/costs và approval. Reviewer kiểm tra value=5% không khớp >5%, đúng caveat boundary trong response."
+      }
+    },
+    {
+      "id": "D062",
+      "response": "Đề xuất leading KRI draft: tỷ lệ effort còn lại của backlog đã cam kết có age vượt giới hạn A, chia tổng effort còn lại của backlog cam kết đang mở tại cùng cut-off; denominator 0 thì undefined/UNKNOWN. Định nghĩa age từ mốc cam kết/xác nhận nào và phân đoạn delivery model, không trộn unsigned pipeline. A phải theo lead time thực tế và thời gian can thiệp trước due date, chưa gán số. Theo dõi bao nhiêu ngày cảnh báo trước delay, false/missed alerts; Delivery owner rà soát capacity, scope và kế hoạch phục hồi khi breach. Xác nhận age thực sự dự báo delay trên temporal data.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Effort denominator là đề xuất; chưa biết ngành, chất lượng effort estimate, mốc tuổi hoặc dữ liệu để chọn A/lead time."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "KRI backlog age có numerator/denominator effort cùng cut-off, explicit draft assumption, zero denominator UNKNOWN, age origin và lead-time-to-action; không trộn unsigned pipeline hoặc tự chứng minh predictive relation."
+      }
+    },
+    {
+      "id": "D063",
+      "response": "Confirmed recalls là lagging KRI/incident outcome, phản ánh sự cố đã xác nhận; không gọi đây là cảnh báo sớm. Ghi số recall, đơn vị/batch ảnh hưởng và tổn thất thực tế riêng; nếu tính rate thì dùng denominator phù hợp như batch/units đã xuất trong kỳ và cohort rõ. Liên kết về Risk ID chất lượng, root cause và treatment. Đề nghị Quality owner bổ sung leading indicators có căn cứ như traceability-test failures hoặc critical quality deviations trước phát hành; không suy causal effectiveness từ việc recall giảm khi coverage thay đổi.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa có recall records, denominator, period hoặc classification để tính metric."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Phân loại confirmed recalls là lagging outcome, yêu cầu count/batch/units/loss/period denominator và links treatment; không gọi recall là leading hoặc suy causal control effect."
+      }
+    },
+    {
+      "id": "D064",
+      "response": "Trong 100 alerts có 5 true đã được ghi nhận: tỷ lệ true quan sát là 5%. Chưa được kết luận false-positive rate=95%: 95 alerts còn lại có thể chưa được xác minh đầy đủ, và FPR cần denominator các trường hợp thực sự âm tính, gồm non-alerts. Selection bias của ground truth còn làm tỷ lệ này không đại diện. Đề nghị đánh giá mẫu cả alert/non-alert theo cùng outcome window, xử lý label delay và lập confusion matrix có coverage. Sau đó mới cân đối chi phí false/missed alerts và capacity, capability-check DSMV nếu cần calibration.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B Decimal: 5/100=0.05; số alerts còn lại=95"
+      ],
+      "limitations": [
+        "Ground truth bị selection bias; không có TN/non-alert labels, nên FPR, recall và population precision chưa xác định."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận observed true-alert share5/100=5%. Response không nhầm 95% còn lại thành FPR, nêu thiếu TN/non-alert labels và selection bias, yêu cầu sample cả alerts/non-alerts/outcome window."
+      }
+    },
+    {
+      "id": "D065",
+      "response": "Trong 10 incidents đã quan sát, 8 không được báo trước: tỷ lệ bỏ sót trong tập này 80%, tỷ lệ được báo trước 20%. Chỉ gọi đó là FNR=80%/recall=20% nếu incident population đầy đủ, cùng event definition và lead-time window, labels đã đủ chín. Chưa thể tính false-positive rate hoặc precision vì thiếu tổng alerts/non-events. Owner rà soát tám missed incidents: source coverage, latency, rule và failure mode; bổ sung interim monitoring nếu hậu quả trọng yếu. Kiểm tra temporal data và cost/capacity trước chỉnh threshold; không tự hạ ngưỡng ngoài hệ thống.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B Decimal: 8/10=0.8; 2/10=0.2"
+      ],
+      "limitations": [
+        "Mẫu chỉ 10 incidents; chưa biết completeness, alert timing hay representativeness."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận observed missed8/10=80%, warned2/10=20%. Response chỉ gọi FNR/recall khi incident population/definition/lead-time đủ, không bịa FPR/precision và không tự đổi threshold."
+      }
+    },
+    {
+      "id": "D066",
+      "response": "Tune và evaluate threshold trên cùng kỳ tạo kết quả lạc quan, chưa phải backtest ngoài mẫu. Đề nghị tách dữ liệu theo thời gian: train/tune ở kỳ trước, khóa threshold và đánh giá ở kỳ sau với thông tin thực sự sẵn có tại forecast origin; xử lý label delay và các cửa sổ overlap để tránh leakage. Dùng rolling-origin khi đủ dữ liệu, so baseline, precision/recall, lead time, alert volume và cost theo segment. Handoff DSMV chỉ sau capability-check và contract; giữ test cuối độc lập với tuning và nêu uncertainty, chưa công bố threshold validated.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có chuỗi dữ liệu, event definition hoặc engine được chạy; chưa thực hiện backtest."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Phát hiện tune/evaluate cùng kỳ là optimistic/leakage risk; thiết kế time split, frozen threshold, availability-as-of, label delay/overlap, rolling-origin/baseline và test cuối chưa dùng để tune; không claim đã backtest."
+      }
+    },
+    {
+      "id": "D067",
+      "response": "Value 160 khớp cả ba predicates; ưu tiên status CAPACITY_BREACH. So với limit 100 vượt 60, utilization 160%; so với capacity 150 vượt 10, headroom −10. Cần xác minh nhanh observation/as-of và kích hoạt escalation cấp có thẩm quyền, đồng thời owner đề xuất hành động containment giảm exposure và bảo vệ mục tiêu trọng yếu. Không xử lý chỉ bằng tô màu hoặc chấp nhận exception thông thường; capacity breach cần quyết định khẩn theo governance và ràng buộc áp dụng. Theo dõi đến khi exposure giảm và evidence chứng minh phục hồi.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.evaluate_metric(160), headroom đối với limit 100 và capacity 150"
+      ],
+      "limitations": [
+        "Chưa có đơn vị, horizon, risk type hoặc response authority để chỉ định hành động vận hành cụ thể."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Áp severity ưu tiên đúng CAPACITY_BREACH tại160>=150; reviewer tính limit over60/utilization160%, capacity over10/headroom−10. Response yêu cầu urgent escalation/containment, không chỉ tô màu."
+      }
+    },
+    {
+      "id": "D068",
+      "response": "Với cost tăng 10 đơn vị tiền/đơn vị hàng và pass-through 50%, giá mới 105, cost mới 70, volume 900. Baseline: revenue 100.000, contribution 40.000, profit 30.000, margin 30%. Scenario: revenue 94.500, contribution 31.500, profit 21.500, margin khoảng 22,75%; profit giảm 8.500. Đây là scenario có điều kiện, không là forecast. Đề nghị commercial/procurement owners so thêm pass-through, volume response và sourcing alternatives, kèm cash/working-capital tác động trước quyết định. Giữ fixed cost 10.000 theo input và không gán xác suất.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.pass_through(100,1000,60,10000,10,0.5,-0.1)"
+      ],
+      "limitations": [
+        "Đơn vị tiền/horizon chưa có; volume giảm 10% là giả định, chưa ước lượng elasticity, tax, FX hoặc working capital."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer tính độc lập baseline profit30000, price105/cost70/volume900, scenario profit21500, delta−8500, margin22.7513%; khớp response. Giữ scenario conditional, cost-change absolute, fixed cost và thiếu currency/horizon rõ."
+      }
+    },
+    {
+      "id": "D069",
+      "response": "Cash cuối kỳ =20+8−30=−2 tỷ VND, tạo thiếu hụt 2 tỷ ngay tại cuối kỳ. Theo basis closing cash/net burn 5 tỷ/tháng, runway khả dụng là 0 tháng; không dùng cash đầu 20 để kết luận còn 4 tháng sau các dòng tiền này. Đề nghị Treasury/CFO xác định lịch thu–chi ngày để tìm điểm thiếu tiền đầu tiên, xác minh nguồn tài trợ khả dụng và trình phương án thu hồi tiền/hoãn chi phù hợp. Nếu burn 5 là phần của chi 30 trong cùng kỳ thì không trừ thêm lần nữa.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.cash_waterfall(20,[8],[30],5)"
+      ],
+      "limitations": [
+        "Thiếu timing dòng tiền, kỳ của khoản thu/chi và committed facilities; 0 runway không cho biết chính xác ngày thiếu hụt."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận closing20+8−30=−2, shortfall2, closing-basis runway0. Response tránh opening-cash runway4 sau waterfall và tránh trừ burn hai lần; yêu cầu cash timing/funding trước xác định ngày hụt."
+      }
+    },
+    {
+      "id": "D070",
+      "response": "Nếu collateral 20 đủ điều kiện và LGD 50% áp dụng trên phần exposure còn lại chưa được collateral bù, net exposure=100−20=80 và EL=80×10%×50%=4. Trong scenario khách hàng thực sự default, không nhân PD 10% nữa: loss có điều kiện theo LGD giả định là 40; đó vẫn là estimate, chưa là realized accounting loss. Xác minh recovery/collateral enforceability, chi phí và thời gian thu hồi cùng PD horizon. Nếu LGD đã bao gồm collateral thì phải sửa basis để tránh trừ hai lần. Credit owner đối chiếu limit và đề xuất thu hồi/giảm exposure.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.credit với PD 0.1 cho EL=4 và PD=1 để tính conditional default estimate=40"
+      ],
+      "limitations": [
+        "Collateral mới được nêu, chưa xác minh eligibility; LGD basis/currency/horizon và recovery thực tế chưa có."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận conditional net80/EL4/default-loss estimate40 với LGD trên net. Response không nhân PD khi default đã xảy ra, không gọi estimate40 là realized accounting loss, và kiểm tra collateral/LGD double-count."
+      }
+    },
+    {
+      "id": "D071",
+      "response": "Giả định cùng kỳ, capacity 800 chỉ phục vụ được 800/1.000 units nên shortfall 200. Nếu 200 units thực sự mất và contribution 40/unit, lost contribution=8.000; cộng recovery incremental 2.000 và penalty 1.000, tổng loss=11.000 đơn vị tiền. Không cộng lost revenue thêm cho cùng 200 units. Đề nghị supply-chain owner kiểm tra alternate supply, buffer và khả năng giao bù; so chi phí khôi phục với no-action và SLA impact. Nếu phần thiếu chỉ bị trì hoãn hoặc penalty đã trong recovery cost, phải sửa phép tính.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B: erm_core.disruption(1000,800,40,2000,1000)"
+      ],
+      "limitations": [
+        "Chưa có currency/horizon, recoverability của đơn hàng hoặc bằng chứng các cost không overlap."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer tính shortfall200, contribution loss8000, plus2000+1000=11000. Response không cộng lost revenue trùng, nêu permanent-loss và incremental-cost assumptions, yêu cầu sửa nếu giao bù hoặc costs overlap."
+      }
+    },
+    {
+      "id": "D072",
+      "response": "Không cộng lại rework đã nằm trong recall invoice. Lập reconciliation theo economic loss ID, batch, invoice/line và kỳ; cùng batch là dấu hiệu cần kiểm tra, invoice overlap mới xác định phần trùng. Tổng chi phí lấy recall invoice một lần, cộng chỉ rework/incident cost gia tăng chưa được bao gồm. Giữ hai Risk IDs cùng liên kết economic loss thay vì nhân đôi loss. Quality/Finance owners đối soát line items, refunds/credits và chi phí dự kiến còn thiếu; tách prospective brand impact khỏi actual cost, chưa tự gán số danh tiếng.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Thiếu invoice line items và amounts nên chưa tính tổng; không thể khử trùng chỉ từ batch ID."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Từ fact rework nằm trong recall invoice, response bỏ phần cộng trùng và yêu cầu invoice/loss-ID reconciliation; phân biệt cùng batch chưa tự đủ chứng minh overlap, không bịa total khi thiếu amounts."
+      }
+    },
+    {
+      "id": "D073",
+      "response": "Cleanup range mới là estimate cho phạm vi đã lập, chưa đại diện total environmental loss hoặc nghĩa vụ pháp lý. Giữ low/high cùng assumption, currency, thời điểm và work scope; tách remediation, business interruption và third-party claims tiềm tàng, kiểm tra overlap trước tổng hợp. Đề nghị environmental owner làm rõ chất ô nhiễm/site/extent, biện pháp ngăn lan và cost basis; Legal xác minh jurisdiction, permit, reporting/remediation obligations. Có thể dùng range để lập cash scenario có điều kiện, không biến midpoint thành forecast hay giả định cleanup đã đáp ứng đầy đủ pháp luật.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có trị số range, phạm vi pháp lý hoặc current source verification; chưa lượng hóa total exposure."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Giữ cleanup range là estimate có scope, không đồng nhất total legal/environmental exposure hoặc midpoint forecast; yêu cầu site/extent/cost basis/legal scope và kiểm tra overlap."
+      }
+    },
+    {
+      "id": "D074",
+      "response": "Outage 4 giờ là downtime quan sát; backlog xử lý sau 2 giờ cần xác nhận mốc tính. Nếu 2 giờ tính từ lúc hệ thống khôi phục thì phục hồi dịch vụ đầy đủ là 6 giờ từ khi bắt đầu outage, khác với technical downtime. Chưa có revenue loss quan sát nên không lấy 4 giờ nhân doanh thu bình quân để ghi lost sales; theo dõi overtime/recovery cost, SLA penalty và đơn hủy có evidence. Service/Cyber owners xác nhận timeline, backlog clearance và mục tiêu RTO/SLA; việc chưa thấy mất doanh thu không chứng minh không còn impact.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Mốc 2 giờ chưa rõ, thiếu SLA/contract và cost/đơn hủy; không kết luận total loss bằng 0."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Phân biệt technical downtime4h với full service recovery6h chỉ nếu clearance2h tính sau restore; không suy lost revenue hoặc total loss0, yêu cầu timeline/SLA/cost evidence. Reviewer xác nhận conditional4+2=6."
+      }
+    },
+    {
+      "id": "D075",
+      "response": "Lập một combined scenario có driver set nhất quán: counterparty distress có thể vừa giảm đơn hàng vừa làm khoản phải thu khó thu, trong khi cost shock tác động contribution. Phân biệt future demand/profit effect với khoản AR hiện có theo invoice/loss ID; không ghi cùng doanh thu không thu được vào cả lost sales và credit loss. Recompute margin, cash và credit theo cùng scope/currency/horizon, theo dõi cascade thay vì cộng độc lập các stress đơn lẻ. Owner cung cấp exposure/timing và assumptions; dependency calibration nâng cao cần kiểm tra DSMV, chưa gán xác suất chung.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Thiếu baseline, magnitude shocks và exposure IDs; chưa tính total hoặc dependency probability."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Lập common-counterparty cascade, tách future demand effect khỏi existing AR theo loss/invoice IDs và recompute margin/cash/credit cùng basis; không cộng independent shocks hoặc tự gán joint probability."
+      }
+    },
+    {
+      "id": "D076",
+      "response": "Reverse stress bắt đầu từ failure condition closing cash<0 theo kỳ và funding scope đã xác định. Chưa có inputs nên chưa thể trả shock số. Nếu cash tuyến tính C(s)=C0−k×s với k>0, điểm chạm 0 là s*=C0/k và cash âm khi s>s*; cần CFO xác nhận C0, k và miền áp dụng. Với driver phi tuyến có thể enumerate grid nhỏ đã chỉ định, nêu độ phân giải và không gọi nghiệm tối ưu. Solver nâng cao chỉ dùng sau capability-check; hiện không tuyên bố đã chạy verified nonlinear solver.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Thiếu cash baseline, transmission function, driver ranges và verified nonlinear solver; công thức chỉ minh họa đại số."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Định nghĩa failure closing cash<0, không bịa numeric shock khi thiếu inputs/solver. Đại số C(s)=C0−ks, s*=C0/k với k>0 đúng và phân biệt cash âm khi s>s*; grid chỉ bounded, không claim optimum/verified solver."
+      }
+    },
+    {
+      "id": "D077",
+      "response": "Kết quả −30% không có input/baseline không thể tái lập hoặc dùng làm căn cứ quyết định. Trước hết cần biết giảm 30% của revenue, profit hay cash, so với baseline nào, entity/horizon/currency nào; yêu cầu driver shocks, assumptions, control behavior và formula/version. Quarantine con số ở mục output chưa xác minh, không dùng để xếp appetite hoặc gọi forecast. Owner hoàn thiện scenario contract, rồi ERM tính lại và đối chiếu; không tự suy ngược một bộ inputs để hợp thức hóa −30%.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không đủ inputs để tái lập; chưa biết metric hay denominator của −30%."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Quarantine−30% thiếu baseline/input; yêu cầu metric/denominator/entity/horizon/driver/formula version và recalculation, không suy ngược inputs để hợp thức hóa hoặc dùng output chưa xác minh cho appetite."
+      }
+    },
+    {
+      "id": "D078",
+      "response": "Đổi mô tả thành “mô phỏng scenario có điều kiện theo các phân phối triangular giả định”; không gọi forecast chắc chắn. Ghi rõ min/mode/max từng driver, seed/draws, horizon, dependency assumption và input version. Percentiles mô phỏng phản ánh các giả định đó, không là confidence interval cho tham số hoặc bảo đảm outcome thực tế. Kiểm tra sensitivity và plausibility; nếu muốn forecast cần dữ liệu, calibration, temporal validation, baseline và interval coverage qua capability-check DSMV. ERM giữ nguyên giới hạn khi ánh xạ kết quả vào appetite/treatment.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Chưa có ranges, seed, simulation outputs hoặc data; chưa xác nhận calibration/validation hay chạy lại mô phỏng."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Bác forecast chắc chắn từ triangular simulation; yêu cầu range/seed/draws/dependency/version, phân biệt conditional percentiles với parameter confidence interval và nêu calibration/validation chưa chạy."
+      }
+    },
+    {
+      "id": "D079",
+      "response": "Incident rate 5→3→2 trên cùng denominator/method là observed improvement; từ đầu đến cuối giảm tương đối 60%, chưa đủ để ngoại suy kỳ tới. Không kết luận control gây ra cải thiện vì chưa có attribution/counterfactual; kiểm tra kỳ, coverage, severity và changes khác. Owner duy trì monitoring, đối chiếu appetite và operating evidence để quyết định có cập nhật residual assessment theo methodology hay không. Nếu cần chứng minh treatment effect, lập câu hỏi causal và capability-check DSMV; không biến ba điểm trend thành causal assurance.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic",
+        "python3 -B Decimal: (2-5)/5=-0.6"
+      ],
+      "limitations": [
+        "Chưa biết unit, khoảng thời gian, population size và uncertainty; chưa có causal evaluation."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Reviewer xác nhận relative change(2−5)/5=−60%. Response coi 5→3→2 là observed improvement cùng method, không suy causal control effect hoặc extrapolate, yêu cầu severity/coverage/OE và riêng causal evaluation."
+      }
+    },
+    {
+      "id": "D080",
+      "response": "Breach tăng ba kỳ là tín hiệu cần xử lý, nhưng coverage nguồn cũng đổi nên chưa xác nhận toàn bộ mức tăng là deterioration. Tách so sánh trên tập entity/metrics có coverage ổn định và phần breach mới phát hiện do nguồn mở rộng; kiểm tra threshold/method, latency và denominator, giữ reconciliation bridge. Breach đã có evidence vẫn phải escalation/action ngay theo mức độ; không xóa chúng để chờ so sánh trend. Đề nghị data owner đối soát coverage và risk owner giải thích driver thật trước kết luận về tốc độ xấu đi hoặc forecast.",
+      "tools_used": [
+        "Đọc CLAUDE.md và bốn docs định hướng",
+        "Đọc ERM SKILL.md và reference phù hợp; suy luận từ dữ liệu synthetic"
+      ],
+      "limitations": [
+        "Không có chuỗi counts, coverage mapping, method history hoặc source records để tính trend chuẩn hóa."
+      ],
+      "review": {
+        "reviewer": "domain_a (different actor and author)",
+        "status": "PASS",
+        "reason": "Tách actual deterioration khỏi coverage expansion bằng stable cohort/reconciliation bridge, kiểm tra method/denominator và giữ escalation cho known breach; không xóa breach hoặc forecast từ chuỗi bị đổi coverage."
+      }
+    }
+  ],
+  "review_scope": {
+    "reviewer": "domain_a (different actor and author)",
+    "case_range": "D041–D080",
+    "basis": "Read each actual response and limitations against corresponding tests/domain-cases.jsonl prompt and applicable current ERM method/reference. Actor self-reported tool use or assessment was not accepted as behavioral evidence; status follows content and reviewer checks.",
+    "scope_of_PASS": "Only the written response behavior on each synthetic prompt. Does not prove native platform support, source research, actual specialist discovery/handoff, operational testing, validation independence or production approval.",
+    "independent_checks": [
+      "Python Decimal arithmetic separately from actor/canonical implementation for D047–D049, D054, D061, D064–D065, D067–D071, D074, D079; outputs inspected.",
+      "D046 canonical validate_rules independently executed with >= warning80, breach120, capacity100: InputError capacity/limit/warning order is inverted.",
+      "D076 linear algebra checked symbolically; unknown baseline/k means no numeric failure shock can be certified."
+    ],
+    "results": {
+      "PASS": 40,
+      "FAIL": 0,
+      "NOT_RUN": 0
+    },
+    "limitations": [
+      "Prompts intentionally synthetic and sparse. Correctly bounded missing-data responses can pass behavioral review without completing unavailable analyses.",
+      "No network/current-law verification, native tests, specialist handoffs or production mutations were performed by reviewer.",
+      "D048–D049 require explicit upper-limit assumptions; D070 eligibility/LGD basis and D074 clearance origin remain unverified business facts, appropriately conditional in responses.",
+      "No material response-behavior defect identified in this range; this is not a whole-skill release certification."
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'">
+<title>ERM · Hồ sơ rủi ro</title>
+<style>
+:root{color-scheme:light;--ink:#142d4e;--muted:#516278;--paper:#f4f6f8;--line:#d8dfe8;--gold:#ad7e22}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+header{background:var(--ink);color:white;padding:34px max(24px,calc((100vw - 1240px)/2));border-bottom:5px solid var(--gold)}
+header p{margin:4px 0}h1{font-size:34px;line-height:1.15;margin:14px 0}main{max-width:1288px;margin:auto;padding:28px 24px}
+h2{font-size:24px;margin:0 0 14px}h3{font-size:18px}section{background:white;border:1px solid var(--line);padding:24px;margin-bottom:22px;border-radius:8px}
+.eyebrow{font-size:13px;letter-spacing:.1em;text-transform:uppercase}.subtle{color:var(--muted)}.bar{display:flex;gap:28px;flex-wrap:wrap}.stat{min-width:150px}.big{font-size:32px;font-weight:750}
+.notice{border-left:5px solid #bc7815;padding:12px 18px;background:#fff6e3}.controls{display:flex;align-items:end;gap:14px;flex-wrap:wrap;margin:18px 0}
+label{display:flex;flex-direction:column;gap:5px;font-weight:650}input,select,button{font:inherit;padding:9px 12px;border:1px solid #8293a8;border-radius:4px;background:white;color:var(--ink)}
+button{cursor:pointer}button:hover{background:#e9eef5}:focus-visible{outline:3px solid #bd861e;outline-offset:3px}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:left}th{font-size:13px;text-transform:uppercase;background:#edf1f5}td,th{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}td small{display:block}.status{font-weight:750}.breach,.capacity_breach{color:#a42324}.warning{color:#865b00}.within{color:#176849}.UNKNOWN,.DRAFT{color:#65518a}.tag{font-size:13px;font-weight:700}
+.heatmap td{text-align:center;width:16%;height:45px;background:#f4f6f9}.heatmap td.occupied{background:#cad9eb;font-weight:750}.heatmap th{width:16%}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.empty{color:var(--muted);font-style:italic}.rule{font-family:ui-monospace,monospace;font-size:13px}.tiny{font-size:12px;overflow-wrap:anywhere}
+details{margin:10px 0}summary{cursor:pointer;font-weight:650}footer{max-width:1240px;margin:0 auto 30px;padding:0 24px;color:var(--muted)}
+@media(max-width:800px){.grid{grid-template-columns:1fr}h1{font-size:28px}section{padding:18px}main{padding:18px 12px}.bar{gap:20px}}
+@media print{.controls,button{display:none}section{break-inside:avoid}body{background:white}header{background:white;color:var(--ink)}}
+</style></head><body>
+<header><p class="eyebrow">Thiện's Skill — Enterprise Risk Management Intelligence</p><h1>Hồ sơ rủi ro & quyết định</h1><p id="meta"></p><p id="label" class="tag"></p></header>
+<main>
+<section><h2>Ưu tiên điều hành</h2><div class="bar" id="stats"></div><p class="notice" id="decision"></p><p id="quality" class="subtle"></p></section>
+<section><h2>Risk register</h2><div class="controls"><label>Tìm risk / owner<input id="search" type="search" placeholder="Ví dụ: CFO hoặc R2"></label><label>Appetite<select id="status"><option value="">Tất cả</option><option>capacity_breach</option><option>breach</option><option>warning</option><option>within</option><option>UNKNOWN</option></select></label><button id="reset" type="button">Xóa bộ lọc</button></div><p id="result-count" aria-live="polite"></p><div class="scroll" id="risk-table"></div></section>
+<section><h2>Assessment · hai trục ordinal</h2><p class="subtle">Màu ô chỉ thể hiện có risk. Không nhân điểm hoặc dùng màu thay cho phương pháp đánh giá.</p><label>Method / basis / horizon<select id="heat-select"></select></label><div id="heat" class="scroll"></div></section>
+<section><h2>Appetite & KRI</h2><p class="subtle">Theo bộ dữ liệu đầy đủ; bộ lọc register phía trên không thay tổng danh mục. Thiếu/stale giữ UNKNOWN.</p><div class="scroll" id="metrics"></div></section>
+<div class="grid"><section><h2>Xu hướng quan sát</h2><div id="trend"></div></section><section><h2>Tổn thất & tập trung</h2><div id="losses"></div><p class="subtle">HHI tính theo các economic loss IDs, không phải tỷ trọng doanh thu/khách hàng.</p></section></div>
+<section><h2>Kịch bản & stress</h2><div id="scenarios"></div></section>
+<section><h2>Treatment & nguồn lực</h2><div id="treatments"></div></section>
+<section><h2>Bằng chứng & giới hạn</h2><div id="sources"></div><details><summary>Kiểm tra dữ liệu</summary><ul id="warnings"></ul></details></section>
+</main><footer><p>HTML độc lập, mở offline. Dự thảo phục vụ quyết định; không tự phê duyệt appetite hoặc risk acceptance.</p><p id="hash" class="tiny"></p></footer>
+<script type="application/json" id="erm-data">__ERM_PAYLOAD__</script>
+<script>
+'use strict';
+const d=JSON.parse(document.getElementById('erm-data').textContent), $=id=>document.getElementById(id);
+const esc=v=>String(v??'Chưa đủ dữ liệu').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const val=v=>v===null||v===undefined?'—':String(v);
+const table=(heads,rows)=>rows.length?'<table><thead><tr>'+heads.map(h=>'<th scope="col">'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table>':'<p class="empty">Không có dữ liệu phù hợp.</p>';
+const state=s=>'<span class="status '+esc(s)+'">'+esc(s)+'</span>';
+$('meta').textContent=`${d.context.entity} · ${d.context.as_of} · ${d.context.horizon} · ${d.context.currency} (${d.context.unit}) · v${d.context.version}`;
+$('label').textContent=d.context.synthetic?'SYNTHETIC · DỮ LIỆU THỬ NGHIỆM':'DỰ THẢO · CHỜ THẨM QUYỀN PHÊ DUYỆT';
+$('stats').innerHTML=[['Risk',d.summary.risk_count],['Metric breach',d.summary.confirmed_breaches],['Metric chưa đủ',d.summary.unresolved_metrics],['Trạng thái đã biết',d.summary.known_status]].map(([label,value])=>'<div class="stat"><div class="subtle">'+esc(label)+'</div><div class="big">'+esc(value)+'</div></div>').join('');
+$('decision').textContent=d.context.decision;
+$('quality').textContent=d.summary.incomplete?'Dữ liệu chưa đầy đủ. Breach đã có bằng chứng vẫn cần xử lý.':'Các metric có kết quả; nguồn và phương pháp vẫn cần review nghiệp vụ.';
+function risks(){const q=$('search').value.toLocaleLowerCase('vi'),s=$('status').value,rows=d.risks.filter(r=>(r.id+' '+r.title+' '+r.owner).toLocaleLowerCase('vi').includes(q)&&(!s||r.appetite.known_status===s));$('result-count').textContent=`${rows.length} / ${d.risks.length} risks`;$('risk-table').innerHTML=table(['Risk / owner','Cause → event → impact','Assessment','Appetite'],rows.map(r=>[esc(r.id+' · '+r.title)+'<small>'+esc(r.owner)+'</small>',esc(r.cause+' → '+r.event+' → '+r.impact),r.assessments.map(a=>esc(`${a.basis} / ${a.method_id}: ${a.rating??'UNKNOWN'} (${a.approval})`)).join('<br>'),state(r.appetite.known_status)+(r.appetite.incomplete?'<small>Chưa đầy đủ</small>':'')]));}
+$('search').addEventListener('input',risks);$('status').addEventListener('change',risks);$('reset').addEventListener('click',()=>{$('search').value='';$('status').value='';risks();});risks();
+const assessments=d.risks.flatMap(r=>r.assessments.map(a=>({...a,risk_id:r.id}))),groups=[...new Set(assessments.map(a=>[a.method_id,a.basis,a.horizon].join(' / ')))];
+$('heat-select').innerHTML=groups.map(g=>'<option>'+esc(g)+'</option>').join('');
+function heat(){const rows=assessments.filter(a=>[a.method_id,a.basis,a.horizon].join(' / ')===$('heat-select').value),valid=rows.filter(a=>a.approval==='approved'&&a.impact!==null&&a.likelihood!==null);let h='<table class="heatmap"><thead><tr><th>L ↓ / I →</th>'+[1,2,3,4,5].map(i=>'<th>'+i+'</th>').join('')+'</tr></thead><tbody>';for(let l=5;l>=1;l--){h+='<tr><th>'+l+'</th>';for(let i=1;i<=5;i++){const ids=valid.filter(a=>a.impact===i&&a.likelihood===l).map(a=>a.risk_id);h+='<td class="'+(ids.length?'occupied':'')+'">'+esc(ids.join(', ')||'—')+'</td>';}h+='</tr>';}h+='</tbody></table><p class="subtle">'+(rows.length-valid.length)+' assessment thiếu dữ liệu hoặc chưa duyệt không được đặt vào ô.</p>';$('heat').innerHTML=groups.length?h:'<p class="empty">Chưa có assessment.</p>';}
+$('heat-select').addEventListener('change',heat);heat();
+$('metrics').innerHTML=table(['Metric / đơn vị','Quan sát mới nhất','Trạng thái','Ngưỡng đã cấu hình','Headroom / utilization / action'],d.metrics.map(m=>[esc(m.id+' · '+m.label)+'<small>'+esc(m.unit+' / '+m.currency)+'</small>',esc(val(m.value))+'<small>'+esc(m.observed_at)+' · '+esc(m.quality)+'</small>',state(m.status),m.rules.map(r=>'<span class="rule">'+esc(`${r.severity} ${r.op} ${r.threshold}`)+'</span>').join('<br>'),m.headroom.map(h=>esc('Limit '+h.limit+': '+h.headroom)+'<small>'+esc(h.utilization===null?'Utilization: Không áp dụng':'Utilization: '+new Intl.NumberFormat('vi-VN',{style:'percent',maximumFractionDigits:2}).format(Number(h.utilization)))+'</small>').join('<br>')+'<small>'+esc(m.action)+'</small>']));
+$('trend').innerHTML=d.metrics.map(m=>'<details open><summary>'+esc(m.id+' · '+m.label+' ('+m.unit+')')+'</summary>'+table(['Ngày','Giá trị','Quality'],m.history.map(o=>[esc(o.as_of),esc(val(o.value)),esc(o.quality)]))+'</details>').join('')||'<p class="empty">Chưa có chuỗi quan sát.</p>';
+$('losses').innerHTML=d.loss_totals.map(g=>'<p><strong>'+esc(g.total+' '+g.unit+' '+g.currency)+'</strong> · '+esc(g.horizon+' / '+g.scope)+'</p><p>Loại nội bộ: '+esc(g.eliminated)+' · Economic loss IDs: '+esc(g.unique_loss_count)+' · HHI: '+esc(g.loss_concentration?.hhi??'undefined')+'</p>').join('')||'<p class="empty">Chưa có loss records.</p>';
+$('scenarios').innerHTML=d.snapshot.scenarios.map(s=>'<article><h3>'+esc(s.id+' · '+s.label)+' <small>('+esc(s.kind)+')</small></h3><p>'+esc(s.result)+'</p><details><summary>Baseline, assumptions & giới hạn</summary><p>'+esc(s.baseline)+'</p><p>'+esc(s.assumptions.join('; '))+'</p><p>'+esc(s.transmission)+'</p><p>'+esc(s.limitations)+'</p></details></article>').join('')||'<p class="empty">Chưa có scenario.</p>';
+$('treatments').innerHTML=table(['Action / risks','Owner / deadline','Trạng thái / cost','Benefit / constraint','No-action → target'],d.snapshot.treatments.map(t=>[esc(t.id+' · '+t.action)+'<small>'+esc(t.risk_ids.join(', '))+'</small>',esc(t.owner)+'<small>'+esc(t.deadline)+'</small>',esc(t.status)+'<small>'+esc(t.cost+' '+t.currency)+'</small>',esc(t.expected_benefit+' ('+t.benefit_basis+')')+'<small>'+esc(t.resource_constraint+'; secondary: '+t.secondary_risk)+'</small>',esc(t.no_action_case??'No-action: Chưa đủ dữ liệu')+'<br>→ '+esc(t.target??'Target: Chưa đủ dữ liệu')+'<small>'+esc('Target assessments: '+((t.target_assessment_ids??[]).join(', ')||'Chưa cung cấp'))+'</small>']));
+$('sources').innerHTML=table(['ID / title','Locator / version','Trạng thái / giới hạn'],d.snapshot.sources.map(s=>[esc(s.id+' · '+s.title),esc(s.locator)+'<small>'+esc(s.version+' / '+s.accessed_at)+'</small>',esc(s.status)+'<small>'+esc(s.limitations)+'</small>']));
+$('warnings').innerHTML=d.validation.warnings.map(w=>'<li>'+esc(w)+'</li>').join('')||'<li>Không có warning cấu trúc; không thay review nghiệp vụ.</li>';
+$('hash').textContent='Snapshot SHA-256: '+d.source_sha256;
+</script></body></html>

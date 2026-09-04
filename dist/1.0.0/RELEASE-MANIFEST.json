@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "slug": "thien-skill-enterprise-risk-management-intelligence",
+  "state": "Release",
+  "targets": {
+    "claude": {
+      "file": "thien-skill-enterprise-risk-management-intelligence-1.0.0-claude.zip",
+      "sha256": "e22fce9b24c2d5027deffe55b9f165bbc5b8e22ea3bfb1640139fb7e148481e7",
+      "bytes": 1299613,
+      "entries": 32
+    },
+    "chatgpt": {
+      "file": "thien-skill-enterprise-risk-management-intelligence-1.0.0-chatgpt.zip",
+      "sha256": "9e7e3112e145f670900e327be884f6d0add5209cd937a3b9a757904eb7dc059e",
+      "bytes": 1299615,
+      "entries": 32
+    },
+    "universal": {
+      "file": "thien-skill-enterprise-risk-management-intelligence-1.0.0-universal.zip",
+      "sha256": "e9162644030a35283ddaaafdac10c412f14ffe59bf255c6a79f31df37cc16133",
+      "bytes": 1299615,
+      "entries": 32
+    }
+  },
+  "native_platform_tests": "NOT_RUN_FOR_THIS_BUILD",
+  "hygiene": {
+    "canonical_files": 31,
+    "canonical_bytes": 1426573,
+    "qa_files": 11,
+    "qa_bytes": 3759947,
+    "project_source_files": 41,
+    "reviews": [
+      "LICENSE: 901 lines; retained unchanged legal template",
+      "KE-HOACH.md: 995 lines; governance review thresholds 600/800, not a hard cap"
+    ]
+  }
+}

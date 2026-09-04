@@ -1,0 +1,1020 @@
+{
+  "context": {
+    "id": "SYN-ERM-01",
+    "version": "1",
+    "as_of": "2026-09-03",
+    "entity": "Công ty Mẫu",
+    "scope": "Group",
+    "jurisdictions": [
+      "VN",
+      "SG"
+    ],
+    "currency": "VND",
+    "horizon": "Q4-2026",
+    "unit": "triệu",
+    "industry": "FMCG",
+    "objectives": [
+      "Bảo vệ cash và khả năng giao hàng"
+    ],
+    "materiality": "Synthetic: ảnh hưởng cash/giao hàng cấp tập đoàn",
+    "synthetic": true,
+    "decision": "Quyết định nguồn lực dự phòng và xử lý breach thanh khoản; chưa phê duyệt."
+  },
+  "source_sha256": "8ea35412e7940ab5f83839d7febaab665d84806d4dea36239686bb7b7952d99d",
+  "summary": {
+    "known_status": "capacity_breach",
+    "incomplete": true,
+    "unresolved_metrics": 1,
+    "confirmed_breaches": 2,
+    "risk_count": 3,
+    "treatment_count": 1,
+    "decision": "Quyết định nguồn lực dự phòng và xử lý breach thanh khoản; chưa phê duyệt."
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "taxonomy_id": "T1",
+      "title": "Gián đoạn nguồn cung",
+      "cause": "Hai suppliers cùng cảng",
+      "event": "Cảng chung dừng dài hơn buffer",
+      "impact": "Thiếu hàng và giảm contribution",
+      "objective": "Bảo vệ cash và khả năng giao hàng",
+      "owner": "COO",
+      "scope": "Group",
+      "exposure": "1.000 đơn vị demand",
+      "evidence_ids": [
+        "SYN1"
+      ],
+      "assessments": [
+        {
+          "id": "A1",
+          "risk_id": "R1",
+          "method_id": "M1",
+          "basis": "current",
+          "as_of": "2026-09-03",
+          "horizon": "Q4-2026",
+          "impact": 4,
+          "likelihood": 3,
+          "rating": "High",
+          "rationale": "Synthetic rating để kiểm tra hiển thị; R3 thiếu dữ liệu.",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "approval": "approved"
+        }
+      ],
+      "appetite": {
+        "known_status": "breach",
+        "incomplete": false,
+        "unresolved_metrics": 0,
+        "confirmed_breaches": 1
+      }
+    },
+    {
+      "id": "R2",
+      "taxonomy_id": "T1",
+      "title": "Thiếu hụt thanh khoản",
+      "cause": "Khách hàng trả chậm",
+      "event": "Thu tiền trễ hơn hạn thanh toán",
+      "impact": "Cash xuống dưới mức sàn",
+      "objective": "Bảo vệ cash và khả năng giao hàng",
+      "owner": "CFO",
+      "scope": "Group",
+      "exposure": "20.000 triệu VND cash",
+      "evidence_ids": [
+        "SYN1"
+      ],
+      "assessments": [
+        {
+          "id": "A2",
+          "risk_id": "R2",
+          "method_id": "M1",
+          "basis": "current",
+          "as_of": "2026-09-03",
+          "horizon": "Q4-2026",
+          "impact": 5,
+          "likelihood": 4,
+          "rating": "Critical",
+          "rationale": "Synthetic rating để kiểm tra hiển thị; R3 thiếu dữ liệu.",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "approval": "approved"
+        }
+      ],
+      "appetite": {
+        "known_status": "capacity_breach",
+        "incomplete": false,
+        "unresolved_metrics": 0,
+        "confirmed_breaches": 1
+      }
+    },
+    {
+      "id": "R3",
+      "taxonomy_id": "T1",
+      "title": "Chất lượng và thu hồi",
+      "cause": "Sai lệch quá trình đóng gói",
+      "event": "Batch phải thu hồi",
+      "impact": "Chi phí recall và mất service",
+      "objective": "Bảo vệ cash và khả năng giao hàng",
+      "owner": "Quality Director",
+      "scope": "Group",
+      "exposure": "100 đơn vị recall",
+      "evidence_ids": [
+        "SYN1"
+      ],
+      "assessments": [
+        {
+          "id": "A3",
+          "risk_id": "R3",
+          "method_id": "M1",
+          "basis": "current",
+          "as_of": "2026-09-03",
+          "horizon": "Q4-2026",
+          "impact": null,
+          "likelihood": null,
+          "rating": null,
+          "rationale": "Synthetic rating để kiểm tra hiển thị; R3 thiếu dữ liệu.",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "approval": "approved"
+        }
+      ],
+      "appetite": {
+        "known_status": "UNKNOWN",
+        "incomplete": true,
+        "unresolved_metrics": 1,
+        "confirmed_breaches": 0
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "K1",
+      "label": "Capacity thiếu hụt",
+      "risk_ids": [
+        "R1"
+      ],
+      "unit": "units",
+      "currency": "N/A",
+      "horizon": "Q4-2026",
+      "scope": "Group",
+      "bad_direction": "higher",
+      "formula": "max(demand-capacity,0)",
+      "owner": "COO",
+      "frequency": "monthly",
+      "max_age_days": 40,
+      "approval": "approved",
+      "approved_by": "Synthetic Board",
+      "rules": [
+        {
+          "op": ">=",
+          "threshold": 100,
+          "severity": "warning"
+        },
+        {
+          "op": ">=",
+          "threshold": 200,
+          "severity": "breach"
+        },
+        {
+          "op": ">=",
+          "threshold": 300,
+          "severity": "capacity_breach"
+        }
+      ],
+      "action": "Xác nhận nguồn thay thế",
+      "value": 200,
+      "observed_at": "2026-09-03",
+      "quality": "valid",
+      "status": "breach",
+      "reason": "evaluated",
+      "matched": [
+        "warning",
+        "breach"
+      ],
+      "headroom": [
+        {
+          "op": ">=",
+          "limit": 200,
+          "headroom": "0",
+          "utilization": "1"
+        }
+      ],
+      "history": [
+        {
+          "id": "O11",
+          "metric_id": "K1",
+          "as_of": "2026-07-31",
+          "value": 80,
+          "quality": "valid",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "units",
+          "currency": "N/A",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        },
+        {
+          "id": "O12",
+          "metric_id": "K1",
+          "as_of": "2026-08-31",
+          "value": 120,
+          "quality": "valid",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "units",
+          "currency": "N/A",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        },
+        {
+          "id": "O13",
+          "metric_id": "K1",
+          "as_of": "2026-09-03",
+          "value": 200,
+          "quality": "valid",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "units",
+          "currency": "N/A",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        }
+      ]
+    },
+    {
+      "id": "K2",
+      "label": "Cash cuối kỳ",
+      "risk_ids": [
+        "R2"
+      ],
+      "unit": "triệu",
+      "currency": "VND",
+      "horizon": "Q4-2026",
+      "scope": "Group",
+      "bad_direction": "lower",
+      "formula": "opening + inflows - outflows",
+      "owner": "CFO",
+      "frequency": "monthly",
+      "max_age_days": 40,
+      "approval": "approved",
+      "approved_by": "Synthetic Board",
+      "rules": [
+        {
+          "op": "<=",
+          "threshold": 5000,
+          "severity": "warning"
+        },
+        {
+          "op": "<=",
+          "threshold": 0,
+          "severity": "breach"
+        },
+        {
+          "op": "<=",
+          "threshold": -1000,
+          "severity": "capacity_breach"
+        }
+      ],
+      "action": "Escalate CFO/Board và cash plan",
+      "value": -2000,
+      "observed_at": "2026-09-03",
+      "quality": "valid",
+      "status": "capacity_breach",
+      "reason": "evaluated",
+      "matched": [
+        "warning",
+        "breach",
+        "capacity_breach"
+      ],
+      "headroom": [
+        {
+          "op": "<=",
+          "limit": 0,
+          "headroom": "-2000",
+          "utilization": null
+        }
+      ],
+      "history": [
+        {
+          "id": "O21",
+          "metric_id": "K2",
+          "as_of": "2026-07-31",
+          "value": 8000,
+          "quality": "valid",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "triệu",
+          "currency": "VND",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        },
+        {
+          "id": "O22",
+          "metric_id": "K2",
+          "as_of": "2026-08-31",
+          "value": 3000,
+          "quality": "valid",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "triệu",
+          "currency": "VND",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        },
+        {
+          "id": "O23",
+          "metric_id": "K2",
+          "as_of": "2026-09-03",
+          "value": -2000,
+          "quality": "valid",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "triệu",
+          "currency": "VND",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        }
+      ]
+    },
+    {
+      "id": "K3",
+      "label": "Complaint rate",
+      "risk_ids": [
+        "R3"
+      ],
+      "unit": "ratio",
+      "currency": "N/A",
+      "horizon": "Q4-2026",
+      "scope": "Group",
+      "bad_direction": "higher",
+      "formula": "confirmed complaints / units sold",
+      "owner": "Quality Director",
+      "frequency": "monthly",
+      "max_age_days": 40,
+      "approval": "approved",
+      "approved_by": "Synthetic Board",
+      "rules": [
+        {
+          "op": ">=",
+          "threshold": 0.01,
+          "severity": "warning"
+        },
+        {
+          "op": ">=",
+          "threshold": 0.02,
+          "severity": "breach"
+        },
+        {
+          "op": ">=",
+          "threshold": 0.05,
+          "severity": "capacity_breach"
+        }
+      ],
+      "action": "Xác minh complaint và batch",
+      "value": null,
+      "observed_at": "2026-09-03",
+      "quality": "missing",
+      "status": "UNKNOWN",
+      "reason": "missing_stale_or_unconfigured",
+      "matched": [],
+      "headroom": [],
+      "history": [
+        {
+          "id": "O31",
+          "metric_id": "K3",
+          "as_of": "2026-07-31",
+          "value": null,
+          "quality": "missing",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "ratio",
+          "currency": "N/A",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        },
+        {
+          "id": "O32",
+          "metric_id": "K3",
+          "as_of": "2026-08-31",
+          "value": null,
+          "quality": "missing",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "ratio",
+          "currency": "N/A",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        },
+        {
+          "id": "O33",
+          "metric_id": "K3",
+          "as_of": "2026-09-03",
+          "value": null,
+          "quality": "missing",
+          "evidence_ids": [
+            "SYN1"
+          ],
+          "unit": "ratio",
+          "currency": "N/A",
+          "horizon": "Q4-2026",
+          "scope": "Group"
+        }
+      ]
+    }
+  ],
+  "loss_totals": [
+    {
+      "total": "13000",
+      "eliminated": "0",
+      "unique_loss_count": 2,
+      "currency": "VND",
+      "horizon": "Q4-2026",
+      "scope": "Group",
+      "unit": "triệu",
+      "loss_concentration": {
+        "total": "13000",
+        "shares": [
+          "0.8461538461538461538461538462",
+          "0.1538461538461538461538461538"
+        ],
+        "hhi": "0.7396449704142011834319526628",
+        "largest_share": "0.8461538461538461538461538462"
+      }
+    }
+  ],
+  "validation": {
+    "status": "VALID",
+    "warnings": [
+      "C1: no evidence; conclusion must disclose the gap"
+    ],
+    "counts": {
+      "sources": 1,
+      "taxonomy": 2,
+      "risks": 3,
+      "methods": 1,
+      "assessments": 3,
+      "metrics": 3,
+      "observations": 9,
+      "controls": 1,
+      "scenarios": 1,
+      "losses": 2,
+      "dependencies": 1,
+      "treatments": 1,
+      "handoffs": 1
+    },
+    "limitation": "Structural and semantic checks; not assurance of source truth or method suitability"
+  },
+  "snapshot": {
+    "sources": [
+      {
+        "id": "SYN1",
+        "title": "Fixture synthetic của dự án ERM",
+        "locator": "synthetic:fixture-v1",
+        "version": "1",
+        "accessed_at": "2026-09-03",
+        "kind": "synthetic",
+        "status": "current",
+        "replaced_by": null,
+        "limitations": "Không phải dữ liệu doanh nghiệp thực hoặc benchmark ngành."
+      }
+    ],
+    "taxonomy": [
+      {
+        "id": "T0",
+        "label": "Enterprise exposure",
+        "level": 0,
+        "parent_id": null
+      },
+      {
+        "id": "T1",
+        "label": "Continuity và liquidity",
+        "level": 1,
+        "parent_id": "T0"
+      }
+    ],
+    "risks": [
+      {
+        "id": "R1",
+        "taxonomy_id": "T1",
+        "title": "Gián đoạn nguồn cung",
+        "cause": "Hai suppliers cùng cảng",
+        "event": "Cảng chung dừng dài hơn buffer",
+        "impact": "Thiếu hàng và giảm contribution",
+        "objective": "Bảo vệ cash và khả năng giao hàng",
+        "owner": "COO",
+        "scope": "Group",
+        "exposure": "1.000 đơn vị demand",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      },
+      {
+        "id": "R2",
+        "taxonomy_id": "T1",
+        "title": "Thiếu hụt thanh khoản",
+        "cause": "Khách hàng trả chậm",
+        "event": "Thu tiền trễ hơn hạn thanh toán",
+        "impact": "Cash xuống dưới mức sàn",
+        "objective": "Bảo vệ cash và khả năng giao hàng",
+        "owner": "CFO",
+        "scope": "Group",
+        "exposure": "20.000 triệu VND cash",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      },
+      {
+        "id": "R3",
+        "taxonomy_id": "T1",
+        "title": "Chất lượng và thu hồi",
+        "cause": "Sai lệch quá trình đóng gói",
+        "event": "Batch phải thu hồi",
+        "impact": "Chi phí recall và mất service",
+        "objective": "Bảo vệ cash và khả năng giao hàng",
+        "owner": "Quality Director",
+        "scope": "Group",
+        "exposure": "100 đơn vị recall",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "id": "M1",
+        "version": "synthetic-1",
+        "approval": "approved",
+        "approved_by": "Synthetic Board",
+        "impact_levels": [
+          "Mức 1: consequence theo bảng giả định thử nghiệm, không dùng thực tế",
+          "Mức 2: consequence theo bảng giả định thử nghiệm, không dùng thực tế",
+          "Mức 3: consequence theo bảng giả định thử nghiệm, không dùng thực tế",
+          "Mức 4: consequence theo bảng giả định thử nghiệm, không dùng thực tế",
+          "Mức 5: consequence theo bảng giả định thử nghiệm, không dùng thực tế"
+        ],
+        "likelihood_levels": [
+          "Mức 1: likelihood theo horizon Q4, giả định thử nghiệm",
+          "Mức 2: likelihood theo horizon Q4, giả định thử nghiệm",
+          "Mức 3: likelihood theo horizon Q4, giả định thử nghiệm",
+          "Mức 4: likelihood theo horizon Q4, giả định thử nghiệm",
+          "Mức 5: likelihood theo horizon Q4, giả định thử nghiệm"
+        ],
+        "rating_basis": "Synthetic categorical mapping do người lập fixture xác định; không nhân/trung bình điểm",
+        "horizon": "Q4-2026"
+      }
+    ],
+    "assessments": [
+      {
+        "id": "A1",
+        "risk_id": "R1",
+        "method_id": "M1",
+        "basis": "current",
+        "as_of": "2026-09-03",
+        "horizon": "Q4-2026",
+        "impact": 4,
+        "likelihood": 3,
+        "rating": "High",
+        "rationale": "Synthetic rating để kiểm tra hiển thị; R3 thiếu dữ liệu.",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      },
+      {
+        "id": "A2",
+        "risk_id": "R2",
+        "method_id": "M1",
+        "basis": "current",
+        "as_of": "2026-09-03",
+        "horizon": "Q4-2026",
+        "impact": 5,
+        "likelihood": 4,
+        "rating": "Critical",
+        "rationale": "Synthetic rating để kiểm tra hiển thị; R3 thiếu dữ liệu.",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      },
+      {
+        "id": "A3",
+        "risk_id": "R3",
+        "method_id": "M1",
+        "basis": "current",
+        "as_of": "2026-09-03",
+        "horizon": "Q4-2026",
+        "impact": null,
+        "likelihood": null,
+        "rating": null,
+        "rationale": "Synthetic rating để kiểm tra hiển thị; R3 thiếu dữ liệu.",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "K1",
+        "label": "Capacity thiếu hụt",
+        "risk_ids": [
+          "R1"
+        ],
+        "unit": "units",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group",
+        "bad_direction": "higher",
+        "formula": "max(demand-capacity,0)",
+        "owner": "COO",
+        "frequency": "monthly",
+        "max_age_days": 40,
+        "approval": "approved",
+        "approved_by": "Synthetic Board",
+        "rules": [
+          {
+            "op": ">=",
+            "threshold": 100,
+            "severity": "warning"
+          },
+          {
+            "op": ">=",
+            "threshold": 200,
+            "severity": "breach"
+          },
+          {
+            "op": ">=",
+            "threshold": 300,
+            "severity": "capacity_breach"
+          }
+        ],
+        "action": "Xác nhận nguồn thay thế"
+      },
+      {
+        "id": "K2",
+        "label": "Cash cuối kỳ",
+        "risk_ids": [
+          "R2"
+        ],
+        "unit": "triệu",
+        "currency": "VND",
+        "horizon": "Q4-2026",
+        "scope": "Group",
+        "bad_direction": "lower",
+        "formula": "opening + inflows - outflows",
+        "owner": "CFO",
+        "frequency": "monthly",
+        "max_age_days": 40,
+        "approval": "approved",
+        "approved_by": "Synthetic Board",
+        "rules": [
+          {
+            "op": "<=",
+            "threshold": 5000,
+            "severity": "warning"
+          },
+          {
+            "op": "<=",
+            "threshold": 0,
+            "severity": "breach"
+          },
+          {
+            "op": "<=",
+            "threshold": -1000,
+            "severity": "capacity_breach"
+          }
+        ],
+        "action": "Escalate CFO/Board và cash plan"
+      },
+      {
+        "id": "K3",
+        "label": "Complaint rate",
+        "risk_ids": [
+          "R3"
+        ],
+        "unit": "ratio",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group",
+        "bad_direction": "higher",
+        "formula": "confirmed complaints / units sold",
+        "owner": "Quality Director",
+        "frequency": "monthly",
+        "max_age_days": 40,
+        "approval": "approved",
+        "approved_by": "Synthetic Board",
+        "rules": [
+          {
+            "op": ">=",
+            "threshold": 0.01,
+            "severity": "warning"
+          },
+          {
+            "op": ">=",
+            "threshold": 0.02,
+            "severity": "breach"
+          },
+          {
+            "op": ">=",
+            "threshold": 0.05,
+            "severity": "capacity_breach"
+          }
+        ],
+        "action": "Xác minh complaint và batch"
+      }
+    ],
+    "observations": [
+      {
+        "id": "O11",
+        "metric_id": "K1",
+        "as_of": "2026-07-31",
+        "value": 80,
+        "quality": "valid",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "units",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O12",
+        "metric_id": "K1",
+        "as_of": "2026-08-31",
+        "value": 120,
+        "quality": "valid",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "units",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O13",
+        "metric_id": "K1",
+        "as_of": "2026-09-03",
+        "value": 200,
+        "quality": "valid",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "units",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O21",
+        "metric_id": "K2",
+        "as_of": "2026-07-31",
+        "value": 8000,
+        "quality": "valid",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "triệu",
+        "currency": "VND",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O22",
+        "metric_id": "K2",
+        "as_of": "2026-08-31",
+        "value": 3000,
+        "quality": "valid",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "triệu",
+        "currency": "VND",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O23",
+        "metric_id": "K2",
+        "as_of": "2026-09-03",
+        "value": -2000,
+        "quality": "valid",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "triệu",
+        "currency": "VND",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O31",
+        "metric_id": "K3",
+        "as_of": "2026-07-31",
+        "value": null,
+        "quality": "missing",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "ratio",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O32",
+        "metric_id": "K3",
+        "as_of": "2026-08-31",
+        "value": null,
+        "quality": "missing",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "ratio",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      },
+      {
+        "id": "O33",
+        "metric_id": "K3",
+        "as_of": "2026-09-03",
+        "value": null,
+        "quality": "missing",
+        "evidence_ids": [
+          "SYN1"
+        ],
+        "unit": "ratio",
+        "currency": "N/A",
+        "horizon": "Q4-2026",
+        "scope": "Group"
+      }
+    ],
+    "controls": [
+      {
+        "id": "C1",
+        "risk_ids": [
+          "R1"
+        ],
+        "label": "Nguồn cung dự phòng",
+        "owner": "COO",
+        "state": "designed",
+        "design_conclusion": "Thiết kế có phương án alternate",
+        "operating_conclusion": "Chưa thử giao hàng",
+        "design_evidence_ids": [
+          "SYN1"
+        ],
+        "operating_evidence_ids": [],
+        "rcsa": "Self-assessment; chưa độc lập kiểm thử"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "SC1",
+        "label": "Port outage + chậm thu tiền",
+        "kind": "stress",
+        "horizon": "Q4-2026",
+        "baseline": "Demand 1000, capacity1000; opening cash20000 triệu",
+        "assumptions": [
+          "Capacity800",
+          "Contribution40 triệu/unit",
+          "Recovery2000 triệu",
+          "Penalty1000 triệu",
+          "Inflows8000 triệu",
+          "Outflows30000 triệu"
+        ],
+        "transmission": "Port dừng → capacity giảm → contribution mất; thu tiền trễ → cash breach",
+        "result": "Incremental loss 11000 triệu VND; closing cash -2000 triệu VND",
+        "limitations": "Synthetic combined stress; không có probability/forecast; không cộng cash balance với P&L loss.",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      }
+    ],
+    "losses": [
+      {
+        "id": "L1",
+        "risk_ids": [
+          "R1",
+          "R2"
+        ],
+        "amount": 11000,
+        "currency": "VND",
+        "horizon": "Q4-2026",
+        "scope": "Group",
+        "eliminated": false,
+        "evidence_ids": [
+          "SYN1"
+        ]
+      },
+      {
+        "id": "L2",
+        "risk_ids": [
+          "R3"
+        ],
+        "amount": 2000,
+        "currency": "VND",
+        "horizon": "Q4-2026",
+        "scope": "Group",
+        "eliminated": false,
+        "evidence_ids": [
+          "SYN1"
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "DEP1",
+        "from_risk_id": "R1",
+        "to_risk_id": "R2",
+        "kind": "cascade",
+        "mechanism": "Delivery delay làm chậm collection",
+        "evidence_ids": [
+          "SYN1"
+        ]
+      }
+    ],
+    "treatments": [
+      {
+        "id": "TR1",
+        "risk_ids": [
+          "R1",
+          "R2"
+        ],
+        "option": "reduce",
+        "action": "Thử alternate port và cash contingency",
+        "owner": "COO + CFO",
+        "deadline": "2026-09-20",
+        "status": "proposed",
+        "cost": 500,
+        "currency": "VND",
+        "lead_time": "2 tuần",
+        "resource_constraint": "Cần 2 người; mới có 1",
+        "secondary_risk": "Alternate port tăng transit và phí",
+        "expected_benefit": "Giảm thời gian gián đoạn; chưa đo benefit thực tế",
+        "no_action_case": "Synthetic: giữ exposure gián đoạn và cash shortfall của SC1.",
+        "target": "Synthetic: khôi phục khả năng giao hàng; residual exposure chưa định lượng, chờ thử alternate port.",
+        "target_assessment_ids": [],
+        "benefit_basis": "assumed",
+        "acceptance_authority": null,
+        "evidence_ids": [
+          "SYN1"
+        ]
+      }
+    ],
+    "handoffs": [
+      {
+        "id": "H1",
+        "specialist": "BCP",
+        "capability_status": "unverified",
+        "version": "unknown",
+        "question": "BIA và recovery feasibility cho alternate port",
+        "target": "Group supply chain",
+        "horizon": "Q4-2026",
+        "as_of": "2026-09-03",
+        "input_refs": [
+          "R1",
+          "SYN1"
+        ],
+        "constraints": "Không cài hoặc gửi bên ngoài",
+        "acceptance_criteria": "BIA scope, verified recovery test và limitations",
+        "output_contract": "Recovery alternatives và evidence",
+        "result_status": "not_run",
+        "method": null,
+        "validation_status": null,
+        "limitations": "Chưa thử handoff specialist",
+        "monitoring": "Review sau exercise"
+      }
+    ],
+    "context": {
+      "id": "SYN-ERM-01",
+      "version": "1",
+      "as_of": "2026-09-03",
+      "entity": "Công ty Mẫu",
+      "scope": "Group",
+      "jurisdictions": [
+        "VN",
+        "SG"
+      ],
+      "currency": "VND",
+      "horizon": "Q4-2026",
+      "unit": "triệu",
+      "industry": "FMCG",
+      "objectives": [
+        "Bảo vệ cash và khả năng giao hàng"
+      ],
+      "materiality": "Synthetic: ảnh hưởng cash/giao hàng cấp tập đoàn",
+      "synthetic": true,
+      "decision": "Quyết định nguồn lực dự phòng và xử lý breach thanh khoản; chưa phê duyệt."
+    }
+  }
+}
