@@ -1131,3 +1131,21 @@ tại commit bàn giao `d3199e51a6fbe4a55bc157738eb9460dde05058f` và push bằn
 object và peeled commit trên GitHub khớp cục bộ. Tag chưa tồn tại trước thao
 tác; không thay/force tag, không tạo GitHub Release. Commit tài liệu ghi nhận
 này tiếp nối trên `main`; tag giữ nguyên commit bàn giao, source/ZIP không đổi.
+
+## 24. Hiển thị logo và giấy phép trên GitHub
+
+Người dùng báo thiếu logo và tab license. Đã xác nhận trực tiếp trên trang
+repository: README chưa có ảnh logo; chỉ có tab README, LICENSE nằm sâu trong
+canonical nên chưa hiện ở phần điều hướng giấy phép cấp repository.
+
+Sửa README để nhúng trực tiếp logo nguồn sẵn có, rộng 160 px, có alt text;
+thêm LICENSE.md ở gốc làm điểm truy cập đến LICENSE và LICENSE-APPLICATION
+chuẩn. Không sao chép toàn văn, không đổi điều khoản/phạm vi pháp lý và không
+thêm asset. File mới có consumer là GitHub repository navigation và README;
+không thuộc payload skill. Tag v1.0.0 và các ZIP giữ nguyên. Đây là sửa trình
+bày repository trên main, không thay code hoặc mở lại kiểm thử Claude.
+
+Tài liệu GitHub về licensing đặt file license ở gốc; nhận diện tên giấy phép
+dựa vào bộ mẫu có sẵn nên không giả định tên giấy phép tùy chỉnh sẽ hiện đúng.
+Nguồn: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository.
+Kết quả kiểm giao diện sau push sẽ ghi tại đây, chỉ sau khi quan sát thực tế.

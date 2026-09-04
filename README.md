@@ -1,5 +1,11 @@
 # Thiện's Skill — Enterprise Risk Management Intelligence
 
+<p>
+  <img src="skill/thien-skill-enterprise-risk-management-intelligence/assets/logo.png" alt="Logo TDTN — Thiện's Skill" width="160">
+</p>
+
+[Giấy phép / License](LICENSE.md)
+
 Skill hỗ trợ **quản trị rủi ro doanh nghiệp (Enterprise Risk Management — ERM)**,
 từ hiểu bối cảnh kinh doanh, nhận diện và đánh giá rủi ro đến lựa chọn ứng phó,
 theo dõi và báo cáo cho ban điều hành/HĐQT.
