@@ -10,6 +10,8 @@ Bất biến và hygiene gate: [Nguyên tắc](NGUYEN-TAC.md).
   `thiendeptrainhat/Thien-Skill-Enterprise-Risk-Management-Intelligence`, nhánh
   `main`, repository Private. Commit triển khai `04cf12e` nối baseline `d2741d4`;
   remote ref đã xác minh khớp. Không tạo GitHub Release. Chi tiết mục 23.
+- **Tag v1.0.0:** đã tạo annotated tag ở máy và push lên GitHub theo yêu cầu;
+  trỏ đến commit bàn giao `d3199e5`, hash tag/commit hai bên khớp. Chi tiết mục 23.
 - **DOCUMENTATION_BASELINE:** baseline `d2741d4` đã được đọc và giữ làm mốc.
 - **IMPLEMENTATION:** G0–G8 đã triển khai trong working tree ngày 2026-09-04.
   Canonical source có 31 file, khoảng 1,36 MiB; không có `.agents/skills/`, mirror hoặc
@@ -1121,3 +1123,11 @@ baseline, gồm 82 file thêm/sửa; CLAUDE.md đã nằm trong baseline nên kh
 Nguồn và các gói vẫn nguyên hash; không chạy lại kiểm thử hoặc thay evidence
 lịch sử. Mục này được cập nhật bằng commit tài liệu tiếp nối để lưu xác nhận
 push thực tế; hồ sơ QA/build trước đây giữ đúng trạng thái tại thời điểm tạo.
+
+**Tag theo yêu cầu tiếp theo của người dùng:** đã tạo annotated tag `v1.0.0`
+tại commit bàn giao `d3199e51a6fbe4a55bc157738eb9460dde05058f` và push bằng
+`git push origin refs/tags/v1.0.0`. Tag object là
+`7aff67566fbd2f10b13ef19b0af99db6f3dc13d2`; `git ls-remote` xác nhận cả tag
+object và peeled commit trên GitHub khớp cục bộ. Tag chưa tồn tại trước thao
+tác; không thay/force tag, không tạo GitHub Release. Commit tài liệu ghi nhận
+này tiếp nối trên `main`; tag giữ nguyên commit bàn giao, source/ZIP không đổi.
